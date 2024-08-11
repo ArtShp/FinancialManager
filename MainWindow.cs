@@ -6,5 +6,12 @@ namespace FinancialManager
         {
             InitializeComponent();
         }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            SqliteDataAccess.DBName = "TestDB.db";
+            var res = SqliteDataAccess.TestConnection();
+            MessageBox.Show(res.ToString());
+        }
     }
 }

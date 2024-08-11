@@ -37,6 +37,7 @@
             ClientSize = new Size(800, 450);
             Name = "MainWindow";
             Text = "Financial Manager";
+            Load += MainWindow_Load;
             ResumeLayout(false);
         }
 
