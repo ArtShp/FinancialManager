@@ -9,35 +9,32 @@ namespace FinancialManager
 {
     internal static class SqliteDataAccess
     {
-        public static string? DBName { get; set; }
+        public static string? PathToDB { get; set; }
+        public static bool IsPathToDBCorrect { get; set; }
 
-        public static bool TestConnection()
+        public static string TestConnection()
         {
-            /*using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Open();
-                connection.Close();
-            }*/
+                try
+                {
+                    connection.Open();
+                    connection.Close();
 
-            var connection = new SQLiteConnection(LoadConnectionString());
-            try
-            {
-                connection.Open();
-                connection.Close();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // Console.WriteLine(ex.Message);
-
-                return false;
+                    IsPathToDBCorrect = true;
+                    return "DB connection OK!";
+                }
+                catch (Exception)
+                {
+                    IsPathToDBCorrect = false;
+                    return "DB connection FAILED!";
+                }
             }
         }
 
         private static string LoadConnectionString()
         {
-            return "Data Source=" + DBName + "; Version=3; FailIfMissing=True";
+            return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
         }
     }
 }
