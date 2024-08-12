@@ -12,9 +12,26 @@ namespace FinancialManager
 {
     public partial class EditCurrenciesForm : Form
     {
+        private List<CurrencyModel> data = new List<CurrencyModel>();
+
         public EditCurrenciesForm()
         {
             InitializeComponent();
+
+            LoadCurrenciesList();
+        }
+
+        private void LoadCurrenciesList()
+        {
+            data = SqliteDataAccess.LoadCurrencies();
+
+            UpdateCurrenciesList();
+        }
+
+        private void UpdateCurrenciesList()
+        {
+            currenciesListBox.DataSource = data;
+            currenciesListBox.DisplayMember = "Name";
         }
     }
 }

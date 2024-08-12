@@ -28,18 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            currenciesListBox = new ListBox();
             SuspendLayout();
+            // 
+            // currenciesListBox
+            // 
+            currenciesListBox.FormattingEnabled = true;
+            currenciesListBox.Location = new Point(505, 12);
+            currenciesListBox.Name = "currenciesListBox";
+            currenciesListBox.Size = new Size(657, 772);
+            currenciesListBox.TabIndex = 0;
             // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(currenciesListBox);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private ListBox currenciesListBox;
     }
 }

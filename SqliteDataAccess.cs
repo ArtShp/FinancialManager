@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -158,6 +159,15 @@ namespace FinancialManager
                     transaction.Commit();
                 }
                 connection.Close();
+            }
+        }
+
+        public static List<CurrencyModel> LoadCurrencies()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies", new DynamicParameters());
+                return output.ToList();
             }
         }
 
