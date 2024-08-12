@@ -31,12 +31,12 @@
             openDBButton = new Button();
             openDBDialog = new OpenFileDialog();
             connectToDBButton = new Button();
-            statusStrip1 = new StatusStrip();
+            dbStatusStrip = new StatusStrip();
             DBStatus = new ToolStripStatusLabel();
             disconnectFromDBButton = new Button();
             createDBButton = new Button();
             createDBDialog = new SaveFileDialog();
-            statusStrip1.SuspendLayout();
+            dbStatusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
@@ -59,20 +59,19 @@
             connectToDBButton.UseVisualStyleBackColor = true;
             connectToDBButton.Click += connectToDBButton_Click;
             // 
-            // statusStrip1
+            // dbStatusStrip
             // 
-            statusStrip1.ImageScalingSize = new Size(32, 32);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { DBStatus });
-            statusStrip1.Location = new Point(0, 428);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
-            statusStrip1.TabIndex = 2;
-            statusStrip1.Text = "statusStrip1";
+            dbStatusStrip.ImageScalingSize = new Size(32, 32);
+            dbStatusStrip.Items.AddRange(new ToolStripItem[] { DBStatus });
+            dbStatusStrip.Location = new Point(0, 412);
+            dbStatusStrip.Name = "dbStatusStrip";
+            dbStatusStrip.Size = new Size(800, 38);
+            dbStatusStrip.TabIndex = 2;
             // 
             // DBStatus
             // 
             DBStatus.Name = "DBStatus";
-            DBStatus.Size = new Size(0, 12);
+            DBStatus.Size = new Size(0, 28);
             // 
             // disconnectFromDBButton
             // 
@@ -101,14 +100,14 @@
             ClientSize = new Size(800, 450);
             Controls.Add(createDBButton);
             Controls.Add(disconnectFromDBButton);
-            Controls.Add(statusStrip1);
+            Controls.Add(dbStatusStrip);
             Controls.Add(connectToDBButton);
             Controls.Add(openDBButton);
             Name = "MainWindow";
             Text = "Financial Manager";
             Load += MainWindow_Load;
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
+            dbStatusStrip.ResumeLayout(false);
+            dbStatusStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -118,7 +117,7 @@
         private Button openDBButton;
         private OpenFileDialog openDBDialog;
         private Button connectToDBButton;
-        private StatusStrip statusStrip1;
+        private StatusStrip dbStatusStrip;
         private ToolStripStatusLabel DBStatus;
         private Button disconnectFromDBButton;
         private Button createDBButton;
