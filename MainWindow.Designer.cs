@@ -123,7 +123,6 @@
             startTabPage.TabIndex = 0;
             startTabPage.Text = "Start";
             startTabPage.UseVisualStyleBackColor = true;
-            startTabPage.Click += tabPage1_Click;
             // 
             // fillDBTabPage
             // 
