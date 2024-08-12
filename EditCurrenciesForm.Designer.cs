@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             currenciesListBox = new ListBox();
+            currencyNameTextBox = new TextBox();
+            currencyNameLabel = new Label();
+            currencyCodeLabel = new Label();
+            currencyCodeTextBox = new TextBox();
+            currencySymbolLabel = new Label();
+            currencySymbolTextBox = new TextBox();
+            addCurrencyButton = new Button();
+            refreshCurrenciesButton = new Button();
             SuspendLayout();
             // 
             // currenciesListBox
@@ -39,19 +47,104 @@
             currenciesListBox.Size = new Size(657, 772);
             currenciesListBox.TabIndex = 0;
             // 
+            // currencyNameTextBox
+            // 
+            currencyNameTextBox.Location = new Point(47, 159);
+            currencyNameTextBox.Name = "currencyNameTextBox";
+            currencyNameTextBox.Size = new Size(295, 39);
+            currencyNameTextBox.TabIndex = 1;
+            // 
+            // currencyNameLabel
+            // 
+            currencyNameLabel.AutoSize = true;
+            currencyNameLabel.Location = new Point(47, 124);
+            currencyNameLabel.Name = "currencyNameLabel";
+            currencyNameLabel.Size = new Size(180, 32);
+            currencyNameLabel.TabIndex = 2;
+            currencyNameLabel.Text = "Currency Name";
+            // 
+            // currencyCodeLabel
+            // 
+            currencyCodeLabel.AutoSize = true;
+            currencyCodeLabel.Location = new Point(47, 247);
+            currencyCodeLabel.Name = "currencyCodeLabel";
+            currencyCodeLabel.Size = new Size(172, 32);
+            currencyCodeLabel.TabIndex = 4;
+            currencyCodeLabel.Text = "Currency Code";
+            // 
+            // currencyCodeTextBox
+            // 
+            currencyCodeTextBox.Location = new Point(47, 282);
+            currencyCodeTextBox.Name = "currencyCodeTextBox";
+            currencyCodeTextBox.Size = new Size(295, 39);
+            currencyCodeTextBox.TabIndex = 3;
+            // 
+            // currencySymbolLabel
+            // 
+            currencySymbolLabel.AutoSize = true;
+            currencySymbolLabel.Location = new Point(47, 382);
+            currencySymbolLabel.Name = "currencySymbolLabel";
+            currencySymbolLabel.Size = new Size(195, 32);
+            currencySymbolLabel.TabIndex = 6;
+            currencySymbolLabel.Text = "Currency Symbol";
+            // 
+            // currencySymbolTextBox
+            // 
+            currencySymbolTextBox.Location = new Point(47, 417);
+            currencySymbolTextBox.Name = "currencySymbolTextBox";
+            currencySymbolTextBox.Size = new Size(295, 39);
+            currencySymbolTextBox.TabIndex = 5;
+            // 
+            // addCurrencyButton
+            // 
+            addCurrencyButton.Location = new Point(47, 738);
+            addCurrencyButton.Name = "addCurrencyButton";
+            addCurrencyButton.Size = new Size(150, 46);
+            addCurrencyButton.TabIndex = 7;
+            addCurrencyButton.Text = "Add";
+            addCurrencyButton.UseVisualStyleBackColor = true;
+            addCurrencyButton.Click += addCurrencyButton_Click;
+            // 
+            // refreshCurrenciesButton
+            // 
+            refreshCurrenciesButton.Location = new Point(245, 738);
+            refreshCurrenciesButton.Name = "refreshCurrenciesButton";
+            refreshCurrenciesButton.Size = new Size(150, 46);
+            refreshCurrenciesButton.TabIndex = 8;
+            refreshCurrenciesButton.Text = "Refresh";
+            refreshCurrenciesButton.UseVisualStyleBackColor = true;
+            refreshCurrenciesButton.Click += refreshCurrenciesButton_Click;
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(refreshCurrenciesButton);
+            Controls.Add(addCurrencyButton);
+            Controls.Add(currencySymbolLabel);
+            Controls.Add(currencySymbolTextBox);
+            Controls.Add(currencyCodeLabel);
+            Controls.Add(currencyCodeTextBox);
+            Controls.Add(currencyNameLabel);
+            Controls.Add(currencyNameTextBox);
             Controls.Add(currenciesListBox);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ListBox currenciesListBox;
+        private TextBox currencyNameTextBox;
+        private Label currencyNameLabel;
+        private Label currencyCodeLabel;
+        private TextBox currencyCodeTextBox;
+        private Label currencySymbolLabel;
+        private TextBox currencySymbolTextBox;
+        private Button addCurrencyButton;
+        private Button refreshCurrenciesButton;
     }
 }

@@ -33,5 +33,26 @@ namespace FinancialManager
             currenciesListBox.DataSource = data;
             currenciesListBox.DisplayMember = "Name";
         }
+
+        private void addCurrencyButton_Click(object sender, EventArgs e)
+        {
+            CurrencyModel currency = new CurrencyModel
+            {
+                Name = currencyNameTextBox.Text,
+                Code = currencyCodeTextBox.Text,
+                Symbol = currencySymbolTextBox.Text
+            };
+
+            SqliteDataAccess.SaveCurrency(currency);
+
+            currencyNameTextBox.Clear();
+            currencyCodeTextBox.Clear();
+            currencySymbolTextBox.Clear();
+        }
+
+        private void refreshCurrenciesButton_Click(object sender, EventArgs e)
+        {
+            LoadCurrenciesList();
+        }
     }
 }

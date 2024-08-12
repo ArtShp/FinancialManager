@@ -171,6 +171,14 @@ namespace FinancialManager
             }
         }
 
+        public static void SaveCurrency(CurrencyModel currency)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO currencies (name, code, symbol) VALUES (@Name, @Code, @Symbol)", currency);
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
