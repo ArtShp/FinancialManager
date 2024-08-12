@@ -39,9 +39,11 @@
             mainWindowTabControl = new TabControl();
             startTabPage = new TabPage();
             fillDBTabPage = new TabPage();
+            editCurrenciesButton = new Button();
             statusStrip1.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
+            fillDBTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
@@ -126,6 +128,7 @@
             // 
             // fillDBTabPage
             // 
+            fillDBTabPage.Controls.Add(editCurrenciesButton);
             fillDBTabPage.Location = new Point(8, 46);
             fillDBTabPage.Name = "fillDBTabPage";
             fillDBTabPage.Padding = new Padding(3);
@@ -133,6 +136,16 @@
             fillDBTabPage.TabIndex = 1;
             fillDBTabPage.Text = "Fill Data";
             fillDBTabPage.UseVisualStyleBackColor = true;
+            // 
+            // editCurrenciesButton
+            // 
+            editCurrenciesButton.Location = new Point(1211, 6);
+            editCurrenciesButton.Name = "editCurrenciesButton";
+            editCurrenciesButton.Size = new Size(271, 46);
+            editCurrenciesButton.TabIndex = 0;
+            editCurrenciesButton.Text = "Edit Currencies";
+            editCurrenciesButton.UseVisualStyleBackColor = true;
+            editCurrenciesButton.Click += editCurrenciesButton_Click;
             // 
             // MainWindow
             // 
@@ -148,6 +161,7 @@
             statusStrip1.PerformLayout();
             mainWindowTabControl.ResumeLayout(false);
             startTabPage.ResumeLayout(false);
+            fillDBTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,5 +179,6 @@
         private TabControl mainWindowTabControl;
         private TabPage startTabPage;
         private TabPage fillDBTabPage;
+        private Button editCurrenciesButton;
     }
 }
