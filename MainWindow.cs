@@ -58,5 +58,10 @@ namespace FinancialManager
             // updateDBStatus();
             MessageBox.Show("DB created!");
         }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

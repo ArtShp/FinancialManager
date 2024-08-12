@@ -36,12 +36,17 @@
             disconnectFromDBButton = new Button();
             createDBButton = new Button();
             createDBDialog = new SaveFileDialog();
+            mainWindowTabControl = new TabControl();
+            startTabPage = new TabPage();
+            fillDBTabPage = new TabPage();
             statusStrip1.SuspendLayout();
+            mainWindowTabControl.SuspendLayout();
+            startTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
             // 
-            openDBButton.Location = new Point(12, 318);
+            openDBButton.Location = new Point(6, 687);
             openDBButton.Name = "openDBButton";
             openDBButton.Size = new Size(150, 46);
             openDBButton.TabIndex = 0;
@@ -51,7 +56,7 @@
             // 
             // connectToDBButton
             // 
-            connectToDBButton.Location = new Point(514, 266);
+            connectToDBButton.Location = new Point(1208, 635);
             connectToDBButton.Name = "connectToDBButton";
             connectToDBButton.Size = new Size(274, 46);
             connectToDBButton.TabIndex = 1;
@@ -63,9 +68,9 @@
             // 
             statusStrip1.ImageScalingSize = new Size(32, 32);
             statusStrip1.Items.AddRange(new ToolStripItem[] { DBStatus });
-            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Location = new Point(0, 810);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.Size = new Size(1504, 22);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -76,7 +81,7 @@
             // 
             // disconnectFromDBButton
             // 
-            disconnectFromDBButton.Location = new Point(514, 318);
+            disconnectFromDBButton.Location = new Point(1208, 687);
             disconnectFromDBButton.Name = "disconnectFromDBButton";
             disconnectFromDBButton.Size = new Size(274, 46);
             disconnectFromDBButton.TabIndex = 3;
@@ -86,7 +91,7 @@
             // 
             // createDBButton
             // 
-            createDBButton.Location = new Point(12, 266);
+            createDBButton.Location = new Point(6, 635);
             createDBButton.Name = "createDBButton";
             createDBButton.Size = new Size(150, 46);
             createDBButton.TabIndex = 4;
@@ -94,21 +99,56 @@
             createDBButton.UseVisualStyleBackColor = true;
             createDBButton.Click += createDBButton_Click;
             // 
+            // mainWindowTabControl
+            // 
+            mainWindowTabControl.Controls.Add(startTabPage);
+            mainWindowTabControl.Controls.Add(fillDBTabPage);
+            mainWindowTabControl.Dock = DockStyle.Fill;
+            mainWindowTabControl.Location = new Point(0, 0);
+            mainWindowTabControl.Name = "mainWindowTabControl";
+            mainWindowTabControl.SelectedIndex = 0;
+            mainWindowTabControl.Size = new Size(1504, 810);
+            mainWindowTabControl.TabIndex = 5;
+            // 
+            // startTabPage
+            // 
+            startTabPage.Controls.Add(createDBButton);
+            startTabPage.Controls.Add(openDBButton);
+            startTabPage.Controls.Add(disconnectFromDBButton);
+            startTabPage.Controls.Add(connectToDBButton);
+            startTabPage.Location = new Point(8, 46);
+            startTabPage.Name = "startTabPage";
+            startTabPage.Padding = new Padding(3);
+            startTabPage.Size = new Size(1488, 756);
+            startTabPage.TabIndex = 0;
+            startTabPage.Text = "Start";
+            startTabPage.UseVisualStyleBackColor = true;
+            startTabPage.Click += tabPage1_Click;
+            // 
+            // fillDBTabPage
+            // 
+            fillDBTabPage.Location = new Point(8, 46);
+            fillDBTabPage.Name = "fillDBTabPage";
+            fillDBTabPage.Padding = new Padding(3);
+            fillDBTabPage.Size = new Size(1488, 756);
+            fillDBTabPage.TabIndex = 1;
+            fillDBTabPage.Text = "Fill Data";
+            fillDBTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(createDBButton);
-            Controls.Add(disconnectFromDBButton);
+            ClientSize = new Size(1504, 832);
+            Controls.Add(mainWindowTabControl);
             Controls.Add(statusStrip1);
-            Controls.Add(connectToDBButton);
-            Controls.Add(openDBButton);
             Name = "MainWindow";
             Text = "Financial Manager";
             Load += MainWindow_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            mainWindowTabControl.ResumeLayout(false);
+            startTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,5 +163,8 @@
         private Button disconnectFromDBButton;
         private Button createDBButton;
         private SaveFileDialog createDBDialog;
+        private TabControl mainWindowTabControl;
+        private TabPage startTabPage;
+        private TabPage fillDBTabPage;
     }
 }
