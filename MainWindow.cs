@@ -9,6 +9,7 @@ namespace FinancialManager
             InitializeComponent();
             updateDBStatus();
             openDBDialog.Filter = "DB files|*.db";
+            createDBDialog.Filter = "DB files|*.db";
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -45,6 +46,17 @@ namespace FinancialManager
             SqliteDataAccess.TestConnection();
             updateDBStatus();
             MessageBox.Show("DB closed!");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (createDBDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            SqliteDataAccess.PathToDB = createDBDialog.FileName;
+            SqliteDataAccess.CreateDB();
+            // SqliteDataAccess.TestConnection();
+            // updateDBStatus();
+            MessageBox.Show("DB created!");
         }
     }
 }
