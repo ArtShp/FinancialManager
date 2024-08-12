@@ -31,7 +31,7 @@ namespace FinancialManager
         private void UpdateCurrenciesList()
         {
             currenciesListBox.DataSource = data;
-            currenciesListBox.DisplayMember = "Name";
+            currenciesListBox.DisplayMember = "Display";
         }
 
         private void addCurrencyButton_Click(object sender, EventArgs e)

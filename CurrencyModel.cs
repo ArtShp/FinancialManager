@@ -12,5 +12,13 @@ namespace FinancialManager
         public string Name { get; set; }
         public string Code { get; set; }
         public string Symbol { get; set; }
+
+        public string Display
+        {
+            get
+            {
+                return $"{Name} ({Code}, {Symbol})";
+            }
+        }
     }
 }
