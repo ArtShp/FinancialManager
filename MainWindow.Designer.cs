@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            openDBButton = new Button();
             openDBDialog = new OpenFileDialog();
-            button2 = new Button();
+            connectToDBButton = new Button();
             statusStrip1 = new StatusStrip();
             DBStatus = new ToolStripStatusLabel();
-            button3 = new Button();
-            button4 = new Button();
+            disconnectFromDBButton = new Button();
+            createDBButton = new Button();
             createDBDialog = new SaveFileDialog();
             statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // button1
+            // openDBButton
             // 
-            button1.Location = new Point(12, 318);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 0;
-            button1.Text = "Open DB";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            openDBButton.Location = new Point(12, 318);
+            openDBButton.Name = "openDBButton";
+            openDBButton.Size = new Size(150, 46);
+            openDBButton.TabIndex = 0;
+            openDBButton.Text = "Open DB";
+            openDBButton.UseVisualStyleBackColor = true;
+            openDBButton.Click += openDBButton_Click;
             // 
-            // button2
+            // connectToDBButton
             // 
-            button2.Location = new Point(514, 266);
-            button2.Name = "button2";
-            button2.Size = new Size(274, 46);
-            button2.TabIndex = 1;
-            button2.Text = "Connect to DB";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            connectToDBButton.Location = new Point(514, 266);
+            connectToDBButton.Name = "connectToDBButton";
+            connectToDBButton.Size = new Size(274, 46);
+            connectToDBButton.TabIndex = 1;
+            connectToDBButton.Text = "Connect to DB";
+            connectToDBButton.UseVisualStyleBackColor = true;
+            connectToDBButton.Click += connectToDBButton_Click;
             // 
             // statusStrip1
             // 
@@ -74,36 +74,36 @@
             DBStatus.Name = "DBStatus";
             DBStatus.Size = new Size(0, 12);
             // 
-            // button3
+            // disconnectFromDBButton
             // 
-            button3.Location = new Point(514, 318);
-            button3.Name = "button3";
-            button3.Size = new Size(274, 46);
-            button3.TabIndex = 3;
-            button3.Text = "Disconnect from DB";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            disconnectFromDBButton.Location = new Point(514, 318);
+            disconnectFromDBButton.Name = "disconnectFromDBButton";
+            disconnectFromDBButton.Size = new Size(274, 46);
+            disconnectFromDBButton.TabIndex = 3;
+            disconnectFromDBButton.Text = "Disconnect from DB";
+            disconnectFromDBButton.UseVisualStyleBackColor = true;
+            disconnectFromDBButton.Click += disconnectFromDBButton_Click;
             // 
-            // button4
+            // createDBButton
             // 
-            button4.Location = new Point(12, 266);
-            button4.Name = "button4";
-            button4.Size = new Size(150, 46);
-            button4.TabIndex = 4;
-            button4.Text = "Create DB";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            createDBButton.Location = new Point(12, 266);
+            createDBButton.Name = "createDBButton";
+            createDBButton.Size = new Size(150, 46);
+            createDBButton.TabIndex = 4;
+            createDBButton.Text = "Create DB";
+            createDBButton.UseVisualStyleBackColor = true;
+            createDBButton.Click += createDBButton_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button4);
-            Controls.Add(button3);
+            Controls.Add(createDBButton);
+            Controls.Add(disconnectFromDBButton);
             Controls.Add(statusStrip1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(connectToDBButton);
+            Controls.Add(openDBButton);
             Name = "MainWindow";
             Text = "Financial Manager";
             Load += MainWindow_Load;
@@ -115,13 +115,13 @@
 
         #endregion
 
-        private Button button1;
+        private Button openDBButton;
         private OpenFileDialog openDBDialog;
-        private Button button2;
+        private Button connectToDBButton;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel DBStatus;
-        private Button button3;
-        private Button button4;
+        private Button disconnectFromDBButton;
+        private Button createDBButton;
         private SaveFileDialog createDBDialog;
     }
 }

@@ -25,7 +25,7 @@ namespace FinancialManager
                 DBStatus.Text = "DB status: DISCONNECTED";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void openDBButton_Click(object sender, EventArgs e)
         {
             if (openDBDialog.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -33,14 +33,14 @@ namespace FinancialManager
             MessageBox.Show("DB opened!");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void connectToDBButton_Click(object sender, EventArgs e)
         {
             var result = SqliteDataAccess.TestConnection();
             updateDBStatus();
             MessageBox.Show(result);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void disconnectFromDBButton_Click(object sender, EventArgs e)
         {
             SqliteDataAccess.PathToDB = null;
             SqliteDataAccess.TestConnection();
@@ -48,7 +48,7 @@ namespace FinancialManager
             MessageBox.Show("DB closed!");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void createDBButton_Click(object sender, EventArgs e)
         {
             if (createDBDialog.ShowDialog() == DialogResult.Cancel)
                 return;
