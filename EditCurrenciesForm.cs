@@ -99,5 +99,14 @@ namespace FinancialManager
         {
             // CurrencyModel currency = (CurrencyModel)currenciesListBox.SelectedItem;
         }
+
+        private void cancelCurrencyEditingButton_Click(object sender, EventArgs e)
+        {
+            if (selectedCurrencyId == -1)
+                return;
+
+            selectedCurrencyId = -1;
+            clearCurrencyDataView();
+        }
     }
 }

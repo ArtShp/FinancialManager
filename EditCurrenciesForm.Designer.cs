@@ -39,6 +39,7 @@
             refreshCurrenciesButton = new Button();
             editCurrencyButton = new Button();
             saveCurrencyButton = new Button();
+            cancelCurrencyEditingButton = new Button();
             SuspendLayout();
             // 
             // currenciesListBox
@@ -102,7 +103,7 @@
             // 
             addCurrencyButton.Location = new Point(47, 738);
             addCurrencyButton.Name = "addCurrencyButton";
-            addCurrencyButton.Size = new Size(150, 46);
+            addCurrencyButton.Size = new Size(97, 46);
             addCurrencyButton.TabIndex = 7;
             addCurrencyButton.Text = "Add";
             addCurrencyButton.UseVisualStyleBackColor = true;
@@ -110,9 +111,9 @@
             // 
             // refreshCurrenciesButton
             // 
-            refreshCurrenciesButton.Location = new Point(245, 738);
+            refreshCurrenciesButton.Location = new Point(182, 738);
             refreshCurrenciesButton.Name = "refreshCurrenciesButton";
-            refreshCurrenciesButton.Size = new Size(150, 46);
+            refreshCurrenciesButton.Size = new Size(130, 46);
             refreshCurrenciesButton.TabIndex = 8;
             refreshCurrenciesButton.Text = "Refresh";
             refreshCurrenciesButton.UseVisualStyleBackColor = true;
@@ -122,7 +123,7 @@
             // 
             editCurrencyButton.Location = new Point(47, 686);
             editCurrencyButton.Name = "editCurrencyButton";
-            editCurrencyButton.Size = new Size(150, 46);
+            editCurrencyButton.Size = new Size(97, 46);
             editCurrencyButton.TabIndex = 9;
             editCurrencyButton.Text = "Edit";
             editCurrencyButton.UseVisualStyleBackColor = true;
@@ -130,19 +131,30 @@
             // 
             // saveCurrencyButton
             // 
-            saveCurrencyButton.Location = new Point(245, 686);
+            saveCurrencyButton.Location = new Point(182, 686);
             saveCurrencyButton.Name = "saveCurrencyButton";
-            saveCurrencyButton.Size = new Size(150, 46);
+            saveCurrencyButton.Size = new Size(130, 46);
             saveCurrencyButton.TabIndex = 10;
             saveCurrencyButton.Text = "Save";
             saveCurrencyButton.UseVisualStyleBackColor = true;
             saveCurrencyButton.Click += saveCurrencyButton_Click;
+            // 
+            // cancelCurrencyEditingButton
+            // 
+            cancelCurrencyEditingButton.Location = new Point(353, 686);
+            cancelCurrencyEditingButton.Name = "cancelCurrencyEditingButton";
+            cancelCurrencyEditingButton.Size = new Size(116, 46);
+            cancelCurrencyEditingButton.TabIndex = 11;
+            cancelCurrencyEditingButton.Text = "Cancel";
+            cancelCurrencyEditingButton.UseVisualStyleBackColor = true;
+            cancelCurrencyEditingButton.Click += cancelCurrencyEditingButton_Click;
             // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(cancelCurrencyEditingButton);
             Controls.Add(saveCurrencyButton);
             Controls.Add(editCurrencyButton);
             Controls.Add(refreshCurrenciesButton);
@@ -173,5 +185,6 @@
         private Button refreshCurrenciesButton;
         private Button editCurrencyButton;
         private Button saveCurrencyButton;
+        private Button cancelCurrencyEditingButton;
     }
 }
