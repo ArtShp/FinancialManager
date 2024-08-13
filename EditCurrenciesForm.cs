@@ -113,5 +113,17 @@ namespace FinancialManager
             selectedCurrencyId = -1;
             clearCurrencyDataView();
         }
+
+        private void deleteCurrencyButton_Click(object sender, EventArgs e)
+        {
+            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag.ToString());
+
+            var result = MessageBox.Show("Are you sure you want to delete this currency?", "Delete currency", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                SqliteDataAccess.DeleteCurrencyById(selectedCurrencyId);
+
+            selectedCurrencyId = -1;
+            clearCurrencyDataView();
+        }
     }
 }

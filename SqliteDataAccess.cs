@@ -196,6 +196,14 @@ namespace FinancialManager
             }
         }
 
+        public static void DeleteCurrencyById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM currencies WHERE id = @Id", new { Id = id });
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";

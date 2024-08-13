@@ -44,6 +44,7 @@
             codeColumnHeader = new ColumnHeader();
             symbolColumnHeader = new ColumnHeader();
             currenciesLabel = new Label();
+            deleteCurrencyButton = new Button();
             SuspendLayout();
             // 
             // currencyNameTextBox
@@ -182,11 +183,22 @@
             currenciesLabel.TabIndex = 13;
             currenciesLabel.Text = "Currencies";
             // 
+            // deleteCurrencyButton
+            // 
+            deleteCurrencyButton.Location = new Point(353, 738);
+            deleteCurrencyButton.Name = "deleteCurrencyButton";
+            deleteCurrencyButton.Size = new Size(116, 46);
+            deleteCurrencyButton.TabIndex = 14;
+            deleteCurrencyButton.Text = "Delete";
+            deleteCurrencyButton.UseVisualStyleBackColor = true;
+            deleteCurrencyButton.Click += deleteCurrencyButton_Click;
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(deleteCurrencyButton);
             Controls.Add(currenciesLabel);
             Controls.Add(currenciesListView);
             Controls.Add(cancelCurrencyEditingButton);
@@ -223,5 +235,6 @@
         private ColumnHeader codeColumnHeader;
         private ColumnHeader symbolColumnHeader;
         private Label currenciesLabel;
+        private Button deleteCurrencyButton;
     }
 }
