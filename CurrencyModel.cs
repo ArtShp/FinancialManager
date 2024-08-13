@@ -13,12 +13,6 @@ namespace FinancialManager
         public string Code { get; set; }
         public string Symbol { get; set; }
 
-        public string Display
-        {
-            get
-            {
-                return $"{Name} ({Code}, {Symbol})";
-            }
-        }
+        public string[] ItemArray => new[] { Name, Code, Symbol };
     }
 }

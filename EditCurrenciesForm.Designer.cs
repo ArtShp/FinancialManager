@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            currenciesListBox = new ListBox();
             currencyNameTextBox = new TextBox();
             currencyNameLabel = new Label();
             currencyCodeLabel = new Label();
@@ -40,16 +39,11 @@
             editCurrencyButton = new Button();
             saveCurrencyButton = new Button();
             cancelCurrencyEditingButton = new Button();
+            currenciesListView = new ListView();
+            nameColumnHeader = new ColumnHeader();
+            codeColumnHeader = new ColumnHeader();
+            symbolColumnHeader = new ColumnHeader();
             SuspendLayout();
-            // 
-            // currenciesListBox
-            // 
-            currenciesListBox.FormattingEnabled = true;
-            currenciesListBox.Location = new Point(505, 12);
-            currenciesListBox.Name = "currenciesListBox";
-            currenciesListBox.Size = new Size(657, 772);
-            currenciesListBox.TabIndex = 0;
-            currenciesListBox.SelectedIndexChanged += currenciesListBox_SelectedIndexChanged;
             // 
             // currencyNameTextBox
             // 
@@ -149,11 +143,39 @@
             cancelCurrencyEditingButton.UseVisualStyleBackColor = true;
             cancelCurrencyEditingButton.Click += cancelCurrencyEditingButton_Click;
             // 
+            // currenciesListView
+            // 
+            currenciesListView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader });
+            currenciesListView.FullRowSelect = true;
+            currenciesListView.GridLines = true;
+            currenciesListView.Location = new Point(505, 12);
+            currenciesListView.Name = "currenciesListView";
+            currenciesListView.Size = new Size(657, 772);
+            currenciesListView.TabIndex = 12;
+            currenciesListView.UseCompatibleStateImageBehavior = false;
+            currenciesListView.View = View.Details;
+            // 
+            // nameColumnHeader
+            // 
+            nameColumnHeader.Text = "Name";
+            nameColumnHeader.Width = 300;
+            // 
+            // codeColumnHeader
+            // 
+            codeColumnHeader.Text = "Code";
+            codeColumnHeader.Width = 100;
+            // 
+            // symbolColumnHeader
+            // 
+            symbolColumnHeader.Text = "Symbol";
+            symbolColumnHeader.Width = 120;
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(currenciesListView);
             Controls.Add(cancelCurrencyEditingButton);
             Controls.Add(saveCurrencyButton);
             Controls.Add(editCurrencyButton);
@@ -165,7 +187,6 @@
             Controls.Add(currencyCodeTextBox);
             Controls.Add(currencyNameLabel);
             Controls.Add(currencyNameTextBox);
-            Controls.Add(currenciesListBox);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
             ResumeLayout(false);
@@ -173,8 +194,6 @@
         }
 
         #endregion
-
-        private ListBox currenciesListBox;
         private TextBox currencyNameTextBox;
         private Label currencyNameLabel;
         private Label currencyCodeLabel;
@@ -186,5 +205,9 @@
         private Button editCurrencyButton;
         private Button saveCurrencyButton;
         private Button cancelCurrencyEditingButton;
+        private ListView currenciesListView;
+        private ColumnHeader nameColumnHeader;
+        private ColumnHeader codeColumnHeader;
+        private ColumnHeader symbolColumnHeader;
     }
 }

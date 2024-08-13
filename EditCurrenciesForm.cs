@@ -31,9 +31,19 @@ namespace FinancialManager
 
         private void UpdateCurrenciesList()
         {
-            currenciesListBox.DataSource = data;
-            currenciesListBox.DisplayMember = "Display";
-            currenciesListBox.ValueMember = "Id";
+            currenciesListView.BeginUpdate();
+            currenciesListView.Items.Clear();
+
+            foreach (var currency in data)
+            {
+                currenciesListView.Items.Add(
+                    new ListViewItem(currency.ItemArray)
+                    {
+                        Tag = currency.Id
+                    });
+            }
+            currenciesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            currenciesListView.EndUpdate();
         }
 
         private void addCurrencyButton_Click(object sender, EventArgs e)
@@ -71,8 +81,8 @@ namespace FinancialManager
 
         private void editCurrencyButton_Click(object sender, EventArgs e)
         {
-            CurrencyModel currency = (CurrencyModel)currenciesListBox.SelectedItem;
-            selectedCurrencyId = (long)currenciesListBox.SelectedValue;
+            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag.ToString());
+            CurrencyModel currency = SqliteDataAccess.GetCurrencyById(selectedCurrencyId);
             setCurrencyDataView(currency);
         }
 
@@ -93,11 +103,6 @@ namespace FinancialManager
 
             selectedCurrencyId = -1;
             clearCurrencyDataView();
-        }
-
-        private void currenciesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // CurrencyModel currency = (CurrencyModel)currenciesListBox.SelectedItem;
         }
 
         private void cancelCurrencyEditingButton_Click(object sender, EventArgs e)
