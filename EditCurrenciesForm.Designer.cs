@@ -37,6 +37,8 @@
             currencySymbolTextBox = new TextBox();
             addCurrencyButton = new Button();
             refreshCurrenciesButton = new Button();
+            editCurrencyButton = new Button();
+            saveCurrencyButton = new Button();
             SuspendLayout();
             // 
             // currenciesListBox
@@ -46,6 +48,7 @@
             currenciesListBox.Name = "currenciesListBox";
             currenciesListBox.Size = new Size(657, 772);
             currenciesListBox.TabIndex = 0;
+            currenciesListBox.SelectedIndexChanged += currenciesListBox_SelectedIndexChanged;
             // 
             // currencyNameTextBox
             // 
@@ -115,11 +118,33 @@
             refreshCurrenciesButton.UseVisualStyleBackColor = true;
             refreshCurrenciesButton.Click += refreshCurrenciesButton_Click;
             // 
+            // editCurrencyButton
+            // 
+            editCurrencyButton.Location = new Point(47, 686);
+            editCurrencyButton.Name = "editCurrencyButton";
+            editCurrencyButton.Size = new Size(150, 46);
+            editCurrencyButton.TabIndex = 9;
+            editCurrencyButton.Text = "Edit";
+            editCurrencyButton.UseVisualStyleBackColor = true;
+            editCurrencyButton.Click += editCurrencyButton_Click;
+            // 
+            // saveCurrencyButton
+            // 
+            saveCurrencyButton.Location = new Point(245, 686);
+            saveCurrencyButton.Name = "saveCurrencyButton";
+            saveCurrencyButton.Size = new Size(150, 46);
+            saveCurrencyButton.TabIndex = 10;
+            saveCurrencyButton.Text = "Save";
+            saveCurrencyButton.UseVisualStyleBackColor = true;
+            saveCurrencyButton.Click += saveCurrencyButton_Click;
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(saveCurrencyButton);
+            Controls.Add(editCurrencyButton);
             Controls.Add(refreshCurrenciesButton);
             Controls.Add(addCurrencyButton);
             Controls.Add(currencySymbolLabel);
@@ -146,5 +171,7 @@
         private TextBox currencySymbolTextBox;
         private Button addCurrencyButton;
         private Button refreshCurrenciesButton;
+        private Button editCurrencyButton;
+        private Button saveCurrencyButton;
     }
 }
