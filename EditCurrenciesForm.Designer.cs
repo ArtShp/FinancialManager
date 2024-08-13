@@ -107,9 +107,9 @@
             // 
             // refreshCurrenciesButton
             // 
-            refreshCurrenciesButton.Location = new Point(182, 738);
+            refreshCurrenciesButton.Location = new Point(344, 738);
             refreshCurrenciesButton.Name = "refreshCurrenciesButton";
-            refreshCurrenciesButton.Size = new Size(130, 46);
+            refreshCurrenciesButton.Size = new Size(127, 46);
             refreshCurrenciesButton.TabIndex = 8;
             refreshCurrenciesButton.Text = "Refresh";
             refreshCurrenciesButton.UseVisualStyleBackColor = true;
@@ -137,9 +137,9 @@
             // 
             // cancelCurrencyEditingButton
             // 
-            cancelCurrencyEditingButton.Location = new Point(353, 686);
+            cancelCurrencyEditingButton.Location = new Point(344, 686);
             cancelCurrencyEditingButton.Name = "cancelCurrencyEditingButton";
-            cancelCurrencyEditingButton.Size = new Size(116, 46);
+            cancelCurrencyEditingButton.Size = new Size(127, 46);
             cancelCurrencyEditingButton.TabIndex = 11;
             cancelCurrencyEditingButton.Text = "Cancel";
             cancelCurrencyEditingButton.UseVisualStyleBackColor = true;
@@ -185,9 +185,9 @@
             // 
             // deleteCurrencyButton
             // 
-            deleteCurrencyButton.Location = new Point(353, 738);
+            deleteCurrencyButton.Location = new Point(182, 738);
             deleteCurrencyButton.Name = "deleteCurrencyButton";
-            deleteCurrencyButton.Size = new Size(116, 46);
+            deleteCurrencyButton.Size = new Size(129, 46);
             deleteCurrencyButton.TabIndex = 14;
             deleteCurrencyButton.Text = "Delete";
             deleteCurrencyButton.UseVisualStyleBackColor = true;
