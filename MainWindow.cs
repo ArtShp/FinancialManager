@@ -58,5 +58,11 @@ namespace FinancialManager
             // updateDBStatus();
             MessageBox.Show("DB created!");
         }
+
+        private void editCurrenciesButton_Click(object sender, EventArgs e)
+        {
+            EditCurrenciesForm addCurrenciesForm = new EditCurrenciesForm();
+            addCurrenciesForm.Show();
+        }
     }
 }

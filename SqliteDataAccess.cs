@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -158,6 +159,48 @@ namespace FinancialManager
                     transaction.Commit();
                 }
                 connection.Close();
+            }
+        }
+
+        public static List<CurrencyModel> LoadCurrencies()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static void AddCurrency(CurrencyModel currency)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO currencies (name, code, symbol) VALUES (@Name, @Code, @Symbol)", currency);
+            }
+        }
+
+        public static void UpdateCurrency(CurrencyModel currency)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE currencies SET name = @Name, code = @Code, symbol = @Symbol WHERE id = @Id", currency);
+            }
+        }
+
+        public static CurrencyModel GetCurrencyById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
+        public static void DeleteCurrencyById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM currencies WHERE id = @Id", new { Id = id });
             }
         }
 

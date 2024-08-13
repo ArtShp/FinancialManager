@@ -36,12 +36,19 @@
             disconnectFromDBButton = new Button();
             createDBButton = new Button();
             createDBDialog = new SaveFileDialog();
+            mainWindowTabControl = new TabControl();
+            startTabPage = new TabPage();
+            fillDBTabPage = new TabPage();
+            editCurrenciesButton = new Button();
             dbStatusStrip.SuspendLayout();
+            mainWindowTabControl.SuspendLayout();
+            startTabPage.SuspendLayout();
+            fillDBTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
             // 
-            openDBButton.Location = new Point(12, 318);
+            openDBButton.Location = new Point(6, 687);
             openDBButton.Name = "openDBButton";
             openDBButton.Size = new Size(150, 46);
             openDBButton.TabIndex = 0;
@@ -51,7 +58,7 @@
             // 
             // connectToDBButton
             // 
-            connectToDBButton.Location = new Point(514, 266);
+            connectToDBButton.Location = new Point(1208, 635);
             connectToDBButton.Name = "connectToDBButton";
             connectToDBButton.Size = new Size(274, 46);
             connectToDBButton.TabIndex = 1;
@@ -75,7 +82,7 @@
             // 
             // disconnectFromDBButton
             // 
-            disconnectFromDBButton.Location = new Point(514, 318);
+            disconnectFromDBButton.Location = new Point(1208, 687);
             disconnectFromDBButton.Name = "disconnectFromDBButton";
             disconnectFromDBButton.Size = new Size(274, 46);
             disconnectFromDBButton.TabIndex = 3;
@@ -85,7 +92,7 @@
             // 
             // createDBButton
             // 
-            createDBButton.Location = new Point(12, 266);
+            createDBButton.Location = new Point(6, 635);
             createDBButton.Name = "createDBButton";
             createDBButton.Size = new Size(150, 46);
             createDBButton.TabIndex = 4;
@@ -93,21 +100,67 @@
             createDBButton.UseVisualStyleBackColor = true;
             createDBButton.Click += createDBButton_Click;
             // 
+            // mainWindowTabControl
+            // 
+            mainWindowTabControl.Controls.Add(startTabPage);
+            mainWindowTabControl.Controls.Add(fillDBTabPage);
+            mainWindowTabControl.Dock = DockStyle.Fill;
+            mainWindowTabControl.Location = new Point(0, 0);
+            mainWindowTabControl.Name = "mainWindowTabControl";
+            mainWindowTabControl.SelectedIndex = 0;
+            mainWindowTabControl.Size = new Size(1504, 810);
+            mainWindowTabControl.TabIndex = 5;
+            // 
+            // startTabPage
+            // 
+            startTabPage.Controls.Add(createDBButton);
+            startTabPage.Controls.Add(openDBButton);
+            startTabPage.Controls.Add(disconnectFromDBButton);
+            startTabPage.Controls.Add(connectToDBButton);
+            startTabPage.Location = new Point(8, 46);
+            startTabPage.Name = "startTabPage";
+            startTabPage.Padding = new Padding(3);
+            startTabPage.Size = new Size(1488, 756);
+            startTabPage.TabIndex = 0;
+            startTabPage.Text = "Start";
+            startTabPage.UseVisualStyleBackColor = true;
+            // 
+            // fillDBTabPage
+            // 
+            fillDBTabPage.Controls.Add(editCurrenciesButton);
+            fillDBTabPage.Location = new Point(8, 46);
+            fillDBTabPage.Name = "fillDBTabPage";
+            fillDBTabPage.Padding = new Padding(3);
+            fillDBTabPage.Size = new Size(1488, 756);
+            fillDBTabPage.TabIndex = 1;
+            fillDBTabPage.Text = "Fill Data";
+            fillDBTabPage.UseVisualStyleBackColor = true;
+            // 
+            // editCurrenciesButton
+            // 
+            editCurrenciesButton.Location = new Point(1211, 6);
+            editCurrenciesButton.Name = "editCurrenciesButton";
+            editCurrenciesButton.Size = new Size(271, 46);
+            editCurrenciesButton.TabIndex = 0;
+            editCurrenciesButton.Text = "Edit Currencies";
+            editCurrenciesButton.UseVisualStyleBackColor = true;
+            editCurrenciesButton.Click += editCurrenciesButton_Click;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(createDBButton);
-            Controls.Add(disconnectFromDBButton);
+            ClientSize = new Size(1504, 832);
+            Controls.Add(mainWindowTabControl);
             Controls.Add(dbStatusStrip);
-            Controls.Add(connectToDBButton);
-            Controls.Add(openDBButton);
             Name = "MainWindow";
             Text = "Financial Manager";
             Load += MainWindow_Load;
             dbStatusStrip.ResumeLayout(false);
             dbStatusStrip.PerformLayout();
+            mainWindowTabControl.ResumeLayout(false);
+            startTabPage.ResumeLayout(false);
+            fillDBTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -122,5 +175,9 @@
         private Button disconnectFromDBButton;
         private Button createDBButton;
         private SaveFileDialog createDBDialog;
+        private TabControl mainWindowTabControl;
+        private TabPage startTabPage;
+        private TabPage fillDBTabPage;
+        private Button editCurrenciesButton;
     }
 }
