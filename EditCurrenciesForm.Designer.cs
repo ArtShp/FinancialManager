@@ -43,6 +43,7 @@
             nameColumnHeader = new ColumnHeader();
             codeColumnHeader = new ColumnHeader();
             symbolColumnHeader = new ColumnHeader();
+            currenciesLabel = new Label();
             SuspendLayout();
             // 
             // currencyNameTextBox
@@ -171,11 +172,22 @@
             symbolColumnHeader.Text = "Symbol";
             symbolColumnHeader.Width = 120;
             // 
+            // currenciesLabel
+            // 
+            currenciesLabel.AutoSize = true;
+            currenciesLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            currenciesLabel.Location = new Point(47, 12);
+            currenciesLabel.Name = "currenciesLabel";
+            currenciesLabel.Size = new Size(264, 65);
+            currenciesLabel.TabIndex = 13;
+            currenciesLabel.Text = "Currencies";
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(currenciesLabel);
             Controls.Add(currenciesListView);
             Controls.Add(cancelCurrencyEditingButton);
             Controls.Add(saveCurrencyButton);
@@ -210,5 +222,6 @@
         private ColumnHeader nameColumnHeader;
         private ColumnHeader codeColumnHeader;
         private ColumnHeader symbolColumnHeader;
+        private Label currenciesLabel;
     }
 }
