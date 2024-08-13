@@ -149,6 +149,7 @@
             currenciesListView.FullRowSelect = true;
             currenciesListView.GridLines = true;
             currenciesListView.Location = new Point(505, 12);
+            currenciesListView.MultiSelect = false;
             currenciesListView.Name = "currenciesListView";
             currenciesListView.Size = new Size(657, 772);
             currenciesListView.TabIndex = 12;
