@@ -38,6 +38,7 @@
             cancelButton = new Button();
             refreshButton = new Button();
             nameTextBox = new TextBox();
+            nameColumnHeader = new ColumnHeader();
             SuspendLayout();
             // 
             // nameLabel
@@ -61,11 +62,16 @@
             // 
             // listView
             // 
+            listView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader });
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
             listView.Location = new Point(664, 12);
+            listView.MultiSelect = false;
             listView.Name = "listView";
             listView.Size = new Size(449, 854);
             listView.TabIndex = 3;
             listView.UseCompatibleStateImageBehavior = false;
+            listView.View = View.Details;
             // 
             // addButton
             // 
@@ -75,6 +81,7 @@
             addButton.TabIndex = 4;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // saveButton
             // 
@@ -84,6 +91,7 @@
             saveButton.TabIndex = 5;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // deleteButton
             // 
@@ -93,6 +101,7 @@
             deleteButton.TabIndex = 6;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // editButton
             // 
@@ -102,6 +111,7 @@
             editButton.TabIndex = 7;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // cancelButton
             // 
@@ -111,6 +121,7 @@
             cancelButton.TabIndex = 8;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // refreshButton
             // 
@@ -120,6 +131,7 @@
             refreshButton.TabIndex = 9;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
             // nameTextBox
             // 
@@ -127,6 +139,11 @@
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(380, 39);
             nameTextBox.TabIndex = 10;
+            // 
+            // nameColumnHeader
+            // 
+            nameColumnHeader.Text = "Name";
+            nameColumnHeader.Width = 120;
             // 
             // EditTransactionTypesForm
             // 
@@ -160,5 +177,6 @@
         private Button cancelButton;
         private Button refreshButton;
         private TextBox nameTextBox;
+        private ColumnHeader nameColumnHeader;
     }
 }
