@@ -40,6 +40,7 @@
             startTabPage = new TabPage();
             fillDBTabPage = new TabPage();
             editCurrenciesButton = new Button();
+            editTransactionTypesButton = new Button();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -70,15 +71,15 @@
             // 
             dbStatusStrip.ImageScalingSize = new Size(32, 32);
             dbStatusStrip.Items.AddRange(new ToolStripItem[] { DBStatus });
-            dbStatusStrip.Location = new Point(0, 412);
+            dbStatusStrip.Location = new Point(0, 810);
             dbStatusStrip.Name = "dbStatusStrip";
-            dbStatusStrip.Size = new Size(800, 38);
+            dbStatusStrip.Size = new Size(1504, 22);
             dbStatusStrip.TabIndex = 2;
             // 
             // DBStatus
             // 
             DBStatus.Name = "DBStatus";
-            DBStatus.Size = new Size(0, 28);
+            DBStatus.Size = new Size(0, 12);
             // 
             // disconnectFromDBButton
             // 
@@ -127,6 +128,7 @@
             // 
             // fillDBTabPage
             // 
+            fillDBTabPage.Controls.Add(editTransactionTypesButton);
             fillDBTabPage.Controls.Add(editCurrenciesButton);
             fillDBTabPage.Location = new Point(8, 46);
             fillDBTabPage.Name = "fillDBTabPage";
@@ -145,6 +147,16 @@
             editCurrenciesButton.Text = "Edit Currencies";
             editCurrenciesButton.UseVisualStyleBackColor = true;
             editCurrenciesButton.Click += editCurrenciesButton_Click;
+            // 
+            // editTransactionTypesButton
+            // 
+            editTransactionTypesButton.Location = new Point(1211, 58);
+            editTransactionTypesButton.Name = "editTransactionTypesButton";
+            editTransactionTypesButton.Size = new Size(271, 46);
+            editTransactionTypesButton.TabIndex = 1;
+            editTransactionTypesButton.Text = "Edit Transaction Types";
+            editTransactionTypesButton.UseVisualStyleBackColor = true;
+            editTransactionTypesButton.Click += editTransactionTypesButton_Click;
             // 
             // MainWindow
             // 
@@ -179,5 +191,6 @@
         private TabPage startTabPage;
         private TabPage fillDBTabPage;
         private Button editCurrenciesButton;
+        private Button editTransactionTypesButton;
     }
 }

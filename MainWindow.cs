@@ -64,5 +64,11 @@ namespace FinancialManager
             EditCurrenciesForm addCurrenciesForm = new EditCurrenciesForm();
             addCurrenciesForm.Show();
         }
+
+        private void editTransactionTypesButton_Click(object sender, EventArgs e)
+        {
+            EditTransactionTypesForm addTransactionTypesForm = new EditTransactionTypesForm();
+            addTransactionTypesForm.Show();
+        }
     }
 }
