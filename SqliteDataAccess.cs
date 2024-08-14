@@ -171,6 +171,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<TransactionTypeModel> LoadTransactionTypes()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TransactionTypeModel>("SELECT * FROM transaction_types", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -179,11 +188,27 @@ namespace FinancialManager
             }
         }
 
+        public static void AddTransactionType(TransactionTypeModel transactionType)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO transaction_types (name) VALUES (@Name)", transactionType);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("UPDATE currencies SET name = @Name, code = @Code, symbol = @Symbol WHERE id = @Id", currency);
+            }
+        }
+
+        public static void UpdateTransactionType(TransactionTypeModel transactionType)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE transaction_types SET name = @Name WHERE id = @Id", transactionType);
             }
         }
 
@@ -196,11 +221,28 @@ namespace FinancialManager
             }
         }
 
+        public static TransactionTypeModel GetTransactionTypeById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TransactionTypeModel>("SELECT * FROM transaction_types WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM currencies WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeleteTransactionTypeById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM transaction_types WHERE id = @Id", new { Id = id });
             }
         }
 
