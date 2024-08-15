@@ -180,6 +180,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<PlaceOfPurchaseModel> LoadPlacesOfPurchases()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<PlaceOfPurchaseModel>("SELECT * FROM places_of_purchases", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -196,6 +205,14 @@ namespace FinancialManager
             }
         }
 
+        public static void AddPlaceOfPurchase(PlaceOfPurchaseModel placeOfPurchase)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO places_of_purchases (name) VALUES (@Name)", placeOfPurchase);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -209,6 +226,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("UPDATE transaction_types SET name = @Name WHERE id = @Id", transactionType);
+            }
+        }
+
+        public static void UpdatePlaceOfPurchase(PlaceOfPurchaseModel placeOfPurchase)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE places_of_purchases SET name = @Name WHERE id = @Id", placeOfPurchase);
             }
         }
 
@@ -230,6 +255,15 @@ namespace FinancialManager
             }
         }
 
+        public static PlaceOfPurchaseModel GetPlaceOfPurchaseById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<PlaceOfPurchaseModel>("SELECT * FROM places_of_purchases WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -243,6 +277,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM transaction_types WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeletePlaceOfPurchaseById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM places_of_purchases WHERE id = @Id", new { Id = id });
             }
         }
 
