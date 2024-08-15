@@ -39,8 +39,9 @@
             mainWindowTabControl = new TabControl();
             startTabPage = new TabPage();
             fillDBTabPage = new TabPage();
-            editCurrenciesButton = new Button();
             editTransactionTypesButton = new Button();
+            editCurrenciesButton = new Button();
+            editPlacesOfPurchasesButton = new Button();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // fillDBTabPage
             // 
+            fillDBTabPage.Controls.Add(editPlacesOfPurchasesButton);
             fillDBTabPage.Controls.Add(editTransactionTypesButton);
             fillDBTabPage.Controls.Add(editCurrenciesButton);
             fillDBTabPage.Location = new Point(8, 46);
@@ -138,25 +140,35 @@
             fillDBTabPage.Text = "Fill Data";
             fillDBTabPage.UseVisualStyleBackColor = true;
             // 
+            // editTransactionTypesButton
+            // 
+            editTransactionTypesButton.Location = new Point(1138, 58);
+            editTransactionTypesButton.Name = "editTransactionTypesButton";
+            editTransactionTypesButton.Size = new Size(344, 46);
+            editTransactionTypesButton.TabIndex = 1;
+            editTransactionTypesButton.Text = "Edit Transaction Types";
+            editTransactionTypesButton.UseVisualStyleBackColor = true;
+            editTransactionTypesButton.Click += editTransactionTypesButton_Click;
+            // 
             // editCurrenciesButton
             // 
-            editCurrenciesButton.Location = new Point(1211, 6);
+            editCurrenciesButton.Location = new Point(1138, 6);
             editCurrenciesButton.Name = "editCurrenciesButton";
-            editCurrenciesButton.Size = new Size(271, 46);
+            editCurrenciesButton.Size = new Size(344, 46);
             editCurrenciesButton.TabIndex = 0;
             editCurrenciesButton.Text = "Edit Currencies";
             editCurrenciesButton.UseVisualStyleBackColor = true;
             editCurrenciesButton.Click += editCurrenciesButton_Click;
             // 
-            // editTransactionTypesButton
+            // editPlacesOfPurchasesButton
             // 
-            editTransactionTypesButton.Location = new Point(1211, 58);
-            editTransactionTypesButton.Name = "editTransactionTypesButton";
-            editTransactionTypesButton.Size = new Size(271, 46);
-            editTransactionTypesButton.TabIndex = 1;
-            editTransactionTypesButton.Text = "Edit Transaction Types";
-            editTransactionTypesButton.UseVisualStyleBackColor = true;
-            editTransactionTypesButton.Click += editTransactionTypesButton_Click;
+            editPlacesOfPurchasesButton.Location = new Point(1138, 110);
+            editPlacesOfPurchasesButton.Name = "editPlacesOfPurchasesButton";
+            editPlacesOfPurchasesButton.Size = new Size(344, 46);
+            editPlacesOfPurchasesButton.TabIndex = 2;
+            editPlacesOfPurchasesButton.Text = "Edit Places Of Purchases";
+            editPlacesOfPurchasesButton.UseVisualStyleBackColor = true;
+            editPlacesOfPurchasesButton.Click += editPlacesOfPurchasesButton_Click;
             // 
             // MainWindow
             // 
@@ -192,5 +204,6 @@
         private TabPage fillDBTabPage;
         private Button editCurrenciesButton;
         private Button editTransactionTypesButton;
+        private Button editPlacesOfPurchasesButton;
     }
 }

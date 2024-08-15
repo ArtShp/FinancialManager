@@ -70,5 +70,11 @@ namespace FinancialManager
             EditTransactionTypesForm addTransactionTypesForm = new EditTransactionTypesForm();
             addTransactionTypesForm.Show();
         }
+
+        private void editPlacesOfPurchasesButton_Click(object sender, EventArgs e)
+        {
+            var editPlacesOfPurchasesForm = new EditPlacesOfPurchasesForm();
+            editPlacesOfPurchasesForm.Show();
+        }
     }
 }
