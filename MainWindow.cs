@@ -76,5 +76,10 @@ namespace FinancialManager
             var editPlacesOfPurchasesForm = new EditPlacesOfPurchasesForm();
             editPlacesOfPurchasesForm.Show();
         }
+
+        private void editTagsButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
