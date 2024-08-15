@@ -79,7 +79,8 @@ namespace FinancialManager
 
         private void editTagsButton_Click(object sender, EventArgs e)
         {
-
+            var editTagsForm = new EditTagsForm();
+            editTagsForm.Show();
         }
     }
 }
