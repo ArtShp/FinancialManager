@@ -90,14 +90,16 @@ namespace FinancialManager
             LoadList();
         }
 
-        private void setPlaceOfPurchaseDataView(PlaceOfPurchaseModel placeOfPurchase)
+        private void setPlaceOfPurchaseDataView(TagModel tag)
         {
-            nameTextBox.Text = placeOfPurchase.Name;
+            nameTextBox.Text = tag.Name;
+            transactionTypeComboBox.SelectedValue = tag.Id_Transaction_Type;
         }
 
         private void clearDataView()
         {
             nameTextBox.Clear();
+            transactionTypeComboBox.SelectedIndex = 0;
         }
     }
 }
