@@ -19,7 +19,20 @@ namespace FinancialManager
         {
             InitializeComponent();
 
+            LoadTransactionTypes();
+
             LoadList();
+        }
+
+        private void LoadTransactionTypes()
+        {
+            var transactionTypes = SqliteDataAccess.LoadTransactionTypes();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = transactionTypes;
+
+            transactionTypeComboBox.DataSource = bindingSource.DataSource;
+            transactionTypeComboBox.DisplayMember = "Name";
+            transactionTypeComboBox.ValueMember = "Id";
         }
 
         private void LoadList()
