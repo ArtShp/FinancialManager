@@ -12,9 +12,39 @@ namespace FinancialManager
 {
     public partial class EditTagsForm : Form
     {
+        private List<TagModel> data = new List<TagModel>();
+        private long selectedId = -1;
+
         public EditTagsForm()
         {
             InitializeComponent();
+
+            LoadList();
+        }
+
+        private void LoadList()
+        {
+            data = SqliteDataAccess.LoadTags();
+
+            UpdateList();
+        }
+
+        private void UpdateList()
+        {
+            listView.BeginUpdate();
+            listView.Items.Clear();
+
+            foreach (var tag in data)
+            {
+                var transactionType = SqliteDataAccess.GetTransactionTypeById(tag.Id_Transaction_Type);
+                listView.Items.Add(
+                    new ListViewItem(new[] { tag.Name, transactionType.Name })
+                    {
+                        Tag = tag.Id
+                    });
+            }
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView.EndUpdate();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -44,7 +74,17 @@ namespace FinancialManager
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
+            LoadList();
+        }
 
+        private void setPlaceOfPurchaseDataView(PlaceOfPurchaseModel placeOfPurchase)
+        {
+            nameTextBox.Text = placeOfPurchase.Name;
+        }
+
+        private void clearDataView()
+        {
+            nameTextBox.Clear();
         }
     }
 }
