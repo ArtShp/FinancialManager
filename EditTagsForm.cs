@@ -62,17 +62,36 @@ namespace FinancialManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
-
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag.ToString());
+            TagModel tag = SqliteDataAccess.GetTagById(selectedId);
+            setTagDataView(tag);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (selectedId == -1)
+                return;
 
+            TagModel tag = new TagModel
+            {
+                Id = selectedId,
+                Name = nameTextBox.Text,
+                Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
+            };
+
+            SqliteDataAccess.UpdateTag(tag);
+
+            selectedId = -1;
+            clearDataView();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            if (selectedId == -1)
+                return;
 
+            selectedId = -1;
+            clearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -105,7 +124,7 @@ namespace FinancialManager
             LoadList();
         }
 
-        private void setPlaceOfPurchaseDataView(TagModel tag)
+        private void setTagDataView(TagModel tag)
         {
             nameTextBox.Text = tag.Name;
             transactionTypeComboBox.SelectedValue = tag.Id_Transaction_Type;
