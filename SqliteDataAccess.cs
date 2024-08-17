@@ -189,6 +189,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<TagModel> LoadTags()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TagModel>("SELECT * FROM tags", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -213,6 +222,14 @@ namespace FinancialManager
             }
         }
 
+        public static void AddTag(TagModel tag)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO tags (name, id_transaction_type) VALUES (@Name, @IdTransactionType)", tag);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -234,6 +251,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("UPDATE places_of_purchases SET name = @Name WHERE id = @Id", placeOfPurchase);
+            }
+        }
+
+        public static void UpdateTag(TagModel tag)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE tags SET name = @Name, id_transaction_type = @IdTransactionType WHERE id = @Id", tag);
             }
         }
 
@@ -264,6 +289,15 @@ namespace FinancialManager
             }
         }
 
+        public static TagModel GetTagById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TagModel>("SELECT * FROM tags WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -285,6 +319,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM places_of_purchases WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeleteTagById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM tags WHERE id = @Id", new { Id = id });
             }
         }
 
