@@ -77,7 +77,15 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            TagModel tag = new TagModel
+            {
+                Name = nameTextBox.Text,
+                Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
+            };
 
+            SqliteDataAccess.AddTag(tag);
+
+            clearDataView();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
