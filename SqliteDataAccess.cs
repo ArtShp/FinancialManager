@@ -226,7 +226,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO tags (name, id_transaction_type) VALUES (@Name, @IdTransactionType)", tag);
+                connection.Execute("INSERT INTO tags (name, id_transaction_type) VALUES (@Name, @Id_Transaction_Type)", tag);
             }
         }
 
@@ -258,7 +258,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE tags SET name = @Name, id_transaction_type = @IdTransactionType WHERE id = @Id", tag);
+                connection.Execute("UPDATE tags SET name = @Name, id_transaction_type = @Id_Transaction_Type WHERE id = @Id", tag);
             }
         }
 

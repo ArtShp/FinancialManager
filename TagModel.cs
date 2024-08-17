@@ -10,8 +10,6 @@ namespace FinancialManager
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public long IdTransactionType { get; set; }
-
-        public string[] ItemArray => new[] { Name, IdTransactionType.ToString() };
+        public long Id_Transaction_Type { get; set; }
     }
 }
