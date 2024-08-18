@@ -82,5 +82,11 @@ namespace FinancialManager
             var editTagsForm = new EditTagsForm();
             editTagsForm.Show();
         }
+
+        private void editCashFacilitiesButton_Click(object sender, EventArgs e)
+        {
+            var editCashFacilitiesForm = new EditCashFacilitiesForm();
+            editCashFacilitiesForm.Show();
+        }
     }
 }

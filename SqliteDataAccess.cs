@@ -198,6 +198,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<CashFacilityModel> LoadCashFacilities()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CashFacilityModel>("SELECT * FROM cash_facilities", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -230,6 +239,14 @@ namespace FinancialManager
             }
         }
 
+        public static void AddCashFacility(CashFacilityModel cashFacility)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO cash_facilities (name, id_currency) VALUES (@Name, @Id_Currency)", cashFacility);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -259,6 +276,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("UPDATE tags SET name = @Name, id_transaction_type = @Id_Transaction_Type WHERE id = @Id", tag);
+            }
+        }
+
+        public static void UpdateCashFacility(CashFacilityModel cashFacility)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE cash_facilities SET name = @Name, id_currency = @Id_Currency WHERE id = @Id", cashFacility);
             }
         }
 
@@ -298,6 +323,15 @@ namespace FinancialManager
             }
         }
 
+        public static CashFacilityModel GetCashFacilityById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CashFacilityModel>("SELECT * FROM cash_facilities WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -327,6 +361,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM tags WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeleteCashFacilityById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM cash_facilities WHERE id = @Id", new { Id = id });
             }
         }
 

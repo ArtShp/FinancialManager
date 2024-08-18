@@ -39,10 +39,11 @@
             mainWindowTabControl = new TabControl();
             startTabPage = new TabPage();
             fillDBTabPage = new TabPage();
+            editTagsButton = new Button();
             editPlacesOfPurchasesButton = new Button();
             editTransactionTypesButton = new Button();
             editCurrenciesButton = new Button();
-            editTagsButton = new Button();
+            editCashFacilitiesButton = new Button();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             // fillDBTabPage
             // 
+            fillDBTabPage.Controls.Add(editCashFacilitiesButton);
             fillDBTabPage.Controls.Add(editTagsButton);
             fillDBTabPage.Controls.Add(editPlacesOfPurchasesButton);
             fillDBTabPage.Controls.Add(editTransactionTypesButton);
@@ -141,6 +143,16 @@
             fillDBTabPage.TabIndex = 1;
             fillDBTabPage.Text = "Fill Data";
             fillDBTabPage.UseVisualStyleBackColor = true;
+            // 
+            // editTagsButton
+            // 
+            editTagsButton.Location = new Point(1138, 162);
+            editTagsButton.Name = "editTagsButton";
+            editTagsButton.Size = new Size(344, 46);
+            editTagsButton.TabIndex = 3;
+            editTagsButton.Text = "Edit Tags";
+            editTagsButton.UseVisualStyleBackColor = true;
+            editTagsButton.Click += editTagsButton_Click;
             // 
             // editPlacesOfPurchasesButton
             // 
@@ -172,15 +184,15 @@
             editCurrenciesButton.UseVisualStyleBackColor = true;
             editCurrenciesButton.Click += editCurrenciesButton_Click;
             // 
-            // editTagsButton
+            // editCashFacilitiesButton
             // 
-            editTagsButton.Location = new Point(1138, 162);
-            editTagsButton.Name = "editTagsButton";
-            editTagsButton.Size = new Size(344, 46);
-            editTagsButton.TabIndex = 3;
-            editTagsButton.Text = "Edit Tags";
-            editTagsButton.UseVisualStyleBackColor = true;
-            editTagsButton.Click += editTagsButton_Click;
+            editCashFacilitiesButton.Location = new Point(1138, 214);
+            editCashFacilitiesButton.Name = "editCashFacilitiesButton";
+            editCashFacilitiesButton.Size = new Size(344, 46);
+            editCashFacilitiesButton.TabIndex = 4;
+            editCashFacilitiesButton.Text = "Edit Cash Facilities";
+            editCashFacilitiesButton.UseVisualStyleBackColor = true;
+            editCashFacilitiesButton.Click += editCashFacilitiesButton_Click;
             // 
             // MainWindow
             // 
@@ -218,5 +230,6 @@
         private Button editTransactionTypesButton;
         private Button editPlacesOfPurchasesButton;
         private Button editTagsButton;
+        private Button editCashFacilitiesButton;
     }
 }
