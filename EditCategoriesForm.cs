@@ -61,10 +61,15 @@ namespace FinancialManager
                 Name = categoryTextBox.Text,
                 Id_Parent = Convert.ToInt64(parentCategoryId)
             };
-            
+
             SqliteDataAccess.AddCategory(category);
 
             clearDataView();
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            LoadMainCategories();
         }
 
         private void clearDataView()

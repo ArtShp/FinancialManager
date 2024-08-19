@@ -125,6 +125,7 @@
             refreshButton.TabIndex = 7;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
             // nameTextBox
             // 
