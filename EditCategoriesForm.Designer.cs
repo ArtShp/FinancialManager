@@ -40,6 +40,8 @@
             nameTextBox = new TextBox();
             categoryLabel = new Label();
             categoryTextBox = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // treeView
@@ -147,11 +149,31 @@
             categoryTextBox.Size = new Size(457, 39);
             categoryTextBox.TabIndex = 11;
             // 
+            // button1
+            // 
+            button1.Location = new Point(41, 403);
+            button1.Name = "button1";
+            button1.Size = new Size(101, 46);
+            button1.TabIndex = 12;
+            button1.Text = "Load";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(148, 403);
+            button2.Name = "button2";
+            button2.Size = new Size(101, 46);
+            button2.TabIndex = 13;
+            button2.Text = "Clear";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // EditCategoriesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1329, 967);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(categoryTextBox);
             Controls.Add(categoryLabel);
             Controls.Add(nameTextBox);
@@ -184,5 +206,7 @@
         private TextBox nameTextBox;
         private Label categoryLabel;
         private TextBox categoryTextBox;
+        private Button button1;
+        private Button button2;
     }
 }
