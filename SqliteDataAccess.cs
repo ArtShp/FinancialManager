@@ -246,6 +246,14 @@ namespace FinancialManager
             }
         }
 
+        public static void AddCategory(CategoryModel category)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO categories (name, id_parent) VALUES (@Name, @Id_Parent)", category);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
