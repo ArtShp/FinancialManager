@@ -12,9 +12,32 @@ namespace FinancialManager
 {
     public partial class EditCategoriesForm : Form
     {
+        private List<CategoryModel> data = new List<CategoryModel>();
+        private long selectedId = -1;
+
         public EditCategoriesForm()
         {
             InitializeComponent();
+
+            LoadMainCategories();
+        }
+
+        private void LoadMainCategories()
+        {
+            data = SqliteDataAccess.LoadCategoriesByParentId();
+            
+            treeView.BeginUpdate();
+            treeView.Nodes.Clear();
+
+            foreach (var category in data)
+            {
+                treeView.Nodes.Add(
+                    new TreeNode(category.Name)
+                    {
+                        Tag = category.Id
+                    });
+            }
+            treeView.EndUpdate();
         }
     }
 }
