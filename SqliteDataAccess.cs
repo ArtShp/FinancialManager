@@ -189,6 +189,23 @@ namespace FinancialManager
             }
         }
 
+        public static List<CategoryModel> LoadCategoriesByParentId(long parentId = 0)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                IEnumerable<CategoryModel>? output;
+                if (parentId == 0)
+                {
+                    output = connection.Query<CategoryModel>("SELECT * FROM categories WHERE id_parent IS NULL", new DynamicParameters());
+                }
+                else
+                {
+                    output = connection.Query<CategoryModel>("SELECT * FROM categories WHERE id_parent = @Id_Parent", new { Id_Parent = parentId });
+                }
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
