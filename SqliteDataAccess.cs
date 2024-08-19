@@ -250,7 +250,14 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO categories (name, id_parent) VALUES (@Name, @Id_Parent)", category);
+                if (category.Id_Parent == 0)
+                {
+                    connection.Execute("INSERT INTO categories (name) VALUES (@Name)", category);
+                }
+                else
+                {
+                    connection.Execute("INSERT INTO categories (name, id_parent) VALUES (@Name, @Id_Parent)", category);
+                }
             }
         }
 
