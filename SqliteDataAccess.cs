@@ -57,9 +57,7 @@ namespace FinancialManager
                             DROP TABLE IF EXISTS transaction_types;
                             DROP TABLE IF EXISTS users;
                             DROP TABLE IF EXISTS purchases;
-                            DROP TABLE IF EXISTS categories_1;
-                            DROP TABLE IF EXISTS categories_2;
-                            DROP TABLE IF EXISTS categories_3;
+                            DROP TABLE IF EXISTS categories;
                             DROP TABLE IF EXISTS purposes;
                             DROP TABLE IF EXISTS purchases_tags;
 
@@ -113,33 +111,17 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction INTEGER NOT NULL,
                             sum_by_transaction INTEGER NOT NULL,
-                            id_category_1 INTEGER NOT NULL,
-                            id_category_2 INTEGER NOT NULL,
-                            id_category_3 INTEGER NOT NULL,
+                            id_category INTEGER NOT NULL,
                             id_purpose INTEGER,
                             description TEXT NOT NULL,
                             FOREIGN KEY(id_transaction) REFERENCES transactions(id),
-                            FOREIGN KEY(id_category_1) REFERENCES categories_1(id),
-                            FOREIGN KEY(id_category_2) REFERENCES categories_2(id),
-                            FOREIGN KEY(id_category_3) REFERENCES categories_3(id),
+                            FOREIGN KEY(id_category) REFERENCES categories(id),
                             FOREIGN KEY(id_purpose) REFERENCES purposes(id));
 
-                            CREATE TABLE categories_1 (
+                            CREATE TABLE categories (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            name TEXT NOT NULL UNIQUE,
+                            name TEXT NOT NULL,
                             id_parent INTEGER);
-
-                            CREATE TABLE categories_2 (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            name TEXT NOT NULL,
-                            id_parent INTEGER NOT NULL,
-                            FOREIGN KEY(id_parent) REFERENCES categories_1(id));
-
-                            CREATE TABLE categories_3 (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            name TEXT NOT NULL,
-                            id_parent INTEGER NOT NULL,
-                            FOREIGN KEY(id_parent) REFERENCES categories_2(id));
 
                             CREATE TABLE purposes (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
