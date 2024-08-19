@@ -14,6 +14,7 @@ namespace FinancialManager
     {
         private List<CategoryModel> data = new List<CategoryModel>();
         private long selectedId = -1;
+        private long parentCategoryId = -1;
 
         public EditCategoriesForm()
         {
@@ -25,7 +26,7 @@ namespace FinancialManager
         private void LoadMainCategories()
         {
             data = SqliteDataAccess.LoadCategoriesByParentId();
-            
+
             treeView.BeginUpdate();
             treeView.Nodes.Clear();
 
@@ -38,6 +39,19 @@ namespace FinancialManager
                     });
             }
             treeView.EndUpdate();
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            parentCategoryId = Convert.ToInt64(treeView.SelectedNode.Tag);
+            var category = SqliteDataAccess.GetCategoryById(parentCategoryId);
+            categoryTextBox.Text = category.Name;
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            categoryTextBox.Clear();
+            parentCategoryId = -1;
         }
     }
 }
