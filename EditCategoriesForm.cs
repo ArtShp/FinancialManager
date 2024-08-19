@@ -14,7 +14,7 @@ namespace FinancialManager
     {
         private List<CategoryModel> data = new List<CategoryModel>();
         private long selectedId = -1;
-        private long parentCategoryId = -1;
+        private long parentCategoryId = 0;
 
         public EditCategoriesForm()
         {
@@ -51,7 +51,27 @@ namespace FinancialManager
         private void clearButton_Click(object sender, EventArgs e)
         {
             categoryTextBox.Clear();
-            parentCategoryId = -1;
+            parentCategoryId = 0;
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            CategoryModel category = new CategoryModel
+            {
+                Name = categoryTextBox.Text,
+                Id_Parent = Convert.ToInt64(parentCategoryId)
+            };
+            
+            SqliteDataAccess.AddCategory(category);
+
+            clearDataView();
+        }
+
+        private void clearDataView()
+        {
+            nameTextBox.Clear();
+            categoryTextBox.Clear();
+            parentCategoryId = 0;
         }
     }
 }
