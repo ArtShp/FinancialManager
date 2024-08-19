@@ -347,6 +347,15 @@ namespace FinancialManager
             }
         }
 
+        public static CategoryModel GetCategoryById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CategoryModel>("SELECT * FROM categories WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
