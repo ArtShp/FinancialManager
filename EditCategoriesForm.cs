@@ -21,6 +21,7 @@ namespace FinancialManager
             InitializeComponent();
 
             LoadMainCategories();
+            LoadMainSubCategories();
         }
 
         private void LoadMainCategories()
@@ -38,6 +39,28 @@ namespace FinancialManager
                         Tag = category.Id
                     });
             }
+            treeView.EndUpdate();
+        }
+
+        private void LoadMainSubCategories()
+        {
+            treeView.BeginUpdate();
+
+            foreach (var parent in treeView.Nodes)
+            {
+                var parentNode = (TreeNode)parent;
+                var categories = SqliteDataAccess.LoadCategoriesByParentId(Convert.ToInt64(parentNode.Tag));
+
+                foreach (var category in categories)
+                {
+                    parentNode.Nodes.Add(
+                        new TreeNode(category.Name)
+                        {
+                            Tag = category.Id
+                        });
+                }
+            }
+
             treeView.EndUpdate();
         }
 
@@ -70,6 +93,7 @@ namespace FinancialManager
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadMainCategories();
+            LoadMainSubCategories();
         }
 
         private void clearDataView()
