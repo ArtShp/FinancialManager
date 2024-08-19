@@ -294,6 +294,14 @@ namespace FinancialManager
             }
         }
 
+        public static void UpdateCategory(CategoryModel category)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE categories SET name = @Name, id_parent = @Id_Parent WHERE id = @Id", category);
+            }
+        }
+
         public static CurrencyModel GetCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
