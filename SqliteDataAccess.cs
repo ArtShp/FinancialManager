@@ -396,6 +396,14 @@ namespace FinancialManager
             }
         }
 
+        public static void DeleteCategoryById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = id });
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
