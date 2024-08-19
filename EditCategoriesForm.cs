@@ -58,7 +58,7 @@ namespace FinancialManager
         {
             CategoryModel category = new CategoryModel
             {
-                Name = categoryTextBox.Text,
+                Name = nameTextBox.Text,
                 Id_Parent = Convert.ToInt64(parentCategoryId)
             };
 
