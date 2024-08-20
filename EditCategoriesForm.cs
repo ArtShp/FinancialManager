@@ -100,10 +100,11 @@ namespace FinancialManager
         {
             nameTextBox.Text = category.Name;
 
-            if (category.Id_Parent == 0)
+            parentCategoryId = category.Id_Parent;
+            if (parentCategoryId == 0)
                 categoryTextBox.Clear();
             else
-                categoryTextBox.Text = SqliteDataAccess.GetCategoryById(category.Id_Parent).Name;
+                categoryTextBox.Text = SqliteDataAccess.GetCategoryById(parentCategoryId).Name;
         }
 
         private void clearDataView()
@@ -177,7 +178,7 @@ namespace FinancialManager
             {
                 Id = selectedId,
                 Name = nameTextBox.Text,
-                Id_Parent = Convert.ToInt64(parentCategoryId)
+                Id_Parent = parentCategoryId
             };
 
             SqliteDataAccess.UpdateCategory(category);

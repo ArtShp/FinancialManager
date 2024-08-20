@@ -305,7 +305,14 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE categories SET name = @Name, id_parent = @Id_Parent WHERE id = @Id", category);
+                if (category.Id_Parent == 0)
+                {
+                    connection.Execute("UPDATE categories SET name = @Name, id_parent = NULL WHERE id = @Id", category);
+                }
+                else
+                {
+                    connection.Execute("UPDATE categories SET name = @Name, id_parent = @Id_Parent WHERE id = @Id", category);
+                }
             }
         }
 
