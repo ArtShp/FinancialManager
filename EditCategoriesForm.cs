@@ -96,6 +96,16 @@ namespace FinancialManager
             LoadMainSubCategories();
         }
 
+        private void setDataView(CategoryModel category)
+        {
+            nameTextBox.Text = category.Name;
+
+            if (category.Id_Parent == 0)
+                categoryTextBox.Clear();
+            else
+                categoryTextBox.Text = SqliteDataAccess.GetCategoryById(category.Id_Parent).Name;
+        }
+
         private void clearDataView()
         {
             nameTextBox.Clear();
@@ -149,6 +159,23 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+            var category = SqliteDataAccess.GetCategoryById(selectedId);
+            setDataView(category);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
