@@ -51,6 +51,7 @@
             treeView.Name = "treeView";
             treeView.Size = new Size(609, 916);
             treeView.TabIndex = 0;
+            treeView.BeforeExpand += treeView_BeforeExpand;
             // 
             // titleLabel
             // 
