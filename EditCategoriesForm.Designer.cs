@@ -109,6 +109,7 @@
             deleteButton.TabIndex = 5;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // cancelButton
             // 

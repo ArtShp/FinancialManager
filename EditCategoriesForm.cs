@@ -138,5 +138,17 @@ namespace FinancialManager
 
             treeView.EndUpdate();
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+
+            var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                SqliteDataAccess.DeleteCategoryById(selectedId);
+
+            selectedId = -1;
+            clearDataView();
+        }
     }
 }
