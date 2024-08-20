@@ -175,7 +175,11 @@ namespace FinancialManager
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            if (selectedId == -1)
+                return;
 
+            selectedId = -1;
+            clearDataView();
         }
     }
 }
