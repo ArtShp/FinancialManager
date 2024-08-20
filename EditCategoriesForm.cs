@@ -170,7 +170,20 @@ namespace FinancialManager
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (selectedId == -1)
+                return;
 
+            CategoryModel category = new CategoryModel
+            {
+                Id = selectedId,
+                Name = nameTextBox.Text,
+                Id_Parent = Convert.ToInt64(parentCategoryId)
+            };
+
+            SqliteDataAccess.UpdateCategory(category);
+
+            selectedId = -1;
+            clearDataView();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
