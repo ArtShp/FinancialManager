@@ -124,5 +124,19 @@ namespace FinancialManager
 
             treeView.EndUpdate();
         }
+
+        private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            treeView.BeginUpdate();
+
+            foreach (var node in e.Node.Nodes)
+            {
+                var treeNode = (TreeNode)node;
+                treeNode.Collapse();
+                treeNode.Nodes.Clear();
+            }
+
+            treeView.EndUpdate();
+        }
     }
 }
