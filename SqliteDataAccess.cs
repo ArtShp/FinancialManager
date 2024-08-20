@@ -55,10 +55,8 @@ namespace FinancialManager
                             DROP TABLE IF EXISTS places_of_purchases;
                             DROP TABLE IF EXISTS tags;
                             DROP TABLE IF EXISTS transaction_types;
-                            DROP TABLE IF EXISTS users;
                             DROP TABLE IF EXISTS purchases;
                             DROP TABLE IF EXISTS categories;
-                            DROP TABLE IF EXISTS purposes;
                             DROP TABLE IF EXISTS purchases_tags;
 
 
@@ -102,32 +100,19 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL UNIQUE);
 
-                            CREATE TABLE users (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            username TEXT NOT NULL UNIQUE,
-                            password_hash TEXT NOT NULL);
-
                             CREATE TABLE purchases (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction INTEGER NOT NULL,
                             sum_by_transaction INTEGER NOT NULL,
                             id_category INTEGER NOT NULL,
-                            id_purpose INTEGER,
                             description TEXT NOT NULL,
                             FOREIGN KEY(id_transaction) REFERENCES transactions(id),
-                            FOREIGN KEY(id_category) REFERENCES categories(id),
-                            FOREIGN KEY(id_purpose) REFERENCES purposes(id));
+                            FOREIGN KEY(id_category) REFERENCES categories(id));
 
                             CREATE TABLE categories (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL,
                             id_parent INTEGER);
-
-                            CREATE TABLE purposes (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            name TEXT NOT NULL UNIQUE,
-                            id_transaction_type INTEGER NOT NULL,
-                            FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id));
 
                             CREATE TABLE purchases_tags (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
