@@ -43,6 +43,13 @@
             descriptionLabel = new Label();
             descriptionRichTextBox = new RichTextBox();
             listView = new ListView();
+            transactionColumnHeader = new ColumnHeader();
+            dateColumnHeader = new ColumnHeader();
+            sumColumnHeader = new ColumnHeader();
+            currencyColumnHeader = new ColumnHeader();
+            cashColumnHeader = new ColumnHeader();
+            placeColumnHeader = new ColumnHeader();
+            descriptionColumnHeader = new ColumnHeader();
             addButton = new Button();
             editButton = new Button();
             saveButton = new Button();
@@ -177,11 +184,48 @@
             // 
             // listView
             // 
+            listView.Columns.AddRange(new ColumnHeader[] { transactionColumnHeader, dateColumnHeader, sumColumnHeader, currencyColumnHeader, cashColumnHeader, placeColumnHeader, descriptionColumnHeader });
             listView.Location = new Point(901, 12);
             listView.Name = "listView";
-            listView.Size = new Size(717, 959);
+            listView.Size = new Size(1211, 959);
             listView.TabIndex = 15;
             listView.UseCompatibleStateImageBehavior = false;
+            listView.View = View.Details;
+            // 
+            // transactionColumnHeader
+            // 
+            transactionColumnHeader.Text = "Transaction Type";
+            transactionColumnHeader.Width = 120;
+            // 
+            // dateColumnHeader
+            // 
+            dateColumnHeader.Text = "Date";
+            dateColumnHeader.Width = 100;
+            // 
+            // sumColumnHeader
+            // 
+            sumColumnHeader.Text = "Sum";
+            sumColumnHeader.Width = 100;
+            // 
+            // currencyColumnHeader
+            // 
+            currencyColumnHeader.Text = "Currency";
+            currencyColumnHeader.Width = 100;
+            // 
+            // cashColumnHeader
+            // 
+            cashColumnHeader.Text = "Cash Facility";
+            cashColumnHeader.Width = 100;
+            // 
+            // placeColumnHeader
+            // 
+            placeColumnHeader.Text = "Place";
+            placeColumnHeader.Width = 100;
+            // 
+            // descriptionColumnHeader
+            // 
+            descriptionColumnHeader.Text = "Description";
+            descriptionColumnHeader.Width = 100;
             // 
             // addButton
             // 
@@ -248,7 +292,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1630, 992);
+            ClientSize = new Size(2124, 992);
             Controls.Add(cancelButton);
             Controls.Add(refreshButton);
             Controls.Add(saveButton);
@@ -301,5 +345,12 @@
         private Button cancelButton;
         private Button refreshButton;
         private TextBox sumTextBox;
+        private ColumnHeader transactionColumnHeader;
+        private ColumnHeader dateColumnHeader;
+        private ColumnHeader sumColumnHeader;
+        private ColumnHeader currencyColumnHeader;
+        private ColumnHeader cashColumnHeader;
+        private ColumnHeader placeColumnHeader;
+        private ColumnHeader descriptionColumnHeader;
     }
 }
