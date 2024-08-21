@@ -22,6 +22,23 @@ namespace FinancialManager
             LoadAll();
         }
 
+        private string FromDbToView(long number, int rate = 2)
+        {
+            long multiplier = Convert.ToInt64(Math.Pow(10, rate));
+
+            long integer = number / multiplier;
+            long fraction = number % multiplier;
+
+            string strInteger = integer.ToString();
+            string strFraction = fraction.ToString();
+            if (strFraction.Length < rate)
+            {
+                strFraction = new string('0', rate - strFraction.Length) + strFraction;
+            }
+
+            return strInteger + "." + strFraction;
+        }
+
         private void LoadAll()
         {
             LoadTransactionTypes();
