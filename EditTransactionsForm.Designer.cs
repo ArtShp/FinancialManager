@@ -30,26 +30,26 @@
         {
             titleLabel = new Label();
             transactionTypeLabel = new Label();
-            comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
+            transactionComboBox = new ComboBox();
+            dateTimePicker = new DateTimePicker();
             dateLabel = new Label();
             sumLabel = new Label();
-            comboBox2 = new ComboBox();
+            cashComboBox = new ComboBox();
             cashFacilityLabel = new Label();
-            comboBox3 = new ComboBox();
+            placeComboBox = new ComboBox();
             placeLabel = new Label();
-            comboBox4 = new ComboBox();
+            currencyComboBox = new ComboBox();
             currencyLabel = new Label();
             descriptionLabel = new Label();
-            richTextBox1 = new RichTextBox();
-            listView1 = new ListView();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            maskedTextBox1 = new MaskedTextBox();
+            descriptionRichTextBox = new RichTextBox();
+            listView = new ListView();
+            addButton = new Button();
+            editButton = new Button();
+            saveButton = new Button();
+            deleteButton = new Button();
+            cancelButton = new Button();
+            refreshButton = new Button();
+            sumTextBox = new TextBox();
             SuspendLayout();
             // 
             // titleLabel
@@ -71,20 +71,23 @@
             transactionTypeLabel.TabIndex = 1;
             transactionTypeLabel.Text = "Transaction Type";
             // 
-            // comboBox1
+            // transactionComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(41, 147);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(379, 40);
-            comboBox1.TabIndex = 2;
+            transactionComboBox.FormattingEnabled = true;
+            transactionComboBox.Location = new Point(41, 156);
+            transactionComboBox.Name = "transactionComboBox";
+            transactionComboBox.Size = new Size(379, 40);
+            transactionComboBox.TabIndex = 2;
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            dateTimePicker1.Location = new Point(41, 270);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(379, 39);
-            dateTimePicker1.TabIndex = 3;
+            dateTimePicker.CustomFormat = "dd.MM.yyyy";
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.Location = new Point(41, 270);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(379, 39);
+            dateTimePicker.TabIndex = 3;
+            dateTimePicker.Value = new DateTime(2024, 8, 21, 17, 1, 55, 0);
             // 
             // dateLabel
             // 
@@ -104,13 +107,13 @@
             sumLabel.TabIndex = 5;
             sumLabel.Text = "Sum";
             // 
-            // comboBox2
+            // cashComboBox
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(483, 147);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(377, 40);
-            comboBox2.TabIndex = 8;
+            cashComboBox.FormattingEnabled = true;
+            cashComboBox.Location = new Point(483, 147);
+            cashComboBox.Name = "cashComboBox";
+            cashComboBox.Size = new Size(377, 40);
+            cashComboBox.TabIndex = 8;
             // 
             // cashFacilityLabel
             // 
@@ -121,13 +124,13 @@
             cashFacilityLabel.TabIndex = 7;
             cashFacilityLabel.Text = "Cash Facility";
             // 
-            // comboBox3
+            // placeComboBox
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(483, 269);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(377, 40);
-            comboBox3.TabIndex = 10;
+            placeComboBox.FormattingEnabled = true;
+            placeComboBox.Location = new Point(483, 269);
+            placeComboBox.Name = "placeComboBox";
+            placeComboBox.Size = new Size(377, 40);
+            placeComboBox.TabIndex = 10;
             // 
             // placeLabel
             // 
@@ -138,13 +141,13 @@
             placeLabel.TabIndex = 9;
             placeLabel.Text = "Place";
             // 
-            // comboBox4
+            // currencyComboBox
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(483, 404);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(377, 40);
-            comboBox4.TabIndex = 12;
+            currencyComboBox.FormattingEnabled = true;
+            currencyComboBox.Location = new Point(483, 404);
+            currencyComboBox.Name = "currencyComboBox";
+            currencyComboBox.Size = new Size(377, 40);
+            currencyComboBox.TabIndex = 12;
             // 
             // currencyLabel
             // 
@@ -164,108 +167,108 @@
             descriptionLabel.TabIndex = 13;
             descriptionLabel.Text = "Description";
             // 
-            // richTextBox1
+            // descriptionRichTextBox
             // 
-            richTextBox1.Location = new Point(41, 521);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(379, 255);
-            richTextBox1.TabIndex = 14;
-            richTextBox1.Text = "";
+            descriptionRichTextBox.Location = new Point(41, 521);
+            descriptionRichTextBox.Name = "descriptionRichTextBox";
+            descriptionRichTextBox.Size = new Size(379, 255);
+            descriptionRichTextBox.TabIndex = 14;
+            descriptionRichTextBox.Text = "";
             // 
-            // listView1
+            // listView
             // 
-            listView1.Location = new Point(901, 12);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(717, 959);
-            listView1.TabIndex = 15;
-            listView1.UseCompatibleStateImageBehavior = false;
+            listView.Location = new Point(901, 12);
+            listView.Name = "listView";
+            listView.Size = new Size(717, 959);
+            listView.TabIndex = 15;
+            listView.UseCompatibleStateImageBehavior = false;
             // 
-            // button1
+            // addButton
             // 
-            button1.Location = new Point(41, 925);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 16;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            addButton.Location = new Point(41, 925);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(150, 46);
+            addButton.TabIndex = 16;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // editButton
             // 
-            button2.Location = new Point(41, 873);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 46);
-            button2.TabIndex = 17;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            editButton.Location = new Point(41, 873);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(150, 46);
+            editButton.TabIndex = 17;
+            editButton.Text = "Edit";
+            editButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // saveButton
             // 
-            button3.Location = new Point(236, 873);
-            button3.Name = "button3";
-            button3.Size = new Size(150, 46);
-            button3.TabIndex = 19;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            saveButton.Location = new Point(234, 873);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(150, 46);
+            saveButton.TabIndex = 19;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // deleteButton
             // 
-            button4.Location = new Point(236, 925);
-            button4.Name = "button4";
-            button4.Size = new Size(150, 46);
-            button4.TabIndex = 18;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            deleteButton.Location = new Point(234, 925);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(150, 46);
+            deleteButton.TabIndex = 18;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // cancelButton
             // 
-            button5.Location = new Point(426, 873);
-            button5.Name = "button5";
-            button5.Size = new Size(150, 46);
-            button5.TabIndex = 21;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
+            cancelButton.Location = new Point(426, 873);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(150, 46);
+            cancelButton.TabIndex = 21;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // refreshButton
             // 
-            button6.Location = new Point(426, 925);
-            button6.Name = "button6";
-            button6.Size = new Size(150, 46);
-            button6.TabIndex = 20;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
+            refreshButton.Location = new Point(426, 925);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(150, 46);
+            refreshButton.TabIndex = 20;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // sumTextBox
             // 
-            maskedTextBox1.Location = new Point(41, 404);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(379, 39);
-            maskedTextBox1.TabIndex = 22;
+            sumTextBox.Location = new Point(41, 404);
+            sumTextBox.Name = "sumTextBox";
+            sumTextBox.Size = new Size(379, 39);
+            sumTextBox.TabIndex = 6;
             // 
             // EditTransactionsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1630, 992);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(button5);
-            Controls.Add(button6);
-            Controls.Add(button3);
-            Controls.Add(button4);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(listView1);
-            Controls.Add(richTextBox1);
+            Controls.Add(cancelButton);
+            Controls.Add(refreshButton);
+            Controls.Add(saveButton);
+            Controls.Add(deleteButton);
+            Controls.Add(editButton);
+            Controls.Add(addButton);
+            Controls.Add(listView);
+            Controls.Add(descriptionRichTextBox);
             Controls.Add(descriptionLabel);
-            Controls.Add(comboBox4);
+            Controls.Add(currencyComboBox);
             Controls.Add(currencyLabel);
-            Controls.Add(comboBox3);
+            Controls.Add(placeComboBox);
             Controls.Add(placeLabel);
-            Controls.Add(comboBox2);
+            Controls.Add(cashComboBox);
             Controls.Add(cashFacilityLabel);
+            Controls.Add(sumTextBox);
             Controls.Add(sumLabel);
             Controls.Add(dateLabel);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(comboBox1);
+            Controls.Add(dateTimePicker);
+            Controls.Add(transactionComboBox);
             Controls.Add(transactionTypeLabel);
             Controls.Add(titleLabel);
             Name = "EditTransactionsForm";
@@ -278,25 +281,25 @@
 
         private Label titleLabel;
         private Label transactionTypeLabel;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
+        private ComboBox transactionComboBox;
+        private DateTimePicker dateTimePicker;
         private Label dateLabel;
         private Label sumLabel;
-        private ComboBox comboBox2;
+        private ComboBox cashComboBox;
         private Label cashFacilityLabel;
-        private ComboBox comboBox3;
+        private ComboBox placeComboBox;
         private Label placeLabel;
-        private ComboBox comboBox4;
+        private ComboBox currencyComboBox;
         private Label currencyLabel;
         private Label descriptionLabel;
-        private RichTextBox richTextBox1;
-        private ListView listView1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private MaskedTextBox maskedTextBox1;
+        private RichTextBox descriptionRichTextBox;
+        private ListView listView;
+        private Button addButton;
+        private Button editButton;
+        private Button saveButton;
+        private Button deleteButton;
+        private Button cancelButton;
+        private Button refreshButton;
+        private TextBox sumTextBox;
     }
 }
