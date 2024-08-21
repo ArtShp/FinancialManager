@@ -178,7 +178,7 @@
             // 
             descriptionRichTextBox.Location = new Point(41, 521);
             descriptionRichTextBox.Name = "descriptionRichTextBox";
-            descriptionRichTextBox.Size = new Size(379, 255);
+            descriptionRichTextBox.Size = new Size(819, 255);
             descriptionRichTextBox.TabIndex = 14;
             descriptionRichTextBox.Text = "";
             // 
