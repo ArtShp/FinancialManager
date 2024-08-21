@@ -39,6 +39,15 @@ namespace FinancialManager
             return strInteger + "." + strFraction;
         }
 
+        private long FromViewToDb(string number, int rate = 2)
+        {
+            long multiplier = Convert.ToInt64(Math.Pow(10, rate));
+
+            string[] parts = number.Split('.');
+
+            return Convert.ToInt64(parts[0]) * multiplier + Convert.ToInt64(parts[1]);
+        }
+
         private void LoadAll()
         {
             LoadTransactionTypes();
