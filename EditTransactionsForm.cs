@@ -109,5 +109,16 @@ namespace FinancialManager
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             listView.EndUpdate();
         }
+
+        private void clearDataView()
+        {
+            transactionComboBox.SelectedIndex = 0;
+            dateTimePicker.Value = DateTime.Now;
+            sumTextBox.Clear();
+            currencyComboBox.SelectedIndex = 0;
+            cashComboBox.SelectedIndex = 0;
+            placeComboBox.SelectedIndex = 0;
+            descriptionRichTextBox.Clear();
+        }
     }
 }
