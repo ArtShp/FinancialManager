@@ -94,5 +94,11 @@ namespace FinancialManager
             var editCategoriesForm = new EditCategoriesForm();
             editCategoriesForm.Show();
         }
+
+        private void editTransactionsButton_Click(object sender, EventArgs e)
+        {
+            var editTransactionsForm = new EditTransactionsForm();
+            editTransactionsForm.Show();
+        }
     }
 }
