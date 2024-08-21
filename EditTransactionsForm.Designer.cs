@@ -287,6 +287,7 @@
             sumTextBox.Name = "sumTextBox";
             sumTextBox.Size = new Size(379, 39);
             sumTextBox.TabIndex = 6;
+            sumTextBox.Text = "0";
             // 
             // EditTransactionsForm
             // 
