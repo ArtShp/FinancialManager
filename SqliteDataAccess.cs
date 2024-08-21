@@ -191,6 +191,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<TransactionModel> LoadTransactions()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TransactionModel>("SELECT * FROM transactions", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -243,6 +252,14 @@ namespace FinancialManager
                 {
                     connection.Execute("INSERT INTO categories (name, id_parent) VALUES (@Name, @Id_Parent)", category);
                 }
+            }
+        }
+
+        public static void AddTransaction(TransactionModel transaction)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, id_place_of_purchase, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Id_Place_Of_Purchase, @Description)", transaction);
             }
         }
 
@@ -301,6 +318,14 @@ namespace FinancialManager
             }
         }
 
+        public static void UpdateTransaction(TransactionModel transaction)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
+            }
+        }
+
         public static CurrencyModel GetCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -355,6 +380,15 @@ namespace FinancialManager
             }
         }
 
+        public static TransactionModel GetTransactionById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TransactionModel>("SELECT * FROM transactions WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -400,6 +434,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeleteTransactionById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM transactions WHERE id = @Id", new { Id = id });
             }
         }
 
