@@ -19,7 +19,60 @@ namespace FinancialManager
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
+            LoadTransactionTypes();
+            LoadCurrencies();
+            LoadCashFacilities();
+            LoadPlacesOfPurchases();
             LoadList();
+        }
+
+        private void LoadTransactionTypes()
+        {
+            var transactionTypes = SqliteDataAccess.LoadTransactionTypes();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = transactionTypes;
+
+            transactionComboBox.DataSource = bindingSource.DataSource;
+            transactionComboBox.DisplayMember = "Name";
+            transactionComboBox.ValueMember = "Id";
+        }
+
+        private void LoadCurrencies()
+        {
+            var currencies = SqliteDataAccess.LoadCurrencies();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = currencies;
+
+            currencyComboBox.DataSource = bindingSource.DataSource;
+            currencyComboBox.DisplayMember = "Code";
+            currencyComboBox.ValueMember = "Id";
+        }
+
+        private void LoadCashFacilities()
+        {
+            var cashFacilities = SqliteDataAccess.LoadCashFacilities();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = cashFacilities;
+
+            cashComboBox.DataSource = bindingSource.DataSource;
+            cashComboBox.DisplayMember = "Name";
+            cashComboBox.ValueMember = "Id";
+        }
+
+        private void LoadPlacesOfPurchases()
+        {
+            var placesOfPurchases = SqliteDataAccess.LoadPlacesOfPurchases();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = placesOfPurchases;
+
+            placeComboBox.DataSource = bindingSource.DataSource;
+            placeComboBox.DisplayMember = "Name";
+            placeComboBox.ValueMember = "Id";
         }
 
         private void LoadList()
