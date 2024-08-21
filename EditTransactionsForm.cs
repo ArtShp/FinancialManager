@@ -120,5 +120,10 @@ namespace FinancialManager
             placeComboBox.SelectedIndex = 0;
             descriptionRichTextBox.Clear();
         }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            LoadAll();
+        }
     }
 }

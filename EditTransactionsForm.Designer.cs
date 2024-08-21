@@ -280,6 +280,7 @@
             refreshButton.TabIndex = 20;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
             // sumTextBox
             // 
