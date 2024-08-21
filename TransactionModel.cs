@@ -10,7 +10,7 @@ namespace FinancialManager
     {
         public long Id { get; set; }
         public long Id_Transaction_Type { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public long Sum_By_Account { get; set; }
         public long Id_Currency_Of_Transaction { get; set; }
         public long Id_Cash_Facility { get; set; }
