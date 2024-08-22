@@ -125,5 +125,23 @@ namespace FinancialManager
         {
             LoadAll();
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            TransactionModel transaction = new TransactionModel
+            {
+                Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
+                Date = dateTimePicker.Value,
+                Sum_By_Account = TransactionModel.ConvertStringToSum(sumTextBox.Text, 2),
+                Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
+                Id_Cash_Facility = Convert.ToInt64(cashComboBox.SelectedValue),
+                Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
+                Description = descriptionRichTextBox.Text
+            };
+
+            SqliteDataAccess.AddTransaction(transaction);
+
+            clearDataView();
+        }
     }
 }
