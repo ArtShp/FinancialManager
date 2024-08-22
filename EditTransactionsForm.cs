@@ -22,37 +22,6 @@ namespace FinancialManager
             LoadAll();
         }
 
-        private string FromDbToView(long number, int rate = 2)
-        {
-            long multiplier = Convert.ToInt64(Math.Pow(10, rate));
-
-            long integer = number / multiplier;
-            long fraction = number % multiplier;
-
-            string strInteger = integer.ToString();
-            string strFraction = fraction.ToString();
-            if (strFraction.Length < rate)
-            {
-                strFraction = new string('0', rate - strFraction.Length) + strFraction;
-            }
-
-            return strInteger + "." + strFraction;
-        }
-
-        private long FromViewToDb(string number, int rate = 2)
-        {
-            long multiplier = Convert.ToInt64(Math.Pow(10, rate));
-
-            string[] parts = number.Split('.');
-
-            if (parts.Length == 1)
-            {
-                return Convert.ToInt64(parts[0]) * multiplier;
-            }
-
-            return Convert.ToInt64(parts[0]) * multiplier + Convert.ToInt64(parts[1]);
-        }
-
         private void LoadAll()
         {
             LoadTransactionTypes();
