@@ -145,7 +145,7 @@ namespace FinancialManager
         {
             transactionComboBox.SelectedIndex = 0;
             dateTimePicker.Value = DateTime.Now;
-            sumTextBox.Clear();
+            sumTextBox.Text = "0.0";
             currencyComboBox.SelectedIndex = 0;
             cashComboBox.SelectedIndex = 0;
             placeComboBox.SelectedIndex = 0;
