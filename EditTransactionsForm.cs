@@ -45,6 +45,11 @@ namespace FinancialManager
 
             string[] parts = number.Split('.');
 
+            if (parts.Length == 1)
+            {
+                return Convert.ToInt64(parts[0]) * multiplier;
+            }
+
             return Convert.ToInt64(parts[0]) * multiplier + Convert.ToInt64(parts[1]);
         }
 
