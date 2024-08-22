@@ -18,12 +18,12 @@ namespace FinancialManager
         public long Id_Place_Of_Purchase { get; set; }
         public string Description { get; set; }
 
-        public string GetSum(int rate)
+        public static string ConvertSumToString(int number, int rate)
         {
             long multiplier = Convert.ToInt64(Math.Pow(10, rate));
 
-            long integer = Sum_By_Account / multiplier;
-            long fraction = Sum_By_Account % multiplier;
+            long integer = number / multiplier;
+            long fraction = number % multiplier;
 
             string strInteger = integer.ToString();
             string strFraction = fraction.ToString();
@@ -35,7 +35,7 @@ namespace FinancialManager
             return strInteger + "." + strFraction;
         }
 
-        public long SetSum(string number, int rate)
+        public static long ConvertStringToSum(string number, int rate)
         {
             long multiplier = Convert.ToInt64(Math.Pow(10, rate));
 
