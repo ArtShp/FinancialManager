@@ -78,7 +78,8 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL UNIQUE,
                             code TEXT NOT NULL UNIQUE,
-                            symbol TEXT NOT NULL);
+                            symbol TEXT NOT NULL,
+                            units_rate INTEGER NOT NULL);
 
                             CREATE TABLE cash_facilities (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
