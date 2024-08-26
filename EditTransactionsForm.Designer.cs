@@ -188,6 +188,7 @@
             listView.FullRowSelect = true;
             listView.GridLines = true;
             listView.Location = new Point(901, 12);
+            listView.MultiSelect = false;
             listView.Name = "listView";
             listView.Size = new Size(1211, 959);
             listView.TabIndex = 15;
@@ -247,6 +248,7 @@
             editButton.TabIndex = 17;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // saveButton
             // 
