@@ -185,6 +185,8 @@
             // listView
             // 
             listView.Columns.AddRange(new ColumnHeader[] { transactionColumnHeader, dateColumnHeader, sumColumnHeader, currencyColumnHeader, cashColumnHeader, placeColumnHeader, descriptionColumnHeader });
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
             listView.Location = new Point(901, 12);
             listView.Name = "listView";
             listView.Size = new Size(1211, 959);
