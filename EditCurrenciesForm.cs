@@ -52,7 +52,8 @@ namespace FinancialManager
             {
                 Name = currencyNameTextBox.Text,
                 Code = currencyCodeTextBox.Text,
-                Symbol = currencySymbolTextBox.Text
+                Symbol = currencySymbolTextBox.Text,
+                Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
             SqliteDataAccess.AddCurrency(currency);
@@ -65,6 +66,7 @@ namespace FinancialManager
             currencyNameTextBox.Text = currency.Name;
             currencyCodeTextBox.Text = currency.Code;
             currencySymbolTextBox.Text = currency.Symbol;
+            unitsRateNumericUpDown.Value = currency.Units_Rate;
         }
 
         private void clearCurrencyDataView()
@@ -72,6 +74,7 @@ namespace FinancialManager
             currencyNameTextBox.Clear();
             currencyCodeTextBox.Clear();
             currencySymbolTextBox.Clear();
+            unitsRateNumericUpDown.Value = 0;
         }
 
         private void refreshCurrenciesButton_Click(object sender, EventArgs e)
@@ -96,7 +99,8 @@ namespace FinancialManager
                 Id = selectedCurrencyId,
                 Name = currencyNameTextBox.Text,
                 Code = currencyCodeTextBox.Text,
-                Symbol = currencySymbolTextBox.Text
+                Symbol = currencySymbolTextBox.Text,
+                Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
             SqliteDataAccess.UpdateCurrency(currency);
