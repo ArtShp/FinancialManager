@@ -45,6 +45,10 @@
             symbolColumnHeader = new ColumnHeader();
             currenciesLabel = new Label();
             deleteCurrencyButton = new Button();
+            rateColumnHeader = new ColumnHeader();
+            unitsRateLabel = new Label();
+            unitsRateNumericUpDown = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // currencyNameTextBox
@@ -147,7 +151,7 @@
             // 
             // currenciesListView
             // 
-            currenciesListView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader });
+            currenciesListView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader, rateColumnHeader });
             currenciesListView.FullRowSelect = true;
             currenciesListView.GridLines = true;
             currenciesListView.Location = new Point(505, 12);
@@ -193,11 +197,35 @@
             deleteCurrencyButton.UseVisualStyleBackColor = true;
             deleteCurrencyButton.Click += deleteCurrencyButton_Click;
             // 
+            // rateColumnHeader
+            // 
+            rateColumnHeader.Text = "Units rate";
+            rateColumnHeader.Width = 120;
+            // 
+            // unitsRateLabel
+            // 
+            unitsRateLabel.AutoSize = true;
+            unitsRateLabel.Location = new Point(47, 500);
+            unitsRateLabel.Name = "unitsRateLabel";
+            unitsRateLabel.Size = new Size(116, 32);
+            unitsRateLabel.TabIndex = 15;
+            unitsRateLabel.Text = "Units rate";
+            // 
+            // unitsRateNumericUpDown
+            // 
+            unitsRateNumericUpDown.Location = new Point(47, 535);
+            unitsRateNumericUpDown.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
+            unitsRateNumericUpDown.Name = "unitsRateNumericUpDown";
+            unitsRateNumericUpDown.Size = new Size(295, 39);
+            unitsRateNumericUpDown.TabIndex = 17;
+            // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1174, 815);
+            Controls.Add(unitsRateNumericUpDown);
+            Controls.Add(unitsRateLabel);
             Controls.Add(deleteCurrencyButton);
             Controls.Add(currenciesLabel);
             Controls.Add(currenciesListView);
@@ -214,6 +242,7 @@
             Controls.Add(currencyNameTextBox);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
+            ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +265,8 @@
         private ColumnHeader symbolColumnHeader;
         private Label currenciesLabel;
         private Button deleteCurrencyButton;
+        private ColumnHeader rateColumnHeader;
+        private Label unitsRateLabel;
+        private NumericUpDown unitsRateNumericUpDown;
     }
 }
