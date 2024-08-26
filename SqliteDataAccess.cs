@@ -13,6 +13,11 @@ namespace FinancialManager
         public static string? PathToDB { get; set; }
         public static bool IsPathToDBCorrect { get; set; }
 
+        static SqliteDataAccess()
+        {
+            SqlMapper.AddTypeHandler(new MoneyTypeHandler());
+        }
+
         public static string TestConnection()
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))

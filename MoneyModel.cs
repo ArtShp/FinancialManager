@@ -11,6 +11,21 @@ namespace FinancialManager
         public long Money { get; set; }
         public int Rate { get; set; }
 
+
+        public MoneyModel(string money, int rate)
+        {
+            Rate = rate;
+
+            SetValue(money);
+        }
+
+        public MoneyModel(long money, int rate = 0)
+        {
+            Rate = rate;
+
+            SetValue(money);
+        }
+
         public string GetString()
         {
             long multiplier = Convert.ToInt64(Math.Pow(10, Rate));

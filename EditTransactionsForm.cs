@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace FinancialManager
@@ -93,15 +94,16 @@ namespace FinancialManager
                 var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
                 var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
 
+                transaction.Sum_By_Account.Rate = getUnitsRate(cashFacility);
+
                 string place = "";
                 if (transaction.Id_Place_Of_Purchase != 0)
                 {
                     place = SqliteDataAccess.GetPlaceOfPurchaseById(transaction.Id_Place_Of_Purchase).Name;
                 }
-                var placeOfPurchase = SqliteDataAccess.GetPlaceOfPurchaseById(transaction.Id_Place_Of_Purchase);
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), TransactionModel.ConvertSumToString(transaction.Sum_By_Account, 2), currency.Code, cashFacility.Name, place, transaction.Description })
+                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Account.GetString(), currency.Code, cashFacility.Name, place, transaction.Description })
                     {
                         Tag = transaction.Id
                     });
@@ -110,11 +112,23 @@ namespace FinancialManager
             listView.EndUpdate();
         }
 
+        private int getUnitsRate(long idCashFacility)
+        {
+            var cashFacility = SqliteDataAccess.GetCashFacilityById(idCashFacility);
+            return getUnitsRate(cashFacility);
+        }
+
+        private int getUnitsRate(CashFacilityModel cashFacility)
+        {
+            var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
+            return cashFacilityCurrency.Units_Rate;
+        }
+
         private void clearDataView()
         {
             transactionComboBox.SelectedIndex = 0;
             dateTimePicker.Value = DateTime.Now;
-            sumTextBox.Text = "0.0";
+            sumTextBox.Text = "0";
             currencyComboBox.SelectedIndex = 0;
             cashComboBox.SelectedIndex = 0;
             placeComboBox.SelectedIndex = 0;
@@ -128,13 +142,15 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
+
             TransactionModel transaction = new TransactionModel
             {
                 Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
                 Date = dateTimePicker.Value,
-                Sum_By_Account = TransactionModel.ConvertStringToSum(sumTextBox.Text, 2),
+                Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
                 Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
-                Id_Cash_Facility = Convert.ToInt64(cashComboBox.SelectedValue),
+                Id_Cash_Facility = idCashFacility,
                 Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
                 Description = descriptionRichTextBox.Text
             };
