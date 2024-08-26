@@ -130,6 +130,8 @@ namespace FinancialManager
 
         private void setDataView(TransactionModel transaction)
         {
+            transaction.Sum_By_Account.Rate = getUnitsRate(transaction.Id_Cash_Facility);
+
             transactionComboBox.SelectedValue = transaction.Id_Transaction_Type;
             dateTimePicker.Value = transaction.Date;
             sumTextBox.Text = transaction.Sum_By_Account.GetString();
