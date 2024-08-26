@@ -265,7 +265,14 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, id_place_of_purchase, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Id_Place_Of_Purchase, @Description)", transaction);
+                if (transaction.Id_Place_Of_Purchase == 0)
+                {
+                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Description)", transaction);
+                }
+                else
+                {
+                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, id_place_of_purchase, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Id_Place_Of_Purchase, @Description)", transaction);
+                }
             }
         }
 

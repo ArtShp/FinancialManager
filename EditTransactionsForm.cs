@@ -67,7 +67,11 @@ namespace FinancialManager
 
         private void LoadPlacesOfPurchases()
         {
-            var placesOfPurchases = SqliteDataAccess.LoadPlacesOfPurchases();
+            var placesOfPurchases = new List<PlaceOfPurchaseModel> {
+                new PlaceOfPurchaseModel { Id = 0, Name = "" }
+            };
+            placesOfPurchases.AddRange(SqliteDataAccess.LoadPlacesOfPurchases());
+
             var bindingSource = new BindingSource();
             bindingSource.DataSource = placesOfPurchases;
 
