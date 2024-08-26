@@ -205,7 +205,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO currencies (name, code, symbol) VALUES (@Name, @Code, @Symbol)", currency);
+                connection.Execute("INSERT INTO currencies (name, code, symbol, units_rate) VALUES (@Name, @Code, @Symbol, @Units_Rate)", currency);
             }
         }
 
@@ -268,7 +268,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE currencies SET name = @Name, code = @Code, symbol = @Symbol WHERE id = @Id", currency);
+                connection.Execute("UPDATE currencies SET name = @Name, code = @Code, symbol = @Symbol, units_rate = @Units_Rate WHERE id = @Id", currency);
             }
         }
 
