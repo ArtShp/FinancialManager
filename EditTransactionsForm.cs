@@ -159,5 +159,17 @@ namespace FinancialManager
 
             clearDataView();
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag.ToString());
+
+            var result = MessageBox.Show("Are you sure you want to delete this transaction?", "Delete Transaction", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                SqliteDataAccess.DeleteTransactionById(selectedId);
+
+            selectedId = -1;
+            clearDataView();
+        }
     }
 }
