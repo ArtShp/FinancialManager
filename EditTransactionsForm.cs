@@ -195,5 +195,30 @@ namespace FinancialManager
             TransactionModel transaction = SqliteDataAccess.GetTransactionById(selectedId);
             setDataView(transaction);
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
+
+            TransactionModel transaction = new TransactionModel
+            {
+                Id = selectedId,
+                Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
+                Date = dateTimePicker.Value,
+                Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
+                Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
+                Id_Cash_Facility = idCashFacility,
+                Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
+                Description = descriptionRichTextBox.Text
+            };
+
+            SqliteDataAccess.UpdateTransaction(transaction);
+
+            selectedId = -1;
+            clearDataView();
+        }
     }
 }

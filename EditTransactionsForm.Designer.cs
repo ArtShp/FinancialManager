@@ -258,6 +258,7 @@
             saveButton.TabIndex = 19;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // deleteButton
             // 
