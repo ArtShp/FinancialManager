@@ -186,5 +186,12 @@ namespace FinancialManager
             selectedId = -1;
             clearDataView();
         }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+            TransactionModel transaction = SqliteDataAccess.GetTransactionById(selectedId);
+            setDataView(transaction);
+        }
     }
 }
