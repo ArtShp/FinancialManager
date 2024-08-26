@@ -101,7 +101,7 @@ namespace FinancialManager
                 var placeOfPurchase = SqliteDataAccess.GetPlaceOfPurchaseById(transaction.Id_Place_Of_Purchase);
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Account.ToString(), currency.Code, cashFacility.Name, place, transaction.Description })
+                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), TransactionModel.ConvertSumToString(transaction.Sum_By_Account, 2), currency.Code, cashFacility.Name, place, transaction.Description })
                     {
                         Tag = transaction.Id
                     });

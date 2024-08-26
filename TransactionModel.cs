@@ -18,7 +18,7 @@ namespace FinancialManager
         public long Id_Place_Of_Purchase { get; set; }
         public string Description { get; set; }
 
-        public static string ConvertSumToString(int number, int rate)
+        public static string ConvertSumToString(long number, int rate)
         {
             long multiplier = Convert.ToInt64(Math.Pow(10, rate));
 
