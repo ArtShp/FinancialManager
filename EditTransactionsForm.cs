@@ -128,6 +128,17 @@ namespace FinancialManager
             return cashFacilityCurrency.Units_Rate;
         }
 
+        private void setDataView(TransactionModel transaction)
+        {
+            transactionComboBox.SelectedValue = transaction.Id_Transaction_Type;
+            dateTimePicker.Value = transaction.Date;
+            sumTextBox.Text = transaction.Sum_By_Account.GetString();
+            currencyComboBox.SelectedValue = transaction.Id_Currency_Of_Transaction;
+            cashComboBox.SelectedValue = transaction.Id_Cash_Facility;
+            placeComboBox.SelectedValue = transaction.Id_Place_Of_Purchase;
+            descriptionRichTextBox.Text = transaction.Description;
+        }
+
         private void clearDataView()
         {
             transactionComboBox.SelectedIndex = 0;
