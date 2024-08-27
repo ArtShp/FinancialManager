@@ -30,8 +30,8 @@
         {
             titleLabel = new Label();
             listView = new ListView();
-            sumColumnHeader = new ColumnHeader();
             categoryColumnHeader = new ColumnHeader();
+            sumColumnHeader = new ColumnHeader();
             descriptionColumnHeader = new ColumnHeader();
             sumLabel = new Label();
             categoryLabel = new Label();
@@ -47,6 +47,8 @@
             categoryTextBox = new TextBox();
             chooseCategoryButton = new Button();
             clearCategoryButton = new Button();
+            currencyLabel = new Label();
+            currencyTextBox = new TextBox();
             SuspendLayout();
             // 
             // titleLabel
@@ -72,19 +74,18 @@
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
             // 
-            // sumColumnHeader
-            // 
-            sumColumnHeader.Text = "Sum";
-            sumColumnHeader.Width = 100;
-            // 
             // categoryColumnHeader
             // 
             categoryColumnHeader.Text = "Category";
             categoryColumnHeader.Width = 120;
             // 
+            // sumColumnHeader
+            // 
+            sumColumnHeader.Text = "Sum";
+            sumColumnHeader.Width = 100;
+            // 
             // descriptionColumnHeader
             // 
-            descriptionColumnHeader.DisplayIndex = 2;
             descriptionColumnHeader.Text = "Description";
             descriptionColumnHeader.Width = 120;
             // 
@@ -100,7 +101,7 @@
             // categoryLabel
             // 
             categoryLabel.AutoSize = true;
-            categoryLabel.Location = new Point(31, 278);
+            categoryLabel.Location = new Point(31, 380);
             categoryLabel.Name = "categoryLabel";
             categoryLabel.Size = new Size(110, 32);
             categoryLabel.TabIndex = 4;
@@ -109,7 +110,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(31, 459);
+            descriptionLabel.Location = new Point(31, 561);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(135, 32);
             descriptionLabel.TabIndex = 6;
@@ -117,7 +118,7 @@
             // 
             // descriptionRichTextBox
             // 
-            descriptionRichTextBox.Location = new Point(31, 494);
+            descriptionRichTextBox.Location = new Point(31, 596);
             descriptionRichTextBox.Name = "descriptionRichTextBox";
             descriptionRichTextBox.Size = new Size(446, 154);
             descriptionRichTextBox.TabIndex = 7;
@@ -187,7 +188,7 @@
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(31, 313);
+            categoryTextBox.Location = new Point(31, 415);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
             categoryTextBox.Size = new Size(446, 39);
@@ -195,7 +196,7 @@
             // 
             // chooseCategoryButton
             // 
-            chooseCategoryButton.Location = new Point(31, 358);
+            chooseCategoryButton.Location = new Point(31, 460);
             chooseCategoryButton.Name = "chooseCategoryButton";
             chooseCategoryButton.Size = new Size(110, 46);
             chooseCategoryButton.TabIndex = 16;
@@ -204,18 +205,37 @@
             // 
             // clearCategoryButton
             // 
-            clearCategoryButton.Location = new Point(147, 358);
+            clearCategoryButton.Location = new Point(147, 460);
             clearCategoryButton.Name = "clearCategoryButton";
             clearCategoryButton.Size = new Size(110, 46);
             clearCategoryButton.TabIndex = 17;
             clearCategoryButton.Text = "Clear";
             clearCategoryButton.UseVisualStyleBackColor = true;
             // 
+            // currencyLabel
+            // 
+            currencyLabel.AutoSize = true;
+            currencyLabel.Location = new Point(31, 225);
+            currencyLabel.Name = "currencyLabel";
+            currencyLabel.Size = new Size(109, 32);
+            currencyLabel.TabIndex = 18;
+            currencyLabel.Text = "Currency";
+            // 
+            // currencyTextBox
+            // 
+            currencyTextBox.Location = new Point(31, 260);
+            currencyTextBox.Name = "currencyTextBox";
+            currencyTextBox.ReadOnly = true;
+            currencyTextBox.Size = new Size(446, 39);
+            currencyTextBox.TabIndex = 19;
+            // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 950);
+            Controls.Add(currencyTextBox);
+            Controls.Add(currencyLabel);
             Controls.Add(clearCategoryButton);
             Controls.Add(chooseCategoryButton);
             Controls.Add(categoryTextBox);
@@ -259,5 +279,7 @@
         private ColumnHeader sumColumnHeader;
         private ColumnHeader categoryColumnHeader;
         private ColumnHeader descriptionColumnHeader;
+        private Label currencyLabel;
+        private TextBox currencyTextBox;
     }
 }
