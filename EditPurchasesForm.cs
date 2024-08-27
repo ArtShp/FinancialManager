@@ -110,6 +110,8 @@ namespace FinancialManager
             sumTextBox.Text = "0";
             categoryTextBox.Clear();
             descriptionRichTextBox.Clear();
+
+            categoryId = -1;
         }
     }
 }
