@@ -113,5 +113,24 @@ namespace FinancialManager
 
             categoryId = -1;
         }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            PurchaseModel purchase = new PurchaseModel
+            {
+                Id_Transaction = transactionId,
+                Sum_By_Transaction = new MoneyModel
+                (
+                    sumTextBox.Text,
+                    unitsRate
+                ),
+                Id_Category = categoryId,
+                Description = descriptionRichTextBox.Text
+            };
+
+            SqliteDataAccess.AddPurchase(purchase);
+
+            clearDataView();
+        }
     }
 }
