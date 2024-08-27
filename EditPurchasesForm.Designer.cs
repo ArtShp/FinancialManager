@@ -28,163 +28,189 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            listView1 = new ListView();
-            label2 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            label3 = new Label();
-            label4 = new Label();
-            richTextBox1 = new RichTextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            titleLabel = new Label();
+            listView = new ListView();
+            sumLabel = new Label();
+            categoryLabel = new Label();
+            descriptionLabel = new Label();
+            descriptionRichTextBox = new RichTextBox();
+            addButton = new Button();
+            editButton = new Button();
+            deleteButton = new Button();
+            saveButton = new Button();
+            refreshButton = new Button();
+            cancelButton = new Button();
+            sumTextBox = new TextBox();
+            categoryTextBox = new TextBox();
+            chooseCategoryButton = new Button();
+            clearCategoryButton = new Button();
             SuspendLayout();
             // 
-            // label1
+            // titleLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(31, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 32);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            titleLabel.AutoSize = true;
+            titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            titleLabel.Location = new Point(31, 12);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(251, 65);
+            titleLabel.TabIndex = 0;
+            titleLabel.Text = "Purchases";
             // 
-            // listView1
+            // listView
             // 
-            listView1.Location = new Point(643, 12);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(615, 908);
-            listView1.TabIndex = 1;
-            listView1.UseCompatibleStateImageBehavior = false;
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
+            listView.Location = new Point(643, 12);
+            listView.MultiSelect = false;
+            listView.Name = "listView";
+            listView.Size = new Size(615, 908);
+            listView.TabIndex = 1;
+            listView.UseCompatibleStateImageBehavior = false;
             // 
-            // label2
+            // sumLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(31, 134);
-            label2.Name = "label2";
-            label2.Size = new Size(78, 32);
-            label2.TabIndex = 2;
-            label2.Text = "label2";
+            sumLabel.AutoSize = true;
+            sumLabel.Location = new Point(31, 134);
+            sumLabel.Name = "sumLabel";
+            sumLabel.Size = new Size(62, 32);
+            sumLabel.TabIndex = 2;
+            sumLabel.Text = "Sum";
             // 
-            // comboBox1
+            // categoryLabel
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(31, 169);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(446, 40);
-            comboBox1.TabIndex = 3;
+            categoryLabel.AutoSize = true;
+            categoryLabel.Location = new Point(31, 278);
+            categoryLabel.Name = "categoryLabel";
+            categoryLabel.Size = new Size(110, 32);
+            categoryLabel.TabIndex = 4;
+            categoryLabel.Text = "Category";
             // 
-            // comboBox2
+            // descriptionLabel
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(31, 313);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(446, 40);
-            comboBox2.TabIndex = 5;
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Location = new Point(31, 459);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new Size(135, 32);
+            descriptionLabel.TabIndex = 6;
+            descriptionLabel.Text = "Description";
             // 
-            // label3
+            // descriptionRichTextBox
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(31, 278);
-            label3.Name = "label3";
-            label3.Size = new Size(78, 32);
-            label3.TabIndex = 4;
-            label3.Text = "label3";
+            descriptionRichTextBox.Location = new Point(31, 494);
+            descriptionRichTextBox.Name = "descriptionRichTextBox";
+            descriptionRichTextBox.Size = new Size(446, 154);
+            descriptionRichTextBox.TabIndex = 7;
+            descriptionRichTextBox.Text = "";
             // 
-            // label4
+            // addButton
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(31, 416);
-            label4.Name = "label4";
-            label4.Size = new Size(78, 32);
-            label4.TabIndex = 6;
-            label4.Text = "label4";
+            addButton.Location = new Point(31, 874);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(150, 46);
+            addButton.TabIndex = 8;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // editButton
             // 
-            richTextBox1.Location = new Point(31, 451);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(446, 228);
-            richTextBox1.TabIndex = 7;
-            richTextBox1.Text = "";
+            editButton.Location = new Point(31, 822);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(150, 46);
+            editButton.TabIndex = 9;
+            editButton.Text = "Edit";
+            editButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // deleteButton
             // 
-            button1.Location = new Point(31, 874);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 8;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            deleteButton.Location = new Point(245, 874);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(150, 46);
+            deleteButton.TabIndex = 10;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // saveButton
             // 
-            button2.Location = new Point(31, 822);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 46);
-            button2.TabIndex = 9;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            saveButton.Location = new Point(245, 822);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(150, 46);
+            saveButton.TabIndex = 11;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // refreshButton
             // 
-            button3.Location = new Point(245, 874);
-            button3.Name = "button3";
-            button3.Size = new Size(150, 46);
-            button3.TabIndex = 10;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
+            refreshButton.Location = new Point(461, 874);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(150, 46);
+            refreshButton.TabIndex = 12;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // cancelButton
             // 
-            button4.Location = new Point(245, 822);
-            button4.Name = "button4";
-            button4.Size = new Size(150, 46);
-            button4.TabIndex = 11;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
+            cancelButton.Location = new Point(461, 822);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(150, 46);
+            cancelButton.TabIndex = 13;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // sumTextBox
             // 
-            button5.Location = new Point(461, 874);
-            button5.Name = "button5";
-            button5.Size = new Size(150, 46);
-            button5.TabIndex = 12;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
+            sumTextBox.Location = new Point(31, 169);
+            sumTextBox.Name = "sumTextBox";
+            sumTextBox.Size = new Size(446, 39);
+            sumTextBox.TabIndex = 14;
+            sumTextBox.Text = "0";
             // 
-            // button6
+            // categoryTextBox
             // 
-            button6.Location = new Point(461, 822);
-            button6.Name = "button6";
-            button6.Size = new Size(150, 46);
-            button6.TabIndex = 13;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
+            categoryTextBox.Location = new Point(31, 313);
+            categoryTextBox.Name = "categoryTextBox";
+            categoryTextBox.ReadOnly = true;
+            categoryTextBox.Size = new Size(446, 39);
+            categoryTextBox.TabIndex = 15;
+            // 
+            // chooseCategoryButton
+            // 
+            chooseCategoryButton.Location = new Point(31, 358);
+            chooseCategoryButton.Name = "chooseCategoryButton";
+            chooseCategoryButton.Size = new Size(110, 46);
+            chooseCategoryButton.TabIndex = 16;
+            chooseCategoryButton.Text = "Choose";
+            chooseCategoryButton.UseVisualStyleBackColor = true;
+            // 
+            // clearCategoryButton
+            // 
+            clearCategoryButton.Location = new Point(147, 358);
+            clearCategoryButton.Name = "clearCategoryButton";
+            clearCategoryButton.Size = new Size(110, 46);
+            clearCategoryButton.TabIndex = 17;
+            clearCategoryButton.Text = "Clear";
+            clearCategoryButton.UseVisualStyleBackColor = true;
             // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 950);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(richTextBox1);
-            Controls.Add(label4);
-            Controls.Add(comboBox2);
-            Controls.Add(label3);
-            Controls.Add(comboBox1);
-            Controls.Add(label2);
-            Controls.Add(listView1);
-            Controls.Add(label1);
+            Controls.Add(clearCategoryButton);
+            Controls.Add(chooseCategoryButton);
+            Controls.Add(categoryTextBox);
+            Controls.Add(sumTextBox);
+            Controls.Add(cancelButton);
+            Controls.Add(refreshButton);
+            Controls.Add(saveButton);
+            Controls.Add(deleteButton);
+            Controls.Add(editButton);
+            Controls.Add(addButton);
+            Controls.Add(descriptionRichTextBox);
+            Controls.Add(descriptionLabel);
+            Controls.Add(categoryLabel);
+            Controls.Add(sumLabel);
+            Controls.Add(listView);
+            Controls.Add(titleLabel);
             Name = "EditPurchasesForm";
             Text = "EditPurchasesForm";
             ResumeLayout(false);
@@ -193,19 +219,21 @@
 
         #endregion
 
-        private Label label1;
-        private ListView listView1;
-        private Label label2;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private Label label3;
-        private Label label4;
-        private RichTextBox richTextBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Label titleLabel;
+        private ListView listView;
+        private Label sumLabel;
+        private Label categoryLabel;
+        private Label descriptionLabel;
+        private RichTextBox descriptionRichTextBox;
+        private Button addButton;
+        private Button editButton;
+        private Button deleteButton;
+        private Button saveButton;
+        private Button refreshButton;
+        private Button cancelButton;
+        private TextBox sumTextBox;
+        private TextBox categoryTextBox;
+        private Button chooseCategoryButton;
+        private Button clearCategoryButton;
     }
 }
