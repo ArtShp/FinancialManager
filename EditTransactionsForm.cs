@@ -106,6 +106,9 @@ namespace FinancialManager
 
                 transaction.Sum_By_Account.Rate = SqliteDataAccess.GetUnitsRate(cashFacility);
 
+                var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
+                var currencyText = cashFacilityCurrency.GetMoneyText();
+
                 string place = "";
                 if (transaction.Id_Place_Of_Purchase != 0)
                 {
@@ -113,7 +116,7 @@ namespace FinancialManager
                 }
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Account.GetString(), currency.Code, cashFacility.Name, place, transaction.Description })
+                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Account.GetString() + " " + currencyText, currency.Code, cashFacility.Name, place, transaction.Description })
                     {
                         Tag = transaction.Id
                     });
