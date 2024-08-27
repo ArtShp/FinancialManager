@@ -98,5 +98,10 @@ namespace FinancialManager
 
             treeView.EndUpdate();
         }
+
+        public long GetSelectedId()
+        {
+            return selectedId;
+        }
     }
 }
