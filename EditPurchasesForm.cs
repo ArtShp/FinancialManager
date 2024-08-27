@@ -95,5 +95,14 @@ namespace FinancialManager
             categoryId = -1;
             categoryTextBox.Clear();
         }
+
+        private void setDataView(PurchaseModel purchase)
+        {
+            purchase.Sum_By_Transaction.Rate = unitsRate;
+
+            sumTextBox.Text = purchase.Sum_By_Transaction.GetString();
+            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(purchase.Id_Category).Name;
+            descriptionRichTextBox.Text = purchase.Description;
+        }
     }
 }
