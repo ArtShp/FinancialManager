@@ -44,6 +44,9 @@
             categoryTextBox = new TextBox();
             chooseCategoryButton = new Button();
             clearCategoryButton = new Button();
+            sumColumnHeader = new ColumnHeader();
+            categoryColumnHeader = new ColumnHeader();
+            descriptionColumnHeader = new ColumnHeader();
             SuspendLayout();
             // 
             // titleLabel
@@ -58,6 +61,7 @@
             // 
             // listView
             // 
+            listView.Columns.AddRange(new ColumnHeader[] { sumColumnHeader, categoryColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
             listView.Location = new Point(643, 12);
@@ -66,6 +70,7 @@
             listView.Size = new Size(615, 908);
             listView.TabIndex = 1;
             listView.UseCompatibleStateImageBehavior = false;
+            listView.View = View.Details;
             // 
             // sumLabel
             // 
@@ -190,6 +195,21 @@
             clearCategoryButton.Text = "Clear";
             clearCategoryButton.UseVisualStyleBackColor = true;
             // 
+            // sumColumnHeader
+            // 
+            sumColumnHeader.Text = "Sum";
+            sumColumnHeader.Width = 100;
+            // 
+            // categoryColumnHeader
+            // 
+            categoryColumnHeader.Text = "Category";
+            categoryColumnHeader.Width = 120;
+            // 
+            // descriptionColumnHeader
+            // 
+            descriptionColumnHeader.Text = "Description";
+            descriptionColumnHeader.Width = 120;
+            // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -235,5 +255,8 @@
         private TextBox categoryTextBox;
         private Button chooseCategoryButton;
         private Button clearCategoryButton;
+        private ColumnHeader sumColumnHeader;
+        private ColumnHeader categoryColumnHeader;
+        private ColumnHeader descriptionColumnHeader;
     }
 }
