@@ -212,6 +212,7 @@
             clearCategoryButton.TabIndex = 17;
             clearCategoryButton.Text = "Clear";
             clearCategoryButton.UseVisualStyleBackColor = true;
+            clearCategoryButton.Click += clearCategoryButton_Click;
             // 
             // currencyLabel
             // 

@@ -89,5 +89,11 @@ namespace FinancialManager
             categoryId = selectedCategoryId;
             categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
         }
+
+        private void clearCategoryButton_Click(object sender, EventArgs e)
+        {
+            categoryId = -1;
+            categoryTextBox.Clear();
+        }
     }
 }
