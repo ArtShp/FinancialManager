@@ -21,6 +21,8 @@ namespace FinancialManager
             this.transactionId = transactionId;
 
             InitializeComponent();
+
+            LoadList();
         }
 
         private void LoadList()

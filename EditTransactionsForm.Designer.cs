@@ -194,6 +194,7 @@
             listView.TabIndex = 15;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
+            listView.DoubleClick += listView_DoubleClick;
             // 
             // transactionColumnHeader
             // 

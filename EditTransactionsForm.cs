@@ -235,5 +235,16 @@ namespace FinancialManager
             selectedId = -1;
             clearDataView();
         }
+
+        private void listView_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+
+                var editPurchasesForm = new EditPurchasesForm(selectedId);
+                editPurchasesForm.Show();
+            }
+        }
     }
 }
