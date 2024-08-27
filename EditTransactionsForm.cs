@@ -25,11 +25,17 @@ namespace FinancialManager
 
         private void LoadAll()
         {
+            LoadCurrentDate();
             LoadTransactionTypes();
             LoadCurrencies();
             LoadCashFacilities();
             LoadPlacesOfPurchases();
             LoadList();
+        }
+
+        private void LoadCurrentDate()
+        {
+            dateTimePicker.Value = DateTime.Today;
         }
 
         private void LoadTransactionTypes()
@@ -164,7 +170,7 @@ namespace FinancialManager
             TransactionModel transaction = new TransactionModel
             {
                 Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
-                Date = dateTimePicker.Value,
+                Date = dateTimePicker.Value.Date,
                 Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
                 Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
                 Id_Cash_Facility = idCashFacility,
@@ -207,7 +213,7 @@ namespace FinancialManager
             {
                 Id = selectedId,
                 Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
-                Date = dateTimePicker.Value,
+                Date = dateTimePicker.Value.Date,
                 Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
                 Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
                 Id_Cash_Facility = idCashFacility,
