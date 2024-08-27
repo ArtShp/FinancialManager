@@ -163,5 +163,35 @@ namespace FinancialManager
             PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
             setDataView(purchase);
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            if (categoryId == -1)
+            {
+                MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            PurchaseModel purchase = new PurchaseModel
+            {
+                Id = selectedId,
+                Id_Transaction = transactionId,
+                Sum_By_Transaction = new MoneyModel
+                (
+                    sumTextBox.Text,
+                    unitsRate
+                ),
+                Id_Category = categoryId,
+                Description = descriptionRichTextBox.Text
+            };
+
+            SqliteDataAccess.UpdatePurchase(purchase);
+
+            selectedId = -1;
+            clearDataView();
+        }
     }
 }

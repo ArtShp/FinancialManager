@@ -162,6 +162,7 @@
             saveButton.TabIndex = 11;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // refreshButton
             // 
