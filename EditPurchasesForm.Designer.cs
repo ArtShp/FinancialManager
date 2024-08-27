@@ -169,6 +169,7 @@
             refreshButton.TabIndex = 12;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
             // cancelButton
             // 
