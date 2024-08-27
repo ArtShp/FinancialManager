@@ -352,7 +352,14 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
+                if (transaction.Id_Place_Of_Purchase == 0)
+                {
+                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = NULL, description = @Description WHERE id = @Id", transaction);
+                }
+                else
+                {
+                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
+                }
             }
         }
 
