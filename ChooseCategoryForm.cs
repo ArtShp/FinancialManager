@@ -62,5 +62,41 @@ namespace FinancialManager
 
             treeView.EndUpdate();
         }
+
+        private void treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            treeView.BeginUpdate();
+
+            foreach (var parent in e.Node.Nodes)
+            {
+                var parentNode = (TreeNode)parent;
+                var categories = SqliteDataAccess.LoadCategoriesByParentId(Convert.ToInt64(parentNode.Tag));
+
+                foreach (var category in categories)
+                {
+                    parentNode.Nodes.Add(
+                        new TreeNode(category.Name)
+                        {
+                            Tag = category.Id
+                        });
+                }
+            }
+
+            treeView.EndUpdate();
+        }
+
+        private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            treeView.BeginUpdate();
+
+            foreach (var node in e.Node.Nodes)
+            {
+                var treeNode = (TreeNode)node;
+                treeNode.Collapse();
+                treeNode.Nodes.Clear();
+            }
+
+            treeView.EndUpdate();
+        }
     }
 }

@@ -51,6 +51,8 @@
             treeView.Name = "treeView";
             treeView.Size = new Size(578, 711);
             treeView.TabIndex = 1;
+            treeView.AfterCollapse += treeView_AfterCollapse;
+            treeView.BeforeExpand += treeView_BeforeExpand;
             // 
             // chooseButton
             // 
