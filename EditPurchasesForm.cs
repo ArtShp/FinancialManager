@@ -116,6 +116,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (categoryId == -1)
+            {
+                MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             PurchaseModel purchase = new PurchaseModel
             {
                 Id_Transaction = transactionId,
