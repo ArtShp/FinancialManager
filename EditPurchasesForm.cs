@@ -99,9 +99,10 @@ namespace FinancialManager
         private void setDataView(PurchaseModel purchase)
         {
             purchase.Sum_By_Transaction.Rate = unitsRate;
+            categoryId = purchase.Id_Category;
 
             sumTextBox.Text = purchase.Sum_By_Transaction.GetString();
-            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(purchase.Id_Category).Name;
+            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
             descriptionRichTextBox.Text = purchase.Description;
         }
 
@@ -154,6 +155,13 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+            PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
+            setDataView(purchase);
         }
     }
 }
