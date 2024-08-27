@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -17,19 +18,33 @@ namespace FinancialManager
         private long selectedId = -1;
         private long transactionId;
         private int unitsRate;
+        private string currencyText;
 
         public EditPurchasesForm(long transactionId)
         {
             this.transactionId = transactionId;
 
-            var transaction = SqliteDataAccess.GetTransactionById(this.transactionId);
-            var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
-
-            unitsRate = SqliteDataAccess.GetUnitsRate(cashFacility);
-
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
+            LoadData();
             LoadList();
+        }
+
+        private void LoadData()
+        {
+            var transaction = SqliteDataAccess.GetTransactionById(transactionId);
+            var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
+            var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
+
+            currencyText = $"{currency.Symbol} ({currency.Code})";
+            unitsRate = SqliteDataAccess.GetUnitsRate(cashFacility);
+
+            currencyTextBox.Text = $"{currency.Name} ({currency.Code})";
         }
 
         private void LoadList()
@@ -50,7 +65,7 @@ namespace FinancialManager
                 purchase.Sum_By_Transaction.Rate = unitsRate;
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { category.Name, purchase.Sum_By_Transaction.GetString(), purchase.Description })
+                    new ListViewItem(new[] { category.Name, purchase.Sum_By_Transaction.GetString() + " " + currencyText, purchase.Description })
                     {
                         Tag = purchase.Id
                     });
