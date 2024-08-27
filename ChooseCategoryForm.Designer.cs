@@ -28,55 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            treeView1 = new TreeView();
-            button1 = new Button();
-            button2 = new Button();
+            titleLabel = new Label();
+            treeView = new TreeView();
+            chooseButton = new Button();
+            cancelButton = new Button();
             SuspendLayout();
             // 
-            // label1
+            // titleLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(27, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 32);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            titleLabel.AutoSize = true;
+            titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            titleLabel.Location = new Point(27, 12);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(235, 130);
+            titleLabel.TabIndex = 0;
+            titleLabel.Text = "Choose\r\nCategory";
             // 
-            // treeView1
+            // treeView
             // 
-            treeView1.Location = new Point(426, 12);
-            treeView1.Name = "treeView1";
-            treeView1.Size = new Size(578, 711);
-            treeView1.TabIndex = 1;
+            treeView.FullRowSelect = true;
+            treeView.Location = new Point(426, 12);
+            treeView.Name = "treeView";
+            treeView.Size = new Size(578, 711);
+            treeView.TabIndex = 1;
             // 
-            // button1
+            // chooseButton
             // 
-            button1.Location = new Point(27, 677);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            chooseButton.Location = new Point(27, 677);
+            chooseButton.Name = "chooseButton";
+            chooseButton.Size = new Size(150, 46);
+            chooseButton.TabIndex = 2;
+            chooseButton.Text = "Choose";
+            chooseButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // cancelButton
             // 
-            button2.Location = new Point(218, 677);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 46);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            cancelButton.Location = new Point(218, 677);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(150, 46);
+            cancelButton.TabIndex = 3;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
             // 
             // ChooseCategoryForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1016, 755);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(treeView1);
-            Controls.Add(label1);
+            Controls.Add(cancelButton);
+            Controls.Add(chooseButton);
+            Controls.Add(treeView);
+            Controls.Add(titleLabel);
             Name = "ChooseCategoryForm";
             Text = "ChooseCategoryForm";
             ResumeLayout(false);
@@ -85,9 +87,9 @@
 
         #endregion
 
-        private Label label1;
-        private TreeView treeView1;
-        private Button button1;
-        private Button button2;
+        private Label titleLabel;
+        private TreeView treeView;
+        private Button chooseButton;
+        private Button cancelButton;
     }
 }
