@@ -109,5 +109,10 @@ namespace FinancialManager
             selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
             Close();
         }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
