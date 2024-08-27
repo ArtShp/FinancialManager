@@ -30,6 +30,9 @@
         {
             titleLabel = new Label();
             listView = new ListView();
+            sumColumnHeader = new ColumnHeader();
+            categoryColumnHeader = new ColumnHeader();
+            descriptionColumnHeader = new ColumnHeader();
             sumLabel = new Label();
             categoryLabel = new Label();
             descriptionLabel = new Label();
@@ -44,9 +47,6 @@
             categoryTextBox = new TextBox();
             chooseCategoryButton = new Button();
             clearCategoryButton = new Button();
-            sumColumnHeader = new ColumnHeader();
-            categoryColumnHeader = new ColumnHeader();
-            descriptionColumnHeader = new ColumnHeader();
             SuspendLayout();
             // 
             // titleLabel
@@ -61,7 +61,7 @@
             // 
             // listView
             // 
-            listView.Columns.AddRange(new ColumnHeader[] { sumColumnHeader, categoryColumnHeader, descriptionColumnHeader });
+            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
             listView.Location = new Point(643, 12);
@@ -71,6 +71,22 @@
             listView.TabIndex = 1;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
+            // 
+            // sumColumnHeader
+            // 
+            sumColumnHeader.Text = "Sum";
+            sumColumnHeader.Width = 100;
+            // 
+            // categoryColumnHeader
+            // 
+            categoryColumnHeader.Text = "Category";
+            categoryColumnHeader.Width = 120;
+            // 
+            // descriptionColumnHeader
+            // 
+            descriptionColumnHeader.DisplayIndex = 2;
+            descriptionColumnHeader.Text = "Description";
+            descriptionColumnHeader.Width = 120;
             // 
             // sumLabel
             // 
@@ -194,21 +210,6 @@
             clearCategoryButton.TabIndex = 17;
             clearCategoryButton.Text = "Clear";
             clearCategoryButton.UseVisualStyleBackColor = true;
-            // 
-            // sumColumnHeader
-            // 
-            sumColumnHeader.Text = "Sum";
-            sumColumnHeader.Width = 100;
-            // 
-            // categoryColumnHeader
-            // 
-            categoryColumnHeader.Text = "Category";
-            categoryColumnHeader.Width = 120;
-            // 
-            // descriptionColumnHeader
-            // 
-            descriptionColumnHeader.Text = "Description";
-            descriptionColumnHeader.Width = 120;
             // 
             // EditPurchasesForm
             // 
