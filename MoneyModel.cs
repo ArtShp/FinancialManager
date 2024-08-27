@@ -60,6 +60,14 @@ namespace FinancialManager
             }
             else
             {
+                if (parts[1].Length > Rate)
+                {
+                    parts[1] = parts[1].Substring(0, Rate);
+                }
+                else if (parts[1].Length < Rate)
+                {
+                    parts[1] = parts[1] + new string('0', Rate - parts[1].Length);
+                }
                 Money = Convert.ToInt64(parts[0]) * multiplier + Convert.ToInt64(parts[1]);
             }
         }
