@@ -104,5 +104,12 @@ namespace FinancialManager
             categoryTextBox.Text = SqliteDataAccess.GetCategoryById(purchase.Id_Category).Name;
             descriptionRichTextBox.Text = purchase.Description;
         }
+
+        private void clearDataView()
+        {
+            sumTextBox.Text = "0";
+            categoryTextBox.Clear();
+            descriptionRichTextBox.Clear();
+        }
     }
 }
