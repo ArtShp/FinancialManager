@@ -104,7 +104,7 @@ namespace FinancialManager
                 var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
                 var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
 
-                transaction.Sum_By_Account.Rate = getUnitsRate(cashFacility);
+                transaction.Sum_By_Account.Rate = SqliteDataAccess.GetUnitsRate(cashFacility);
 
                 string place = "";
                 if (transaction.Id_Place_Of_Purchase != 0)
@@ -122,21 +122,9 @@ namespace FinancialManager
             listView.EndUpdate();
         }
 
-        private int getUnitsRate(long idCashFacility)
-        {
-            var cashFacility = SqliteDataAccess.GetCashFacilityById(idCashFacility);
-            return getUnitsRate(cashFacility);
-        }
-
-        private int getUnitsRate(CashFacilityModel cashFacility)
-        {
-            var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
-            return cashFacilityCurrency.Units_Rate;
-        }
-
         private void setDataView(TransactionModel transaction)
         {
-            transaction.Sum_By_Account.Rate = getUnitsRate(transaction.Id_Cash_Facility);
+            transaction.Sum_By_Account.Rate = SqliteDataAccess.GetUnitsRate(transaction.Id_Cash_Facility);
 
             transactionComboBox.SelectedValue = transaction.Id_Transaction_Type;
             dateTimePicker.Value = transaction.Date;
@@ -171,7 +159,7 @@ namespace FinancialManager
             {
                 Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
                 Date = dateTimePicker.Value.Date,
-                Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
+                Sum_By_Account = new MoneyModel(sumTextBox.Text, SqliteDataAccess.GetUnitsRate(idCashFacility)),
                 Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
                 Id_Cash_Facility = idCashFacility,
                 Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
@@ -214,7 +202,7 @@ namespace FinancialManager
                 Id = selectedId,
                 Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
                 Date = dateTimePicker.Value.Date,
-                Sum_By_Account = new MoneyModel(sumTextBox.Text, getUnitsRate(idCashFacility)),
+                Sum_By_Account = new MoneyModel(sumTextBox.Text, SqliteDataAccess.GetUnitsRate(idCashFacility)),
                 Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
                 Id_Cash_Facility = idCashFacility,
                 Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),

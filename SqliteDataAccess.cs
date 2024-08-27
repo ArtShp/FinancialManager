@@ -507,6 +507,18 @@ namespace FinancialManager
             }
         }
 
+        public static int GetUnitsRate(long idCashFacility)
+        {
+            var cashFacility = SqliteDataAccess.GetCashFacilityById(idCashFacility);
+            return GetUnitsRate(cashFacility);
+        }
+
+        public static int GetUnitsRate(CashFacilityModel cashFacility)
+        {
+            var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
+            return cashFacilityCurrency.Units_Rate;
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
