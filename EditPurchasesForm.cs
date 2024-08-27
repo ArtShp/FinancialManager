@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace FinancialManager
@@ -15,10 +16,16 @@ namespace FinancialManager
         private List<PurchaseModel> data = new List<PurchaseModel>();
         private long selectedId = -1;
         private long transactionId;
+        private int unitsRate;
 
         public EditPurchasesForm(long transactionId)
         {
             this.transactionId = transactionId;
+
+            var transaction = SqliteDataAccess.GetTransactionById(this.transactionId);
+            var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
+
+            unitsRate = SqliteDataAccess.GetUnitsRate(cashFacility);
 
             InitializeComponent();
 
@@ -40,6 +47,8 @@ namespace FinancialManager
             foreach (var purchase in data)
             {
                 var category = SqliteDataAccess.GetCategoryById(purchase.Id_Category);
+                purchase.Sum_By_Transaction.Rate = unitsRate;
+
                 listView.Items.Add(
                     new ListViewItem(new[] { category.Name, purchase.Sum_By_Transaction.GetString(), purchase.Description })
                     {
