@@ -202,6 +202,7 @@
             chooseCategoryButton.TabIndex = 16;
             chooseCategoryButton.Text = "Choose";
             chooseCategoryButton.UseVisualStyleBackColor = true;
+            chooseCategoryButton.Click += chooseCategoryButton_Click;
             // 
             // clearCategoryButton
             // 

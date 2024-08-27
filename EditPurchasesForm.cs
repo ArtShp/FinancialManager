@@ -74,5 +74,13 @@ namespace FinancialManager
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             listView.EndUpdate();
         }
+
+        private void chooseCategoryButton_Click(object sender, EventArgs e)
+        {
+            var chooseCategoryForm = new ChooseCategoryForm();
+            chooseCategoryForm.ShowDialog();
+
+            var categoryId = chooseCategoryForm.GetSelectedId();
+        }
     }
 }
