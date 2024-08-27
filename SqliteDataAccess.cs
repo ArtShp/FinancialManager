@@ -206,6 +206,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<PurchaseModel> LoadPurchases(long transactionId)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<PurchaseModel>($"SELECT * FROM purchases WHERE id_transaction = {transactionId}", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         public static void AddCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -276,6 +285,14 @@ namespace FinancialManager
             }
         }
 
+        public static void AddPurchase(PurchaseModel purchase)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("INSERT INTO purchases (id_transaction, sum_by_transaction, id_category, description) VALUES (@Id_Transaction, @Sum_By_Transaction, @Id_Category, @Description)", purchase);
+            }
+        }
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -336,6 +353,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
+            }
+        }
+
+        public static void UpdatePurchase(PurchaseModel purchase)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum_by_transaction = @Sum_By_Transaction, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
             }
         }
 
@@ -402,6 +427,15 @@ namespace FinancialManager
             }
         }
 
+        public static PurchaseModel GetPurchaseById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<PurchaseModel>("SELECT * FROM purchases WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
+
         public static void DeleteCurrencyById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
@@ -455,6 +489,14 @@ namespace FinancialManager
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
                 connection.Execute("DELETE FROM transactions WHERE id = @Id", new { Id = id });
+            }
+        }
+
+        public static void DeletePurchaseById(long id)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Execute("DELETE FROM purchases WHERE id = @Id", new { Id = id });
             }
         }
 
