@@ -62,6 +62,7 @@
             chooseButton.TabIndex = 2;
             chooseButton.Text = "Choose";
             chooseButton.UseVisualStyleBackColor = true;
+            chooseButton.Click += chooseButton_Click;
             // 
             // cancelButton
             // 

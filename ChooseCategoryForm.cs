@@ -103,5 +103,11 @@ namespace FinancialManager
         {
             return selectedId;
         }
+
+        private void chooseButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+            Close();
+        }
     }
 }
