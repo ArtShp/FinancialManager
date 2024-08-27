@@ -16,6 +16,7 @@ namespace FinancialManager
     {
         private List<PurchaseModel> data = new List<PurchaseModel>();
         private long selectedId = -1;
+        private long categoryId = -1;
         private long transactionId;
         private int unitsRate;
         private string currencyText;
@@ -80,7 +81,13 @@ namespace FinancialManager
             var chooseCategoryForm = new ChooseCategoryForm();
             chooseCategoryForm.ShowDialog();
 
-            var categoryId = chooseCategoryForm.GetSelectedId();
+            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+
+            if (selectedCategoryId == -1)
+                return;
+
+            categoryId = selectedCategoryId;
+            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
         }
     }
 }
