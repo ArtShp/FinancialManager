@@ -41,10 +41,10 @@ namespace FinancialManager
             var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
             var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
 
-            currencyText = $"{currency.Symbol} ({currency.Code})";
+            currencyText = currency.GetMoneyText();
             unitsRate = SqliteDataAccess.GetUnitsRate(cashFacility);
 
-            currencyTextBox.Text = $"{currency.Name} ({currency.Code})";
+            currencyTextBox.Text = currency.GetFullName();
         }
 
         private void LoadList()
