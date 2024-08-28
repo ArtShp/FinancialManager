@@ -32,8 +32,20 @@ namespace FinancialManager
 
         private void LoadAll()
         {
+            LoadTags();
             LoadData();
             LoadList();
+        }
+
+        private void LoadTags()
+        {
+            var tags = SqliteDataAccess.LoadTags();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = tags;
+
+            tagsCheckedListBox.DataSource = bindingSource.DataSource;
+            tagsCheckedListBox.DisplayMember = "Name";
+            tagsCheckedListBox.ValueMember = "Id";
         }
 
         private void LoadData()
