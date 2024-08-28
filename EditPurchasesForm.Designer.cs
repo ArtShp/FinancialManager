@@ -49,6 +49,8 @@
             clearCategoryButton = new Button();
             currencyLabel = new Label();
             currencyTextBox = new TextBox();
+            tagsLabel = new Label();
+            tagsCheckedListBox = new CheckedListBox();
             SuspendLayout();
             // 
             // titleLabel
@@ -92,7 +94,7 @@
             // sumLabel
             // 
             sumLabel.AutoSize = true;
-            sumLabel.Location = new Point(31, 134);
+            sumLabel.Location = new Point(31, 101);
             sumLabel.Name = "sumLabel";
             sumLabel.Size = new Size(62, 32);
             sumLabel.TabIndex = 2;
@@ -101,7 +103,7 @@
             // categoryLabel
             // 
             categoryLabel.AutoSize = true;
-            categoryLabel.Location = new Point(31, 380);
+            categoryLabel.Location = new Point(30, 290);
             categoryLabel.Name = "categoryLabel";
             categoryLabel.Size = new Size(110, 32);
             categoryLabel.TabIndex = 4;
@@ -110,7 +112,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(31, 561);
+            descriptionLabel.Location = new Point(30, 653);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(135, 32);
             descriptionLabel.TabIndex = 6;
@@ -118,9 +120,9 @@
             // 
             // descriptionRichTextBox
             // 
-            descriptionRichTextBox.Location = new Point(31, 596);
+            descriptionRichTextBox.Location = new Point(31, 688);
             descriptionRichTextBox.Name = "descriptionRichTextBox";
-            descriptionRichTextBox.Size = new Size(446, 154);
+            descriptionRichTextBox.Size = new Size(446, 102);
             descriptionRichTextBox.TabIndex = 7;
             descriptionRichTextBox.Text = "";
             // 
@@ -186,7 +188,7 @@
             // 
             // sumTextBox
             // 
-            sumTextBox.Location = new Point(31, 169);
+            sumTextBox.Location = new Point(31, 136);
             sumTextBox.Name = "sumTextBox";
             sumTextBox.Size = new Size(446, 39);
             sumTextBox.TabIndex = 14;
@@ -194,7 +196,7 @@
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(31, 415);
+            categoryTextBox.Location = new Point(30, 325);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
             categoryTextBox.Size = new Size(446, 39);
@@ -202,7 +204,7 @@
             // 
             // chooseCategoryButton
             // 
-            chooseCategoryButton.Location = new Point(31, 460);
+            chooseCategoryButton.Location = new Point(30, 370);
             chooseCategoryButton.Name = "chooseCategoryButton";
             chooseCategoryButton.Size = new Size(110, 46);
             chooseCategoryButton.TabIndex = 16;
@@ -212,7 +214,7 @@
             // 
             // clearCategoryButton
             // 
-            clearCategoryButton.Location = new Point(147, 460);
+            clearCategoryButton.Location = new Point(146, 370);
             clearCategoryButton.Name = "clearCategoryButton";
             clearCategoryButton.Size = new Size(110, 46);
             clearCategoryButton.TabIndex = 17;
@@ -223,7 +225,7 @@
             // currencyLabel
             // 
             currencyLabel.AutoSize = true;
-            currencyLabel.Location = new Point(31, 225);
+            currencyLabel.Location = new Point(31, 178);
             currencyLabel.Name = "currencyLabel";
             currencyLabel.Size = new Size(109, 32);
             currencyLabel.TabIndex = 18;
@@ -231,17 +233,38 @@
             // 
             // currencyTextBox
             // 
-            currencyTextBox.Location = new Point(31, 260);
+            currencyTextBox.Location = new Point(31, 213);
             currencyTextBox.Name = "currencyTextBox";
             currencyTextBox.ReadOnly = true;
             currencyTextBox.Size = new Size(446, 39);
             currencyTextBox.TabIndex = 19;
+            // 
+            // tagsLabel
+            // 
+            tagsLabel.AutoSize = true;
+            tagsLabel.Location = new Point(30, 443);
+            tagsLabel.Name = "tagsLabel";
+            tagsLabel.Size = new Size(60, 32);
+            tagsLabel.TabIndex = 20;
+            tagsLabel.Text = "Tags";
+            // 
+            // tagsCheckedListBox
+            // 
+            tagsCheckedListBox.CheckOnClick = true;
+            tagsCheckedListBox.FormattingEnabled = true;
+            tagsCheckedListBox.Location = new Point(30, 478);
+            tagsCheckedListBox.MultiColumn = true;
+            tagsCheckedListBox.Name = "tagsCheckedListBox";
+            tagsCheckedListBox.Size = new Size(447, 148);
+            tagsCheckedListBox.TabIndex = 24;
             // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 950);
+            Controls.Add(tagsCheckedListBox);
+            Controls.Add(tagsLabel);
             Controls.Add(currencyTextBox);
             Controls.Add(currencyLabel);
             Controls.Add(clearCategoryButton);
@@ -289,5 +312,7 @@
         private ColumnHeader descriptionColumnHeader;
         private Label currencyLabel;
         private TextBox currencyTextBox;
+        private Label tagsLabel;
+        private CheckedListBox tagsCheckedListBox;
     }
 }
