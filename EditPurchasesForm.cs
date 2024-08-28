@@ -40,14 +40,19 @@ namespace FinancialManager
         private void LoadTags()
         {
             var tags = SqliteDataAccess.LoadTags();
-            var bindingSource = new BindingSource();
-            bindingSource.DataSource = tags;
 
-            tagsCheckedListBox.DataSource = bindingSource.DataSource;
-            tagsCheckedListBox.DisplayMember = "Name";
-            tagsCheckedListBox.ValueMember = "Id";
+            tagsListView.BeginUpdate();
+            tagsListView.Items.Clear();
 
-            tagsCheckedListBox.SelectedIndex = -1;
+            foreach (var tag in tags)
+            {
+                tagsListView.Items.Add(
+                    new ListViewItem(new[] { tag.Name })
+                    {
+                        Tag = tag.Id
+                    });
+            }
+            tagsListView.EndUpdate();
         }
 
         private void LoadData()
@@ -215,11 +220,6 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
-        }
-
-        private void tagsCheckedListBox_MouseUp(object sender, MouseEventArgs e)
-        {
-            tagsCheckedListBox.SelectedIndex = -1;
         }
     }
 }

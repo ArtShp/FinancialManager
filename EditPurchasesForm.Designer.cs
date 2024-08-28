@@ -50,7 +50,7 @@
             currencyLabel = new Label();
             currencyTextBox = new TextBox();
             tagsLabel = new Label();
-            tagsCheckedListBox = new CheckedListBox();
+            tagsListView = new ListView();
             SuspendLayout();
             // 
             // titleLabel
@@ -248,23 +248,25 @@
             tagsLabel.TabIndex = 20;
             tagsLabel.Text = "Tags";
             // 
-            // tagsCheckedListBox
+            // tagsListView
             // 
-            tagsCheckedListBox.CheckOnClick = true;
-            tagsCheckedListBox.FormattingEnabled = true;
-            tagsCheckedListBox.Location = new Point(30, 478);
-            tagsCheckedListBox.MultiColumn = true;
-            tagsCheckedListBox.Name = "tagsCheckedListBox";
-            tagsCheckedListBox.Size = new Size(447, 148);
-            tagsCheckedListBox.TabIndex = 24;
-            tagsCheckedListBox.MouseUp += tagsCheckedListBox_MouseUp;
+            tagsListView.CheckBoxes = true;
+            tagsListView.FullRowSelect = true;
+            tagsListView.HideSelection = true;
+            tagsListView.Location = new Point(31, 478);
+            tagsListView.MultiSelect = false;
+            tagsListView.Name = "tagsListView";
+            tagsListView.Size = new Size(446, 157);
+            tagsListView.TabIndex = 21;
+            tagsListView.UseCompatibleStateImageBehavior = false;
+            tagsListView.View = View.List;
             // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 950);
-            Controls.Add(tagsCheckedListBox);
+            Controls.Add(tagsListView);
             Controls.Add(tagsLabel);
             Controls.Add(currencyTextBox);
             Controls.Add(currencyLabel);
@@ -314,6 +316,6 @@
         private Label currencyLabel;
         private TextBox currencyTextBox;
         private Label tagsLabel;
-        private CheckedListBox tagsCheckedListBox;
+        private ListView tagsListView;
     }
 }
