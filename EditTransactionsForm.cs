@@ -174,7 +174,7 @@ namespace FinancialManager
             clearDataView();
 
             var editPurchasesForm = new EditPurchasesForm(SqliteDataAccess.GetLastAddedTransactionId());
-            editPurchasesForm.ShowDialog();
+            editPurchasesForm.Show();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
