@@ -519,6 +519,15 @@ namespace FinancialManager
             return cashFacilityCurrency.Units_Rate;
         }
 
+        public static long GetLastAddedTransactionId()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.ExecuteScalar<long>("SELECT seq FROM sqlite_sequence WHERE name = 'transactions'");
+                return output;
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
