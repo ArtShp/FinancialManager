@@ -257,6 +257,7 @@
             tagsCheckedListBox.Name = "tagsCheckedListBox";
             tagsCheckedListBox.Size = new Size(447, 148);
             tagsCheckedListBox.TabIndex = 24;
+            tagsCheckedListBox.MouseUp += tagsCheckedListBox_MouseUp;
             // 
             // EditPurchasesForm
             // 

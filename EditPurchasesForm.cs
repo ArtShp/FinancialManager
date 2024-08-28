@@ -46,6 +46,8 @@ namespace FinancialManager
             tagsCheckedListBox.DataSource = bindingSource.DataSource;
             tagsCheckedListBox.DisplayMember = "Name";
             tagsCheckedListBox.ValueMember = "Id";
+
+            tagsCheckedListBox.SelectedIndex = -1;
         }
 
         private void LoadData()
@@ -213,6 +215,11 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+        }
+
+        private void tagsCheckedListBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            tagsCheckedListBox.SelectedIndex = -1;
         }
     }
 }
