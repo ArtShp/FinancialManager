@@ -423,6 +423,15 @@ namespace FinancialManager
             }
         }
 
+        public static List<TagModel> GetTagsByPurchaseId(long purchaseId)
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<TagModel>("SELECT tags.* FROM tags JOIN purchases_tags ON tags.id = purchases_tags.id_tag WHERE purchases_tags.id_purchase = @Id", new { Id = purchaseId });
+                return output.ToList();
+            }
+        }
+
         public static CashFacilityModel GetCashFacilityById(long id)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
