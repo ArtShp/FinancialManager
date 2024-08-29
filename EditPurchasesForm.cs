@@ -18,6 +18,7 @@ namespace FinancialManager
         private long selectedId = -1;
         private long categoryId = -1;
         private long transactionId;
+        private long transactionTypeId;
         private int unitsRate;
         private string currencyText;
 
@@ -32,9 +33,22 @@ namespace FinancialManager
 
         private void LoadAll()
         {
-            LoadTags();
             LoadData();
+            LoadTags();
             LoadList();
+        }
+
+        private void LoadData()
+        {
+            var transaction = SqliteDataAccess.GetTransactionById(transactionId);
+            var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
+
+            transactionTypeId = transaction.Id_Transaction_Type;
+
+            currencyText = currency.GetMoneyText();
+            unitsRate = currency.Units_Rate;
+
+            currencyTextBox.Text = currency.GetFullName();
         }
 
         private void LoadTags()
@@ -53,17 +67,6 @@ namespace FinancialManager
                     });
             }
             tagsListView.EndUpdate();
-        }
-
-        private void LoadData()
-        {
-            var transaction = SqliteDataAccess.GetTransactionById(transactionId);
-            var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
-
-            currencyText = currency.GetMoneyText();
-            unitsRate = currency.Units_Rate;
-
-            currencyTextBox.Text = currency.GetFullName();
         }
 
         private void LoadList()
