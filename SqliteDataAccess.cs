@@ -162,11 +162,19 @@ namespace FinancialManager
             }
         }
 
-        public static List<TagModel> LoadTags()
+        public static List<TagModel> LoadTags(long transactionTypeId = -1)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = connection.Query<TagModel>("SELECT * FROM tags", new DynamicParameters());
+                IEnumerable<TagModel>? output;
+                if (transactionTypeId == -1)
+                {
+                    output = connection.Query<TagModel>("SELECT * FROM tags", new DynamicParameters());
+                }
+                else
+                {
+                    output = connection.Query<TagModel>("SELECT * FROM tags WHERE id_transaction_type = @Id", new { Id = transactionTypeId });
+                }
                 return output.ToList();
             }
         }

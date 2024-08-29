@@ -53,7 +53,7 @@ namespace FinancialManager
 
         private void LoadTags()
         {
-            var tags = SqliteDataAccess.LoadTags();
+            var tags = SqliteDataAccess.LoadTags(transactionTypeId);
 
             tagsListView.BeginUpdate();
             tagsListView.Items.Clear();
