@@ -379,11 +379,27 @@ namespace FinancialManager
             }
         }
 
-        public static void UpdatePurchase(PurchaseModel purchase)
+        public static void UpdatePurchase(PurchaseModel purchase, List<long> tagsId = null)
         {
+            tagsId ??= new List<long>();
+
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum_by_transaction = @Sum_By_Transaction, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum_by_transaction = @Sum_By_Transaction, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
+
+                    connection.Execute("DELETE FROM purchases_tags WHERE id_purchase = @Id", new { Id = purchase.Id });
+
+                    foreach (var tagId in tagsId)
+                    {
+                        connection.Execute("INSERT INTO purchases_tags (id_purchase, id_tag) VALUES (@Id_Purchase, @Id_Tag)", new { Id_Purchase = purchase.Id, Id_Tag = tagId });
+                    }
+
+                    transaction.Commit();
+                }
+                connection.Close();
             }
         }
 

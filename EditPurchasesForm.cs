@@ -224,7 +224,9 @@ namespace FinancialManager
                 Description = descriptionRichTextBox.Text
             };
 
-            SqliteDataAccess.UpdatePurchase(purchase);
+            var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
+
+            SqliteDataAccess.UpdatePurchase(purchase, tagsId);
 
             selectedId = -1;
             clearDataView();
