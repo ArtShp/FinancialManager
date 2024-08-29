@@ -285,11 +285,27 @@ namespace FinancialManager
             }
         }
 
-        public static void AddPurchase(PurchaseModel purchase)
+        public static void AddPurchase(PurchaseModel purchase, List<long> tagsId = null)
         {
+            tagsId ??= new List<long>();
+
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                connection.Execute("INSERT INTO purchases (id_transaction, sum_by_transaction, id_category, description) VALUES (@Id_Transaction, @Sum_By_Transaction, @Id_Category, @Description)", purchase);
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    connection.Execute("INSERT INTO purchases (id_transaction, sum_by_transaction, id_category, description) VALUES (@Id_Transaction, @Sum_By_Transaction, @Id_Category, @Description)", purchase);
+
+                    var lastAddedPurchaseId = GetLastAddedPurchaseId() + 1;
+
+                    foreach (var tagId in tagsId)
+                    {
+                        connection.Execute("INSERT INTO purchases_tags (id_purchase, id_tag) VALUES (@Id_Purchase, @Id_Tag)", new { Id_Purchase = lastAddedPurchaseId, Id_Tag = tagId });
+                    }
+
+                    transaction.Commit();
+                }
+                connection.Close();
             }
         }
 
