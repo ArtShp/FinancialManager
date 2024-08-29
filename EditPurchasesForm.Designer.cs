@@ -51,6 +51,7 @@
             currencyTextBox = new TextBox();
             tagsLabel = new Label();
             tagsListView = new ListView();
+            tagsColumnHeader = new ColumnHeader();
             SuspendLayout();
             // 
             // titleLabel
@@ -65,7 +66,7 @@
             // 
             // listView
             // 
-            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, descriptionColumnHeader });
+            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, tagsColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
             listView.Location = new Point(643, 12);
@@ -261,6 +262,11 @@
             tagsListView.UseCompatibleStateImageBehavior = false;
             tagsListView.View = View.List;
             // 
+            // tagsColumnHeader
+            // 
+            tagsColumnHeader.Text = "Tags";
+            tagsColumnHeader.Width = 100;
+            // 
             // EditPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -317,5 +323,6 @@
         private TextBox currencyTextBox;
         private Label tagsLabel;
         private ListView tagsListView;
+        private ColumnHeader tagsColumnHeader;
     }
 }
