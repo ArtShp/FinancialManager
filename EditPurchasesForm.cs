@@ -59,10 +59,9 @@ namespace FinancialManager
         {
             var transaction = SqliteDataAccess.GetTransactionById(transactionId);
             var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
-            var cashFacility = SqliteDataAccess.GetCashFacilityById(transaction.Id_Cash_Facility);
 
             currencyText = currency.GetMoneyText();
-            unitsRate = SqliteDataAccess.GetUnitsRate(cashFacility);
+            unitsRate = currency.Units_Rate;
 
             currencyTextBox.Text = currency.GetFullName();
         }
