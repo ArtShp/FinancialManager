@@ -115,13 +115,25 @@ namespace FinancialManager
             categoryTextBox.Clear();
         }
 
-        private void setDataView(PurchaseModel purchase)
+        private void setDataView(PurchaseModel purchase, List<TagModel> tags = null)
         {
+            tags ??= new List<TagModel>();
+
             purchase.Sum_By_Transaction.Rate = unitsRate;
             categoryId = purchase.Id_Category;
 
             sumTextBox.Text = purchase.Sum_By_Transaction.GetString();
             categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
+            foreach (ListViewItem item in tagsListView.CheckedItems)
+            {
+                item.Checked = false;
+            }
+            foreach (var tag in tags)
+            {
+                var item = tagsListView.Items.Cast<ListViewItem>().FirstOrDefault(x => Convert.ToInt64(x.Tag) == tag.Id);
+                if (item != null)
+                    item.Checked = true;
+            }
             descriptionRichTextBox.Text = purchase.Description;
         }
 
@@ -184,7 +196,8 @@ namespace FinancialManager
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
-            setDataView(purchase);
+            var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
+            setDataView(purchase, tags);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
