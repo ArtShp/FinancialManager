@@ -129,6 +129,8 @@ namespace FinancialManager
         {
             sumTextBox.Text = "0";
             categoryTextBox.Clear();
+            foreach (ListViewItem item in tagsListView.CheckedItems)
+                item.Checked = false;
             descriptionRichTextBox.Clear();
 
             categoryId = -1;
