@@ -84,7 +84,7 @@ namespace FinancialManager
             foreach (var purchase in data)
             {
                 var category = SqliteDataAccess.GetCategoryById(purchase.Id_Category);
-                purchase.Sum_By_Transaction.Rate = unitsRate;
+                purchase.Sum.Rate = unitsRate;
 
                 var tags = SqliteDataAccess.GetTagsByPurchaseId(purchase.Id);
 
@@ -100,7 +100,7 @@ namespace FinancialManager
                 var tagsString = tagsStringBuilder.ToString();
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { category.Name, purchase.Sum_By_Transaction.GetString() + " " + currencyText, tagsString, purchase.Description })
+                    new ListViewItem(new[] { category.Name, purchase.Sum.GetString() + " " + currencyText, tagsString, purchase.Description })
                     {
                         Tag = purchase.Id
                     });
@@ -134,10 +134,10 @@ namespace FinancialManager
         {
             tags ??= new List<TagModel>();
 
-            purchase.Sum_By_Transaction.Rate = unitsRate;
+            purchase.Sum.Rate = unitsRate;
             categoryId = purchase.Id_Category;
 
-            sumTextBox.Text = purchase.Sum_By_Transaction.GetString();
+            sumTextBox.Text = purchase.Sum.GetString();
             categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
             foreach (ListViewItem item in tagsListView.CheckedItems)
             {
@@ -174,7 +174,7 @@ namespace FinancialManager
             PurchaseModel purchase = new PurchaseModel
             {
                 Id_Transaction = transactionId,
-                Sum_By_Transaction = new MoneyModel
+                Sum = new MoneyModel
                 (
                     sumTextBox.Text,
                     unitsRate
@@ -230,7 +230,7 @@ namespace FinancialManager
             {
                 Id = selectedId,
                 Id_Transaction = transactionId,
-                Sum_By_Transaction = new MoneyModel
+                Sum = new MoneyModel
                 (
                     sumTextBox.Text,
                     unitsRate
