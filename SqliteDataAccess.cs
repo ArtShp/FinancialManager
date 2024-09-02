@@ -69,7 +69,7 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction_type INTEGER NOT NULL,
                             date DATE,
-                            sum_by_account INTEGER NOT NULL,
+                            sum_by_cash_facility INTEGER NOT NULL,
                             id_currency_of_transaction INTEGER NOT NULL,
                             id_cash_facility INTEGER NOT NULL,
                             id_place_of_purchase INTEGER NOT NULL,
@@ -109,7 +109,8 @@ namespace FinancialManager
                             CREATE TABLE purchases (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction INTEGER NOT NULL,
-                            sum_by_transaction INTEGER NOT NULL,
+                            sum INTEGER NOT NULL,
+                            sum_by_main_currency INTEGER NOT NULL,
                             id_category INTEGER NOT NULL,
                             description TEXT NOT NULL,
                             FOREIGN KEY(id_transaction) REFERENCES transactions(id),
