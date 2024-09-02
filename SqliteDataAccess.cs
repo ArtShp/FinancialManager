@@ -285,11 +285,11 @@ namespace FinancialManager
             {
                 if (transaction.Id_Place_Of_Purchase == 0)
                 {
-                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Description)", transaction);
+                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_cash_facility, id_currency_of_transaction, id_cash_facility, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Cash_Facility, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Description)", transaction);
                 }
                 else
                 {
-                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_account, id_currency_of_transaction, id_cash_facility, id_place_of_purchase, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Account, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Id_Place_Of_Purchase, @Description)", transaction);
+                    connection.Execute("INSERT INTO transactions (id_transaction_type, date, sum_by_cash_facility, id_currency_of_transaction, id_cash_facility, id_place_of_purchase, description) VALUES (@Id_Transaction_Type, @Date, @Sum_By_Cash_Facility, @Id_Currency_Of_Transaction, @Id_Cash_Facility, @Id_Place_Of_Purchase, @Description)", transaction);
                 }
             }
         }
@@ -379,11 +379,11 @@ namespace FinancialManager
             {
                 if (transaction.Id_Place_Of_Purchase == 0)
                 {
-                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = NULL, description = @Description WHERE id = @Id", transaction);
+                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_cash_facility = @Sum_By_Cash_Facility, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = NULL, description = @Description WHERE id = @Id", transaction);
                 }
                 else
                 {
-                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_account = @Sum_By_Account, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
+                    connection.Execute("UPDATE transactions SET id_transaction_type = @Id_Transaction_Type, date = @Date, sum_by_cash_facility = @Sum_By_Cash_Facility, id_currency_of_transaction = @Id_Currency_Of_Transaction, id_cash_facility = @Id_Cash_Facility, id_place_of_purchase = @Id_Place_Of_Purchase, description = @Description WHERE id = @Id", transaction);
                 }
             }
         }
