@@ -303,7 +303,7 @@ namespace FinancialManager
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Execute("INSERT INTO purchases (id_transaction, sum_by_transaction, id_category, description) VALUES (@Id_Transaction, @Sum_By_Transaction, @Id_Category, @Description)", purchase);
+                    connection.Execute("INSERT INTO purchases (id_transaction, sum, sum_by_main_currency, id_category, description) VALUES (@Id_Transaction, @Sum, @Sum_By_Main_Currency, @Id_Category, @Description)", purchase);
 
                     var lastAddedPurchaseId = GetLastAddedPurchaseId() + 1;
 
@@ -397,7 +397,7 @@ namespace FinancialManager
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum_by_transaction = @Sum_By_Transaction, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
+                    connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum = @Sum, sum_by_main_currency = @Sum_By_Main_Currency, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
 
                     connection.Execute("DELETE FROM purchases_tags WHERE id_purchase = @Id", new { Id = purchase.Id });
 
