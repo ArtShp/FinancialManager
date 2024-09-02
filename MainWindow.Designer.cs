@@ -46,7 +46,7 @@
             editPlacesOfPurchasesButton = new Button();
             editTransactionTypesButton = new Button();
             editCurrenciesButton = new Button();
-            statisticsTabPage = new TabPage();
+            analyticsTabPage = new TabPage();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -111,7 +111,7 @@
             // 
             mainWindowTabControl.Controls.Add(startTabPage);
             mainWindowTabControl.Controls.Add(fillDBTabPage);
-            mainWindowTabControl.Controls.Add(statisticsTabPage);
+            mainWindowTabControl.Controls.Add(analyticsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
             mainWindowTabControl.Location = new Point(0, 0);
             mainWindowTabControl.Name = "mainWindowTabControl";
@@ -220,15 +220,15 @@
             editCurrenciesButton.UseVisualStyleBackColor = true;
             editCurrenciesButton.Click += editCurrenciesButton_Click;
             // 
-            // statisticsTabPage
+            // analyticsTabPage
             // 
-            statisticsTabPage.Location = new Point(8, 46);
-            statisticsTabPage.Name = "statisticsTabPage";
-            statisticsTabPage.Padding = new Padding(3);
-            statisticsTabPage.Size = new Size(1488, 756);
-            statisticsTabPage.TabIndex = 2;
-            statisticsTabPage.Text = "Statistics";
-            statisticsTabPage.UseVisualStyleBackColor = true;
+            analyticsTabPage.Location = new Point(8, 46);
+            analyticsTabPage.Name = "analyticsTabPage";
+            analyticsTabPage.Padding = new Padding(3);
+            analyticsTabPage.Size = new Size(1488, 756);
+            analyticsTabPage.TabIndex = 2;
+            analyticsTabPage.Text = "Analytics";
+            analyticsTabPage.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -269,6 +269,6 @@
         private Button editCashFacilitiesButton;
         private Button editCategoriesButton;
         private Button editTransactionsButton;
-        private TabPage statisticsTabPage;
+        private TabPage analyticsTabPage;
     }
 }
