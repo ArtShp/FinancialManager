@@ -47,6 +47,7 @@
             editTransactionTypesButton = new Button();
             editCurrenciesButton = new Button();
             analyticsTabPage = new TabPage();
+            settingsTabPage = new TabPage();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -112,6 +113,7 @@
             mainWindowTabControl.Controls.Add(startTabPage);
             mainWindowTabControl.Controls.Add(fillDBTabPage);
             mainWindowTabControl.Controls.Add(analyticsTabPage);
+            mainWindowTabControl.Controls.Add(settingsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
             mainWindowTabControl.Location = new Point(0, 0);
             mainWindowTabControl.Name = "mainWindowTabControl";
@@ -230,6 +232,16 @@
             analyticsTabPage.Text = "Analytics";
             analyticsTabPage.UseVisualStyleBackColor = true;
             // 
+            // settingsTabPage
+            // 
+            settingsTabPage.Location = new Point(8, 46);
+            settingsTabPage.Name = "settingsTabPage";
+            settingsTabPage.Padding = new Padding(3);
+            settingsTabPage.Size = new Size(1488, 756);
+            settingsTabPage.TabIndex = 3;
+            settingsTabPage.Text = "Settings";
+            settingsTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -270,5 +282,6 @@
         private Button editCategoriesButton;
         private Button editTransactionsButton;
         private TabPage analyticsTabPage;
+        private TabPage settingsTabPage;
     }
 }
