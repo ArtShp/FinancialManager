@@ -15,6 +15,8 @@ namespace FinancialManager
         public SetupCurrencyApiForm()
         {
             InitializeComponent();
+
+            keyTextBox.Text = Properties.Settings.Default.CurrencyApiKey;
         }
     }
 }
