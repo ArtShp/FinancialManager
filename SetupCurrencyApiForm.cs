@@ -18,5 +18,13 @@ namespace FinancialManager
 
             keyTextBox.Text = Properties.Settings.Default.CurrencyApiKey;
         }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.CurrencyApiKey = keyTextBox.Text;
+            Properties.Settings.Default.Save();
+
+            Close();
+        }
     }
 }
