@@ -13,7 +13,7 @@ namespace FinancialManager
     {
         public static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency)
         {
-            var fx = new Currencyapi(Properties.Resources.CurrencyApiKey);
+            var fx = new Currencyapi(Properties.Settings.Default.CurrencyApiKey);
             var request = fx.Latest(fromCurrency.Code, toCurrency.Code);
 
             CurrencyData currencyData = JsonSerializer.Deserialize<CurrencyData>(request);
