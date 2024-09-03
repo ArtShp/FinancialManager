@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             openDBButton = new Button();
             openDBDialog = new OpenFileDialog();
             connectToDBButton = new Button();
@@ -48,10 +49,13 @@
             editCurrenciesButton = new Button();
             analyticsTabPage = new TabPage();
             settingsTabPage = new TabPage();
+            currencyApiButton = new Button();
+            currencyApiToolTip = new ToolTip(components);
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
             fillDBTabPage.SuspendLayout();
+            settingsTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
@@ -234,6 +238,7 @@
             // 
             // settingsTabPage
             // 
+            settingsTabPage.Controls.Add(currencyApiButton);
             settingsTabPage.Location = new Point(8, 46);
             settingsTabPage.Name = "settingsTabPage";
             settingsTabPage.Padding = new Padding(3);
@@ -241,6 +246,16 @@
             settingsTabPage.TabIndex = 3;
             settingsTabPage.Text = "Settings";
             settingsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // currencyApiButton
+            // 
+            currencyApiButton.Location = new Point(1086, 6);
+            currencyApiButton.Name = "currencyApiButton";
+            currencyApiButton.Size = new Size(396, 46);
+            currencyApiButton.TabIndex = 0;
+            currencyApiButton.Text = "CurrencyAPI Key";
+            currencyApiToolTip.SetToolTip(currencyApiButton, "Setup API key for CurrencyAPI service\r\nThis service is used for currency exchange");
+            currencyApiButton.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -257,6 +272,7 @@
             mainWindowTabControl.ResumeLayout(false);
             startTabPage.ResumeLayout(false);
             fillDBTabPage.ResumeLayout(false);
+            settingsTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,5 +299,7 @@
         private Button editTransactionsButton;
         private TabPage analyticsTabPage;
         private TabPage settingsTabPage;
+        private Button currencyApiButton;
+        private ToolTip currencyApiToolTip;
     }
 }
