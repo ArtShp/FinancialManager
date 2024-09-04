@@ -21,10 +21,19 @@ namespace FinancialManager
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.CurrencyApiKey = keyTextBox.Text;
-            Properties.Settings.Default.Save();
+            if (testConnection())
+            {
+                Properties.Settings.Default.CurrencyApiKey = keyTextBox.Text;
+                Properties.Settings.Default.Save();
 
-            Close();
+                MessageBox.Show("Connection successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Connection failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
