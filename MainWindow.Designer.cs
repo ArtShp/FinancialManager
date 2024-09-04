@@ -256,6 +256,7 @@
             currencyApiButton.Text = "CurrencyAPI Key";
             currencyApiToolTip.SetToolTip(currencyApiButton, "Setup API key for CurrencyAPI service\r\nThis service is used for currency exchange");
             currencyApiButton.UseVisualStyleBackColor = true;
+            currencyApiButton.Click += currencyApiButton_Click;
             // 
             // MainWindow
             // 
