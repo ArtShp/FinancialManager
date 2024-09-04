@@ -13,12 +13,37 @@ namespace FinancialManager
     {
         public static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency)
         {
-            var fx = new Currencyapi(Properties.Settings.Default.CurrencyApiKey);
-            var request = fx.Latest(fromCurrency.Code, toCurrency.Code);
+            try
+            {
+                var fx = new Currencyapi(Properties.Settings.Default.CurrencyApiKey);
+                var request = fx.Latest(fromCurrency.Code, toCurrency.Code);
 
-            CurrencyData currencyData = JsonSerializer.Deserialize<CurrencyData>(request);
+                CurrencyData currencyData = JsonSerializer.Deserialize<CurrencyData>(request);
 
-            return currencyData.Data[toCurrency.Code].Value;
+                return currencyData.Data[toCurrency.Code].Value;
+            }
+            catch
+            {
+                throw new Exception("Failed to get currency rate");
+            }
+        }
+
+        public static bool testConnection(string key)
+        {
+            try
+            {
+                var fx = new Currencyapi(key);
+                var request = fx.Latest("USD", "EUR");
+                CurrencyData currencyData = JsonSerializer.Deserialize<CurrencyData>(request);
+
+                var testData = currencyData.Data["EUR"].Value;
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private class CurrencyData
