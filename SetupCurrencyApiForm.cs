@@ -31,5 +31,11 @@ namespace FinancialManager
         {
             Close();
         }
+
+        private bool testConnection()
+        {
+            var res = CurrencyAPI.testConnection(keyTextBox.Text);
+            return res;
+        }
     }
 }
