@@ -16,16 +16,28 @@ namespace FinancialManager
                 return money;
             }
 
-            money.Rate = fromCurrency.Units_Rate;
+            try
+            {
+                Decimal sum = Convert.ToDecimal(money.GetString()) * GetCurrencyRate(fromCurrency, toCurrency);
 
-            Decimal sum = Convert.ToDecimal(money.GetString()) * GetCurrencyRate(fromCurrency, toCurrency);
-
-            return new MoneyModel(sum.ToString(), toCurrency.Units_Rate);
+                return new MoneyModel(sum.ToString(), toCurrency.Units_Rate);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Failed to convert money", e);
+            }
         }
 
         private static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency)
         {
-            return CurrencyAPI.GetCurrencyRate(fromCurrency, toCurrency);
+            try
+            {
+                return CurrencyAPI.GetCurrencyRate(fromCurrency, toCurrency);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Failed to get currency rate", e);
+            }
         }
     }
 }
