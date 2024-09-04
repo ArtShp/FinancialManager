@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace FinancialManager
@@ -10,6 +11,9 @@ namespace FinancialManager
             updateDBStatus();
             openDBDialog.Filter = "DB files|*.db";
             createDBDialog.Filter = "DB files|*.db";
+
+            // Set the culture to en-GB for correct decimal separator (period instead of comma)
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
