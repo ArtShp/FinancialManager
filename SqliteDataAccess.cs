@@ -588,6 +588,15 @@ namespace FinancialManager
             }
         }
 
+        public static CurrencyModel GetMainCurrency()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = 1").First();
+                return output;
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
