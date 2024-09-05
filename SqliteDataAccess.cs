@@ -10,15 +10,12 @@ namespace FinancialManager
 {
     internal static class SqliteDataAccess
     {
-        public static string? PathToDB { get; set; }
-        public static bool IsPathToDBCorrect { get; set; }
-
         static SqliteDataAccess()
         {
             SqlMapper.AddTypeHandler(new MoneyTypeHandler());
         }
 
-        public static string TestConnection()
+        public static void TestConnection()
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
@@ -26,21 +23,17 @@ namespace FinancialManager
                 {
                     connection.Open();
                     connection.Close();
-
-                    IsPathToDBCorrect = true;
-                    return "DB connection OK!";
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    IsPathToDBCorrect = false;
-                    return "DB connection FAILED!";
+                    throw new Exception("Connection failed: " + e.Message, e);
                 }
             }
         }
 
         public static void CreateDB()
         {
-            SQLiteConnection.CreateFile(PathToDB);
+            SQLiteConnection.CreateFile(Properties.Settings.Default.PathToDb);
             CreateTables();
         }
 
@@ -597,7 +590,7 @@ namespace FinancialManager
 
         private static string LoadConnectionString()
         {
-            return "Data Source=" + PathToDB + "; Version=3; FailIfMissing=True";
+            return "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
         }
     }
 }
