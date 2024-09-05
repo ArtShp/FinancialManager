@@ -282,6 +282,7 @@
             mainCurrencyButton.TabIndex = 1;
             mainCurrencyButton.Text = "Setup Main Currency";
             mainCurrencyButton.UseVisualStyleBackColor = true;
+            mainCurrencyButton.Click += mainCurrencyButton_Click;
             // 
             // MainWindow
             // 
