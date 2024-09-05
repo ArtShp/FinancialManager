@@ -30,8 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             openDBDialog = new OpenFileDialog();
-            dbStatusStrip = new StatusStrip();
-            DBStatus = new ToolStripStatusLabel();
             createDBDialog = new SaveFileDialog();
             mainWindowTabControl = new TabControl();
             startTabPage = new TabPage();
@@ -54,7 +52,6 @@
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
             closeDbToolStripMenuItem = new ToolStripMenuItem();
-            dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
@@ -66,20 +63,6 @@
             // 
             openDBDialog.Filter = "DB files|*.db";
             openDBDialog.Title = "Open DB";
-            // 
-            // dbStatusStrip
-            // 
-            dbStatusStrip.ImageScalingSize = new Size(32, 32);
-            dbStatusStrip.Items.AddRange(new ToolStripItem[] { DBStatus });
-            dbStatusStrip.Location = new Point(0, 836);
-            dbStatusStrip.Name = "dbStatusStrip";
-            dbStatusStrip.Size = new Size(1504, 22);
-            dbStatusStrip.TabIndex = 2;
-            // 
-            // DBStatus
-            // 
-            DBStatus.Name = "DBStatus";
-            DBStatus.Size = new Size(0, 12);
             // 
             // createDBDialog
             // 
@@ -97,7 +80,7 @@
             mainWindowTabControl.Location = new Point(0, 40);
             mainWindowTabControl.Name = "mainWindowTabControl";
             mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 796);
+            mainWindowTabControl.Size = new Size(1504, 818);
             mainWindowTabControl.TabIndex = 5;
             // 
             // startTabPage
@@ -105,7 +88,7 @@
             startTabPage.Location = new Point(8, 46);
             startTabPage.Name = "startTabPage";
             startTabPage.Padding = new Padding(3);
-            startTabPage.Size = new Size(1488, 742);
+            startTabPage.Size = new Size(1488, 764);
             startTabPage.TabIndex = 0;
             startTabPage.Text = "Start";
             startTabPage.UseVisualStyleBackColor = true;
@@ -295,13 +278,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1504, 858);
             Controls.Add(mainWindowTabControl);
-            Controls.Add(dbStatusStrip);
             Controls.Add(menuStrip);
             Name = "MainWindow";
             Text = "Financial Manager";
             Shown += MainWindow_Shown;
-            dbStatusStrip.ResumeLayout(false);
-            dbStatusStrip.PerformLayout();
             mainWindowTabControl.ResumeLayout(false);
             fillDBTabPage.ResumeLayout(false);
             settingsTabPage.ResumeLayout(false);
@@ -314,8 +294,6 @@
 
         #endregion
         private OpenFileDialog openDBDialog;
-        private StatusStrip dbStatusStrip;
-        private ToolStripStatusLabel DBStatus;
         private SaveFileDialog createDBDialog;
         private TabControl mainWindowTabControl;
         private TabPage startTabPage;

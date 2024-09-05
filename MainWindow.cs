@@ -8,7 +8,6 @@ namespace FinancialManager
         public MainWindow()
         {
             InitializeComponent();
-            updateDBStatus();
 
             // Set the culture to en-GB for correct decimal separator (period instead of comma)
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
@@ -77,16 +76,6 @@ namespace FinancialManager
             Properties.Settings.Default.Save();
 
             MessageBox.Show("DB closed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void updateDBStatus()
-        {
-            /*
-            if (SqliteDataAccess.IsPathToDBCorrect)
-                DBStatus.Text = "DB status: CONNECTED";
-            else
-                DBStatus.Text = "DB status: DISCONNECTED";
-            */
         }
 
         private void TestDbConnection()
