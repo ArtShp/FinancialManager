@@ -35,8 +35,23 @@ namespace FinancialManager
         {
             if (openDBDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            SqliteDataAccess.PathToDB = openDBDialog.FileName;
-            MessageBox.Show("DB opened!");
+
+            Properties.Settings.Default.PathToDb = openDBDialog.FileName;
+
+            try
+            {
+                SqliteDataAccess.TestConnection();
+
+                Properties.Settings.Default.Save();
+
+                MessageBox.Show("Connection to DB successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+            catch
+            {
+                Properties.Settings.Default.Reload();
+
+                MessageBox.Show("Connection to DB failed!\nPlease choose another DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void connectToDBButton_Click(object sender, EventArgs e)
