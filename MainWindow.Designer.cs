@@ -52,7 +52,6 @@
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
             closeDbToolStripMenuItem = new ToolStripMenuItem();
-            mainCurrencyButton = new Button();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
@@ -193,7 +192,6 @@
             // 
             // settingsTabPage
             // 
-            settingsTabPage.Controls.Add(mainCurrencyButton);
             settingsTabPage.Controls.Add(currencyApiButton);
             settingsTabPage.Location = new Point(8, 46);
             settingsTabPage.Name = "settingsTabPage";
@@ -274,16 +272,6 @@
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
-            // mainCurrencyButton
-            // 
-            mainCurrencyButton.Location = new Point(1086, 58);
-            mainCurrencyButton.Name = "mainCurrencyButton";
-            mainCurrencyButton.Size = new Size(396, 46);
-            mainCurrencyButton.TabIndex = 1;
-            mainCurrencyButton.Text = "Setup Main Currency";
-            mainCurrencyButton.UseVisualStyleBackColor = true;
-            mainCurrencyButton.Click += mainCurrencyButton_Click;
-            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -328,6 +316,5 @@
         private ToolStripMenuItem createDbToolStripMenuItem;
         private ToolStripMenuItem openDbToolStripMenuItem;
         private ToolStripMenuItem closeDbToolStripMenuItem;
-        private Button mainCurrencyButton;
     }
 }

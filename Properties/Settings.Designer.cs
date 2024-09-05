@@ -46,17 +46,5 @@ namespace FinancialManager.Properties {
                 this["PathToDb"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public long MainCurrencyId {
-            get {
-                return ((long)(this["MainCurrencyId"]));
-            }
-            set {
-                this["MainCurrencyId"] = value;
-            }
-        }
     }
 }

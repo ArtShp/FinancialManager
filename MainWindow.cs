@@ -143,11 +143,5 @@ namespace FinancialManager
             var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
             testCurrencyExchangeForm.Show();
         }
-
-        private void mainCurrencyButton_Click(object sender, EventArgs e)
-        {
-            var setupMainCurrencyForm = new SetupMainCurrencyForm();
-            setupMainCurrencyForm.Show();
-        }
     }
 }

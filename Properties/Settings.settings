@@ -8,8 +8,5 @@
     <Setting Name="PathToDb" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="MainCurrencyId" Type="System.Int64" Scope="User">
-      <Value Profile="(Default)">-1</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
