@@ -219,14 +219,6 @@ namespace FinancialManager
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
-            if (selectedId == SqliteDataAccess.MainCurrencyId)
-            {
-                MessageBox.Show("You can't edit main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                selectedId = -1;
-
-                return;
-            }
-
             PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
             var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
             setDataView(purchase, tags);
