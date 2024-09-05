@@ -292,7 +292,7 @@
             Controls.Add(dbStatusStrip);
             Name = "MainWindow";
             Text = "Financial Manager";
-            Load += MainWindow_Load;
+            Shown += MainWindow_Shown;
             dbStatusStrip.ResumeLayout(false);
             dbStatusStrip.PerformLayout();
             mainWindowTabControl.ResumeLayout(false);

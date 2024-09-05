@@ -16,9 +16,9 @@ namespace FinancialManager
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void MainWindow_Shown(object sender, EventArgs e)
         {
-
+            TestDbConnection();
         }
 
         private void updateDBStatus()
