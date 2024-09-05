@@ -11,12 +11,18 @@ namespace FinancialManager
 {
     internal static class CurrencyAPI
     {
-        public static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency)
+        public static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency, DateTime date)
         {
             try
             {
                 var fx = new Currencyapi(Properties.Settings.Default.CurrencyApiKey);
-                var request = fx.Latest(fromCurrency.Code, toCurrency.Code);
+
+                if (date == DateTime.Today)
+                {
+                    // Need this substraction because the API does not provide the rate for the current day, only for the previous days
+                    date = date.AddDays(-1);
+                }
+                var request = fx.Historical(date.ToString("yyyy-MM-dd"), fromCurrency.Code, toCurrency.Code);
 
                 CurrencyData currencyData = JsonSerializer.Deserialize<CurrencyData>(request);
 

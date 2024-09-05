@@ -9,7 +9,7 @@ namespace FinancialManager
 {
     internal static class CurrencyConverter
     {
-        public static MoneyModel ConvertMoney(MoneyModel money, CurrencyModel fromCurrency, CurrencyModel toCurrency)
+        public static MoneyModel ConvertMoney(MoneyModel money, CurrencyModel fromCurrency, CurrencyModel toCurrency, DateTime date)
         {
             if (fromCurrency.Code == toCurrency.Code)
             {
@@ -18,7 +18,7 @@ namespace FinancialManager
 
             try
             {
-                Decimal sum = Convert.ToDecimal(money.GetString()) * GetCurrencyRate(fromCurrency, toCurrency);
+                Decimal sum = Convert.ToDecimal(money.GetString()) * GetCurrencyRate(fromCurrency, toCurrency, date);
 
                 return new MoneyModel(sum.ToString(), toCurrency.Units_Rate);
             }
@@ -28,11 +28,11 @@ namespace FinancialManager
             }
         }
 
-        private static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency)
+        private static Decimal GetCurrencyRate(CurrencyModel fromCurrency, CurrencyModel toCurrency, DateTime date)
         {
             try
             {
-                return CurrencyAPI.GetCurrencyRate(fromCurrency, toCurrency);
+                return CurrencyAPI.GetCurrencyRate(fromCurrency, toCurrency, date);
             }
             catch(Exception e)
             {
