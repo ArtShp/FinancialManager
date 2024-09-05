@@ -89,25 +89,6 @@ namespace FinancialManager
             */
         }
 
-        private void connectToDBButton_Click(object sender, EventArgs e)
-        {
-            /*
-            var result = SqliteDataAccess.TestConnection();
-            updateDBStatus();
-            MessageBox.Show(result);
-            */
-        }
-
-        private void disconnectFromDBButton_Click(object sender, EventArgs e)
-        {
-            /*
-            SqliteDataAccess.PathToDB = null;
-            SqliteDataAccess.TestConnection();
-            updateDBStatus();
-            MessageBox.Show("DB closed!");
-            */
-        }
-
         private void TestDbConnection()
         {
             try

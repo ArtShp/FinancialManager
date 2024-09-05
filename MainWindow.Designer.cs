@@ -30,10 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             openDBDialog = new OpenFileDialog();
-            connectToDBButton = new Button();
             dbStatusStrip = new StatusStrip();
             DBStatus = new ToolStripStatusLabel();
-            disconnectFromDBButton = new Button();
             createDBDialog = new SaveFileDialog();
             mainWindowTabControl = new TabControl();
             startTabPage = new TabPage();
@@ -58,7 +56,6 @@
             closeDbToolStripMenuItem = new ToolStripMenuItem();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
-            startTabPage.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
             testsTabPage.SuspendLayout();
@@ -69,16 +66,6 @@
             // 
             openDBDialog.Filter = "DB files|*.db";
             openDBDialog.Title = "Open DB";
-            // 
-            // connectToDBButton
-            // 
-            connectToDBButton.Location = new Point(1208, 635);
-            connectToDBButton.Name = "connectToDBButton";
-            connectToDBButton.Size = new Size(274, 46);
-            connectToDBButton.TabIndex = 1;
-            connectToDBButton.Text = "Connect to DB";
-            connectToDBButton.UseVisualStyleBackColor = true;
-            connectToDBButton.Click += connectToDBButton_Click;
             // 
             // dbStatusStrip
             // 
@@ -93,16 +80,6 @@
             // 
             DBStatus.Name = "DBStatus";
             DBStatus.Size = new Size(0, 12);
-            // 
-            // disconnectFromDBButton
-            // 
-            disconnectFromDBButton.Location = new Point(1208, 687);
-            disconnectFromDBButton.Name = "disconnectFromDBButton";
-            disconnectFromDBButton.Size = new Size(274, 46);
-            disconnectFromDBButton.TabIndex = 3;
-            disconnectFromDBButton.Text = "Disconnect from DB";
-            disconnectFromDBButton.UseVisualStyleBackColor = true;
-            disconnectFromDBButton.Click += disconnectFromDBButton_Click;
             // 
             // createDBDialog
             // 
@@ -125,8 +102,6 @@
             // 
             // startTabPage
             // 
-            startTabPage.Controls.Add(disconnectFromDBButton);
-            startTabPage.Controls.Add(connectToDBButton);
             startTabPage.Location = new Point(8, 46);
             startTabPage.Name = "startTabPage";
             startTabPage.Padding = new Padding(3);
@@ -288,14 +263,14 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 38);
+            fileToolStripMenuItem.Size = new Size(71, 36);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
             // 
             createDbToolStripMenuItem.Name = "createDbToolStripMenuItem";
             createDbToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            createDbToolStripMenuItem.Size = new Size(359, 44);
+            createDbToolStripMenuItem.Size = new Size(339, 44);
             createDbToolStripMenuItem.Text = "Create DB";
             createDbToolStripMenuItem.Click += createDbToolStripMenuItem_Click;
             // 
@@ -303,14 +278,14 @@
             // 
             openDbToolStripMenuItem.Name = "openDbToolStripMenuItem";
             openDbToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            openDbToolStripMenuItem.Size = new Size(359, 44);
+            openDbToolStripMenuItem.Size = new Size(339, 44);
             openDbToolStripMenuItem.Text = "Open DB";
             openDbToolStripMenuItem.Click += openDbToolStripMenuItem_Click;
             // 
             // closeDbToolStripMenuItem
             // 
             closeDbToolStripMenuItem.Name = "closeDbToolStripMenuItem";
-            closeDbToolStripMenuItem.Size = new Size(359, 44);
+            closeDbToolStripMenuItem.Size = new Size(339, 44);
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
@@ -328,7 +303,6 @@
             dbStatusStrip.ResumeLayout(false);
             dbStatusStrip.PerformLayout();
             mainWindowTabControl.ResumeLayout(false);
-            startTabPage.ResumeLayout(false);
             fillDBTabPage.ResumeLayout(false);
             settingsTabPage.ResumeLayout(false);
             testsTabPage.ResumeLayout(false);
@@ -340,10 +314,8 @@
 
         #endregion
         private OpenFileDialog openDBDialog;
-        private Button connectToDBButton;
         private StatusStrip dbStatusStrip;
         private ToolStripStatusLabel DBStatus;
-        private Button disconnectFromDBButton;
         private SaveFileDialog createDBDialog;
         private TabControl mainWindowTabControl;
         private TabPage startTabPage;
