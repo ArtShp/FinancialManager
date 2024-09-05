@@ -10,6 +10,8 @@ namespace FinancialManager
 {
     internal static class SqliteDataAccess
     {
+        private const long MainCurrencyId = 1;
+
         static SqliteDataAccess()
         {
             SqlMapper.AddTypeHandler(new MoneyTypeHandler());
