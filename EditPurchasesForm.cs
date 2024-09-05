@@ -174,23 +174,33 @@ namespace FinancialManager
                 return;
             }
 
-            PurchaseModel purchase = new PurchaseModel
+            var sum = new MoneyModel(sumTextBox.Text, unitsRate);
+
+            try
             {
-                Id_Transaction = transactionId,
-                Sum = new MoneyModel
-                (
-                    sumTextBox.Text,
-                    unitsRate
-                ),
-                Id_Category = categoryId,
-                Description = descriptionRichTextBox.Text
-            };
+                var mainCurrency = SqliteDataAccess.GetMainCurrency();
+                var convertedSum = CurrencyConverter.ConvertMoney(sum, transactionCurrency, mainCurrency, transactionDate);
 
-            var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    Id_Transaction = transactionId,
+                    Sum = sum,
+                    Sum_By_Main_Currency = convertedSum,
+                    Id_Category = categoryId,
+                    Description = descriptionRichTextBox.Text
+                };
 
-            SqliteDataAccess.AddPurchase(purchase, tagsId);
+                var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
 
-            clearDataView();
+                SqliteDataAccess.AddPurchase(purchase, tagsId);
+
+                clearDataView();
+            }
+            catch
+            {
+                MessageBox.Show("Error while adding purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
