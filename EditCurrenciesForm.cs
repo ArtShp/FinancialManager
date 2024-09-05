@@ -84,7 +84,16 @@ namespace FinancialManager
 
         private void editCurrencyButton_Click(object sender, EventArgs e)
         {
-            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag.ToString());
+            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+
+            if (selectedCurrencyId == SqliteDataAccess.MainCurrencyId)
+            {
+                MessageBox.Show("You can't edit main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                selectedCurrencyId = -1;
+
+                return;
+            }
+
             CurrencyModel currency = SqliteDataAccess.GetCurrencyById(selectedCurrencyId);
             setCurrencyDataView(currency);
         }
