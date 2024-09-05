@@ -129,7 +129,15 @@ namespace FinancialManager
 
         private void deleteCurrencyButton_Click(object sender, EventArgs e)
         {
-            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag.ToString());
+            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+
+            if (selectedCurrencyId == SqliteDataAccess.MainCurrencyId)
+            {
+                MessageBox.Show("You can't delete main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                selectedCurrencyId = -1;
+
+                return;
+            }
 
             var result = MessageBox.Show("Are you sure you want to delete this currency?", "Delete currency", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
