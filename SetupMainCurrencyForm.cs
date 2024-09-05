@@ -15,6 +15,19 @@ namespace FinancialManager
         public SetupMainCurrencyForm()
         {
             InitializeComponent();
+
+            LoadCurrencies();
+        }
+
+        private void LoadCurrencies()
+        {
+            var currencies = SqliteDataAccess.LoadCurrencies();
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = currencies;
+
+            currencyComboBox.DataSource = bindingSource.DataSource;
+            currencyComboBox.DisplayMember = "FullName";
+            currencyComboBox.ValueMember = "Id";
         }
     }
 }
