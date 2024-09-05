@@ -110,5 +110,11 @@ namespace FinancialManager
             var setupCurrencyApiForm = new SetupCurrencyApiForm();
             setupCurrencyApiForm.Show();
         }
+
+        private void currencyExchangeButton_Click(object sender, EventArgs e)
+        {
+            var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
+            testCurrencyExchangeForm.Show();
+        }
     }
 }

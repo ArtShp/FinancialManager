@@ -50,13 +50,15 @@
             analyticsTabPage = new TabPage();
             settingsTabPage = new TabPage();
             currencyApiButton = new Button();
-            currencyApiToolTip = new ToolTip(components);
             testsTabPage = new TabPage();
+            currencyExchangeButton = new Button();
+            currencyApiToolTip = new ToolTip(components);
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
+            testsTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // openDBButton
@@ -262,6 +264,7 @@
             // 
             // testsTabPage
             // 
+            testsTabPage.Controls.Add(currencyExchangeButton);
             testsTabPage.Location = new Point(8, 46);
             testsTabPage.Name = "testsTabPage";
             testsTabPage.Padding = new Padding(3);
@@ -269,6 +272,16 @@
             testsTabPage.TabIndex = 4;
             testsTabPage.Text = "Tests";
             testsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // currencyExchangeButton
+            // 
+            currencyExchangeButton.Location = new Point(1074, 6);
+            currencyExchangeButton.Name = "currencyExchangeButton";
+            currencyExchangeButton.Size = new Size(408, 46);
+            currencyExchangeButton.TabIndex = 0;
+            currencyExchangeButton.Text = "Currency Exchange";
+            currencyExchangeButton.UseVisualStyleBackColor = true;
+            currencyExchangeButton.Click += currencyExchangeButton_Click;
             // 
             // MainWindow
             // 
@@ -286,6 +299,7 @@
             startTabPage.ResumeLayout(false);
             fillDBTabPage.ResumeLayout(false);
             settingsTabPage.ResumeLayout(false);
+            testsTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -315,5 +329,6 @@
         private Button currencyApiButton;
         private ToolTip currencyApiToolTip;
         private TabPage testsTabPage;
+        private Button currencyExchangeButton;
     }
 }
