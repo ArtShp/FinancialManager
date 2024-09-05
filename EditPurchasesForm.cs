@@ -45,12 +45,7 @@ namespace FinancialManager
             transactionCurrency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
 
             transactionTypeId = transaction.Id_Transaction_Type;
-
-            // currency = currency.MoneyText;
-            // unitsRate = currency.Units_Rate;
-
             currencyTextBox.Text = transactionCurrency.FullName;
-
             transactionDate = transaction.Date;
         }
 
