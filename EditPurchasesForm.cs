@@ -207,16 +207,9 @@ namespace FinancialManager
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
-            if (selectedId == SqliteDataAccess.MainCurrencyId)
-            {
-                MessageBox.Show("You can't delete main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                var result = MessageBox.Show("Are you sure you want to delete this purchase?", "Delete Purchase", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                    SqliteDataAccess.DeletePurchaseById(selectedId);
-            }
+            var result = MessageBox.Show("Are you sure you want to delete this purchase?", "Delete Purchase", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                SqliteDataAccess.DeletePurchaseById(selectedId);
 
             selectedId = -1;
             clearDataView();
