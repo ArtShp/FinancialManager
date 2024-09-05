@@ -599,6 +599,18 @@ namespace FinancialManager
             }
         }
 
+        public static void TestMainCurrencyExistance()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = MainCurrencyId }).FirstOrDefault();
+                if (output == null)
+                {
+                    throw new Exception("Main currency not found");
+                }
+            }
+        }
+
         private static string LoadConnectionString()
         {
             return "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
