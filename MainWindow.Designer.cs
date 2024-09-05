@@ -55,6 +55,7 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
+            closeDbToolStripMenuItem = new ToolStripMenuItem();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -285,9 +286,9 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 36);
+            fileToolStripMenuItem.Size = new Size(71, 38);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
@@ -305,6 +306,13 @@
             openDbToolStripMenuItem.Size = new Size(359, 44);
             openDbToolStripMenuItem.Text = "Open DB";
             openDbToolStripMenuItem.Click += openDbToolStripMenuItem_Click;
+            // 
+            // closeDbToolStripMenuItem
+            // 
+            closeDbToolStripMenuItem.Name = "closeDbToolStripMenuItem";
+            closeDbToolStripMenuItem.Size = new Size(359, 44);
+            closeDbToolStripMenuItem.Text = "Close DB";
+            closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
@@ -357,5 +365,6 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem createDbToolStripMenuItem;
         private ToolStripMenuItem openDbToolStripMenuItem;
+        private ToolStripMenuItem closeDbToolStripMenuItem;
     }
 }

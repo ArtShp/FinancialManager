@@ -66,6 +66,19 @@ namespace FinancialManager
             }
         }
 
+        private void closeDbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to close the DB?", "Close DB", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                return;
+
+            Properties.Settings.Default.PathToDb = "";
+            Properties.Settings.Default.Save();
+
+            MessageBox.Show("DB closed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         private void updateDBStatus()
         {
             /*
