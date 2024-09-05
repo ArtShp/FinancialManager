@@ -77,11 +77,24 @@ namespace FinancialManager
         {
             if (createDBDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            SqliteDataAccess.PathToDB = createDBDialog.FileName;
+
+            Properties.Settings.Default.PathToDb = createDBDialog.FileName;
+
+            try
+            {
             SqliteDataAccess.CreateDB();
-            // SqliteDataAccess.TestConnection();
-            // updateDBStatus();
-            MessageBox.Show("DB created!");
+                SqliteDataAccess.TestConnection();
+
+                Properties.Settings.Default.Save();
+
+                MessageBox.Show("DB created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                Properties.Settings.Default.Reload();
+
+                MessageBox.Show("Creation of DB failed!\nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TestDbConnection()
