@@ -76,6 +76,7 @@
             convertButton.TabIndex = 5;
             convertButton.Text = "Convert";
             convertButton.UseVisualStyleBackColor = true;
+            convertButton.Click += convertButton_Click;
             // 
             // dateLabel
             // 
@@ -88,7 +89,8 @@
             // 
             // dateTimePicker
             // 
-            dateTimePicker.CustomFormat = "yyyy-MM-dd";
+            dateTimePicker.CustomFormat = "dd.MM.yyyy";
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
             dateTimePicker.Location = new Point(31, 376);
             dateTimePicker.Name = "dateTimePicker";
             dateTimePicker.Size = new Size(400, 39);
