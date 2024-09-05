@@ -20,7 +20,8 @@ namespace FinancialManager
         private long transactionId;
         private long transactionTypeId;
         private int unitsRate;
-        private string currencyText;
+        private CurrencyModel transactionCurrency;
+        private DateTime transactionDate;
 
         public EditPurchasesForm(long transactionId)
         {
@@ -41,14 +42,16 @@ namespace FinancialManager
         private void LoadData()
         {
             var transaction = SqliteDataAccess.GetTransactionById(transactionId);
-            var currency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
+            transactionCurrency = SqliteDataAccess.GetCurrencyById(transaction.Id_Currency_Of_Transaction);
 
             transactionTypeId = transaction.Id_Transaction_Type;
 
-            currencyText = currency.MoneyText;
-            unitsRate = currency.Units_Rate;
+            // currency = currency.MoneyText;
+            // unitsRate = currency.Units_Rate;
 
-            currencyTextBox.Text = currency.FullName;
+            currencyTextBox.Text = transactionCurrency.FullName;
+
+            transactionDate = transaction.Date;
         }
 
         private void LoadTags()
@@ -100,7 +103,7 @@ namespace FinancialManager
                 var tagsString = tagsStringBuilder.ToString();
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { category.Name, purchase.Sum.GetString() + " " + currencyText, tagsString, purchase.Description })
+                    new ListViewItem(new[] { category.Name, purchase.Sum.GetString() + " " + transactionCurrency.MoneyText, tagsString, purchase.Description })
                     {
                         Tag = purchase.Id
                     });
