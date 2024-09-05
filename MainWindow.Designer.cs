@@ -51,6 +51,7 @@
             settingsTabPage = new TabPage();
             currencyApiButton = new Button();
             currencyApiToolTip = new ToolTip(components);
+            testsTabPage = new TabPage();
             dbStatusStrip.SuspendLayout();
             mainWindowTabControl.SuspendLayout();
             startTabPage.SuspendLayout();
@@ -118,6 +119,7 @@
             mainWindowTabControl.Controls.Add(fillDBTabPage);
             mainWindowTabControl.Controls.Add(analyticsTabPage);
             mainWindowTabControl.Controls.Add(settingsTabPage);
+            mainWindowTabControl.Controls.Add(testsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
             mainWindowTabControl.Location = new Point(0, 0);
             mainWindowTabControl.Name = "mainWindowTabControl";
@@ -258,6 +260,16 @@
             currencyApiButton.UseVisualStyleBackColor = true;
             currencyApiButton.Click += currencyApiButton_Click;
             // 
+            // testsTabPage
+            // 
+            testsTabPage.Location = new Point(8, 46);
+            testsTabPage.Name = "testsTabPage";
+            testsTabPage.Padding = new Padding(3);
+            testsTabPage.Size = new Size(1488, 756);
+            testsTabPage.TabIndex = 4;
+            testsTabPage.Text = "Tests";
+            testsTabPage.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -302,5 +314,6 @@
         private TabPage settingsTabPage;
         private Button currencyApiButton;
         private ToolTip currencyApiToolTip;
+        private TabPage testsTabPage;
     }
 }
