@@ -26,8 +26,10 @@ namespace FinancialManager
         {
             var fromCurrencies = SqliteDataAccess.LoadCurrencies();
             var toCurrencies = new List<CurrencyModel>(fromCurrencies);
+
             var fromBindingSource = new BindingSource();
             var toBindingSource = new BindingSource();
+
             fromBindingSource.DataSource = fromCurrencies;
             toBindingSource.DataSource = toCurrencies;
 
