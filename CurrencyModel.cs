@@ -15,15 +15,7 @@ namespace FinancialManager
         public int Units_Rate { get; set; }
 
         public string[] ItemArray => new[] { Name, Code, Symbol, Units_Rate.ToString() };
-
-        public string GetMoneyText()
-        {
-            return $"{Symbol} ({Code})";
-        }
-
-        public string GetFullName()
-        {
-            return $"{Name} ({Code})";
-        }
+        public string MoneyText => $"{Symbol} ({Code})";
+        public string FullName => $"{Name} ({Code})";
     }
 }

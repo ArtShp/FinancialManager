@@ -107,7 +107,7 @@ namespace FinancialManager
                 transaction.Sum_By_Cash_Facility.Rate = SqliteDataAccess.GetUnitsRate(cashFacility);
 
                 var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
-                var currencyText = cashFacilityCurrency.GetMoneyText();
+                var currencyText = cashFacilityCurrency.MoneyText;
 
                 string place = "";
                 if (transaction.Id_Place_Of_Purchase != 0)

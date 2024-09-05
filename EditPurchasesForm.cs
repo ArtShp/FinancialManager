@@ -45,10 +45,10 @@ namespace FinancialManager
 
             transactionTypeId = transaction.Id_Transaction_Type;
 
-            currencyText = currency.GetMoneyText();
+            currencyText = currency.MoneyText;
             unitsRate = currency.Units_Rate;
 
-            currencyTextBox.Text = currency.GetFullName();
+            currencyTextBox.Text = currency.FullName;
         }
 
         private void LoadTags()
