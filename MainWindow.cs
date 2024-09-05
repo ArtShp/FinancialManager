@@ -9,8 +9,6 @@ namespace FinancialManager
         {
             InitializeComponent();
             updateDBStatus();
-            openDBDialog.Filter = "DB files|*.db";
-            createDBDialog.Filter = "DB files|*.db";
 
             // Set the culture to en-GB for correct decimal separator (period instead of comma)
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
@@ -21,17 +19,31 @@ namespace FinancialManager
             TestDbConnection();
         }
 
-        private void updateDBStatus()
+        private void createDbToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            if (SqliteDataAccess.IsPathToDBCorrect)
-                DBStatus.Text = "DB status: CONNECTED";
-            else
-                DBStatus.Text = "DB status: DISCONNECTED";
-            */
+            if (createDBDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            Properties.Settings.Default.PathToDb = createDBDialog.FileName;
+
+            try
+            {
+                SqliteDataAccess.CreateDB();
+                SqliteDataAccess.TestConnection();
+
+                Properties.Settings.Default.Save();
+
+                MessageBox.Show("DB created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch
+            {
+                Properties.Settings.Default.Reload();
+
+                MessageBox.Show("Creation of DB failed!\nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void openDBButton_Click(object sender, EventArgs e)
+        private void openDbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openDBDialog.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -45,13 +57,23 @@ namespace FinancialManager
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("Connection to DB successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            }
             catch
             {
                 Properties.Settings.Default.Reload();
 
                 MessageBox.Show("Connection to DB failed!\nPlease choose another DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void updateDBStatus()
+        {
+            /*
+            if (SqliteDataAccess.IsPathToDBCorrect)
+                DBStatus.Text = "DB status: CONNECTED";
+            else
+                DBStatus.Text = "DB status: DISCONNECTED";
+            */
         }
 
         private void connectToDBButton_Click(object sender, EventArgs e)
@@ -71,30 +93,6 @@ namespace FinancialManager
             updateDBStatus();
             MessageBox.Show("DB closed!");
             */
-        }
-
-        private void createDBButton_Click(object sender, EventArgs e)
-        {
-            if (createDBDialog.ShowDialog() == DialogResult.Cancel)
-                return;
-
-            Properties.Settings.Default.PathToDb = createDBDialog.FileName;
-
-            try
-            {
-            SqliteDataAccess.CreateDB();
-                SqliteDataAccess.TestConnection();
-
-                Properties.Settings.Default.Save();
-
-                MessageBox.Show("DB created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch
-            {
-                Properties.Settings.Default.Reload();
-
-                MessageBox.Show("Creation of DB failed!\nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void TestDbConnection()
