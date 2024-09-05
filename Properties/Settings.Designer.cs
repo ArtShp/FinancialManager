@@ -34,5 +34,17 @@ namespace FinancialManager.Properties {
                 this["CurrencyApiKey"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathToDb {
+            get {
+                return ((string)(this["PathToDb"]));
+            }
+            set {
+                this["PathToDb"] = value;
+            }
+        }
     }
 }
