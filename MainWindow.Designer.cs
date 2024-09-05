@@ -52,6 +52,7 @@
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
             closeDbToolStripMenuItem = new ToolStripMenuItem();
+            mainCurrencyButton = new Button();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
@@ -105,7 +106,7 @@
             fillDBTabPage.Location = new Point(8, 46);
             fillDBTabPage.Name = "fillDBTabPage";
             fillDBTabPage.Padding = new Padding(3);
-            fillDBTabPage.Size = new Size(1488, 742);
+            fillDBTabPage.Size = new Size(1488, 764);
             fillDBTabPage.TabIndex = 1;
             fillDBTabPage.Text = "Fill Data";
             fillDBTabPage.UseVisualStyleBackColor = true;
@@ -185,18 +186,19 @@
             analyticsTabPage.Location = new Point(8, 46);
             analyticsTabPage.Name = "analyticsTabPage";
             analyticsTabPage.Padding = new Padding(3);
-            analyticsTabPage.Size = new Size(1488, 742);
+            analyticsTabPage.Size = new Size(1488, 764);
             analyticsTabPage.TabIndex = 2;
             analyticsTabPage.Text = "Analytics";
             analyticsTabPage.UseVisualStyleBackColor = true;
             // 
             // settingsTabPage
             // 
+            settingsTabPage.Controls.Add(mainCurrencyButton);
             settingsTabPage.Controls.Add(currencyApiButton);
             settingsTabPage.Location = new Point(8, 46);
             settingsTabPage.Name = "settingsTabPage";
             settingsTabPage.Padding = new Padding(3);
-            settingsTabPage.Size = new Size(1488, 742);
+            settingsTabPage.Size = new Size(1488, 764);
             settingsTabPage.TabIndex = 3;
             settingsTabPage.Text = "Settings";
             settingsTabPage.UseVisualStyleBackColor = true;
@@ -218,7 +220,7 @@
             testsTabPage.Location = new Point(8, 46);
             testsTabPage.Name = "testsTabPage";
             testsTabPage.Padding = new Padding(3);
-            testsTabPage.Size = new Size(1488, 742);
+            testsTabPage.Size = new Size(1488, 764);
             testsTabPage.TabIndex = 4;
             testsTabPage.Text = "Tests";
             testsTabPage.UseVisualStyleBackColor = true;
@@ -272,6 +274,15 @@
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
+            // mainCurrencyButton
+            // 
+            mainCurrencyButton.Location = new Point(1086, 58);
+            mainCurrencyButton.Name = "mainCurrencyButton";
+            mainCurrencyButton.Size = new Size(396, 46);
+            mainCurrencyButton.TabIndex = 1;
+            mainCurrencyButton.Text = "Setup Main Currency";
+            mainCurrencyButton.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -316,5 +327,6 @@
         private ToolStripMenuItem createDbToolStripMenuItem;
         private ToolStripMenuItem openDbToolStripMenuItem;
         private ToolStripMenuItem closeDbToolStripMenuItem;
+        private Button mainCurrencyButton;
     }
 }
