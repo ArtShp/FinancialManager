@@ -10,7 +10,7 @@ namespace FinancialManager
 {
     internal static class SqliteDataAccess
     {
-        private const long MainCurrencyId = 1;
+        public const long MainCurrencyId = 1;
 
         static SqliteDataAccess()
         {
