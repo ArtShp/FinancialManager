@@ -594,7 +594,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = 1").First();
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = MainCurrencyId }).First();
                 return output;
             }
         }
