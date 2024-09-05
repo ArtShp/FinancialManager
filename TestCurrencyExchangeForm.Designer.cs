@@ -31,13 +31,13 @@
             titleLabel = new Label();
             fromCurrencyLabel = new Label();
             toCurrencyLabel = new Label();
-            fromCurrencyTextBox = new TextBox();
-            toCurrencyTextBox = new TextBox();
             convertButton = new Button();
             dateLabel = new Label();
             dateTimePicker = new DateTimePicker();
             moneyLabel = new Label();
             moneyTextBox = new TextBox();
+            fromCurrencyComboBox = new ComboBox();
+            toCurrencyComboBox = new ComboBox();
             SuspendLayout();
             // 
             // titleLabel
@@ -55,32 +55,18 @@
             fromCurrencyLabel.AutoSize = true;
             fromCurrencyLabel.Location = new Point(31, 225);
             fromCurrencyLabel.Name = "fromCurrencyLabel";
-            fromCurrencyLabel.Size = new Size(248, 32);
+            fromCurrencyLabel.Size = new Size(171, 32);
             fromCurrencyLabel.TabIndex = 1;
-            fromCurrencyLabel.Text = "From Currency (Code)";
+            fromCurrencyLabel.Text = "From Currency";
             // 
             // toCurrencyLabel
             // 
             toCurrencyLabel.AutoSize = true;
             toCurrencyLabel.Location = new Point(371, 225);
             toCurrencyLabel.Name = "toCurrencyLabel";
-            toCurrencyLabel.Size = new Size(218, 32);
+            toCurrencyLabel.Size = new Size(141, 32);
             toCurrencyLabel.TabIndex = 2;
-            toCurrencyLabel.Text = "To Currency (Code)";
-            // 
-            // fromCurrencyTextBox
-            // 
-            fromCurrencyTextBox.Location = new Point(31, 260);
-            fromCurrencyTextBox.Name = "fromCurrencyTextBox";
-            fromCurrencyTextBox.Size = new Size(257, 39);
-            fromCurrencyTextBox.TabIndex = 3;
-            // 
-            // toCurrencyTextBox
-            // 
-            toCurrencyTextBox.Location = new Point(371, 260);
-            toCurrencyTextBox.Name = "toCurrencyTextBox";
-            toCurrencyTextBox.Size = new Size(257, 39);
-            toCurrencyTextBox.TabIndex = 4;
+            toCurrencyLabel.Text = "To Currency";
             // 
             // convertButton
             // 
@@ -124,18 +110,34 @@
             moneyTextBox.Size = new Size(257, 39);
             moneyTextBox.TabIndex = 9;
             // 
+            // fromCurrencyComboBox
+            // 
+            fromCurrencyComboBox.FormattingEnabled = true;
+            fromCurrencyComboBox.Location = new Point(31, 260);
+            fromCurrencyComboBox.Name = "fromCurrencyComboBox";
+            fromCurrencyComboBox.Size = new Size(257, 40);
+            fromCurrencyComboBox.TabIndex = 10;
+            // 
+            // toCurrencyComboBox
+            // 
+            toCurrencyComboBox.FormattingEnabled = true;
+            toCurrencyComboBox.Location = new Point(371, 260);
+            toCurrencyComboBox.Name = "toCurrencyComboBox";
+            toCurrencyComboBox.Size = new Size(257, 40);
+            toCurrencyComboBox.TabIndex = 11;
+            // 
             // TestCurrencyExchangeForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(669, 543);
+            Controls.Add(toCurrencyComboBox);
+            Controls.Add(fromCurrencyComboBox);
             Controls.Add(moneyTextBox);
             Controls.Add(moneyLabel);
             Controls.Add(dateTimePicker);
             Controls.Add(dateLabel);
             Controls.Add(convertButton);
-            Controls.Add(toCurrencyTextBox);
-            Controls.Add(fromCurrencyTextBox);
             Controls.Add(toCurrencyLabel);
             Controls.Add(fromCurrencyLabel);
             Controls.Add(titleLabel);
@@ -150,12 +152,12 @@
         private Label titleLabel;
         private Label fromCurrencyLabel;
         private Label toCurrencyLabel;
-        private TextBox fromCurrencyTextBox;
-        private TextBox toCurrencyTextBox;
         private Button convertButton;
         private Label dateLabel;
         private DateTimePicker dateTimePicker;
         private Label moneyLabel;
         private TextBox moneyTextBox;
+        private ComboBox fromCurrencyComboBox;
+        private ComboBox toCurrencyComboBox;
     }
 }
