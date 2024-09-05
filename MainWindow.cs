@@ -69,6 +69,18 @@ namespace FinancialManager
             MessageBox.Show("DB created!");
         }
 
+        private void TestDbConnection()
+        {
+            try
+            {
+                SqliteDataAccess.TestConnection();
+            }
+            catch
+            {
+                MessageBox.Show("Connection to DB failed!\nPlease choose DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void editCurrenciesButton_Click(object sender, EventArgs e)
         {
             EditCurrenciesForm addCurrenciesForm = new EditCurrenciesForm();
