@@ -15,6 +15,9 @@ namespace FinancialManager
         public TestCurrencyExchangeForm()
         {
             InitializeComponent();
+
+            moneyTextBox.Text = "0";
+            dateTimePicker.Value = DateTime.Today;
         }
     }
 }
