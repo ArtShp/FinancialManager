@@ -136,16 +136,25 @@ namespace FinancialManager
 
             foreach (var purchase in data)
             {
-                listView.Items.Add(new ListViewItem(new string[]
+                var item = new ListViewItem(new string[]
                 {
                     purchase.Category,
                     purchase.Date.ToString("dd.MM.yyyy"),
                     purchase.Sum.GetString() + " " + purchase.CurrencyText,
                     purchase.SumByMainCurrency.GetString() + " " + mainCurrency.MoneyText,
                     purchase.Place,
-                    purchase.TransactionType,
                     purchase.Tags
-                }));
+                });
+
+                listView.Items.Add(item);
+                if (purchase.TransactionTypeId == 1)
+                {
+                    listView.Groups[0].Items.Add(item);
+                }
+                else if (purchase.TransactionTypeId == 2)
+                {
+                    listView.Groups[1].Items.Add(item);
+                }
 
                 sum += purchase.SumByMainCurrency;
             }

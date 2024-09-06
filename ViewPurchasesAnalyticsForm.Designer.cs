@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            ListViewGroup listViewGroup1 = new ListViewGroup("Income", HorizontalAlignment.Left);
+            ListViewGroup listViewGroup2 = new ListViewGroup("Expense", HorizontalAlignment.Left);
             listView = new ListView();
             categoryColumnHeader = new ColumnHeader();
             dateColumnHeader = new ColumnHeader();
             sumColumnHeader = new ColumnHeader();
             mainSumColumnHeader = new ColumnHeader();
             placeColumnHeader = new ColumnHeader();
-            transactionTypeColumnHeader = new ColumnHeader();
             tagsColumnHeader = new ColumnHeader();
             titleLabel = new Label();
             categoryLabel = new Label();
@@ -56,9 +57,14 @@
             // 
             // listView
             // 
-            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, dateColumnHeader, sumColumnHeader, mainSumColumnHeader, placeColumnHeader, transactionTypeColumnHeader, tagsColumnHeader });
+            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, dateColumnHeader, sumColumnHeader, mainSumColumnHeader, placeColumnHeader, tagsColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
+            listViewGroup1.Header = "Income";
+            listViewGroup1.Name = "incomeListViewGroup";
+            listViewGroup2.Header = "Expense";
+            listViewGroup2.Name = "expenseListViewGroup";
+            listView.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
             listView.Location = new Point(543, 12);
             listView.MultiSelect = false;
             listView.Name = "listView";
@@ -86,10 +92,6 @@
             // placeColumnHeader
             // 
             placeColumnHeader.Text = "Place";
-            // 
-            // transactionTypeColumnHeader
-            // 
-            transactionTypeColumnHeader.Text = "Transaction Type";
             // 
             // tagsColumnHeader
             // 
@@ -285,7 +287,6 @@
         private ColumnHeader sumColumnHeader;
         private ColumnHeader mainSumColumnHeader;
         private ColumnHeader placeColumnHeader;
-        private ColumnHeader transactionTypeColumnHeader;
         private ColumnHeader tagsColumnHeader;
         private Label transactionTypeLabel;
         private ComboBox transactionTypeComboBox;
