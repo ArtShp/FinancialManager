@@ -222,6 +222,7 @@
             getButton.TabIndex = 14;
             getButton.Text = "Get";
             getButton.UseVisualStyleBackColor = true;
+            getButton.Click += getButton_Click;
             // 
             // clearFromDateButton
             // 

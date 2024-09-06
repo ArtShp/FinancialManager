@@ -107,5 +107,45 @@ namespace FinancialManager
             categoryId = -1;
             categoryTextBox.Clear();
         }
+
+        private void getButton_Click(object sender, EventArgs e)
+        {
+            var fromDate = fromDateTimePicker.Value.Date;
+            var toDate = toDateTimePicker.Value.Date;
+
+            if (isFromDateSet && isToDateSet && fromDate > toDate)
+            {
+                MessageBox.Show("Start date can't be greater than end date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var data = SqliteDataAccess.GetPurchases(categoryId, 
+                                                     Convert.ToInt64(transactionTypeComboBox.SelectedValue),
+                                                     isFromDateSet ? fromDate : null,
+                                                     isToDateSet ? toDate : null,
+                                                     Convert.ToInt64(placeComboBox.SelectedValue));
+
+            var mainCurrency = SqliteDataAccess.GetMainCurrency();
+
+            listView.BeginUpdate();
+            listView.Items.Clear();
+
+            foreach (var purchase in data)
+            {
+                listView.Items.Add(new ListViewItem(new string[]
+                {
+                    purchase.Category,
+                    purchase.Date.ToString("dd.MM.yyyy"),
+                    purchase.Sum.GetString() + " " + purchase.CurrencyText,
+                    purchase.SumByMainCurrency.GetString() + " " + mainCurrency.MoneyText,
+                    purchase.Place,
+                    purchase.TransactionType,
+                    purchase.Tags
+                }));
+            }
+
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView.EndUpdate();
+        }
     }
 }
