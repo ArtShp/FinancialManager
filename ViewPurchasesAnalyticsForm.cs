@@ -26,6 +26,8 @@ namespace FinancialManager
 
             fromDateTimePicker.Value = DateTime.Today;
             toDateTimePicker.Value = DateTime.Today;
+
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void LoadAll()
