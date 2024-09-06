@@ -129,7 +129,8 @@ namespace FinancialManager
 
             var mainCurrency = SqliteDataAccess.GetMainCurrency();
 
-            var sum = new MoneyModel(0, mainCurrency.Units_Rate);
+            var sumIncome = new MoneyModel(0, mainCurrency.Units_Rate);
+            var sumExpense = new MoneyModel(0, mainCurrency.Units_Rate);
 
             listView.BeginUpdate();
             listView.Items.Clear();
@@ -150,22 +151,21 @@ namespace FinancialManager
                 if (purchase.TransactionTypeId == 1)
                 {
                     listView.Groups[0].Items.Add(item);
+                    sumIncome += purchase.SumByMainCurrency;
                 }
                 else if (purchase.TransactionTypeId == 2)
                 {
                     listView.Groups[1].Items.Add(item);
+                    sumExpense += purchase.SumByMainCurrency;
                 }
-
-                sum += purchase.SumByMainCurrency;
             }
 
-            listView.Items.Add(new ListViewItem(new string[]
+            var incomeItem = new ListViewItem(new string[]
             {
-                $"Total: {listView.Items.Count} of {SqliteDataAccess.GetPurchasesCount()}",
+                $"Total: {listView.Groups[0].Items.Count} of {SqliteDataAccess.GetPurchasesCount(1)}",
                 "",
                 "",
-                sum.GetString() + " " + mainCurrency.MoneyText,
-                "",
+                sumIncome.GetString() + " " + mainCurrency.MoneyText,
                 "",
                 ""
             })
@@ -173,10 +173,31 @@ namespace FinancialManager
                 Tag = -1,
                 Font = new Font(listView.Font, FontStyle.Bold),
                 ForeColor = Color.Blue
-            });
+            };
 
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            var expenseItem = new ListViewItem(new string[]
+            {
+                $"Total: {listView.Groups[1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(2)}",
+                "",
+                "",
+                sumExpense.GetString() + " " + mainCurrency.MoneyText,
+                "",
+                ""
+            })
+            {
+                Tag = -1,
+                Font = new Font(listView.Font, FontStyle.Bold),
+                ForeColor = Color.OrangeRed
+            };
+
+            listView.Items.Add(incomeItem);
+            listView.Items.Add(expenseItem);
+
+            listView.Groups[0].Items.Add(incomeItem);
+            listView.Groups[1].Items.Add(expenseItem);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
     }
 }
