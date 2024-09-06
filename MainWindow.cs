@@ -33,6 +33,8 @@ namespace FinancialManager
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("DB created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                TestMainCurrencyExistance();
             }
             catch
             {
@@ -56,6 +58,8 @@ namespace FinancialManager
                 Properties.Settings.Default.Save();
 
                 MessageBox.Show("Connection to DB successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                TestMainCurrencyExistance();
             }
             catch
             {
@@ -87,6 +91,18 @@ namespace FinancialManager
             catch
             {
                 MessageBox.Show("Connection to DB failed!\nPlease choose DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TestMainCurrencyExistance()
+        {
+            try
+            {
+                SqliteDataAccess.TestMainCurrencyExistance();
+            }
+            catch
+            {
+                MessageBox.Show("Main currency does not exist!\nPlease create it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
