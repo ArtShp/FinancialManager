@@ -699,12 +699,20 @@ namespace FinancialManager
             }
         }
 
-        public static long GetPurchasesCount()
+        public static long GetPurchasesCount(long transactionTypeId)
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases");
-                return output;
+                if (transactionTypeId == -1)
+                {
+                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases");
+                    return output;
+                }
+                else
+                {
+                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases JOIN transactions ON id_transaction = transactions.id WHERE id_transaction_type = @IdTransactionType", new { IdTransactionType = transactionTypeId });
+                    return output;
+                }
             }
         }
 
