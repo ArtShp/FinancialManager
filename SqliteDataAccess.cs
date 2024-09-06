@@ -599,6 +599,87 @@ namespace FinancialManager
             }
         }
 
+        public static List<PurchaseAnalysisModel> GetPurchases(long categoryId, long transactionTypeId, DateTime? fromDate, DateTime? toDate, long placeOfPurchaseId)
+        {
+            var queryStart = @"SELECT 
+                                purchases.id as Id, categories.name AS Category, 
+                                transactions.date AS Date, sum as Sum, 
+                                currencies.id AS CurrencyId, 
+                                sum_by_main_currency AS SumByMainCurrency, 
+                                places_of_purchases.name AS Place, 
+                                transaction_types.name AS TransactionType 
+                               FROM purchases 
+                               LEFT JOIN transactions ON purchases.id_transaction = transactions.id 
+                               LEFT JOIN currencies ON id_currency_of_transaction = currencies.id 
+                               LEFT JOIN places_of_purchases ON id_place_of_purchase = places_of_purchases.id 
+                               LEFT JOIN transaction_types ON id_transaction_type = transaction_types.id 
+                               LEFT JOIN categories ON id_category = categories.id";
+            var queryBuilder = new StringBuilder(queryStart);
+            var parametersBuilder = new StringBuilder();
+
+            if (categoryId != -1)
+            {
+                parametersBuilder.Append("id_category = @CategoryId ");
+            } 
+            if (transactionTypeId != -1)
+            {
+                if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
+                parametersBuilder.Append("id_transaction_type = @TransactionTypeId ");
+            }
+            if (fromDate != null)
+            {
+                if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
+                parametersBuilder.Append("date >= @FromDate ");
+            }
+            if (toDate != null)
+            {
+                if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
+                parametersBuilder.Append("date <= @ToDate ");
+            }
+            if (placeOfPurchaseId != -1)
+            {
+                if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
+                parametersBuilder.Append("id_place_of_purchase = @PlaceOfPurchaseId");
+            }
+
+            if (parametersBuilder.Length > 0)
+            {
+                queryBuilder.Append(" WHERE ");
+                queryBuilder.Append(parametersBuilder);
+            }
+
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString(), new { CategoryId = categoryId, TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
+
+                var mainCurrency = GetMainCurrency();
+                foreach (var purchase in purchasesAnalysis)
+                {
+                    var currency = GetCurrencyById(purchase.CurrencyId);
+
+                    purchase.Sum.Rate = currency.Units_Rate;
+                    purchase.CurrencyText = currency.MoneyText;
+
+                    purchase.SumByMainCurrency.Rate = mainCurrency.Units_Rate;
+
+                    var tags = GetTagsByPurchaseId(purchase.Id);
+
+                    StringBuilder tagsStringBuilder = new StringBuilder();
+                    foreach (var tag in tags)
+                    {
+                        if (tagsStringBuilder.Length > 0)
+                            tagsStringBuilder.Append(", ");
+
+                        tagsStringBuilder.Append(tag.Name);
+                    }
+
+                    purchase.Tags = tagsStringBuilder.ToString();
+                }
+
+                return purchasesAnalysis;
+            }
+        }
+
         public static void TestMainCurrencyExistance()
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
