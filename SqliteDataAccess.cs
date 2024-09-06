@@ -680,6 +680,15 @@ namespace FinancialManager
             }
         }
 
+        public static long GetPurchasesCount()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases");
+                return output;
+            }
+        }
+
         public static void TestMainCurrencyExistance()
         {
             using (var connection = new SQLiteConnection(LoadConnectionString()))
