@@ -36,12 +36,26 @@ namespace FinancialManager
 
             foreach (var currency in data)
             {
-                currenciesListView.Items.Add(
+                if (currency.Id == SqliteDataAccess.MainCurrencyId)
+                {
+                    currenciesListView.Items.Add(
+                    new ListViewItem(currency.ItemArray)
+                    {
+                        Tag = currency.Id,
+                        ForeColor = Color.Blue,
+                        Font = new Font(currenciesListView.Font, FontStyle.Bold)
+                    });
+                }
+                else
+                {
+                    currenciesListView.Items.Add(
                     new ListViewItem(currency.ItemArray)
                     {
                         Tag = currency.Id
                     });
+                }
             }
+
             currenciesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             currenciesListView.EndUpdate();
         }
