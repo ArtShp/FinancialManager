@@ -229,6 +229,7 @@
             clearFromDateButton.TabIndex = 15;
             clearFromDateButton.Text = "Clear";
             clearFromDateButton.UseVisualStyleBackColor = true;
+            clearFromDateButton.Click += clearFromDateButton_Click;
             // 
             // clearToDateButton
             // 
@@ -238,6 +239,7 @@
             clearToDateButton.TabIndex = 16;
             clearToDateButton.Text = "Clear";
             clearToDateButton.UseVisualStyleBackColor = true;
+            clearToDateButton.Click += clearToDateButton_Click;
             // 
             // ViewPurchasesAnalyticsForm
             // 

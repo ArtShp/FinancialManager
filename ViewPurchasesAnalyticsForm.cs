@@ -71,5 +71,15 @@ namespace FinancialManager
             toDateTimePicker.CustomFormat = "dd.MM.yyyy";
             isToDateSet = true;
         }
+
+        private void clearFromDateButton_Click(object sender, EventArgs e)
+        {
+            ClearFromDate();
+        }
+
+        private void clearToDateButton_Click(object sender, EventArgs e)
+        {
+            ClearToDate();
+        }
     }
 }
