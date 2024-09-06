@@ -37,6 +37,7 @@ namespace FinancialManager
         private void LoadTransactionTypes()
         {
             var data = SqliteDataAccess.LoadTransactionTypes();
+            data.Insert(0, new TransactionTypeModel { Id = -1, Name = "" });
 
             transactionTypeComboBox.DataSource = data;
             transactionTypeComboBox.DisplayMember = "Name";
@@ -46,6 +47,7 @@ namespace FinancialManager
         private void LoadPlacesOfPurchases()
         {
             var data = SqliteDataAccess.LoadPlacesOfPurchases();
+            data.Insert(0, new PlaceOfPurchaseModel { Id = -1, Name = "" });
 
             placeComboBox.DataSource = data;
             placeComboBox.DisplayMember = "Name";
