@@ -122,6 +122,7 @@
             chooseCategoryButton.TabIndex = 3;
             chooseCategoryButton.Text = "Choose";
             chooseCategoryButton.UseVisualStyleBackColor = true;
+            chooseCategoryButton.Click += chooseCategoryButton_Click;
             // 
             // clearCategoryButton
             // 
@@ -131,6 +132,7 @@
             clearCategoryButton.TabIndex = 4;
             clearCategoryButton.Text = "Clear";
             clearCategoryButton.UseVisualStyleBackColor = true;
+            clearCategoryButton.Click += clearCategoryButton_Click;
             // 
             // categoryTextBox
             // 

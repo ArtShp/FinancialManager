@@ -12,6 +12,7 @@ namespace FinancialManager
 {
     public partial class ViewPurchasesAnalyticsForm : Form
     {
+        private long categoryId = -1;
         private bool isFromDateSet = false;
         private bool isToDateSet = false;
 
@@ -83,6 +84,26 @@ namespace FinancialManager
         private void clearToDateButton_Click(object sender, EventArgs e)
         {
             ClearToDate();
+        }
+
+        private void chooseCategoryButton_Click(object sender, EventArgs e)
+        {
+            var chooseCategoryForm = new ChooseCategoryForm();
+            chooseCategoryForm.ShowDialog();
+
+            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+
+            if (selectedCategoryId == -1)
+                return;
+
+            categoryId = selectedCategoryId;
+            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
+        }
+
+        private void clearCategoryButton_Click(object sender, EventArgs e)
+        {
+            categoryId = -1;
+            categoryTextBox.Clear();
         }
     }
 }
