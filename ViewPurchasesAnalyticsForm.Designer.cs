@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             listView = new ListView();
-            titleLabel = new Label();
-            categoryLabel = new Label();
-            chooseCategoryButton = new Button();
-            clearCategoryButton = new Button();
-            categoryTextBox = new TextBox();
             categoryColumnHeader = new ColumnHeader();
             dateColumnHeader = new ColumnHeader();
             sumColumnHeader = new ColumnHeader();
@@ -41,6 +36,11 @@
             placeColumnHeader = new ColumnHeader();
             transactionTypeColumnHeader = new ColumnHeader();
             tagsColumnHeader = new ColumnHeader();
+            titleLabel = new Label();
+            categoryLabel = new Label();
+            chooseCategoryButton = new Button();
+            clearCategoryButton = new Button();
+            categoryTextBox = new TextBox();
             transactionTypeLabel = new Label();
             transactionTypeComboBox = new ComboBox();
             fromDateLabel = new Label();
@@ -66,6 +66,34 @@
             listView.TabIndex = 0;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
+            // 
+            // categoryColumnHeader
+            // 
+            categoryColumnHeader.Text = "Category";
+            // 
+            // dateColumnHeader
+            // 
+            dateColumnHeader.Text = "Date";
+            // 
+            // sumColumnHeader
+            // 
+            sumColumnHeader.Text = "Sum";
+            // 
+            // mainSumColumnHeader
+            // 
+            mainSumColumnHeader.Text = "Sum (Main)";
+            // 
+            // placeColumnHeader
+            // 
+            placeColumnHeader.Text = "Place";
+            // 
+            // transactionTypeColumnHeader
+            // 
+            transactionTypeColumnHeader.Text = "Transaction Type";
+            // 
+            // tagsColumnHeader
+            // 
+            tagsColumnHeader.Text = "Tags";
             // 
             // titleLabel
             // 
@@ -112,34 +140,6 @@
             categoryTextBox.Size = new Size(400, 39);
             categoryTextBox.TabIndex = 5;
             // 
-            // categoryColumnHeader
-            // 
-            categoryColumnHeader.Text = "Category";
-            // 
-            // dateColumnHeader
-            // 
-            dateColumnHeader.Text = "Date";
-            // 
-            // sumColumnHeader
-            // 
-            sumColumnHeader.Text = "Sum";
-            // 
-            // mainSumColumnHeader
-            // 
-            mainSumColumnHeader.Text = "Sum (Main)";
-            // 
-            // placeColumnHeader
-            // 
-            placeColumnHeader.Text = "Place";
-            // 
-            // transactionTypeColumnHeader
-            // 
-            transactionTypeColumnHeader.Text = "Transaction Type";
-            // 
-            // tagsColumnHeader
-            // 
-            tagsColumnHeader.Text = "Tags";
-            // 
             // transactionTypeLabel
             // 
             transactionTypeLabel.AutoSize = true;
@@ -174,6 +174,7 @@
             fromDateTimePicker.Name = "fromDateTimePicker";
             fromDateTimePicker.Size = new Size(400, 39);
             fromDateTimePicker.TabIndex = 9;
+            fromDateTimePicker.ValueChanged += fromDateTimePicker_ValueChanged;
             // 
             // toDateLabel
             // 
@@ -192,6 +193,7 @@
             toDateTimePicker.Name = "toDateTimePicker";
             toDateTimePicker.Size = new Size(400, 39);
             toDateTimePicker.TabIndex = 11;
+            toDateTimePicker.ValueChanged += toDateTimePicker_ValueChanged;
             // 
             // placeLabel
             // 
