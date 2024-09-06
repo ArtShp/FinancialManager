@@ -617,10 +617,6 @@ namespace FinancialManager
             var queryBuilder = new StringBuilder(queryStart);
             var parametersBuilder = new StringBuilder();
 
-            if (categoryId != -1)
-            {
-                parametersBuilder.Append("id_category = @CategoryId ");
-            } 
             if (transactionTypeId != -1)
             {
                 if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
@@ -639,7 +635,7 @@ namespace FinancialManager
             if (placeOfPurchaseId != -1)
             {
                 if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
-                parametersBuilder.Append("id_place_of_purchase = @PlaceOfPurchaseId");
+                parametersBuilder.Append("id_place_of_purchase = @PlaceOfPurchaseId ");
             }
 
             if (parametersBuilder.Length > 0)
@@ -648,9 +644,23 @@ namespace FinancialManager
                 queryBuilder.Append(parametersBuilder);
             }
 
+            var categoryBuilder = new StringBuilder();
+            if (categoryId != -1)
+            {
+                if (parametersBuilder.Length > 0)
+                {
+                    categoryBuilder.Append("AND ");
+                }
+                else
+                {
+                    categoryBuilder.Append(" WHERE ");
+                }
+                categoryBuilder.Append("id_category = @CategoryId");
+            }
+
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString(), new { CategoryId = categoryId, TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
+                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString() + categoryBuilder.ToString(), new { CategoryId = categoryId, TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
 
                 var mainCurrency = GetMainCurrency();
                 foreach (var purchase in purchasesAnalysis)
