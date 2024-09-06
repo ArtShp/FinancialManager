@@ -616,6 +616,7 @@ namespace FinancialManager
                                LEFT JOIN categories ON id_category = categories.id";
             var queryBuilder = new StringBuilder(queryStart);
             var parametersBuilder = new StringBuilder();
+            var categoriesIds = new List<long>();
 
             if (transactionTypeId != -1)
             {
@@ -638,29 +639,38 @@ namespace FinancialManager
                 parametersBuilder.Append("id_place_of_purchase = @PlaceOfPurchaseId ");
             }
 
+            if (categoryId != -1)
+            {
+                var categories = new Queue<CategoryModel>();
+                categories.Enqueue(GetCategoryById(categoryId));
+                categoriesIds.Add(categoryId);
+
+                while (categories.Count > 0)
+                {
+                    var category = categories.Dequeue();
+                    var subCategories = LoadCategoriesByParentId(category.Id);
+                    foreach (var subCategory in subCategories)
+                    {
+                        categoriesIds.Add(subCategory.Id);
+                        categories.Enqueue(subCategory);
+                    }
+                }
+
+                var categoriesIdsString = String.Join(", ", categoriesIds.ToArray());
+
+                if (parametersBuilder.Length > 0) parametersBuilder.Append("AND ");
+                parametersBuilder.Append($"id_category IN ( {categoriesIdsString} )");
+            }
+
             if (parametersBuilder.Length > 0)
             {
                 queryBuilder.Append(" WHERE ");
                 queryBuilder.Append(parametersBuilder);
             }
 
-            var categoryBuilder = new StringBuilder();
-            if (categoryId != -1)
-            {
-                if (parametersBuilder.Length > 0)
-                {
-                    categoryBuilder.Append("AND ");
-                }
-                else
-                {
-                    categoryBuilder.Append(" WHERE ");
-                }
-                categoryBuilder.Append("id_category = @CategoryId");
-            }
-
             using (var connection = new SQLiteConnection(LoadConnectionString()))
             {
-                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString() + categoryBuilder.ToString(), new { CategoryId = categoryId, TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
+                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString(), new { TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
 
                 var mainCurrency = GetMainCurrency();
                 foreach (var purchase in purchasesAnalysis)
