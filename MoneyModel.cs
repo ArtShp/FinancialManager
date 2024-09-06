@@ -11,7 +11,6 @@ namespace FinancialManager
         public long Money { get; set; }
         public int Rate { get; set; }
 
-
         public MoneyModel(string money, int rate)
         {
             Rate = rate;
@@ -75,6 +74,16 @@ namespace FinancialManager
         public void SetValue(long number)
         {
             Money = number;
+        }
+
+        public static MoneyModel operator +(MoneyModel a, MoneyModel b)
+        {
+            if (a.Rate != b.Rate)
+            {
+                throw new InvalidOperationException("Rates of the operands must be equal");
+            }
+
+            return new MoneyModel(a.GetLong() + b.GetLong(), a.Rate);
         }
     }
 }
