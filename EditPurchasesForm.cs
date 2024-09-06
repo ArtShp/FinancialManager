@@ -229,6 +229,9 @@ namespace FinancialManager
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
+            if (selectedId == -1)
+                return;
+
             var result = MessageBox.Show("Are you sure you want to delete this purchase?", "Delete Purchase", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
                 SqliteDataAccess.DeletePurchaseById(selectedId);
@@ -240,6 +243,9 @@ namespace FinancialManager
         private void editButton_Click(object sender, EventArgs e)
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+
+            if (selectedId == -1)
+                return;
 
             PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
             var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
