@@ -174,7 +174,7 @@
             fromDateTimePicker.Name = "fromDateTimePicker";
             fromDateTimePicker.Size = new Size(400, 39);
             fromDateTimePicker.TabIndex = 9;
-            fromDateTimePicker.ValueChanged += fromDateTimePicker_ValueChanged;
+            fromDateTimePicker.DropDown += fromDateTimePicker_DropDown;
             // 
             // toDateLabel
             // 
@@ -193,7 +193,7 @@
             toDateTimePicker.Name = "toDateTimePicker";
             toDateTimePicker.Size = new Size(400, 39);
             toDateTimePicker.TabIndex = 11;
-            toDateTimePicker.ValueChanged += toDateTimePicker_ValueChanged;
+            toDateTimePicker.DropDown += toDateTimePicker_DropDown;
             // 
             // placeLabel
             // 

@@ -22,6 +22,9 @@ namespace FinancialManager
             LoadAll();
             ClearFromDate();
             ClearToDate();
+
+            fromDateTimePicker.Value = DateTime.Today;
+            toDateTimePicker.Value = DateTime.Today;
         }
 
         private void LoadAll()
@@ -60,13 +63,13 @@ namespace FinancialManager
             isToDateSet = false;
         }
 
-        private void fromDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void fromDateTimePicker_DropDown(object sender, EventArgs e)
         {
             fromDateTimePicker.CustomFormat = "dd.MM.yyyy";
             isFromDateSet = true;
         }
 
-        private void toDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void toDateTimePicker_DropDown(object sender, EventArgs e)
         {
             toDateTimePicker.CustomFormat = "dd.MM.yyyy";
             isToDateSet = true;
