@@ -52,8 +52,10 @@
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
             closeDbToolStripMenuItem = new ToolStripMenuItem();
+            analyzePurchasesButton = new Button();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
+            analyticsTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
             testsTabPage.SuspendLayout();
             menuStrip.SuspendLayout();
@@ -182,6 +184,7 @@
             // 
             // analyticsTabPage
             // 
+            analyticsTabPage.Controls.Add(analyzePurchasesButton);
             analyticsTabPage.Location = new Point(8, 46);
             analyticsTabPage.Name = "analyticsTabPage";
             analyticsTabPage.Padding = new Padding(3);
@@ -272,6 +275,16 @@
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
+            // analyzePurchasesButton
+            // 
+            analyzePurchasesButton.Location = new Point(1020, 6);
+            analyzePurchasesButton.Name = "analyzePurchasesButton";
+            analyzePurchasesButton.Size = new Size(462, 46);
+            analyzePurchasesButton.TabIndex = 0;
+            analyzePurchasesButton.Text = "Analyze Purchases";
+            analyzePurchasesButton.UseVisualStyleBackColor = true;
+            analyzePurchasesButton.Click += analyzePurchasesButton_Click;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -284,6 +297,7 @@
             Shown += MainWindow_Shown;
             mainWindowTabControl.ResumeLayout(false);
             fillDBTabPage.ResumeLayout(false);
+            analyticsTabPage.ResumeLayout(false);
             settingsTabPage.ResumeLayout(false);
             testsTabPage.ResumeLayout(false);
             menuStrip.ResumeLayout(false);
@@ -316,5 +330,6 @@
         private ToolStripMenuItem createDbToolStripMenuItem;
         private ToolStripMenuItem openDbToolStripMenuItem;
         private ToolStripMenuItem closeDbToolStripMenuItem;
+        private Button analyzePurchasesButton;
     }
 }

@@ -159,5 +159,11 @@ namespace FinancialManager
             var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
             testCurrencyExchangeForm.Show();
         }
+
+        private void analyzePurchasesButton_Click(object sender, EventArgs e)
+        {
+            var analyzePurchasesForm = new ViewPurchasesAnalyticsForm();
+            analyzePurchasesForm.Show();
+        }
     }
 }
