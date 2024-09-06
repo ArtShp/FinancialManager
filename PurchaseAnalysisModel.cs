@@ -16,7 +16,7 @@ namespace FinancialManager
         public string CurrencyText { get; set; }
         public MoneyModel SumByMainCurrency { get; set; }
         public string Place { get; set; }
-        public string TransactionType { get; set; }
+        public long TransactionTypeId { get; set; }
         public string Tags { get; set; }
     }
 }

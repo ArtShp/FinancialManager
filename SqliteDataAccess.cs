@@ -607,12 +607,11 @@ namespace FinancialManager
                                 currencies.id AS CurrencyId, 
                                 sum_by_main_currency AS SumByMainCurrency, 
                                 places_of_purchases.name AS Place, 
-                                transaction_types.name AS TransactionType 
+                                id_transaction_type AS TransactionTypeId 
                                FROM purchases 
                                LEFT JOIN transactions ON purchases.id_transaction = transactions.id 
                                LEFT JOIN currencies ON id_currency_of_transaction = currencies.id 
                                LEFT JOIN places_of_purchases ON id_place_of_purchase = places_of_purchases.id 
-                               LEFT JOIN transaction_types ON id_transaction_type = transaction_types.id 
                                LEFT JOIN categories ON id_category = categories.id";
             var queryBuilder = new StringBuilder(queryStart);
             var parametersBuilder = new StringBuilder();
