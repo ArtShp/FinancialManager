@@ -19,7 +19,6 @@ namespace FinancialManager
         private long categoryId = -1;
         private long transactionId;
         private long transactionTypeId;
-        private int unitsRate;
         private CurrencyModel transactionCurrency;
         private DateTime transactionDate;
 
@@ -82,7 +81,7 @@ namespace FinancialManager
             foreach (var purchase in data)
             {
                 var category = SqliteDataAccess.GetCategoryById(purchase.Id_Category);
-                purchase.Sum.Rate = unitsRate;
+                purchase.Sum.Rate = transactionCurrency.Units_Rate;
 
                 var tags = SqliteDataAccess.GetTagsByPurchaseId(purchase.Id);
 
@@ -132,7 +131,7 @@ namespace FinancialManager
         {
             tags ??= new List<TagModel>();
 
-            purchase.Sum.Rate = unitsRate;
+            purchase.Sum.Rate = transactionCurrency.Units_Rate;
             categoryId = purchase.Id_Category;
 
             sumTextBox.Text = purchase.Sum.GetString();
@@ -169,7 +168,7 @@ namespace FinancialManager
                 return;
             }
 
-            var sum = new MoneyModel(sumTextBox.Text, unitsRate);
+            var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
 
             try
             {
@@ -235,7 +234,7 @@ namespace FinancialManager
                 return;
             }
 
-            var sum = new MoneyModel(sumTextBox.Text, unitsRate);
+            var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
 
             try
             {
