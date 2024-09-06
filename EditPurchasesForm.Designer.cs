@@ -32,6 +32,7 @@
             listView = new ListView();
             categoryColumnHeader = new ColumnHeader();
             sumColumnHeader = new ColumnHeader();
+            tagsColumnHeader = new ColumnHeader();
             descriptionColumnHeader = new ColumnHeader();
             sumLabel = new Label();
             categoryLabel = new Label();
@@ -51,7 +52,7 @@
             currencyTextBox = new TextBox();
             tagsLabel = new Label();
             tagsListView = new ListView();
-            tagsColumnHeader = new ColumnHeader();
+            mainSumColumnHeader = new ColumnHeader();
             SuspendLayout();
             // 
             // titleLabel
@@ -66,7 +67,7 @@
             // 
             // listView
             // 
-            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, tagsColumnHeader, descriptionColumnHeader });
+            listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, mainSumColumnHeader, tagsColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
             listView.Location = new Point(643, 12);
@@ -86,6 +87,11 @@
             // 
             sumColumnHeader.Text = "Sum";
             sumColumnHeader.Width = 100;
+            // 
+            // tagsColumnHeader
+            // 
+            tagsColumnHeader.Text = "Tags";
+            tagsColumnHeader.Width = 100;
             // 
             // descriptionColumnHeader
             // 
@@ -262,10 +268,10 @@
             tagsListView.UseCompatibleStateImageBehavior = false;
             tagsListView.View = View.List;
             // 
-            // tagsColumnHeader
+            // mainSumColumnHeader
             // 
-            tagsColumnHeader.Text = "Tags";
-            tagsColumnHeader.Width = 100;
+            mainSumColumnHeader.Text = "Sum (Main)";
+            mainSumColumnHeader.Width = 100;
             // 
             // EditPurchasesForm
             // 
@@ -324,5 +330,6 @@
         private Label tagsLabel;
         private ListView tagsListView;
         private ColumnHeader tagsColumnHeader;
+        private ColumnHeader mainSumColumnHeader;
     }
 }

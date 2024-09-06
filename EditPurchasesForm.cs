@@ -82,6 +82,7 @@ namespace FinancialManager
             {
                 var category = SqliteDataAccess.GetCategoryById(purchase.Id_Category);
                 purchase.Sum.Rate = transactionCurrency.Units_Rate;
+                purchase.Sum_By_Main_Currency.Rate = SqliteDataAccess.GetMainCurrency().Units_Rate;
 
                 var tags = SqliteDataAccess.GetTagsByPurchaseId(purchase.Id);
 
@@ -97,7 +98,10 @@ namespace FinancialManager
                 var tagsString = tagsStringBuilder.ToString();
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { category.Name, purchase.Sum.GetString() + " " + transactionCurrency.MoneyText, tagsString, purchase.Description })
+                    new ListViewItem(new[] { category.Name, 
+                                             purchase.Sum.GetString() + " " + transactionCurrency.MoneyText, 
+                                             purchase.Sum_By_Main_Currency.GetString() + " " + SqliteDataAccess.GetMainCurrency().MoneyText, 
+                                             tagsString, purchase.Description })
                     {
                         Tag = purchase.Id
                     });
