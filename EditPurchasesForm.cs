@@ -77,6 +77,9 @@ namespace FinancialManager
         {
             var mainCurrency = SqliteDataAccess.GetMainCurrency();
 
+            var sum = new MoneyModel(0, transactionCurrency.Units_Rate);
+            var sumByMainCurrency = new MoneyModel(0, mainCurrency.Units_Rate);
+
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -107,7 +110,21 @@ namespace FinancialManager
                     {
                         Tag = purchase.Id
                     });
+
+                sum += purchase.Sum;
+                sumByMainCurrency += purchase.Sum_By_Main_Currency;
             }
+
+            listView.Items.Add(
+                new ListViewItem(new[] { "Total", 
+                                         sum.GetString() + " " + transactionCurrency.MoneyText, 
+                                         sumByMainCurrency.GetString() + " " + mainCurrency.MoneyText, 
+                                         "", "" })
+                {
+                    Tag = -1,
+                    Font = new Font(listView.Font, FontStyle.Bold),
+                    ForeColor = Color.Blue
+                });
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             listView.EndUpdate();
