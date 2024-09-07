@@ -11,8 +11,8 @@ namespace FinancialManager
     internal static class SqliteDataAccess
     {
         public const long MainCurrencyId = 1;
-        public const long IncomeTransactionTypeId = 1;
-        public const long ExpenseTransactionTypeId = 2;
+        public const int IncomeTransactionTypeId = 1;
+        public const int ExpenseTransactionTypeId = 2;
 
         static SqliteDataAccess()
         {
