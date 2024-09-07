@@ -61,7 +61,7 @@ namespace FinancialManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag.ToString());
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             TagModel tag = SqliteDataAccess.GetTagById(selectedId);
             setTagDataView(tag);
         }
@@ -118,7 +118,7 @@ namespace FinancialManager
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag.ToString());
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             var result = MessageBox.Show("Are you sure you want to delete this tag?", "Delete Tag", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
