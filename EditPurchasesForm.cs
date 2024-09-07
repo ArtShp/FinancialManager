@@ -185,6 +185,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new purchase", "Add purchase", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (categoryId == -1)
             {
                 MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -62,6 +62,12 @@ namespace FinancialManager
 
         private void addCurrencyButton_Click(object sender, EventArgs e)
         {
+            if (selectedCurrencyId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new currency", "Add currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CurrencyModel currency = new CurrencyModel
             {
                 Name = currencyNameTextBox.Text,

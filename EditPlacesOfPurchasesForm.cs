@@ -83,6 +83,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new place of purchase", "Add place of purchase", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             PlaceOfPurchaseModel placeOfPurchase = new PlaceOfPurchaseModel
             {
                 Name = nameTextBox.Text

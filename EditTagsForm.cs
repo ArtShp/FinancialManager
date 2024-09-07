@@ -97,6 +97,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new tag", "Add tag", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TagModel tag = new TagModel
             {
                 Name = nameTextBox.Text,

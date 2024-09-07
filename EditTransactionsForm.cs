@@ -156,6 +156,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new transaction", "Add transaction", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
 
             TransactionModel transaction = new TransactionModel

@@ -79,6 +79,12 @@ namespace FinancialManager
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new category", "Add category", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CategoryModel category = new CategoryModel
             {
                 Name = nameTextBox.Text,
