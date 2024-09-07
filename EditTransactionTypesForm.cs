@@ -1,8 +1,9 @@
-﻿namespace FinancialManager
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace FinancialManager
 {
     public partial class EditTransactionTypesForm : Form
     {
-        private List<TransactionTypeModel> data = new List<TransactionTypeModel>();
         private long selectedId = -1;
 
         public EditTransactionTypesForm()
@@ -12,18 +13,18 @@
             addButton.Enabled = false;
             deleteButton.Enabled = false;
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
             LoadList();
         }
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadTransactionTypes();
+            var data = SqliteDataAccess.LoadTransactionTypes();
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -35,8 +36,9 @@
                         Tag = transactionType.Id
                     });
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -120,7 +122,7 @@
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadList();
+            LoadAll();
         }
     }
 }

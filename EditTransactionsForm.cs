@@ -2,7 +2,6 @@
 {
     public partial class EditTransactionsForm : Form
     {
-        private List<TransactionModel> data = new List<TransactionModel>();
         private long selectedId = -1;
 
         public EditTransactionsForm()
@@ -77,13 +76,8 @@
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadTransactions();
+            var data = SqliteDataAccess.LoadTransactions();
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -110,8 +104,9 @@
                         Tag = transaction.Id
                     });
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void setDataView(TransactionModel transaction)

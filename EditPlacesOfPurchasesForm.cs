@@ -2,25 +2,24 @@
 {
     public partial class EditPlacesOfPurchasesForm : Form
     {
-        private List<PlaceOfPurchaseModel> data = new List<PlaceOfPurchaseModel>();
         private long selectedId = -1;
 
         public EditPlacesOfPurchasesForm()
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
             LoadList();
         }
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadPlacesOfPurchases();
+            var data = SqliteDataAccess.LoadPlacesOfPurchases();
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -32,8 +31,9 @@
                         Tag = placeOfPurchase.Id
                     });
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -107,7 +107,7 @@
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadList();
+            LoadAll();
         }
 
         private void setPlaceOfPurchaseDataView(PlaceOfPurchaseModel placeOfPurchase)

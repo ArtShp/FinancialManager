@@ -10,6 +10,16 @@
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
+            LoadList();
+        }
+
+        private void LoadList()
+        {
             LoadMainCategories();
             LoadMainSubCategories();
         }
@@ -29,6 +39,7 @@
                         Tag = category.Id
                     });
             }
+
             treeView.EndUpdate();
         }
 
@@ -85,14 +96,12 @@
 
             clearDataView();
 
-            LoadMainCategories();
-            LoadMainSubCategories();
+            LoadList();
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadMainCategories();
-            LoadMainSubCategories();
+            LoadAll();
         }
 
         private void setDataView(CategoryModel category)
@@ -160,8 +169,7 @@
             selectedId = -1;
             clearDataView();
 
-            LoadMainCategories();
-            LoadMainSubCategories();
+            LoadList();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -188,8 +196,7 @@
             selectedId = -1;
             clearDataView();
 
-            LoadMainCategories();
-            LoadMainSubCategories();
+            LoadList();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

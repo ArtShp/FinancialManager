@@ -2,25 +2,24 @@
 {
     public partial class EditCurrenciesForm : Form
     {
-        private List<CurrencyModel> data = new List<CurrencyModel>();
         private long selectedId = -1;
 
         public EditCurrenciesForm()
         {
             InitializeComponent();
 
-            LoadCurrenciesList();
+            LoadAll();
         }
 
-        private void LoadCurrenciesList()
+        private void LoadAll()
         {
-            data = SqliteDataAccess.LoadCurrencies();
-
-            UpdateCurrenciesList();
+            LoadList();
         }
 
-        private void UpdateCurrenciesList()
+        private void LoadList()
         {
+            var data = SqliteDataAccess.LoadCurrencies();
+
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -46,8 +45,8 @@
                 }
             }
 
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -70,7 +69,7 @@
 
             clearCurrencyDataView();
 
-            LoadCurrenciesList();
+            LoadList();
         }
 
         private void setCurrencyDataView(CurrencyModel currency)
@@ -91,7 +90,7 @@
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadCurrenciesList();
+            LoadAll();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -129,7 +128,7 @@
             selectedId = -1;
             clearCurrencyDataView();
 
-            LoadCurrenciesList();
+            LoadList();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -160,7 +159,7 @@
             selectedId = -1;
             clearCurrencyDataView();
 
-            LoadCurrenciesList();
+            LoadList();
         }
     }
 }

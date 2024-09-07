@@ -2,13 +2,17 @@
 {
     public partial class EditTagsForm : Form
     {
-        private List<TagModel> data = new List<TagModel>();
         private long selectedId = -1;
 
         public EditTagsForm()
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
             LoadTransactionTypes();
             LoadList();
         }
@@ -26,13 +30,8 @@
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadTags();
+            var data = SqliteDataAccess.LoadTags();
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -45,8 +44,9 @@
                         Tag = tag.Id
                     });
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -122,8 +122,7 @@
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadTransactionTypes();
-            LoadList();
+            LoadAll();
         }
 
         private void setTagDataView(TagModel tag)

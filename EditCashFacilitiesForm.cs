@@ -2,13 +2,17 @@
 {
     public partial class EditCashFacilitiesForm : Form
     {
-        private List<CashFacilityModel> data = new List<CashFacilityModel>();
         private long selectedId = -1;
 
         public EditCashFacilitiesForm()
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
             LoadCurrencies();
             LoadList();
         }
@@ -26,13 +30,8 @@
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadCashFacilities();
+            var data = SqliteDataAccess.LoadCashFacilities();
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             listView.BeginUpdate();
             listView.Items.Clear();
 
@@ -45,8 +44,9 @@
                         Tag = cashFacility.Id
                     });
             }
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             listView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -122,8 +122,7 @@
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            LoadCurrencies();
-            LoadList();
+            LoadAll();
         }
 
         private void setDataView(CashFacilityModel cashFacility)

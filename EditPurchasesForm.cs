@@ -5,7 +5,6 @@ namespace FinancialManager
 {
     public partial class EditPurchasesForm : Form
     {
-        private List<PurchaseModel> data = new List<PurchaseModel>();
         private long selectedId = -1;
         private long categoryId = -1;
         private long transactionId;
@@ -54,18 +53,15 @@ namespace FinancialManager
                         Tag = tag.Id
                     });
             }
+
             tagsListView.EndUpdate();
+            tagsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void LoadList()
         {
-            data = SqliteDataAccess.LoadPurchases(transactionId);
+            var data = SqliteDataAccess.LoadPurchases(transactionId);
 
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
             var mainCurrency = SqliteDataAccess.GetMainCurrency();
 
             var sum = new MoneyModel(0, transactionCurrency.Units_Rate);
@@ -94,9 +90,9 @@ namespace FinancialManager
                 var tagsString = tagsStringBuilder.ToString();
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { category.Name, 
-                                             purchase.Sum.GetString() + " " + transactionCurrency.MoneyText, 
-                                             purchase.Sum_By_Main_Currency.GetString() + " " + mainCurrency.MoneyText, 
+                    new ListViewItem(new[] { category.Name,
+                                             purchase.Sum.GetString() + " " + transactionCurrency.MoneyText,
+                                             purchase.Sum_By_Main_Currency.GetString() + " " + mainCurrency.MoneyText,
                                              tagsString, purchase.Description })
                     {
                         Tag = purchase.Id
@@ -107,9 +103,9 @@ namespace FinancialManager
             }
 
             listView.Items.Add(
-                new ListViewItem(new[] { "Total", 
-                                         sum.GetString() + " " + transactionCurrency.MoneyText, 
-                                         sumByMainCurrency.GetString() + " " + mainCurrency.MoneyText, 
+                new ListViewItem(new[] { "Total",
+                                         sum.GetString() + " " + transactionCurrency.MoneyText,
+                                         sumByMainCurrency.GetString() + " " + mainCurrency.MoneyText,
                                          "", "" })
                 {
                     Tag = -1,
