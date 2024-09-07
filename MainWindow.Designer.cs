@@ -31,9 +31,6 @@
             components = new System.ComponentModel.Container();
             openDBDialog = new OpenFileDialog();
             createDBDialog = new SaveFileDialog();
-            mainWindowTabControl = new TabControl();
-            startTabPage = new TabPage();
-            fillDBTabPage = new TabPage();
             editTransactionsButton = new Button();
             editCategoriesButton = new Button();
             editCashFacilitiesButton = new Button();
@@ -41,11 +38,8 @@
             editPlacesOfPurchasesButton = new Button();
             editTransactionTypesButton = new Button();
             editCurrenciesButton = new Button();
-            analyticsTabPage = new TabPage();
             analyzeItemsButton = new Button();
-            settingsTabPage = new TabPage();
             currencyApiButton = new Button();
-            testsTabPage = new TabPage();
             currencyExchangeButton = new Button();
             currencyApiToolTip = new ToolTip(components);
             menuStrip = new MenuStrip();
@@ -67,12 +61,15 @@
             setCurrencyAPIKeyToolStripMenuItem = new ToolStripMenuItem();
             testsToolStripMenuItem = new ToolStripMenuItem();
             currencyExchangeToolStripMenuItem = new ToolStripMenuItem();
-            mainWindowTabControl.SuspendLayout();
-            fillDBTabPage.SuspendLayout();
-            analyticsTabPage.SuspendLayout();
-            settingsTabPage.SuspendLayout();
-            testsTabPage.SuspendLayout();
+            editGroupBox = new GroupBox();
+            analyticsGroupBox = new GroupBox();
+            settingsGroupBox = new GroupBox();
+            testsGroupBox = new GroupBox();
             menuStrip.SuspendLayout();
+            editGroupBox.SuspendLayout();
+            analyticsGroupBox.SuspendLayout();
+            settingsGroupBox.SuspendLayout();
+            testsGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // openDBDialog
@@ -85,50 +82,9 @@
             createDBDialog.Filter = "DB files|*.db";
             createDBDialog.Title = "Create DB";
             // 
-            // mainWindowTabControl
-            // 
-            mainWindowTabControl.Controls.Add(startTabPage);
-            mainWindowTabControl.Controls.Add(fillDBTabPage);
-            mainWindowTabControl.Controls.Add(analyticsTabPage);
-            mainWindowTabControl.Controls.Add(settingsTabPage);
-            mainWindowTabControl.Controls.Add(testsTabPage);
-            mainWindowTabControl.Dock = DockStyle.Fill;
-            mainWindowTabControl.Location = new Point(0, 42);
-            mainWindowTabControl.Name = "mainWindowTabControl";
-            mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 816);
-            mainWindowTabControl.TabIndex = 5;
-            // 
-            // startTabPage
-            // 
-            startTabPage.Location = new Point(8, 46);
-            startTabPage.Name = "startTabPage";
-            startTabPage.Padding = new Padding(3);
-            startTabPage.Size = new Size(1488, 764);
-            startTabPage.TabIndex = 0;
-            startTabPage.Text = "Start";
-            startTabPage.UseVisualStyleBackColor = true;
-            // 
-            // fillDBTabPage
-            // 
-            fillDBTabPage.Controls.Add(editTransactionsButton);
-            fillDBTabPage.Controls.Add(editCategoriesButton);
-            fillDBTabPage.Controls.Add(editCashFacilitiesButton);
-            fillDBTabPage.Controls.Add(editTagsButton);
-            fillDBTabPage.Controls.Add(editPlacesOfPurchasesButton);
-            fillDBTabPage.Controls.Add(editTransactionTypesButton);
-            fillDBTabPage.Controls.Add(editCurrenciesButton);
-            fillDBTabPage.Location = new Point(8, 46);
-            fillDBTabPage.Name = "fillDBTabPage";
-            fillDBTabPage.Padding = new Padding(3);
-            fillDBTabPage.Size = new Size(1488, 762);
-            fillDBTabPage.TabIndex = 1;
-            fillDBTabPage.Text = "Fill Data";
-            fillDBTabPage.UseVisualStyleBackColor = true;
-            // 
             // editTransactionsButton
             // 
-            editTransactionsButton.Location = new Point(1138, 318);
+            editTransactionsButton.Location = new Point(6, 350);
             editTransactionsButton.Name = "editTransactionsButton";
             editTransactionsButton.Size = new Size(344, 46);
             editTransactionsButton.TabIndex = 6;
@@ -138,7 +94,7 @@
             // 
             // editCategoriesButton
             // 
-            editCategoriesButton.Location = new Point(1138, 266);
+            editCategoriesButton.Location = new Point(6, 298);
             editCategoriesButton.Name = "editCategoriesButton";
             editCategoriesButton.Size = new Size(344, 46);
             editCategoriesButton.TabIndex = 5;
@@ -148,7 +104,7 @@
             // 
             // editCashFacilitiesButton
             // 
-            editCashFacilitiesButton.Location = new Point(1138, 214);
+            editCashFacilitiesButton.Location = new Point(6, 246);
             editCashFacilitiesButton.Name = "editCashFacilitiesButton";
             editCashFacilitiesButton.Size = new Size(344, 46);
             editCashFacilitiesButton.TabIndex = 4;
@@ -158,7 +114,7 @@
             // 
             // editTagsButton
             // 
-            editTagsButton.Location = new Point(1138, 162);
+            editTagsButton.Location = new Point(6, 194);
             editTagsButton.Name = "editTagsButton";
             editTagsButton.Size = new Size(344, 46);
             editTagsButton.TabIndex = 3;
@@ -168,7 +124,7 @@
             // 
             // editPlacesOfPurchasesButton
             // 
-            editPlacesOfPurchasesButton.Location = new Point(1138, 110);
+            editPlacesOfPurchasesButton.Location = new Point(6, 142);
             editPlacesOfPurchasesButton.Name = "editPlacesOfPurchasesButton";
             editPlacesOfPurchasesButton.Size = new Size(344, 46);
             editPlacesOfPurchasesButton.TabIndex = 2;
@@ -178,7 +134,7 @@
             // 
             // editTransactionTypesButton
             // 
-            editTransactionTypesButton.Location = new Point(1138, 58);
+            editTransactionTypesButton.Location = new Point(6, 90);
             editTransactionTypesButton.Name = "editTransactionTypesButton";
             editTransactionTypesButton.Size = new Size(344, 46);
             editTransactionTypesButton.TabIndex = 1;
@@ -188,7 +144,7 @@
             // 
             // editCurrenciesButton
             // 
-            editCurrenciesButton.Location = new Point(1138, 6);
+            editCurrenciesButton.Location = new Point(6, 38);
             editCurrenciesButton.Name = "editCurrenciesButton";
             editCurrenciesButton.Size = new Size(344, 46);
             editCurrenciesButton.TabIndex = 0;
@@ -196,65 +152,32 @@
             editCurrenciesButton.UseVisualStyleBackColor = true;
             editCurrenciesButton.Click += editCurrenciesButton_Click;
             // 
-            // analyticsTabPage
-            // 
-            analyticsTabPage.Controls.Add(analyzeItemsButton);
-            analyticsTabPage.Location = new Point(8, 46);
-            analyticsTabPage.Name = "analyticsTabPage";
-            analyticsTabPage.Padding = new Padding(3);
-            analyticsTabPage.Size = new Size(1488, 762);
-            analyticsTabPage.TabIndex = 2;
-            analyticsTabPage.Text = "Analytics";
-            analyticsTabPage.UseVisualStyleBackColor = true;
-            // 
             // analyzeItemsButton
             // 
-            analyzeItemsButton.Location = new Point(1020, 6);
+            analyzeItemsButton.Location = new Point(6, 38);
             analyzeItemsButton.Name = "analyzeItemsButton";
-            analyzeItemsButton.Size = new Size(462, 46);
+            analyzeItemsButton.Size = new Size(344, 46);
             analyzeItemsButton.TabIndex = 0;
             analyzeItemsButton.Text = "Analyze Items";
             analyzeItemsButton.UseVisualStyleBackColor = true;
             analyzeItemsButton.Click += analyzeItemsButton_Click;
             // 
-            // settingsTabPage
-            // 
-            settingsTabPage.Controls.Add(currencyApiButton);
-            settingsTabPage.Location = new Point(8, 46);
-            settingsTabPage.Name = "settingsTabPage";
-            settingsTabPage.Padding = new Padding(3);
-            settingsTabPage.Size = new Size(1488, 762);
-            settingsTabPage.TabIndex = 3;
-            settingsTabPage.Text = "Settings";
-            settingsTabPage.UseVisualStyleBackColor = true;
-            // 
             // currencyApiButton
             // 
-            currencyApiButton.Location = new Point(1086, 6);
+            currencyApiButton.Location = new Point(6, 38);
             currencyApiButton.Name = "currencyApiButton";
-            currencyApiButton.Size = new Size(396, 46);
+            currencyApiButton.Size = new Size(344, 46);
             currencyApiButton.TabIndex = 0;
             currencyApiButton.Text = "CurrencyAPI Key";
             currencyApiToolTip.SetToolTip(currencyApiButton, "Setup API key for CurrencyAPI service\r\nThis service is used for currency exchange");
             currencyApiButton.UseVisualStyleBackColor = true;
             currencyApiButton.Click += currencyApiButton_Click;
             // 
-            // testsTabPage
-            // 
-            testsTabPage.Controls.Add(currencyExchangeButton);
-            testsTabPage.Location = new Point(8, 46);
-            testsTabPage.Name = "testsTabPage";
-            testsTabPage.Padding = new Padding(3);
-            testsTabPage.Size = new Size(1488, 762);
-            testsTabPage.TabIndex = 4;
-            testsTabPage.Text = "Tests";
-            testsTabPage.UseVisualStyleBackColor = true;
-            // 
             // currencyExchangeButton
             // 
-            currencyExchangeButton.Location = new Point(1074, 6);
+            currencyExchangeButton.Location = new Point(6, 38);
             currencyExchangeButton.Name = "currencyExchangeButton";
-            currencyExchangeButton.Size = new Size(408, 46);
+            currencyExchangeButton.Size = new Size(344, 46);
             currencyExchangeButton.TabIndex = 0;
             currencyExchangeButton.Text = "Currency Exchange";
             currencyExchangeButton.UseVisualStyleBackColor = true;
@@ -266,7 +189,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 42);
+            menuStrip.Size = new Size(1504, 40);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
@@ -387,33 +310,81 @@
             // 
             testsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currencyExchangeToolStripMenuItem });
             testsToolStripMenuItem.Name = "testsToolStripMenuItem";
-            testsToolStripMenuItem.Size = new Size(86, 38);
+            testsToolStripMenuItem.Size = new Size(86, 36);
             testsToolStripMenuItem.Text = "Tests";
             // 
             // currencyExchangeToolStripMenuItem
             // 
             currencyExchangeToolStripMenuItem.Name = "currencyExchangeToolStripMenuItem";
-            currencyExchangeToolStripMenuItem.Size = new Size(359, 44);
+            currencyExchangeToolStripMenuItem.Size = new Size(350, 44);
             currencyExchangeToolStripMenuItem.Text = "Currency Exchange";
             currencyExchangeToolStripMenuItem.Click += currencyExchangeToolStripMenuItem_Click;
+            // 
+            // editGroupBox
+            // 
+            editGroupBox.Controls.Add(editCurrenciesButton);
+            editGroupBox.Controls.Add(editPlacesOfPurchasesButton);
+            editGroupBox.Controls.Add(editTransactionTypesButton);
+            editGroupBox.Controls.Add(editTagsButton);
+            editGroupBox.Controls.Add(editTransactionsButton);
+            editGroupBox.Controls.Add(editCashFacilitiesButton);
+            editGroupBox.Controls.Add(editCategoriesButton);
+            editGroupBox.Location = new Point(12, 43);
+            editGroupBox.Name = "editGroupBox";
+            editGroupBox.Size = new Size(358, 404);
+            editGroupBox.TabIndex = 7;
+            editGroupBox.TabStop = false;
+            editGroupBox.Text = "Edit";
+            // 
+            // analyticsGroupBox
+            // 
+            analyticsGroupBox.Controls.Add(analyzeItemsButton);
+            analyticsGroupBox.Location = new Point(376, 43);
+            analyticsGroupBox.Name = "analyticsGroupBox";
+            analyticsGroupBox.Size = new Size(358, 94);
+            analyticsGroupBox.TabIndex = 8;
+            analyticsGroupBox.TabStop = false;
+            analyticsGroupBox.Text = "Analytics";
+            // 
+            // settingsGroupBox
+            // 
+            settingsGroupBox.Controls.Add(currencyApiButton);
+            settingsGroupBox.Location = new Point(740, 43);
+            settingsGroupBox.Name = "settingsGroupBox";
+            settingsGroupBox.Size = new Size(358, 94);
+            settingsGroupBox.TabIndex = 1;
+            settingsGroupBox.TabStop = false;
+            settingsGroupBox.Text = "Settings";
+            // 
+            // testsGroupBox
+            // 
+            testsGroupBox.Controls.Add(currencyExchangeButton);
+            testsGroupBox.Location = new Point(1104, 43);
+            testsGroupBox.Name = "testsGroupBox";
+            testsGroupBox.Size = new Size(358, 94);
+            testsGroupBox.TabIndex = 9;
+            testsGroupBox.TabStop = false;
+            testsGroupBox.Text = "Tests";
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1504, 858);
-            Controls.Add(mainWindowTabControl);
+            Controls.Add(testsGroupBox);
+            Controls.Add(settingsGroupBox);
+            Controls.Add(analyticsGroupBox);
+            Controls.Add(editGroupBox);
             Controls.Add(menuStrip);
             Name = "MainWindow";
             Text = "Financial Manager";
             Shown += MainWindow_Shown;
-            mainWindowTabControl.ResumeLayout(false);
-            fillDBTabPage.ResumeLayout(false);
-            analyticsTabPage.ResumeLayout(false);
-            settingsTabPage.ResumeLayout(false);
-            testsTabPage.ResumeLayout(false);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
+            editGroupBox.ResumeLayout(false);
+            analyticsGroupBox.ResumeLayout(false);
+            settingsGroupBox.ResumeLayout(false);
+            testsGroupBox.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -421,9 +392,6 @@
         #endregion
         private OpenFileDialog openDBDialog;
         private SaveFileDialog createDBDialog;
-        private TabControl mainWindowTabControl;
-        private TabPage startTabPage;
-        private TabPage fillDBTabPage;
         private Button editCurrenciesButton;
         private Button editTransactionTypesButton;
         private Button editPlacesOfPurchasesButton;
@@ -431,11 +399,8 @@
         private Button editCashFacilitiesButton;
         private Button editCategoriesButton;
         private Button editTransactionsButton;
-        private TabPage analyticsTabPage;
-        private TabPage settingsTabPage;
         private Button currencyApiButton;
         private ToolTip currencyApiToolTip;
-        private TabPage testsTabPage;
         private Button currencyExchangeButton;
         private MenuStrip menuStrip;
         private ToolStripMenuItem fileToolStripMenuItem;
@@ -457,5 +422,9 @@
         private ToolStripMenuItem setCurrencyAPIKeyToolStripMenuItem;
         private ToolStripMenuItem testsToolStripMenuItem;
         private ToolStripMenuItem currencyExchangeToolStripMenuItem;
+        private GroupBox editGroupBox;
+        private GroupBox analyticsGroupBox;
+        private GroupBox settingsGroupBox;
+        private GroupBox testsGroupBox;
     }
 }
