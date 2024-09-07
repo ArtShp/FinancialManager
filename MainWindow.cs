@@ -165,5 +165,40 @@ namespace FinancialManager
             var analyzePurchasesForm = new ViewPurchasesAnalyticsForm();
             analyzePurchasesForm.Show();
         }
+
+        private void editCurrenciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editPlacesOfPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editTagsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editCashFacilitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

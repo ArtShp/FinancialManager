@@ -87,10 +87,10 @@
             mainWindowTabControl.Controls.Add(settingsTabPage);
             mainWindowTabControl.Controls.Add(testsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
-            mainWindowTabControl.Location = new Point(0, 40);
+            mainWindowTabControl.Location = new Point(0, 42);
             mainWindowTabControl.Name = "mainWindowTabControl";
             mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 818);
+            mainWindowTabControl.Size = new Size(1504, 816);
             mainWindowTabControl.TabIndex = 5;
             // 
             // startTabPage
@@ -115,7 +115,7 @@
             fillDBTabPage.Location = new Point(8, 46);
             fillDBTabPage.Name = "fillDBTabPage";
             fillDBTabPage.Padding = new Padding(3);
-            fillDBTabPage.Size = new Size(1488, 764);
+            fillDBTabPage.Size = new Size(1488, 762);
             fillDBTabPage.TabIndex = 1;
             fillDBTabPage.Text = "Fill Data";
             fillDBTabPage.UseVisualStyleBackColor = true;
@@ -260,21 +260,21 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 40);
+            menuStrip.Size = new Size(1504, 42);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 36);
+            fileToolStripMenuItem.Size = new Size(71, 38);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
             // 
             createDbToolStripMenuItem.Name = "createDbToolStripMenuItem";
             createDbToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-            createDbToolStripMenuItem.Size = new Size(359, 44);
+            createDbToolStripMenuItem.Size = new Size(339, 44);
             createDbToolStripMenuItem.Text = "Create DB";
             createDbToolStripMenuItem.Click += createDbToolStripMenuItem_Click;
             // 
@@ -282,14 +282,14 @@
             // 
             openDbToolStripMenuItem.Name = "openDbToolStripMenuItem";
             openDbToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            openDbToolStripMenuItem.Size = new Size(359, 44);
+            openDbToolStripMenuItem.Size = new Size(339, 44);
             openDbToolStripMenuItem.Text = "Open DB";
             openDbToolStripMenuItem.Click += openDbToolStripMenuItem_Click;
             // 
             // closeDbToolStripMenuItem
             // 
             closeDbToolStripMenuItem.Name = "closeDbToolStripMenuItem";
-            closeDbToolStripMenuItem.Size = new Size(359, 44);
+            closeDbToolStripMenuItem.Size = new Size(339, 44);
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
@@ -297,7 +297,7 @@
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editCurrenciesToolStripMenuItem, editPlacesOfPurchasesToolStripMenuItem, editTagsToolStripMenuItem, editCashFacilitiesToolStripMenuItem, editCategoriesToolStripMenuItem, editTransactionTypesToolStripMenuItem, editTransactionsToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(74, 36);
+            editToolStripMenuItem.Size = new Size(74, 38);
             editToolStripMenuItem.Text = "Edit";
             // 
             // editCurrenciesToolStripMenuItem
@@ -305,42 +305,49 @@
             editCurrenciesToolStripMenuItem.Name = "editCurrenciesToolStripMenuItem";
             editCurrenciesToolStripMenuItem.Size = new Size(404, 44);
             editCurrenciesToolStripMenuItem.Text = "Edit Currencies";
+            editCurrenciesToolStripMenuItem.Click += editCurrenciesToolStripMenuItem_Click;
             // 
             // editPlacesOfPurchasesToolStripMenuItem
             // 
             editPlacesOfPurchasesToolStripMenuItem.Name = "editPlacesOfPurchasesToolStripMenuItem";
             editPlacesOfPurchasesToolStripMenuItem.Size = new Size(404, 44);
             editPlacesOfPurchasesToolStripMenuItem.Text = "Edit Places Of Purchases";
+            editPlacesOfPurchasesToolStripMenuItem.Click += editPlacesOfPurchasesToolStripMenuItem_Click;
             // 
             // editTagsToolStripMenuItem
             // 
             editTagsToolStripMenuItem.Name = "editTagsToolStripMenuItem";
             editTagsToolStripMenuItem.Size = new Size(404, 44);
             editTagsToolStripMenuItem.Text = "Edit Tags";
+            editTagsToolStripMenuItem.Click += editTagsToolStripMenuItem_Click;
             // 
             // editCashFacilitiesToolStripMenuItem
             // 
             editCashFacilitiesToolStripMenuItem.Name = "editCashFacilitiesToolStripMenuItem";
             editCashFacilitiesToolStripMenuItem.Size = new Size(404, 44);
             editCashFacilitiesToolStripMenuItem.Text = "Edit Cash Facilities";
+            editCashFacilitiesToolStripMenuItem.Click += editCashFacilitiesToolStripMenuItem_Click;
             // 
             // editCategoriesToolStripMenuItem
             // 
             editCategoriesToolStripMenuItem.Name = "editCategoriesToolStripMenuItem";
             editCategoriesToolStripMenuItem.Size = new Size(404, 44);
             editCategoriesToolStripMenuItem.Text = "Edit Categories";
+            editCategoriesToolStripMenuItem.Click += editCategoriesToolStripMenuItem_Click;
             // 
             // editTransactionTypesToolStripMenuItem
             // 
             editTransactionTypesToolStripMenuItem.Name = "editTransactionTypesToolStripMenuItem";
             editTransactionTypesToolStripMenuItem.Size = new Size(404, 44);
             editTransactionTypesToolStripMenuItem.Text = "Edit Transaction Types";
+            editTransactionTypesToolStripMenuItem.Click += editTransactionTypesToolStripMenuItem_Click;
             // 
             // editTransactionsToolStripMenuItem
             // 
             editTransactionsToolStripMenuItem.Name = "editTransactionsToolStripMenuItem";
             editTransactionsToolStripMenuItem.Size = new Size(404, 44);
             editTransactionsToolStripMenuItem.Text = "Edit Transactions";
+            editTransactionsToolStripMenuItem.Click += editTransactionsToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
