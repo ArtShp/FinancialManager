@@ -158,6 +158,15 @@ namespace FinancialManager
 
         #endregion
 
+        #region Analyze Menu
+
+        private void analyzeItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AnalyzeItems();
+        }
+
+        #endregion
+
         #region Other Menu Items (TODO)
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
@@ -211,15 +220,14 @@ namespace FinancialManager
 
         private void analyzeItemsButton_Click(object sender, EventArgs e)
         {
-            var analyzeItemsForm = new ViewItemsAnalyticsForm();
-            analyzeItemsForm.Show();
+            AnalyzeItems();
         }
 
         #endregion
 
         #endregion
 
-        #region Edit Forms
+        #region Handlers for Menu Items
 
         private void EditCurrencies()
         {
@@ -261,6 +269,12 @@ namespace FinancialManager
         {
             var editTransactionsForm = new EditTransactionsForm();
             editTransactionsForm.Show();
+        }
+
+        private void AnalyzeItems()
+        {
+            var analyzeItemsForm = new ViewItemsAnalyticsForm();
+            analyzeItemsForm.Show();
         }
 
         #endregion
