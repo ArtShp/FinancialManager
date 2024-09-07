@@ -65,6 +65,8 @@
             analyzeItemsToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             setCurrencyAPIKeyToolStripMenuItem = new ToolStripMenuItem();
+            testsToolStripMenuItem = new ToolStripMenuItem();
+            currencyExchangeToolStripMenuItem = new ToolStripMenuItem();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             analyticsTabPage.SuspendLayout();
@@ -91,10 +93,10 @@
             mainWindowTabControl.Controls.Add(settingsTabPage);
             mainWindowTabControl.Controls.Add(testsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
-            mainWindowTabControl.Location = new Point(0, 42);
+            mainWindowTabControl.Location = new Point(0, 40);
             mainWindowTabControl.Name = "mainWindowTabControl";
             mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 816);
+            mainWindowTabControl.Size = new Size(1504, 818);
             mainWindowTabControl.TabIndex = 5;
             // 
             // startTabPage
@@ -243,7 +245,7 @@
             testsTabPage.Location = new Point(8, 46);
             testsTabPage.Name = "testsTabPage";
             testsTabPage.Padding = new Padding(3);
-            testsTabPage.Size = new Size(1488, 762);
+            testsTabPage.Size = new Size(1488, 764);
             testsTabPage.TabIndex = 4;
             testsTabPage.Text = "Tests";
             testsTabPage.UseVisualStyleBackColor = true;
@@ -261,17 +263,17 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(32, 32);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 42);
+            menuStrip.Size = new Size(1504, 40);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 38);
+            fileToolStripMenuItem.Size = new Size(71, 36);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
@@ -301,7 +303,7 @@
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editCurrenciesToolStripMenuItem, editTransactionTypesToolStripMenuItem, editPlacesOfPurchasesToolStripMenuItem, editTagsToolStripMenuItem, editCashFacilitiesToolStripMenuItem, editCategoriesToolStripMenuItem, editTransactionsToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(74, 38);
+            editToolStripMenuItem.Size = new Size(74, 36);
             editToolStripMenuItem.Text = "Edit";
             // 
             // editCurrenciesToolStripMenuItem
@@ -357,13 +359,13 @@
             // 
             analyticsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { analyzeItemsToolStripMenuItem });
             analyticsToolStripMenuItem.Name = "analyticsToolStripMenuItem";
-            analyticsToolStripMenuItem.Size = new Size(128, 38);
+            analyticsToolStripMenuItem.Size = new Size(128, 36);
             analyticsToolStripMenuItem.Text = "Analytics";
             // 
             // analyzeItemsToolStripMenuItem
             // 
             analyzeItemsToolStripMenuItem.Name = "analyzeItemsToolStripMenuItem";
-            analyzeItemsToolStripMenuItem.Size = new Size(359, 44);
+            analyzeItemsToolStripMenuItem.Size = new Size(295, 44);
             analyzeItemsToolStripMenuItem.Text = "Analyze Items";
             analyzeItemsToolStripMenuItem.Click += analyzeItemsToolStripMenuItem_Click;
             // 
@@ -371,7 +373,7 @@
             // 
             settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { setCurrencyAPIKeyToolStripMenuItem });
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            settingsToolStripMenuItem.Size = new Size(120, 38);
+            settingsToolStripMenuItem.Size = new Size(120, 36);
             settingsToolStripMenuItem.Text = "Settings";
             // 
             // setCurrencyAPIKeyToolStripMenuItem
@@ -380,6 +382,19 @@
             setCurrencyAPIKeyToolStripMenuItem.Size = new Size(363, 44);
             setCurrencyAPIKeyToolStripMenuItem.Text = "Set CurrencyAPI Key";
             setCurrencyAPIKeyToolStripMenuItem.Click += setCurrencyAPIKeyToolStripMenuItem_Click;
+            // 
+            // testsToolStripMenuItem
+            // 
+            testsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currencyExchangeToolStripMenuItem });
+            testsToolStripMenuItem.Name = "testsToolStripMenuItem";
+            testsToolStripMenuItem.Size = new Size(86, 36);
+            testsToolStripMenuItem.Text = "Tests";
+            // 
+            // currencyExchangeToolStripMenuItem
+            // 
+            currencyExchangeToolStripMenuItem.Name = "currencyExchangeToolStripMenuItem";
+            currencyExchangeToolStripMenuItem.Size = new Size(359, 44);
+            currencyExchangeToolStripMenuItem.Text = "Currency Exchange";
             // 
             // MainWindow
             // 
@@ -439,5 +454,7 @@
         private ToolStripMenuItem analyzeItemsToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem setCurrencyAPIKeyToolStripMenuItem;
+        private ToolStripMenuItem testsToolStripMenuItem;
+        private ToolStripMenuItem currencyExchangeToolStripMenuItem;
     }
 }
