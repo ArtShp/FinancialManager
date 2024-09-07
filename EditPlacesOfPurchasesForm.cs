@@ -68,6 +68,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -89,6 +91,8 @@ namespace FinancialManager
             SqliteDataAccess.AddPlaceOfPurchase(placeOfPurchase);
 
             clearDataView();
+
+            LoadList();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -101,6 +105,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void refreshButton_Click(object sender, EventArgs e)

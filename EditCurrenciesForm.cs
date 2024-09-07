@@ -73,6 +73,8 @@ namespace FinancialManager
             SqliteDataAccess.AddCurrency(currency);
 
             clearCurrencyDataView();
+
+            LoadCurrenciesList();
         }
 
         private void setCurrencyDataView(CurrencyModel currency)
@@ -130,6 +132,8 @@ namespace FinancialManager
 
             selectedCurrencyId = -1;
             clearCurrencyDataView();
+
+            LoadCurrenciesList();
         }
 
         private void cancelCurrencyEditingButton_Click(object sender, EventArgs e)
@@ -159,6 +163,8 @@ namespace FinancialManager
 
             selectedCurrencyId = -1;
             clearCurrencyDataView();
+
+            LoadCurrenciesList();
         }
     }
 }

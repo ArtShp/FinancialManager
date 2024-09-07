@@ -67,6 +67,8 @@ namespace FinancialManager
             SqliteDataAccess.AddTransactionType(transactionType);
 
             clearDataView();
+
+            LoadList();
         }
 
         private void setTransactionTypeDataView(TransactionTypeModel transactionType)
@@ -94,6 +96,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -106,6 +110,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

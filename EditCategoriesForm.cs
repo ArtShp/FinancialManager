@@ -88,6 +88,9 @@ namespace FinancialManager
             SqliteDataAccess.AddCategory(category);
 
             clearDataView();
+
+            LoadMainCategories();
+            LoadMainSubCategories();
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
@@ -160,6 +163,9 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadMainCategories();
+            LoadMainSubCategories();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -185,6 +191,9 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadMainCategories();
+            LoadMainSubCategories();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

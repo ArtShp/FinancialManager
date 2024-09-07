@@ -173,6 +173,8 @@ namespace FinancialManager
 
             clearDataView();
 
+            LoadList();
+
             var editPurchasesForm = new EditPurchasesForm(SqliteDataAccess.GetLastAddedTransactionId());
             editPurchasesForm.Show();
         }
@@ -187,6 +189,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -219,6 +223,8 @@ namespace FinancialManager
 
             selectedId = -1;
             clearDataView();
+
+            LoadList();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
