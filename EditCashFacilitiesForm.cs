@@ -11,6 +11,8 @@
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadCurrencies();
@@ -49,11 +51,31 @@
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(CashFacilityModel cashFacility)
+        {
+            nameTextBox.Text = cashFacility.Name;
+            currencyComboBox.SelectedValue = cashFacility.Id_Currency;
+        }
+
+        private void ClearDataView()
+        {
+            nameTextBox.Clear();
+            currencyComboBox.SelectedIndex = 0;
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void editButton_Click(object sender, EventArgs e)
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             var cashFacility = SqliteDataAccess.GetCashFacilityById(selectedId);
-            setDataView(cashFacility);
+            SetDataView(cashFacility);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -71,7 +93,7 @@
             SqliteDataAccess.UpdateCashFacility(cashFacility);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -82,7 +104,7 @@
                 return;
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -101,7 +123,7 @@
 
             SqliteDataAccess.AddCashFacility(cashFacility);
 
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -115,7 +137,7 @@
                 SqliteDataAccess.DeleteCashFacilityById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -125,16 +147,6 @@
             LoadAll();
         }
 
-        private void setDataView(CashFacilityModel cashFacility)
-        {
-            nameTextBox.Text = cashFacility.Name;
-            currencyComboBox.SelectedValue = cashFacility.Id_Currency;
-        }
-
-        private void clearDataView()
-        {
-            nameTextBox.Clear();
-            currencyComboBox.SelectedIndex = 0;
-        }
+        #endregion
     }
 }

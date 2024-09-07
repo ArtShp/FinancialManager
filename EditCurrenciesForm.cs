@@ -11,6 +11,8 @@
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadList();
@@ -49,30 +51,11 @@
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId != -1)
-            {
-                MessageBox.Show("Please cancel edit before adding a new currency", "Add currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        #endregion
 
-            CurrencyModel currency = new CurrencyModel
-            {
-                Name = nameTextBox.Text,
-                Code = codeTextBox.Text,
-                Symbol = symbolTextBox.Text,
-                Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
-            };
+        #region View Controls
 
-            SqliteDataAccess.AddCurrency(currency);
-
-            clearCurrencyDataView();
-
-            LoadList();
-        }
-
-        private void setCurrencyDataView(CurrencyModel currency)
+        private void SetDataView(CurrencyModel currency)
         {
             nameTextBox.Text = currency.Name;
             codeTextBox.Text = currency.Code;
@@ -80,7 +63,7 @@
             unitsRateNumericUpDown.Value = currency.Units_Rate;
         }
 
-        private void clearCurrencyDataView()
+        private void ClearDataView()
         {
             nameTextBox.Clear();
             codeTextBox.Clear();
@@ -88,10 +71,9 @@
             unitsRateNumericUpDown.Value = 0;
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            LoadAll();
-        }
+        #endregion
+
+        #region Buttons Click Handlers
 
         private void editButton_Click(object sender, EventArgs e)
         {
@@ -106,7 +88,7 @@
             }
 
             CurrencyModel currency = SqliteDataAccess.GetCurrencyById(selectedId);
-            setCurrencyDataView(currency);
+            SetDataView(currency);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -126,7 +108,7 @@
             SqliteDataAccess.UpdateCurrency(currency);
 
             selectedId = -1;
-            clearCurrencyDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -137,7 +119,30 @@
                 return;
 
             selectedId = -1;
-            clearCurrencyDataView();
+            ClearDataView();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId != -1)
+            {
+                MessageBox.Show("Please cancel edit before adding a new currency", "Add currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            CurrencyModel currency = new CurrencyModel
+            {
+                Name = nameTextBox.Text,
+                Code = codeTextBox.Text,
+                Symbol = symbolTextBox.Text,
+                Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
+            };
+
+            SqliteDataAccess.AddCurrency(currency);
+
+            ClearDataView();
+
+            LoadList();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -157,9 +162,16 @@
                 SqliteDataAccess.DeleteCurrencyById(selectedId);
 
             selectedId = -1;
-            clearCurrencyDataView();
+            ClearDataView();
 
             LoadList();
         }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            LoadAll();
+        }
+
+        #endregion
     }
 }

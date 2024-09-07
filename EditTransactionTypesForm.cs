@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace FinancialManager
+﻿namespace FinancialManager
 {
     public partial class EditTransactionTypesForm : Form
     {
@@ -15,6 +13,8 @@ namespace FinancialManager
 
             LoadAll();
         }
+
+        #region Loaders
 
         private void LoadAll()
         {
@@ -41,11 +41,57 @@ namespace FinancialManager
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(TransactionTypeModel transactionType)
+        {
+            nameTextBox.Text = transactionType.Name;
+        }
+
+        private void ClearDataView()
+        {
+            nameTextBox.Clear();
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void editButton_Click(object sender, EventArgs e)
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             TransactionTypeModel transactionType = SqliteDataAccess.GetTransactionTypeById(selectedId);
-            setTransactionTypeDataView(transactionType);
+            SetDataView(transactionType);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            TransactionTypeModel transactionType = new TransactionTypeModel
+            {
+                Id = selectedId,
+                Name = nameTextBox.Text
+            };
+
+            SqliteDataAccess.UpdateTransactionType(transactionType);
+
+            selectedId = -1;
+            ClearDataView();
+
+            LoadList();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            selectedId = -1;
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -63,36 +109,7 @@ namespace FinancialManager
 
             SqliteDataAccess.AddTransactionType(transactionType);
 
-            clearDataView();
-
-            LoadList();
-        }
-
-        private void setTransactionTypeDataView(TransactionTypeModel transactionType)
-        {
-            nameTextBox.Text = transactionType.Name;
-        }
-
-        private void clearDataView()
-        {
-            nameTextBox.Clear();
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            TransactionTypeModel transactionType = new TransactionTypeModel
-            {
-                Id = selectedId,
-                Name = nameTextBox.Text
-            };
-
-            SqliteDataAccess.UpdateTransactionType(transactionType);
-
-            selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -106,23 +123,16 @@ namespace FinancialManager
                 SqliteDataAccess.DeleteTransactionTypeById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            selectedId = -1;
-            clearDataView();
         }
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadAll();
         }
+        
+        #endregion
     }
 }

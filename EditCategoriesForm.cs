@@ -1,8 +1,9 @@
-﻿namespace FinancialManager
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace FinancialManager
 {
     public partial class EditCategoriesForm : Form
     {
-        private List<CategoryModel> data = new List<CategoryModel>();
         private long selectedId = -1;
         private long parentCategoryId = 0;
 
@@ -12,6 +13,8 @@
 
             LoadAll();
         }
+
+        #region Loaders
 
         private void LoadAll()
         {
@@ -26,7 +29,7 @@
 
         private void LoadMainCategories()
         {
-            data = SqliteDataAccess.LoadCategoriesByParentId();
+            var data = SqliteDataAccess.LoadCategoriesByParentId();
 
             treeView.BeginUpdate();
             treeView.Nodes.Clear();
@@ -65,6 +68,32 @@
             treeView.EndUpdate();
         }
 
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(CategoryModel category)
+        {
+            nameTextBox.Text = category.Name;
+
+            parentCategoryId = category.Id_Parent;
+            if (parentCategoryId == 0)
+                categoryTextBox.Clear();
+            else
+                categoryTextBox.Text = SqliteDataAccess.GetCategoryById(parentCategoryId).Name;
+        }
+
+        private void ClearDataView()
+        {
+            nameTextBox.Clear();
+            categoryTextBox.Clear();
+            parentCategoryId = 0;
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void loadButton_Click(object sender, EventArgs e)
         {
             parentCategoryId = Convert.ToInt64(treeView.SelectedNode.Tag);
@@ -76,6 +105,42 @@
         {
             categoryTextBox.Clear();
             parentCategoryId = 0;
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+            var category = SqliteDataAccess.GetCategoryById(selectedId);
+            SetDataView(category);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            CategoryModel category = new CategoryModel
+            {
+                Id = selectedId,
+                Name = nameTextBox.Text,
+                Id_Parent = parentCategoryId
+            };
+
+            SqliteDataAccess.UpdateCategory(category);
+
+            selectedId = -1;
+            ClearDataView();
+
+            LoadList();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            selectedId = -1;
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -94,7 +159,21 @@
 
             SqliteDataAccess.AddCategory(category);
 
-            clearDataView();
+            ClearDataView();
+
+            LoadList();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+
+            var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                SqliteDataAccess.DeleteCategoryById(selectedId);
+
+            selectedId = -1;
+            ClearDataView();
 
             LoadList();
         }
@@ -104,23 +183,9 @@
             LoadAll();
         }
 
-        private void setDataView(CategoryModel category)
-        {
-            nameTextBox.Text = category.Name;
+        #endregion
 
-            parentCategoryId = category.Id_Parent;
-            if (parentCategoryId == 0)
-                categoryTextBox.Clear();
-            else
-                categoryTextBox.Text = SqliteDataAccess.GetCategoryById(parentCategoryId).Name;
-        }
-
-        private void clearDataView()
-        {
-            nameTextBox.Clear();
-            categoryTextBox.Clear();
-            parentCategoryId = 0;
-        }
+        #region Other Controls Handlers
 
         private void treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
@@ -158,54 +223,6 @@
             treeView.EndUpdate();
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
-
-            var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteCategoryById(selectedId);
-
-            selectedId = -1;
-            clearDataView();
-
-            LoadList();
-        }
-
-        private void editButton_Click(object sender, EventArgs e)
-        {
-            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
-            var category = SqliteDataAccess.GetCategoryById(selectedId);
-            setDataView(category);
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            CategoryModel category = new CategoryModel
-            {
-                Id = selectedId,
-                Name = nameTextBox.Text,
-                Id_Parent = parentCategoryId
-            };
-
-            SqliteDataAccess.UpdateCategory(category);
-
-            selectedId = -1;
-            clearDataView();
-
-            LoadList();
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            selectedId = -1;
-            clearDataView();
-        }
+        #endregion
     }
 }

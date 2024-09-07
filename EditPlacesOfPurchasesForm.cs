@@ -11,6 +11,8 @@
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadList();
@@ -36,11 +38,29 @@
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(PlaceOfPurchaseModel placeOfPurchase)
+        {
+            nameTextBox.Text = placeOfPurchase.Name;
+        }
+
+        private void ClearDataView()
+        {
+            nameTextBox.Clear();
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void editButton_Click(object sender, EventArgs e)
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             PlaceOfPurchaseModel placeOfPurchase = SqliteDataAccess.GetPlaceOfPurchaseById(selectedId);
-            setPlaceOfPurchaseDataView(placeOfPurchase);
+            SetDataView(placeOfPurchase);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -57,7 +77,7 @@
             SqliteDataAccess.UpdatePlaceOfPurchase(placeOfPurchase);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -68,7 +88,7 @@
                 return;
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -86,7 +106,7 @@
 
             SqliteDataAccess.AddPlaceOfPurchase(placeOfPurchase);
 
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -100,7 +120,7 @@
                 SqliteDataAccess.DeletePlaceOfPurchaseById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -110,14 +130,6 @@
             LoadAll();
         }
 
-        private void setPlaceOfPurchaseDataView(PlaceOfPurchaseModel placeOfPurchase)
-        {
-            nameTextBox.Text = placeOfPurchase.Name;
-        }
-
-        private void clearDataView()
-        {
-            nameTextBox.Clear();
-        }
+        #endregion
     }
 }

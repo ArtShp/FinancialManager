@@ -11,6 +11,8 @@
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadCurrentDate();
@@ -109,7 +111,11 @@
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private void setDataView(TransactionModel transaction)
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(TransactionModel transaction)
         {
             transaction.Sum_By_Cash_Facility.Rate = SqliteDataAccess.GetUnitsRate(transaction.Id_Cash_Facility);
 
@@ -122,7 +128,7 @@
             descriptionRichTextBox.Text = transaction.Description;
         }
 
-        private void clearDataView()
+        private void ClearDataView()
         {
             transactionComboBox.SelectedIndex = 0;
             dateTimePicker.Value = DateTime.Now;
@@ -133,9 +139,51 @@
             descriptionRichTextBox.Clear();
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Buttons Click Handlers
+
+        private void editButton_Click(object sender, EventArgs e)
         {
-            LoadAll();
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+            TransactionModel transaction = SqliteDataAccess.GetTransactionById(selectedId);
+            SetDataView(transaction);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
+
+            TransactionModel transaction = new TransactionModel
+            {
+                Id = selectedId,
+                Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
+                Date = dateTimePicker.Value.Date,
+                Sum_By_Cash_Facility = new MoneyModel(sumTextBox.Text, SqliteDataAccess.GetUnitsRate(idCashFacility)),
+                Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
+                Id_Cash_Facility = idCashFacility,
+                Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
+                Description = descriptionRichTextBox.Text
+            };
+
+            SqliteDataAccess.UpdateTransaction(transaction);
+
+            selectedId = -1;
+            ClearDataView();
+
+            LoadList();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            selectedId = -1;
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -161,7 +209,7 @@
 
             SqliteDataAccess.AddTransaction(transaction);
 
-            clearDataView();
+            ClearDataView();
 
             LoadList();
 
@@ -178,53 +226,19 @@
                 SqliteDataAccess.DeleteTransactionById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void refreshButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
-            TransactionModel transaction = SqliteDataAccess.GetTransactionById(selectedId);
-            setDataView(transaction);
+            LoadAll();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
+        #endregion
 
-            var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
-
-            TransactionModel transaction = new TransactionModel
-            {
-                Id = selectedId,
-                Id_Transaction_Type = Convert.ToInt64(transactionComboBox.SelectedValue),
-                Date = dateTimePicker.Value.Date,
-                Sum_By_Cash_Facility = new MoneyModel(sumTextBox.Text, SqliteDataAccess.GetUnitsRate(idCashFacility)),
-                Id_Currency_Of_Transaction = Convert.ToInt64(currencyComboBox.SelectedValue),
-                Id_Cash_Facility = idCashFacility,
-                Id_Place_Of_Purchase = Convert.ToInt64(placeComboBox.SelectedValue),
-                Description = descriptionRichTextBox.Text
-            };
-
-            SqliteDataAccess.UpdateTransaction(transaction);
-
-            selectedId = -1;
-            clearDataView();
-
-            LoadList();
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            selectedId = -1;
-            clearDataView();
-        }
+        #region Other Controls Handlers
 
         private void listView_DoubleClick(object sender, EventArgs e)
         {
@@ -236,5 +250,7 @@
                 editPurchasesForm.Show();
             }
         }
+
+        #endregion
     }
 }

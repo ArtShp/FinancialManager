@@ -21,6 +21,8 @@ namespace FinancialManager
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadData();
@@ -117,27 +119,11 @@ namespace FinancialManager
             listView.EndUpdate();
         }
 
-        private void chooseCategoryButton_Click(object sender, EventArgs e)
-        {
-            var chooseCategoryForm = new ChooseCategoryForm();
-            chooseCategoryForm.ShowDialog();
+        #endregion
 
-            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+        #region View Controls
 
-            if (selectedCategoryId == -1)
-                return;
-
-            categoryId = selectedCategoryId;
-            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
-        }
-
-        private void clearCategoryButton_Click(object sender, EventArgs e)
-        {
-            categoryId = -1;
-            categoryTextBox.Clear();
-        }
-
-        private void setDataView(PurchaseModel purchase, List<TagModel> tags = null)
+        private void SetDataView(PurchaseModel purchase, List<TagModel> tags = null)
         {
             tags ??= new List<TagModel>();
 
@@ -159,7 +145,7 @@ namespace FinancialManager
             descriptionRichTextBox.Text = purchase.Description;
         }
 
-        private void clearDataView()
+        private void ClearDataView()
         {
             sumTextBox.Text = "0";
             categoryTextBox.Clear();
@@ -168,6 +154,95 @@ namespace FinancialManager
             descriptionRichTextBox.Clear();
 
             categoryId = -1;
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
+        private void chooseCategoryButton_Click(object sender, EventArgs e)
+        {
+            var chooseCategoryForm = new ChooseCategoryForm();
+            chooseCategoryForm.ShowDialog();
+
+            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+
+            if (selectedCategoryId == -1)
+                return;
+
+            categoryId = selectedCategoryId;
+            categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
+        }
+
+        private void clearCategoryButton_Click(object sender, EventArgs e)
+        {
+            categoryId = -1;
+            categoryTextBox.Clear();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
+
+            if (selectedId == -1)
+                return;
+
+            PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
+            var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
+            SetDataView(purchase, tags);
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            if (categoryId == -1)
+            {
+                MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
+
+            try
+            {
+                var mainCurrency = SqliteDataAccess.GetMainCurrency();
+                var convertedSum = CurrencyConverter.ConvertMoney(sum, transactionCurrency, mainCurrency, transactionDate);
+
+                PurchaseModel purchase = new PurchaseModel
+                {
+                    Id = selectedId,
+                    Id_Transaction = transactionId,
+                    Sum = sum,
+                    Sum_By_Main_Currency = convertedSum,
+                    Id_Category = categoryId,
+                    Description = descriptionRichTextBox.Text
+                };
+
+                var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
+
+                SqliteDataAccess.UpdatePurchase(purchase, tagsId);
+
+                selectedId = -1;
+                ClearDataView();
+
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while updating purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+                return;
+
+            selectedId = -1;
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -204,7 +279,7 @@ namespace FinancialManager
 
                 SqliteDataAccess.AddPurchase(purchase, tagsId);
 
-                clearDataView();
+                ClearDataView();
 
                 LoadList();
             }
@@ -213,11 +288,6 @@ namespace FinancialManager
                 MessageBox.Show("Error while adding purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            LoadAll();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -232,74 +302,16 @@ namespace FinancialManager
                 SqliteDataAccess.DeletePurchaseById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void refreshButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
-
-            if (selectedId == -1)
-                return;
-
-            PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
-            var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
-            setDataView(purchase, tags);
+            LoadAll();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            if (categoryId == -1)
-            {
-                MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
-
-            try
-            {
-                var mainCurrency = SqliteDataAccess.GetMainCurrency();
-                var convertedSum = CurrencyConverter.ConvertMoney(sum, transactionCurrency, mainCurrency, transactionDate);
-
-                PurchaseModel purchase = new PurchaseModel
-                {
-                    Id = selectedId,
-                    Id_Transaction = transactionId,
-                    Sum = sum,
-                    Sum_By_Main_Currency = convertedSum,
-                    Id_Category = categoryId,
-                    Description = descriptionRichTextBox.Text
-                };
-
-                var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
-
-                SqliteDataAccess.UpdatePurchase(purchase, tagsId);
-
-                selectedId = -1;
-                clearDataView();
-
-                LoadList();
-            }
-            catch
-            {
-                MessageBox.Show("Error while updating purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            if (selectedId == -1)
-                return;
-
-            selectedId = -1;
-            clearDataView();
-        }
+        #endregion
     }
 }

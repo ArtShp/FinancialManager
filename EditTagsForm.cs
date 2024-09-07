@@ -11,6 +11,8 @@
             LoadAll();
         }
 
+        #region Loaders
+
         private void LoadAll()
         {
             LoadTransactionTypes();
@@ -49,11 +51,31 @@
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        #endregion
+
+        #region View Controls
+
+        private void SetDataView(TagModel tag)
+        {
+            nameTextBox.Text = tag.Name;
+            transactionTypeComboBox.SelectedValue = tag.Id_Transaction_Type;
+        }
+
+        private void ClearDataView()
+        {
+            nameTextBox.Clear();
+            transactionTypeComboBox.SelectedIndex = 0;
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void editButton_Click(object sender, EventArgs e)
         {
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             TagModel tag = SqliteDataAccess.GetTagById(selectedId);
-            setTagDataView(tag);
+            SetDataView(tag);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -71,7 +93,7 @@
             SqliteDataAccess.UpdateTag(tag);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -82,7 +104,7 @@
                 return;
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -101,7 +123,7 @@
 
             SqliteDataAccess.AddTag(tag);
 
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -115,7 +137,7 @@
                 SqliteDataAccess.DeleteTagById(selectedId);
 
             selectedId = -1;
-            clearDataView();
+            ClearDataView();
 
             LoadList();
         }
@@ -125,16 +147,6 @@
             LoadAll();
         }
 
-        private void setTagDataView(TagModel tag)
-        {
-            nameTextBox.Text = tag.Name;
-            transactionTypeComboBox.SelectedValue = tag.Id_Transaction_Type;
-        }
-
-        private void clearDataView()
-        {
-            nameTextBox.Clear();
-            transactionTypeComboBox.SelectedIndex = 0;
-        }
+        #endregion
     }
 }
