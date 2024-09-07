@@ -48,20 +48,24 @@
             deleteButton = new Button();
             unitsRateLabel = new Label();
             unitsRateNumericUpDown = new NumericUpDown();
+            panel1 = new Panel();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(47, 159);
+            nameTextBox.Location = new Point(3, 121);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(295, 39);
+            nameTextBox.Size = new Size(360, 39);
             nameTextBox.TabIndex = 1;
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(47, 124);
+            nameLabel.Location = new Point(3, 86);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(78, 32);
             nameLabel.TabIndex = 2;
@@ -70,7 +74,7 @@
             // codeLabel
             // 
             codeLabel.AutoSize = true;
-            codeLabel.Location = new Point(47, 247);
+            codeLabel.Location = new Point(3, 182);
             codeLabel.Name = "codeLabel";
             codeLabel.Size = new Size(70, 32);
             codeLabel.TabIndex = 4;
@@ -78,15 +82,15 @@
             // 
             // codeTextBox
             // 
-            codeTextBox.Location = new Point(47, 282);
+            codeTextBox.Location = new Point(3, 217);
             codeTextBox.Name = "codeTextBox";
-            codeTextBox.Size = new Size(295, 39);
+            codeTextBox.Size = new Size(360, 39);
             codeTextBox.TabIndex = 3;
             // 
             // symbolLabel
             // 
             symbolLabel.AutoSize = true;
-            symbolLabel.Location = new Point(47, 382);
+            symbolLabel.Location = new Point(3, 286);
             symbolLabel.Name = "symbolLabel";
             symbolLabel.Size = new Size(93, 32);
             symbolLabel.TabIndex = 6;
@@ -94,16 +98,16 @@
             // 
             // symbolTextBox
             // 
-            symbolTextBox.Location = new Point(47, 417);
+            symbolTextBox.Location = new Point(3, 321);
             symbolTextBox.Name = "symbolTextBox";
-            symbolTextBox.Size = new Size(295, 39);
+            symbolTextBox.Size = new Size(360, 39);
             symbolTextBox.TabIndex = 5;
             // 
             // addButton
             // 
-            addButton.Location = new Point(47, 738);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
-            addButton.Size = new Size(97, 46);
+            addButton.Size = new Size(116, 46);
             addButton.TabIndex = 7;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -111,9 +115,9 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(344, 738);
+            refreshButton.Location = new Point(247, 55);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(127, 46);
+            refreshButton.Size = new Size(116, 46);
             refreshButton.TabIndex = 8;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -121,9 +125,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(47, 686);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(97, 46);
+            editButton.Size = new Size(116, 46);
             editButton.TabIndex = 9;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -131,9 +135,9 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(182, 686);
+            saveButton.Location = new Point(125, 3);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(130, 46);
+            saveButton.Size = new Size(116, 46);
             saveButton.TabIndex = 10;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -141,9 +145,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(344, 686);
+            cancelButton.Location = new Point(247, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(127, 46);
+            cancelButton.Size = new Size(116, 46);
             cancelButton.TabIndex = 11;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -154,10 +158,11 @@
             listView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader, rateColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(505, 12);
+            listView.Location = new Point(386, 12);
+            listView.MinimumSize = new Size(435, 580);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(657, 772);
+            listView.Size = new Size(635, 680);
             listView.TabIndex = 12;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
@@ -186,7 +191,7 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(47, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(264, 65);
             titleLabel.TabIndex = 13;
@@ -194,9 +199,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(182, 738);
+            deleteButton.Location = new Point(125, 55);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(129, 46);
+            deleteButton.Size = new Size(116, 46);
             deleteButton.TabIndex = 14;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
@@ -205,7 +210,7 @@
             // unitsRateLabel
             // 
             unitsRateLabel.AutoSize = true;
-            unitsRateLabel.Location = new Point(47, 500);
+            unitsRateLabel.Location = new Point(3, 391);
             unitsRateLabel.Name = "unitsRateLabel";
             unitsRateLabel.Size = new Size(116, 32);
             unitsRateLabel.TabIndex = 15;
@@ -213,38 +218,60 @@
             // 
             // unitsRateNumericUpDown
             // 
-            unitsRateNumericUpDown.Location = new Point(47, 535);
+            unitsRateNumericUpDown.Location = new Point(3, 426);
             unitsRateNumericUpDown.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             unitsRateNumericUpDown.Name = "unitsRateNumericUpDown";
-            unitsRateNumericUpDown.Size = new Size(295, 39);
+            unitsRateNumericUpDown.Size = new Size(360, 39);
             unitsRateNumericUpDown.TabIndex = 17;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel1.Controls.Add(refreshButton);
+            panel1.Controls.Add(cancelButton);
+            panel1.Controls.Add(deleteButton);
+            panel1.Controls.Add(saveButton);
+            panel1.Controls.Add(addButton);
+            panel1.Controls.Add(editButton);
+            panel1.Location = new Point(12, 591);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(368, 107);
+            panel1.TabIndex = 19;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(titleLabel);
+            panel2.Controls.Add(nameTextBox);
+            panel2.Controls.Add(unitsRateNumericUpDown);
+            panel2.Controls.Add(nameLabel);
+            panel2.Controls.Add(unitsRateLabel);
+            panel2.Controls.Add(codeTextBox);
+            panel2.Controls.Add(codeLabel);
+            panel2.Controls.Add(symbolTextBox);
+            panel2.Controls.Add(symbolLabel);
+            panel2.Location = new Point(12, 12);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(368, 473);
+            panel2.TabIndex = 20;
             // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1174, 815);
-            Controls.Add(unitsRateNumericUpDown);
-            Controls.Add(unitsRateLabel);
-            Controls.Add(deleteButton);
-            Controls.Add(titleLabel);
+            ClientSize = new Size(1034, 709);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(listView);
-            Controls.Add(cancelButton);
-            Controls.Add(saveButton);
-            Controls.Add(editButton);
-            Controls.Add(refreshButton);
-            Controls.Add(addButton);
-            Controls.Add(symbolLabel);
-            Controls.Add(symbolTextBox);
-            Controls.Add(codeLabel);
-            Controls.Add(codeTextBox);
-            Controls.Add(nameLabel);
-            Controls.Add(nameTextBox);
+            MinimumSize = new Size(860, 680);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
+            ResizeEnd += EditCurrenciesForm_ResizeEnd;
+            Resize += EditCurrenciesForm_Resize;
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).EndInit();
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -268,5 +295,7 @@
         private ColumnHeader rateColumnHeader;
         private Label unitsRateLabel;
         private NumericUpDown unitsRateNumericUpDown;
+        private Panel panel1;
+        private Panel panel2;
     }
 }
