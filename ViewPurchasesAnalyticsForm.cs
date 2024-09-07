@@ -132,8 +132,14 @@ namespace FinancialManager
             var sumIncome = new MoneyModel(0, mainCurrency.Units_Rate);
             var sumExpense = new MoneyModel(0, mainCurrency.Units_Rate);
 
+            var incomeId = SqliteDataAccess.IncomeTransactionTypeId;
+            var expenseId = SqliteDataAccess.ExpenseTransactionTypeId;
+
             listView.BeginUpdate();
             listView.Items.Clear();
+
+            listView.Groups.Add(new ListViewGroup(SqliteDataAccess.GetTransactionTypeById(incomeId).Name, HorizontalAlignment.Left));
+            listView.Groups.Add(new ListViewGroup(SqliteDataAccess.GetTransactionTypeById(expenseId).Name, HorizontalAlignment.Left));
 
             foreach (var purchase in data)
             {
@@ -148,21 +154,21 @@ namespace FinancialManager
                 });
 
                 listView.Items.Add(item);
-                if (purchase.TransactionTypeId == 1)
+                if (purchase.TransactionTypeId == incomeId)
                 {
-                    listView.Groups[0].Items.Add(item);
+                    listView.Groups[incomeId - 1].Items.Add(item);
                     sumIncome += purchase.SumByMainCurrency;
                 }
-                else if (purchase.TransactionTypeId == 2)
+                else if (purchase.TransactionTypeId == expenseId)
                 {
-                    listView.Groups[1].Items.Add(item);
+                    listView.Groups[expenseId - 1].Items.Add(item);
                     sumExpense += purchase.SumByMainCurrency;
                 }
             }
 
             var incomeItem = new ListViewItem(new string[]
             {
-                $"Total: {listView.Groups[0].Items.Count} of {SqliteDataAccess.GetPurchasesCount(1)}",
+                $"Total: {listView.Groups[incomeId - 1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(incomeId)}",
                 "",
                 "",
                 sumIncome.GetString() + " " + mainCurrency.MoneyText,
@@ -177,7 +183,7 @@ namespace FinancialManager
 
             var expenseItem = new ListViewItem(new string[]
             {
-                $"Total: {listView.Groups[1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(2)}",
+                $"Total: {listView.Groups[expenseId - 1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(expenseId)}",
                 "",
                 "",
                 sumExpense.GetString() + " " + mainCurrency.MoneyText,
@@ -193,8 +199,8 @@ namespace FinancialManager
             listView.Items.Add(incomeItem);
             listView.Items.Add(expenseItem);
 
-            listView.Groups[0].Items.Add(incomeItem);
-            listView.Groups[1].Items.Add(expenseItem);
+            listView.Groups[incomeId - 1].Items.Add(incomeItem);
+            listView.Groups[expenseId - 1].Items.Add(expenseItem);
 
             listView.EndUpdate();
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);

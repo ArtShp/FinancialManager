@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewGroup listViewGroup1 = new ListViewGroup("Income", HorizontalAlignment.Left);
-            ListViewGroup listViewGroup2 = new ListViewGroup("Expense", HorizontalAlignment.Left);
             listView = new ListView();
             categoryColumnHeader = new ColumnHeader();
             dateColumnHeader = new ColumnHeader();
@@ -60,11 +58,6 @@
             listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, dateColumnHeader, sumColumnHeader, mainSumColumnHeader, placeColumnHeader, tagsColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listViewGroup1.Header = "Income";
-            listViewGroup1.Name = "incomeListViewGroup";
-            listViewGroup2.Header = "Expense";
-            listViewGroup2.Name = "expenseListViewGroup";
-            listView.Groups.AddRange(new ListViewGroup[] { listViewGroup1, listViewGroup2 });
             listView.Location = new Point(543, 12);
             listView.MultiSelect = false;
             listView.Name = "listView";
