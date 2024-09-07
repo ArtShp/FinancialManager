@@ -185,6 +185,8 @@ namespace FinancialManager
 
         #endregion
 
+        #endregion
+
         #region Buttons Click Handlers
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
@@ -236,8 +238,6 @@ namespace FinancialManager
         {
             CurrencyExchange();
         }
-
-        #endregion
 
         #endregion
 
