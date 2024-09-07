@@ -49,7 +49,7 @@ namespace FinancialManager
 
         #endregion
 
-        #region Main Window Menu Event Handlers
+        #region Menu Event Handlers
 
         #region File Menu
 
