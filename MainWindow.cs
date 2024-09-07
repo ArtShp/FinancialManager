@@ -119,49 +119,83 @@ namespace FinancialManager
 
         #endregion
 
+        #region Edit Menu
+
+        private void editCurrenciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditCurrencies();
+        }
+
+        private void editTransactionTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditTransactionTypes();
+        }
+
+        private void editPlacesOfPurchasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditPlacesOfPurchases();
+        }
+
+        private void editTagsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditTags();
+        }
+
+        private void editCashFacilitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditCashFacilities();
+        }
+
+        private void editCategoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditCategories();
+        }
+
+        private void editTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditTransactions();
+        }
+
+        #endregion
+
         #region Other Menu Items (TODO)
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
         {
-            EditCurrenciesForm addCurrenciesForm = new EditCurrenciesForm();
-            addCurrenciesForm.Show();
+            EditCurrencies();
         }
 
         private void editTransactionTypesButton_Click(object sender, EventArgs e)
         {
-            EditTransactionTypesForm addTransactionTypesForm = new EditTransactionTypesForm();
-            addTransactionTypesForm.Show();
+            EditTransactionTypes();
         }
 
         private void editPlacesOfPurchasesButton_Click(object sender, EventArgs e)
         {
-            var editPlacesOfPurchasesForm = new EditPlacesOfPurchasesForm();
-            editPlacesOfPurchasesForm.Show();
+            EditPlacesOfPurchases();
         }
 
         private void editTagsButton_Click(object sender, EventArgs e)
         {
-            var editTagsForm = new EditTagsForm();
-            editTagsForm.Show();
+            EditTags();
         }
 
         private void editCashFacilitiesButton_Click(object sender, EventArgs e)
         {
-            var editCashFacilitiesForm = new EditCashFacilitiesForm();
-            editCashFacilitiesForm.Show();
+            EditCashFacilities();
         }
 
         private void editCategoriesButton_Click(object sender, EventArgs e)
         {
-            var editCategoriesForm = new EditCategoriesForm();
-            editCategoriesForm.Show();
+            EditCategories();
         }
 
         private void editTransactionsButton_Click(object sender, EventArgs e)
         {
-            var editTransactionsForm = new EditTransactionsForm();
-            editTransactionsForm.Show();
+            EditTransactions();
         }
+
+
 
         private void currencyApiButton_Click(object sender, EventArgs e)
         {
@@ -182,6 +216,52 @@ namespace FinancialManager
         }
 
         #endregion
+
+        #endregion
+
+        #region Edit Forms
+
+        private void EditCurrencies()
+        {
+            var addCurrenciesForm = new EditCurrenciesForm();
+            addCurrenciesForm.Show();
+        }
+
+        private void EditTransactionTypes()
+        {
+            var addTransactionTypesForm = new EditTransactionTypesForm();
+            addTransactionTypesForm.Show();
+        }
+
+        private void EditPlacesOfPurchases()
+        {
+            var editPlacesOfPurchasesForm = new EditPlacesOfPurchasesForm();
+            editPlacesOfPurchasesForm.Show();
+        }
+
+        private void EditTags()
+        {
+            var editTagsForm = new EditTagsForm();
+            editTagsForm.Show();
+        }
+
+        private void EditCashFacilities()
+        {
+            var editCashFacilitiesForm = new EditCashFacilitiesForm();
+            editCashFacilitiesForm.Show();
+        }
+
+        private void EditCategories()
+        {
+            var editCategoriesForm = new EditCategoriesForm();
+            editCategoriesForm.Show();
+        }
+
+        private void EditTransactions()
+        {
+            var editTransactionsForm = new EditTransactionsForm();
+            editTransactionsForm.Show();
+        }
 
         #endregion
     }
