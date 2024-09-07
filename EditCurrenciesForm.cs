@@ -31,24 +31,24 @@ namespace FinancialManager
 
         private void UpdateCurrenciesList()
         {
-            currenciesListView.BeginUpdate();
-            currenciesListView.Items.Clear();
+            listView.BeginUpdate();
+            listView.Items.Clear();
 
             foreach (var currency in data)
             {
                 if (currency.Id == SqliteDataAccess.MainCurrencyId)
                 {
-                    currenciesListView.Items.Add(
+                    listView.Items.Add(
                     new ListViewItem(currency.ItemArray)
                     {
                         Tag = currency.Id,
                         ForeColor = Color.Blue,
-                        Font = new Font(currenciesListView.Font, FontStyle.Bold)
+                        Font = new Font(listView.Font, FontStyle.Bold)
                     });
                 }
                 else
                 {
-                    currenciesListView.Items.Add(
+                    listView.Items.Add(
                     new ListViewItem(currency.ItemArray)
                     {
                         Tag = currency.Id
@@ -56,11 +56,11 @@ namespace FinancialManager
                 }
             }
 
-            currenciesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            currenciesListView.EndUpdate();
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            listView.EndUpdate();
         }
 
-        private void addCurrencyButton_Click(object sender, EventArgs e)
+        private void addButton_Click(object sender, EventArgs e)
         {
             if (selectedId != -1)
             {
@@ -70,9 +70,9 @@ namespace FinancialManager
 
             CurrencyModel currency = new CurrencyModel
             {
-                Name = currencyNameTextBox.Text,
-                Code = currencyCodeTextBox.Text,
-                Symbol = currencySymbolTextBox.Text,
+                Name = nameTextBox.Text,
+                Code = codeTextBox.Text,
+                Symbol = symbolTextBox.Text,
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
@@ -85,28 +85,28 @@ namespace FinancialManager
 
         private void setCurrencyDataView(CurrencyModel currency)
         {
-            currencyNameTextBox.Text = currency.Name;
-            currencyCodeTextBox.Text = currency.Code;
-            currencySymbolTextBox.Text = currency.Symbol;
+            nameTextBox.Text = currency.Name;
+            codeTextBox.Text = currency.Code;
+            symbolTextBox.Text = currency.Symbol;
             unitsRateNumericUpDown.Value = currency.Units_Rate;
         }
 
         private void clearCurrencyDataView()
         {
-            currencyNameTextBox.Clear();
-            currencyCodeTextBox.Clear();
-            currencySymbolTextBox.Clear();
+            nameTextBox.Clear();
+            codeTextBox.Clear();
+            symbolTextBox.Clear();
             unitsRateNumericUpDown.Value = 0;
         }
 
-        private void refreshCurrenciesButton_Click(object sender, EventArgs e)
+        private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadCurrenciesList();
         }
 
-        private void editCurrencyButton_Click(object sender, EventArgs e)
+        private void editButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             if (selectedId == SqliteDataAccess.MainCurrencyId)
             {
@@ -120,7 +120,7 @@ namespace FinancialManager
             setCurrencyDataView(currency);
         }
 
-        private void saveCurrencyButton_Click(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
             if (selectedId == -1)
                 return;
@@ -128,9 +128,9 @@ namespace FinancialManager
             CurrencyModel currency = new CurrencyModel
             {
                 Id = selectedId,
-                Name = currencyNameTextBox.Text,
-                Code = currencyCodeTextBox.Text,
-                Symbol = currencySymbolTextBox.Text,
+                Name = nameTextBox.Text,
+                Code = codeTextBox.Text,
+                Symbol = symbolTextBox.Text,
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
@@ -142,7 +142,7 @@ namespace FinancialManager
             LoadCurrenciesList();
         }
 
-        private void cancelCurrencyEditingButton_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
             if (selectedId == -1)
                 return;
@@ -151,9 +151,9 @@ namespace FinancialManager
             clearCurrencyDataView();
         }
 
-        private void deleteCurrencyButton_Click(object sender, EventArgs e)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
-            selectedId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+            selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             if (selectedId == SqliteDataAccess.MainCurrencyId)
             {

@@ -28,139 +28,139 @@
         /// </summary>
         private void InitializeComponent()
         {
-            currencyNameTextBox = new TextBox();
-            currencyNameLabel = new Label();
-            currencyCodeLabel = new Label();
-            currencyCodeTextBox = new TextBox();
-            currencySymbolLabel = new Label();
-            currencySymbolTextBox = new TextBox();
-            addCurrencyButton = new Button();
-            refreshCurrenciesButton = new Button();
-            editCurrencyButton = new Button();
-            saveCurrencyButton = new Button();
-            cancelCurrencyEditingButton = new Button();
-            currenciesListView = new ListView();
+            nameTextBox = new TextBox();
+            nameLabel = new Label();
+            codeLabel = new Label();
+            codeTextBox = new TextBox();
+            symbolLabel = new Label();
+            symbolTextBox = new TextBox();
+            addButton = new Button();
+            refreshButton = new Button();
+            editButton = new Button();
+            saveButton = new Button();
+            cancelButton = new Button();
+            listView = new ListView();
             nameColumnHeader = new ColumnHeader();
             codeColumnHeader = new ColumnHeader();
             symbolColumnHeader = new ColumnHeader();
-            currenciesLabel = new Label();
-            deleteCurrencyButton = new Button();
             rateColumnHeader = new ColumnHeader();
+            titleLabel = new Label();
+            deleteButton = new Button();
             unitsRateLabel = new Label();
             unitsRateNumericUpDown = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).BeginInit();
             SuspendLayout();
             // 
-            // currencyNameTextBox
+            // nameTextBox
             // 
-            currencyNameTextBox.Location = new Point(47, 159);
-            currencyNameTextBox.Name = "currencyNameTextBox";
-            currencyNameTextBox.Size = new Size(295, 39);
-            currencyNameTextBox.TabIndex = 1;
+            nameTextBox.Location = new Point(47, 159);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(295, 39);
+            nameTextBox.TabIndex = 1;
             // 
-            // currencyNameLabel
+            // nameLabel
             // 
-            currencyNameLabel.AutoSize = true;
-            currencyNameLabel.Location = new Point(47, 124);
-            currencyNameLabel.Name = "currencyNameLabel";
-            currencyNameLabel.Size = new Size(180, 32);
-            currencyNameLabel.TabIndex = 2;
-            currencyNameLabel.Text = "Currency Name";
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new Point(47, 124);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(78, 32);
+            nameLabel.TabIndex = 2;
+            nameLabel.Text = "Name";
             // 
-            // currencyCodeLabel
+            // codeLabel
             // 
-            currencyCodeLabel.AutoSize = true;
-            currencyCodeLabel.Location = new Point(47, 247);
-            currencyCodeLabel.Name = "currencyCodeLabel";
-            currencyCodeLabel.Size = new Size(172, 32);
-            currencyCodeLabel.TabIndex = 4;
-            currencyCodeLabel.Text = "Currency Code";
+            codeLabel.AutoSize = true;
+            codeLabel.Location = new Point(47, 247);
+            codeLabel.Name = "codeLabel";
+            codeLabel.Size = new Size(70, 32);
+            codeLabel.TabIndex = 4;
+            codeLabel.Text = "Code";
             // 
-            // currencyCodeTextBox
+            // codeTextBox
             // 
-            currencyCodeTextBox.Location = new Point(47, 282);
-            currencyCodeTextBox.Name = "currencyCodeTextBox";
-            currencyCodeTextBox.Size = new Size(295, 39);
-            currencyCodeTextBox.TabIndex = 3;
+            codeTextBox.Location = new Point(47, 282);
+            codeTextBox.Name = "codeTextBox";
+            codeTextBox.Size = new Size(295, 39);
+            codeTextBox.TabIndex = 3;
             // 
-            // currencySymbolLabel
+            // symbolLabel
             // 
-            currencySymbolLabel.AutoSize = true;
-            currencySymbolLabel.Location = new Point(47, 382);
-            currencySymbolLabel.Name = "currencySymbolLabel";
-            currencySymbolLabel.Size = new Size(195, 32);
-            currencySymbolLabel.TabIndex = 6;
-            currencySymbolLabel.Text = "Currency Symbol";
+            symbolLabel.AutoSize = true;
+            symbolLabel.Location = new Point(47, 382);
+            symbolLabel.Name = "symbolLabel";
+            symbolLabel.Size = new Size(93, 32);
+            symbolLabel.TabIndex = 6;
+            symbolLabel.Text = "Symbol";
             // 
-            // currencySymbolTextBox
+            // symbolTextBox
             // 
-            currencySymbolTextBox.Location = new Point(47, 417);
-            currencySymbolTextBox.Name = "currencySymbolTextBox";
-            currencySymbolTextBox.Size = new Size(295, 39);
-            currencySymbolTextBox.TabIndex = 5;
+            symbolTextBox.Location = new Point(47, 417);
+            symbolTextBox.Name = "symbolTextBox";
+            symbolTextBox.Size = new Size(295, 39);
+            symbolTextBox.TabIndex = 5;
             // 
-            // addCurrencyButton
+            // addButton
             // 
-            addCurrencyButton.Location = new Point(47, 738);
-            addCurrencyButton.Name = "addCurrencyButton";
-            addCurrencyButton.Size = new Size(97, 46);
-            addCurrencyButton.TabIndex = 7;
-            addCurrencyButton.Text = "Add";
-            addCurrencyButton.UseVisualStyleBackColor = true;
-            addCurrencyButton.Click += addCurrencyButton_Click;
+            addButton.Location = new Point(47, 738);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(97, 46);
+            addButton.TabIndex = 7;
+            addButton.Text = "Add";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
-            // refreshCurrenciesButton
+            // refreshButton
             // 
-            refreshCurrenciesButton.Location = new Point(344, 738);
-            refreshCurrenciesButton.Name = "refreshCurrenciesButton";
-            refreshCurrenciesButton.Size = new Size(127, 46);
-            refreshCurrenciesButton.TabIndex = 8;
-            refreshCurrenciesButton.Text = "Refresh";
-            refreshCurrenciesButton.UseVisualStyleBackColor = true;
-            refreshCurrenciesButton.Click += refreshCurrenciesButton_Click;
+            refreshButton.Location = new Point(344, 738);
+            refreshButton.Name = "refreshButton";
+            refreshButton.Size = new Size(127, 46);
+            refreshButton.TabIndex = 8;
+            refreshButton.Text = "Refresh";
+            refreshButton.UseVisualStyleBackColor = true;
+            refreshButton.Click += refreshButton_Click;
             // 
-            // editCurrencyButton
+            // editButton
             // 
-            editCurrencyButton.Location = new Point(47, 686);
-            editCurrencyButton.Name = "editCurrencyButton";
-            editCurrencyButton.Size = new Size(97, 46);
-            editCurrencyButton.TabIndex = 9;
-            editCurrencyButton.Text = "Edit";
-            editCurrencyButton.UseVisualStyleBackColor = true;
-            editCurrencyButton.Click += editCurrencyButton_Click;
+            editButton.Location = new Point(47, 686);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(97, 46);
+            editButton.TabIndex = 9;
+            editButton.Text = "Edit";
+            editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
-            // saveCurrencyButton
+            // saveButton
             // 
-            saveCurrencyButton.Location = new Point(182, 686);
-            saveCurrencyButton.Name = "saveCurrencyButton";
-            saveCurrencyButton.Size = new Size(130, 46);
-            saveCurrencyButton.TabIndex = 10;
-            saveCurrencyButton.Text = "Save";
-            saveCurrencyButton.UseVisualStyleBackColor = true;
-            saveCurrencyButton.Click += saveCurrencyButton_Click;
+            saveButton.Location = new Point(182, 686);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(130, 46);
+            saveButton.TabIndex = 10;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
-            // cancelCurrencyEditingButton
+            // cancelButton
             // 
-            cancelCurrencyEditingButton.Location = new Point(344, 686);
-            cancelCurrencyEditingButton.Name = "cancelCurrencyEditingButton";
-            cancelCurrencyEditingButton.Size = new Size(127, 46);
-            cancelCurrencyEditingButton.TabIndex = 11;
-            cancelCurrencyEditingButton.Text = "Cancel";
-            cancelCurrencyEditingButton.UseVisualStyleBackColor = true;
-            cancelCurrencyEditingButton.Click += cancelCurrencyEditingButton_Click;
+            cancelButton.Location = new Point(344, 686);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(127, 46);
+            cancelButton.TabIndex = 11;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
-            // currenciesListView
+            // listView
             // 
-            currenciesListView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader, rateColumnHeader });
-            currenciesListView.FullRowSelect = true;
-            currenciesListView.GridLines = true;
-            currenciesListView.Location = new Point(505, 12);
-            currenciesListView.MultiSelect = false;
-            currenciesListView.Name = "currenciesListView";
-            currenciesListView.Size = new Size(657, 772);
-            currenciesListView.TabIndex = 12;
-            currenciesListView.UseCompatibleStateImageBehavior = false;
-            currenciesListView.View = View.Details;
+            listView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader, codeColumnHeader, symbolColumnHeader, rateColumnHeader });
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
+            listView.Location = new Point(505, 12);
+            listView.MultiSelect = false;
+            listView.Name = "listView";
+            listView.Size = new Size(657, 772);
+            listView.TabIndex = 12;
+            listView.UseCompatibleStateImageBehavior = false;
+            listView.View = View.Details;
             // 
             // nameColumnHeader
             // 
@@ -177,30 +177,30 @@
             symbolColumnHeader.Text = "Symbol";
             symbolColumnHeader.Width = 120;
             // 
-            // currenciesLabel
-            // 
-            currenciesLabel.AutoSize = true;
-            currenciesLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            currenciesLabel.Location = new Point(47, 12);
-            currenciesLabel.Name = "currenciesLabel";
-            currenciesLabel.Size = new Size(264, 65);
-            currenciesLabel.TabIndex = 13;
-            currenciesLabel.Text = "Currencies";
-            // 
-            // deleteCurrencyButton
-            // 
-            deleteCurrencyButton.Location = new Point(182, 738);
-            deleteCurrencyButton.Name = "deleteCurrencyButton";
-            deleteCurrencyButton.Size = new Size(129, 46);
-            deleteCurrencyButton.TabIndex = 14;
-            deleteCurrencyButton.Text = "Delete";
-            deleteCurrencyButton.UseVisualStyleBackColor = true;
-            deleteCurrencyButton.Click += deleteCurrencyButton_Click;
-            // 
             // rateColumnHeader
             // 
             rateColumnHeader.Text = "Units rate";
             rateColumnHeader.Width = 120;
+            // 
+            // titleLabel
+            // 
+            titleLabel.AutoSize = true;
+            titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            titleLabel.Location = new Point(47, 12);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(264, 65);
+            titleLabel.TabIndex = 13;
+            titleLabel.Text = "Currencies";
+            // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(182, 738);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(129, 46);
+            deleteButton.TabIndex = 14;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // unitsRateLabel
             // 
@@ -226,20 +226,20 @@
             ClientSize = new Size(1174, 815);
             Controls.Add(unitsRateNumericUpDown);
             Controls.Add(unitsRateLabel);
-            Controls.Add(deleteCurrencyButton);
-            Controls.Add(currenciesLabel);
-            Controls.Add(currenciesListView);
-            Controls.Add(cancelCurrencyEditingButton);
-            Controls.Add(saveCurrencyButton);
-            Controls.Add(editCurrencyButton);
-            Controls.Add(refreshCurrenciesButton);
-            Controls.Add(addCurrencyButton);
-            Controls.Add(currencySymbolLabel);
-            Controls.Add(currencySymbolTextBox);
-            Controls.Add(currencyCodeLabel);
-            Controls.Add(currencyCodeTextBox);
-            Controls.Add(currencyNameLabel);
-            Controls.Add(currencyNameTextBox);
+            Controls.Add(deleteButton);
+            Controls.Add(titleLabel);
+            Controls.Add(listView);
+            Controls.Add(cancelButton);
+            Controls.Add(saveButton);
+            Controls.Add(editButton);
+            Controls.Add(refreshButton);
+            Controls.Add(addButton);
+            Controls.Add(symbolLabel);
+            Controls.Add(symbolTextBox);
+            Controls.Add(codeLabel);
+            Controls.Add(codeTextBox);
+            Controls.Add(nameLabel);
+            Controls.Add(nameTextBox);
             Name = "EditCurrenciesForm";
             Text = "Edit Currencies";
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).EndInit();
@@ -248,23 +248,23 @@
         }
 
         #endregion
-        private TextBox currencyNameTextBox;
-        private Label currencyNameLabel;
-        private Label currencyCodeLabel;
-        private TextBox currencyCodeTextBox;
-        private Label currencySymbolLabel;
-        private TextBox currencySymbolTextBox;
-        private Button addCurrencyButton;
-        private Button refreshCurrenciesButton;
-        private Button editCurrencyButton;
-        private Button saveCurrencyButton;
-        private Button cancelCurrencyEditingButton;
-        private ListView currenciesListView;
+        private TextBox nameTextBox;
+        private Label nameLabel;
+        private Label codeLabel;
+        private TextBox codeTextBox;
+        private Label symbolLabel;
+        private TextBox symbolTextBox;
+        private Button addButton;
+        private Button refreshButton;
+        private Button editButton;
+        private Button saveButton;
+        private Button cancelButton;
+        private ListView listView;
         private ColumnHeader nameColumnHeader;
         private ColumnHeader codeColumnHeader;
         private ColumnHeader symbolColumnHeader;
-        private Label currenciesLabel;
-        private Button deleteCurrencyButton;
+        private Label titleLabel;
+        private Button deleteButton;
         private ColumnHeader rateColumnHeader;
         private Label unitsRateLabel;
         private NumericUpDown unitsRateNumericUpDown;
