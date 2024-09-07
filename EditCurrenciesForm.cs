@@ -13,7 +13,7 @@ namespace FinancialManager
     public partial class EditCurrenciesForm : Form
     {
         private List<CurrencyModel> data = new List<CurrencyModel>();
-        private long selectedCurrencyId = -1;
+        private long selectedId = -1;
 
         public EditCurrenciesForm()
         {
@@ -62,7 +62,7 @@ namespace FinancialManager
 
         private void addCurrencyButton_Click(object sender, EventArgs e)
         {
-            if (selectedCurrencyId != -1)
+            if (selectedId != -1)
             {
                 MessageBox.Show("Please cancel edit before adding a new currency", "Add currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -106,28 +106,28 @@ namespace FinancialManager
 
         private void editCurrencyButton_Click(object sender, EventArgs e)
         {
-            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+            selectedId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
 
-            if (selectedCurrencyId == SqliteDataAccess.MainCurrencyId)
+            if (selectedId == SqliteDataAccess.MainCurrencyId)
             {
                 MessageBox.Show("You can't edit main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                selectedCurrencyId = -1;
+                selectedId = -1;
 
                 return;
             }
 
-            CurrencyModel currency = SqliteDataAccess.GetCurrencyById(selectedCurrencyId);
+            CurrencyModel currency = SqliteDataAccess.GetCurrencyById(selectedId);
             setCurrencyDataView(currency);
         }
 
         private void saveCurrencyButton_Click(object sender, EventArgs e)
         {
-            if (selectedCurrencyId == -1)
+            if (selectedId == -1)
                 return;
 
             CurrencyModel currency = new CurrencyModel
             {
-                Id = selectedCurrencyId,
+                Id = selectedId,
                 Name = currencyNameTextBox.Text,
                 Code = currencyCodeTextBox.Text,
                 Symbol = currencySymbolTextBox.Text,
@@ -136,7 +136,7 @@ namespace FinancialManager
 
             SqliteDataAccess.UpdateCurrency(currency);
 
-            selectedCurrencyId = -1;
+            selectedId = -1;
             clearCurrencyDataView();
 
             LoadCurrenciesList();
@@ -144,30 +144,30 @@ namespace FinancialManager
 
         private void cancelCurrencyEditingButton_Click(object sender, EventArgs e)
         {
-            if (selectedCurrencyId == -1)
+            if (selectedId == -1)
                 return;
 
-            selectedCurrencyId = -1;
+            selectedId = -1;
             clearCurrencyDataView();
         }
 
         private void deleteCurrencyButton_Click(object sender, EventArgs e)
         {
-            selectedCurrencyId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
+            selectedId = Convert.ToInt64(currenciesListView.SelectedItems[0].Tag);
 
-            if (selectedCurrencyId == SqliteDataAccess.MainCurrencyId)
+            if (selectedId == SqliteDataAccess.MainCurrencyId)
             {
                 MessageBox.Show("You can't delete main currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                selectedCurrencyId = -1;
+                selectedId = -1;
 
                 return;
             }
 
             var result = MessageBox.Show("Are you sure you want to delete this currency?", "Delete currency", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteCurrencyById(selectedCurrencyId);
+                SqliteDataAccess.DeleteCurrencyById(selectedId);
 
-            selectedCurrencyId = -1;
+            selectedId = -1;
             clearCurrencyDataView();
 
             LoadCurrenciesList();
