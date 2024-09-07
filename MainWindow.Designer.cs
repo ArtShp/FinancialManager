@@ -63,6 +63,8 @@
             editTransactionsToolStripMenuItem = new ToolStripMenuItem();
             analyticsToolStripMenuItem = new ToolStripMenuItem();
             analyzeItemsToolStripMenuItem = new ToolStripMenuItem();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            setCurrencyAPIKeyToolStripMenuItem = new ToolStripMenuItem();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             analyticsTabPage.SuspendLayout();
@@ -100,7 +102,7 @@
             startTabPage.Location = new Point(8, 46);
             startTabPage.Name = "startTabPage";
             startTabPage.Padding = new Padding(3);
-            startTabPage.Size = new Size(1488, 762);
+            startTabPage.Size = new Size(1488, 764);
             startTabPage.TabIndex = 0;
             startTabPage.Text = "Start";
             startTabPage.UseVisualStyleBackColor = true;
@@ -259,7 +261,7 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(32, 32);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1504, 42);
@@ -365,6 +367,19 @@
             analyzeItemsToolStripMenuItem.Text = "Analyze Items";
             analyzeItemsToolStripMenuItem.Click += analyzeItemsToolStripMenuItem_Click;
             // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { setCurrencyAPIKeyToolStripMenuItem });
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new Size(120, 38);
+            settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // setCurrencyAPIKeyToolStripMenuItem
+            // 
+            setCurrencyAPIKeyToolStripMenuItem.Name = "setCurrencyAPIKeyToolStripMenuItem";
+            setCurrencyAPIKeyToolStripMenuItem.Size = new Size(363, 44);
+            setCurrencyAPIKeyToolStripMenuItem.Text = "Set CurrencyAPI Key";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -421,5 +436,7 @@
         private ToolStripMenuItem editTransactionsToolStripMenuItem;
         private ToolStripMenuItem analyticsToolStripMenuItem;
         private ToolStripMenuItem analyzeItemsToolStripMenuItem;
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem setCurrencyAPIKeyToolStripMenuItem;
     }
 }
