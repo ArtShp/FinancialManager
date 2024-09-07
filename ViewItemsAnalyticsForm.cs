@@ -1,12 +1,12 @@
 ﻿namespace FinancialManager
 {
-    public partial class ViewPurchasesAnalyticsForm : Form
+    public partial class ViewItemsAnalyticsForm : Form
     {
         private long categoryId = -1;
         private bool isFromDateSet = false;
         private bool isToDateSet = false;
 
-        public ViewPurchasesAnalyticsForm()
+        public ViewItemsAnalyticsForm()
         {
             InitializeComponent();
 
@@ -115,7 +115,7 @@
                 return;
             }
 
-            var data = SqliteDataAccess.GetPurchases(categoryId, 
+            var data = SqliteDataAccess.GetItems(categoryId, 
                                                      Convert.ToInt64(transactionTypeComboBox.SelectedValue),
                                                      isFromDateSet ? fromDate : null,
                                                      isToDateSet ? toDate : null,
@@ -135,34 +135,34 @@
             listView.Groups.Add(new ListViewGroup(SqliteDataAccess.GetTransactionTypeById(incomeId).Name, HorizontalAlignment.Left));
             listView.Groups.Add(new ListViewGroup(SqliteDataAccess.GetTransactionTypeById(expenseId).Name, HorizontalAlignment.Left));
 
-            foreach (var purchase in data)
+            foreach (var item in data)
             {
-                var item = new ListViewItem(new string[]
+                var listItem = new ListViewItem(new string[]
                 {
-                    purchase.Category,
-                    purchase.Date.ToString("dd.MM.yyyy"),
-                    purchase.Sum.GetString() + " " + purchase.CurrencyText,
-                    purchase.SumByMainCurrency.GetString() + " " + mainCurrency.MoneyText,
-                    purchase.Place,
-                    purchase.Tags
+                    item.Category,
+                    item.Date.ToString("dd.MM.yyyy"),
+                    item.Sum.GetString() + " " + item.CurrencyText,
+                    item.SumByMainCurrency.GetString() + " " + mainCurrency.MoneyText,
+                    item.Place,
+                    item.Tags
                 });
 
-                listView.Items.Add(item);
-                if (purchase.TransactionTypeId == incomeId)
+                listView.Items.Add(listItem);
+                if (item.TransactionTypeId == incomeId)
                 {
-                    listView.Groups[incomeId - 1].Items.Add(item);
-                    sumIncome += purchase.SumByMainCurrency;
+                    listView.Groups[incomeId - 1].Items.Add(listItem);
+                    sumIncome += item.SumByMainCurrency;
                 }
-                else if (purchase.TransactionTypeId == expenseId)
+                else if (item.TransactionTypeId == expenseId)
                 {
-                    listView.Groups[expenseId - 1].Items.Add(item);
-                    sumExpense += purchase.SumByMainCurrency;
+                    listView.Groups[expenseId - 1].Items.Add(listItem);
+                    sumExpense += item.SumByMainCurrency;
                 }
             }
 
             var incomeItem = new ListViewItem(new string[]
             {
-                $"Total: {listView.Groups[incomeId - 1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(incomeId)}",
+                $"Total: {listView.Groups[incomeId - 1].Items.Count} of {SqliteDataAccess.GetItemsCount(incomeId)}",
                 "",
                 "",
                 sumIncome.GetString() + " " + mainCurrency.MoneyText,
@@ -177,7 +177,7 @@
 
             var expenseItem = new ListViewItem(new string[]
             {
-                $"Total: {listView.Groups[expenseId - 1].Items.Count} of {SqliteDataAccess.GetPurchasesCount(expenseId)}",
+                $"Total: {listView.Groups[expenseId - 1].Items.Count} of {SqliteDataAccess.GetItemsCount(expenseId)}",
                 "",
                 "",
                 sumExpense.GetString() + " " + mainCurrency.MoneyText,

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FinancialManager
 {
-    public partial class EditPurchasesForm : Form
+    public partial class EditItemsForm : Form
     {
         private long selectedId = -1;
         private long categoryId = -1;
@@ -12,7 +12,7 @@ namespace FinancialManager
         private CurrencyModel transactionCurrency;
         private DateTime transactionDate;
 
-        public EditPurchasesForm(long transactionId)
+        public EditItemsForm(long transactionId)
         {
             this.transactionId = transactionId;
 
@@ -62,7 +62,7 @@ namespace FinancialManager
 
         private void LoadList()
         {
-            var data = SqliteDataAccess.LoadPurchases(transactionId);
+            var data = SqliteDataAccess.LoadItems(transactionId);
 
             var mainCurrency = SqliteDataAccess.GetMainCurrency();
 
@@ -72,13 +72,13 @@ namespace FinancialManager
             listView.BeginUpdate();
             listView.Items.Clear();
 
-            foreach (var purchase in data)
+            foreach (var item in data)
             {
-                var category = SqliteDataAccess.GetCategoryById(purchase.Id_Category);
-                purchase.Sum.Rate = transactionCurrency.Units_Rate;
-                purchase.Sum_By_Main_Currency.Rate = mainCurrency.Units_Rate;
+                var category = SqliteDataAccess.GetCategoryById(item.Id_Category);
+                item.Sum.Rate = transactionCurrency.Units_Rate;
+                item.Sum_By_Main_Currency.Rate = mainCurrency.Units_Rate;
 
-                var tags = SqliteDataAccess.GetTagsByPurchaseId(purchase.Id);
+                var tags = SqliteDataAccess.GetTagsByItemId(item.Id);
 
                 StringBuilder tagsStringBuilder = new StringBuilder();
                 foreach (var tag in tags)
@@ -93,15 +93,15 @@ namespace FinancialManager
 
                 listView.Items.Add(
                     new ListViewItem(new[] { category.Name,
-                                             purchase.Sum.GetString() + " " + transactionCurrency.MoneyText,
-                                             purchase.Sum_By_Main_Currency.GetString() + " " + mainCurrency.MoneyText,
-                                             tagsString, purchase.Description })
+                                             item.Sum.GetString() + " " + transactionCurrency.MoneyText,
+                                             item.Sum_By_Main_Currency.GetString() + " " + mainCurrency.MoneyText,
+                                             tagsString, item.Description })
                     {
-                        Tag = purchase.Id
+                        Tag = item.Id
                     });
 
-                sum += purchase.Sum;
-                sumByMainCurrency += purchase.Sum_By_Main_Currency;
+                sum += item.Sum;
+                sumByMainCurrency += item.Sum_By_Main_Currency;
             }
 
             listView.Items.Add(
@@ -123,26 +123,26 @@ namespace FinancialManager
 
         #region View Controls
 
-        private void SetDataView(PurchaseModel purchase, List<TagModel> tags = null)
+        private void SetDataView(ItemModel item, List<TagModel> tags = null)
         {
             tags ??= new List<TagModel>();
 
-            purchase.Sum.Rate = transactionCurrency.Units_Rate;
-            categoryId = purchase.Id_Category;
+            item.Sum.Rate = transactionCurrency.Units_Rate;
+            categoryId = item.Id_Category;
 
-            sumTextBox.Text = purchase.Sum.GetString();
+            sumTextBox.Text = item.Sum.GetString();
             categoryTextBox.Text = SqliteDataAccess.GetCategoryById(categoryId).Name;
-            foreach (ListViewItem item in tagsListView.CheckedItems)
+            foreach (ListViewItem listItem in tagsListView.CheckedItems)
             {
-                item.Checked = false;
+                listItem.Checked = false;
             }
             foreach (var tag in tags)
             {
-                var item = tagsListView.Items.Cast<ListViewItem>().FirstOrDefault(x => Convert.ToInt64(x.Tag) == tag.Id);
-                if (item != null)
-                    item.Checked = true;
+                var listItem = tagsListView.Items.Cast<ListViewItem>().FirstOrDefault(x => Convert.ToInt64(x.Tag) == tag.Id);
+                if (listItem != null)
+                    listItem.Checked = true;
             }
-            descriptionRichTextBox.Text = purchase.Description;
+            descriptionRichTextBox.Text = item.Description;
         }
 
         private void ClearDataView()
@@ -187,9 +187,9 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
-            PurchaseModel purchase = SqliteDataAccess.GetPurchaseById(selectedId);
-            var tags = SqliteDataAccess.GetTagsByPurchaseId(selectedId);
-            SetDataView(purchase, tags);
+            ItemModel item = SqliteDataAccess.GetItemById(selectedId);
+            var tags = SqliteDataAccess.GetTagsByItemId(selectedId);
+            SetDataView(item, tags);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -210,7 +210,7 @@ namespace FinancialManager
                 var mainCurrency = SqliteDataAccess.GetMainCurrency();
                 var convertedSum = CurrencyConverter.ConvertMoney(sum, transactionCurrency, mainCurrency, transactionDate);
 
-                PurchaseModel purchase = new PurchaseModel
+                ItemModel item = new ItemModel
                 {
                     Id = selectedId,
                     Id_Transaction = transactionId,
@@ -222,7 +222,7 @@ namespace FinancialManager
 
                 var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
 
-                SqliteDataAccess.UpdatePurchase(purchase, tagsId);
+                SqliteDataAccess.UpdateItem(item, tagsId);
 
                 selectedId = -1;
                 ClearDataView();
@@ -231,7 +231,7 @@ namespace FinancialManager
             }
             catch
             {
-                MessageBox.Show("Error while updating purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while updating item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -249,7 +249,7 @@ namespace FinancialManager
         {
             if (selectedId != -1)
             {
-                MessageBox.Show("Please cancel edit before adding a new purchase", "Add purchase", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please cancel edit before adding a new item", "Add item", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -266,7 +266,7 @@ namespace FinancialManager
                 var mainCurrency = SqliteDataAccess.GetMainCurrency();
                 var convertedSum = CurrencyConverter.ConvertMoney(sum, transactionCurrency, mainCurrency, transactionDate);
 
-                PurchaseModel purchase = new PurchaseModel
+                ItemModel item = new ItemModel
                 {
                     Id_Transaction = transactionId,
                     Sum = sum,
@@ -277,7 +277,7 @@ namespace FinancialManager
 
                 var tagsId = tagsListView.CheckedItems.Cast<ListViewItem>().Select(x => Convert.ToInt64(x.Tag)).ToList();
 
-                SqliteDataAccess.AddPurchase(purchase, tagsId);
+                SqliteDataAccess.AddItem(item, tagsId);
 
                 ClearDataView();
 
@@ -285,7 +285,7 @@ namespace FinancialManager
             }
             catch
             {
-                MessageBox.Show("Error while adding purchase", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while adding item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -297,9 +297,9 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
-            var result = MessageBox.Show("Are you sure you want to delete this purchase?", "Delete Purchase", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Are you sure you want to delete this item?", "Delete item", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeletePurchaseById(selectedId);
+                SqliteDataAccess.DeleteItemById(selectedId);
 
             selectedId = -1;
             ClearDataView();

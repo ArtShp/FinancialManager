@@ -1,6 +1,6 @@
 ﻿namespace FinancialManager
 {
-    internal class PurchaseAnalysisModel
+    internal class ItemAnalysisModel
     {
         public long Id { get; set; }
         public string Category { get; set; }

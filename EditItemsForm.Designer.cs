@@ -1,6 +1,6 @@
 ﻿namespace FinancialManager
 {
-    partial class EditPurchasesForm
+    partial class EditItemsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -63,7 +63,7 @@
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(251, 65);
             titleLabel.TabIndex = 0;
-            titleLabel.Text = "Purchases";
+            titleLabel.Text = "Items";
             // 
             // listView
             // 
@@ -273,7 +273,7 @@
             mainSumColumnHeader.Text = "Sum (Main)";
             mainSumColumnHeader.Width = 100;
             // 
-            // EditPurchasesForm
+            // EditItemsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -298,8 +298,8 @@
             Controls.Add(sumLabel);
             Controls.Add(listView);
             Controls.Add(titleLabel);
-            Name = "EditPurchasesForm";
-            Text = "EditPurchasesForm";
+            Name = "EditItemsForm";
+            Text = "EditItemsForm";
             ResumeLayout(false);
             PerformLayout();
         }

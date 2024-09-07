@@ -74,9 +74,9 @@ namespace FinancialManager
                             DROP TABLE IF EXISTS places_of_purchases;
                             DROP TABLE IF EXISTS tags;
                             DROP TABLE IF EXISTS transaction_types;
-                            DROP TABLE IF EXISTS purchases;
+                            DROP TABLE IF EXISTS items;
                             DROP TABLE IF EXISTS categories;
-                            DROP TABLE IF EXISTS purchases_tags;
+                            DROP TABLE IF EXISTS items_tags;
 
 
                             CREATE TABLE transactions (
@@ -120,7 +120,7 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL UNIQUE);
 
-                            CREATE TABLE purchases (
+                            CREATE TABLE items (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction INTEGER NOT NULL,
                             sum INTEGER NOT NULL,
@@ -135,11 +135,11 @@ namespace FinancialManager
                             name TEXT NOT NULL,
                             id_parent INTEGER);
 
-                            CREATE TABLE purchases_tags (
+                            CREATE TABLE items_tags (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                            id_purchase INTEGER NOT NULL,
+                            id_item INTEGER NOT NULL,
                             id_tag INTEGER NOT NULL,
-                            FOREIGN KEY(id_purchase) REFERENCES purchases(id),
+                            FOREIGN KEY(id_item) REFERENCES items(id),
                             FOREIGN KEY(id_tag) REFERENCES tags(id));
                         ";
                         command.ExecuteNonQuery();
@@ -250,11 +250,11 @@ namespace FinancialManager
             }
         }
 
-        public static List<PurchaseModel> LoadPurchases(long transactionId)
+        public static List<ItemModel> LoadItems(long transactionId)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var output = connection.Query<PurchaseModel>($"SELECT * FROM purchases WHERE id_transaction = {transactionId}", new DynamicParameters());
+                var output = connection.Query<ItemModel>($"SELECT * FROM items WHERE id_transaction = {transactionId}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -333,7 +333,7 @@ namespace FinancialManager
             }
         }
 
-        public static void AddPurchase(PurchaseModel purchase, List<long>? tagsId)
+        public static void AddItem(ItemModel item, List<long>? tagsId)
         {
             tagsId ??= new List<long>();
 
@@ -342,13 +342,13 @@ namespace FinancialManager
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Execute("INSERT INTO purchases (id_transaction, sum, sum_by_main_currency, id_category, description) VALUES (@Id_Transaction, @Sum, @Sum_By_Main_Currency, @Id_Category, @Description)", purchase);
+                    connection.Execute("INSERT INTO items (id_transaction, sum, sum_by_main_currency, id_category, description) VALUES (@Id_Transaction, @Sum, @Sum_By_Main_Currency, @Id_Category, @Description)", item);
 
-                    var lastAddedPurchaseId = GetLastAddedPurchaseId() + 1;
+                    var lastAddedItemId = GetLastAddedItemId() + 1;
 
                     foreach (var tagId in tagsId)
                     {
-                        connection.Execute("INSERT INTO purchases_tags (id_purchase, id_tag) VALUES (@Id_Purchase, @Id_Tag)", new { Id_Purchase = lastAddedPurchaseId, Id_Tag = tagId });
+                        connection.Execute("INSERT INTO items_tags (id_item, id_tag) VALUES (@Id_Item, @Id_Tag)", new { Id_Item = lastAddedItemId, Id_Tag = tagId });
                     }
 
                     transaction.Commit();
@@ -431,7 +431,7 @@ namespace FinancialManager
             }
         }
 
-        public static void UpdatePurchase(PurchaseModel purchase, List<long>? tagsId)
+        public static void UpdateItem(ItemModel item, List<long>? tagsId)
         {
             tagsId ??= new List<long>();
 
@@ -440,13 +440,13 @@ namespace FinancialManager
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Execute("UPDATE purchases SET id_transaction = @Id_Transaction, sum = @Sum, sum_by_main_currency = @Sum_By_Main_Currency, id_category = @Id_Category, description = @Description WHERE id = @Id", purchase);
+                    connection.Execute("UPDATE items SET id_transaction = @Id_Transaction, sum = @Sum, sum_by_main_currency = @Sum_By_Main_Currency, id_category = @Id_Category, description = @Description WHERE id = @Id", item);
 
-                    connection.Execute("DELETE FROM purchases_tags WHERE id_purchase = @Id", new { Id = purchase.Id });
+                    connection.Execute("DELETE FROM items_tags WHERE id_item = @Id", new { Id = item.Id });
 
                     foreach (var tagId in tagsId)
                     {
-                        connection.Execute("INSERT INTO purchases_tags (id_purchase, id_tag) VALUES (@Id_Purchase, @Id_Tag)", new { Id_Purchase = purchase.Id, Id_Tag = tagId });
+                        connection.Execute("INSERT INTO items_tags (id_item, id_tag) VALUES (@Id_Item, @Id_Tag)", new { Id_Item = item.Id, Id_Tag = tagId });
                     }
 
                     transaction.Commit();
@@ -495,11 +495,11 @@ namespace FinancialManager
             }
         }
 
-        public static List<TagModel> GetTagsByPurchaseId(long purchaseId)
+        public static List<TagModel> GetTagsByItemId(long itemId)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var output = connection.Query<TagModel>("SELECT tags.* FROM tags JOIN purchases_tags ON tags.id = purchases_tags.id_tag WHERE purchases_tags.id_purchase = @Id", new { Id = purchaseId });
+                var output = connection.Query<TagModel>("SELECT tags.* FROM tags JOIN items_tags ON tags.id = items_tags.id_tag WHERE items_tags.id_item = @Id", new { Id = itemId });
                 return output.ToList();
             }
         }
@@ -531,11 +531,11 @@ namespace FinancialManager
             }
         }
 
-        public static PurchaseModel GetPurchaseById(long id)
+        public static ItemModel GetItemById(long id)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var output = connection.Query<PurchaseModel>("SELECT * FROM purchases WHERE id = @Id", new { Id = id }).FirstOrDefault();
+                var output = connection.Query<ItemModel>("SELECT * FROM items WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
             }
         }
@@ -600,15 +600,15 @@ namespace FinancialManager
             }
         }
 
-        public static void DeletePurchaseById(long id)
+        public static void DeleteItemById(long id)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    connection.Execute("DELETE FROM purchases_tags WHERE id_purchase = @Id", new { Id = id });
-                    connection.Execute("DELETE FROM purchases WHERE id = @Id", new { Id = id });
+                    connection.Execute("DELETE FROM items_tags WHERE id_item = @Id", new { Id = id });
+                    connection.Execute("DELETE FROM items WHERE id = @Id", new { Id = id });
 
                     transaction.Commit();
                 }
@@ -641,11 +641,11 @@ namespace FinancialManager
             }
         }
 
-        public static long GetLastAddedPurchaseId()
+        public static long GetLastAddedItemId()
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var output = connection.ExecuteScalar<long>("SELECT seq FROM sqlite_sequence WHERE name = 'purchases'");
+                var output = connection.ExecuteScalar<long>("SELECT seq FROM sqlite_sequence WHERE name = 'items'");
                 return output;
             }
         }
@@ -659,17 +659,17 @@ namespace FinancialManager
             }
         }
 
-        public static List<PurchaseAnalysisModel> GetPurchases(long categoryId, long transactionTypeId, DateTime? fromDate, DateTime? toDate, long placeOfPurchaseId)
+        public static List<ItemAnalysisModel> GetItems(long categoryId, long transactionTypeId, DateTime? fromDate, DateTime? toDate, long placeOfPurchaseId)
         {
             var queryStart = @"SELECT 
-                                purchases.id as Id, categories.name AS Category, 
+                                items.id as Id, categories.name AS Category, 
                                 transactions.date AS Date, sum as Sum, 
                                 currencies.id AS CurrencyId, 
                                 sum_by_main_currency AS SumByMainCurrency, 
                                 places_of_purchases.name AS Place, 
                                 id_transaction_type AS TransactionTypeId 
-                               FROM purchases 
-                               LEFT JOIN transactions ON purchases.id_transaction = transactions.id 
+                               FROM items 
+                               LEFT JOIN transactions ON items.id_transaction = transactions.id 
                                LEFT JOIN currencies ON id_currency_of_transaction = currencies.id 
                                LEFT JOIN places_of_purchases ON id_place_of_purchase = places_of_purchases.id 
                                LEFT JOIN categories ON id_category = categories.id";
@@ -729,19 +729,19 @@ namespace FinancialManager
 
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString(), new { TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
+                var itemsAnalysis = connection.Query<ItemAnalysisModel>(queryBuilder.ToString(), new { TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
 
                 var mainCurrency = GetMainCurrency();
-                foreach (var purchase in purchasesAnalysis)
+                foreach (var item in itemsAnalysis)
                 {
-                    var currency = GetCurrencyById(purchase.CurrencyId);
+                    var currency = GetCurrencyById(item.CurrencyId);
 
-                    purchase.Sum.Rate = currency.Units_Rate;
-                    purchase.CurrencyText = currency.MoneyText;
+                    item.Sum.Rate = currency.Units_Rate;
+                    item.CurrencyText = currency.MoneyText;
 
-                    purchase.SumByMainCurrency.Rate = mainCurrency.Units_Rate;
+                    item.SumByMainCurrency.Rate = mainCurrency.Units_Rate;
 
-                    var tags = GetTagsByPurchaseId(purchase.Id);
+                    var tags = GetTagsByItemId(item.Id);
 
                     StringBuilder tagsStringBuilder = new StringBuilder();
                     foreach (var tag in tags)
@@ -752,25 +752,25 @@ namespace FinancialManager
                         tagsStringBuilder.Append(tag.Name);
                     }
 
-                    purchase.Tags = tagsStringBuilder.ToString();
+                    item.Tags = tagsStringBuilder.ToString();
                 }
 
-                return purchasesAnalysis;
+                return itemsAnalysis;
             }
         }
 
-        public static long GetPurchasesCount(long transactionTypeId)
+        public static long GetItemsCount(long transactionTypeId)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (transactionTypeId == -1)
                 {
-                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases");
+                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM items");
                     return output;
                 }
                 else
                 {
-                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM purchases JOIN transactions ON id_transaction = transactions.id WHERE id_transaction_type = @IdTransactionType", new { IdTransactionType = transactionTypeId });
+                    var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM items JOIN transactions ON id_transaction = transactions.id WHERE id_transaction_type = @IdTransactionType", new { IdTransactionType = transactionTypeId });
                     return output;
                 }
             }

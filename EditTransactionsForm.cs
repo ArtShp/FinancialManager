@@ -213,8 +213,8 @@
 
             LoadList();
 
-            var editPurchasesForm = new EditPurchasesForm(SqliteDataAccess.GetLastAddedTransactionId());
-            editPurchasesForm.Show();
+            var editItemsForm = new EditItemsForm(SqliteDataAccess.GetLastAddedTransactionId());
+            editItemsForm.Show();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -246,8 +246,8 @@
             {
                 selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
-                var editPurchasesForm = new EditPurchasesForm(selectedId);
-                editPurchasesForm.Show();
+                var editItemsForm = new EditItemsForm(selectedId);
+                editItemsForm.Show();
             }
         }
 

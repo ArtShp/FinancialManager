@@ -1,6 +1,6 @@
 ﻿namespace FinancialManager
 {
-    partial class ViewPurchasesAnalyticsForm
+    partial class ViewItemsAnalyticsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -98,7 +98,7 @@
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(442, 65);
             titleLabel.TabIndex = 1;
-            titleLabel.Text = "Analyze Purchases";
+            titleLabel.Text = "Analyze Items";
             // 
             // categoryLabel
             // 
@@ -239,7 +239,7 @@
             clearToDateButton.UseVisualStyleBackColor = true;
             clearToDateButton.Click += clearToDateButton_Click;
             // 
-            // ViewPurchasesAnalyticsForm
+            // ViewItemsAnalyticsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -261,8 +261,8 @@
             Controls.Add(categoryLabel);
             Controls.Add(titleLabel);
             Controls.Add(listView);
-            Name = "ViewPurchasesAnalyticsForm";
-            Text = "ViewPurchasesAnalyticsForm";
+            Name = "ViewItemsAnalyticsForm";
+            Text = "ViewItemsAnalyticsForm";
             ResumeLayout(false);
             PerformLayout();
         }

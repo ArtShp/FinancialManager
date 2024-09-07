@@ -175,10 +175,10 @@ namespace FinancialManager
             testCurrencyExchangeForm.Show();
         }
 
-        private void analyzePurchasesButton_Click(object sender, EventArgs e)
+        private void analyzeItemsButton_Click(object sender, EventArgs e)
         {
-            var analyzePurchasesForm = new ViewPurchasesAnalyticsForm();
-            analyzePurchasesForm.Show();
+            var analyzeItemsForm = new ViewItemsAnalyticsForm();
+            analyzeItemsForm.Show();
         }
 
         #endregion
