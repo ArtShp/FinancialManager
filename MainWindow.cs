@@ -176,7 +176,16 @@ namespace FinancialManager
 
         #endregion
 
-        #region Other Menu Items (TODO)
+        #region Tests Menu
+
+        private void currencyExchangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurrencyExchange();
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
         {
@@ -225,15 +234,14 @@ namespace FinancialManager
 
         private void currencyExchangeButton_Click(object sender, EventArgs e)
         {
-            var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
-            testCurrencyExchangeForm.Show();
+            CurrencyExchange();
         }
 
         #endregion
 
         #endregion
 
-        #region Handlers for Menu Items
+        #region Handlers
 
         private void EditCurrencies()
         {
@@ -287,6 +295,12 @@ namespace FinancialManager
         {
             var setupCurrencyApiForm = new SetupCurrencyApiForm();
             setupCurrencyApiForm.Show();
+        }
+
+        private void CurrencyExchange()
+        {
+            var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
+            testCurrencyExchangeForm.Show();
         }
 
         #endregion

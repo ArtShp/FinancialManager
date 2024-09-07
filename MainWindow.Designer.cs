@@ -93,10 +93,10 @@
             mainWindowTabControl.Controls.Add(settingsTabPage);
             mainWindowTabControl.Controls.Add(testsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
-            mainWindowTabControl.Location = new Point(0, 40);
+            mainWindowTabControl.Location = new Point(0, 42);
             mainWindowTabControl.Name = "mainWindowTabControl";
             mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 818);
+            mainWindowTabControl.Size = new Size(1504, 816);
             mainWindowTabControl.TabIndex = 5;
             // 
             // startTabPage
@@ -245,7 +245,7 @@
             testsTabPage.Location = new Point(8, 46);
             testsTabPage.Name = "testsTabPage";
             testsTabPage.Padding = new Padding(3);
-            testsTabPage.Size = new Size(1488, 764);
+            testsTabPage.Size = new Size(1488, 762);
             testsTabPage.TabIndex = 4;
             testsTabPage.Text = "Tests";
             testsTabPage.UseVisualStyleBackColor = true;
@@ -266,7 +266,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 40);
+            menuStrip.Size = new Size(1504, 42);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
@@ -387,7 +387,7 @@
             // 
             testsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currencyExchangeToolStripMenuItem });
             testsToolStripMenuItem.Name = "testsToolStripMenuItem";
-            testsToolStripMenuItem.Size = new Size(86, 36);
+            testsToolStripMenuItem.Size = new Size(86, 38);
             testsToolStripMenuItem.Text = "Tests";
             // 
             // currencyExchangeToolStripMenuItem
@@ -395,6 +395,7 @@
             currencyExchangeToolStripMenuItem.Name = "currencyExchangeToolStripMenuItem";
             currencyExchangeToolStripMenuItem.Size = new Size(359, 44);
             currencyExchangeToolStripMenuItem.Text = "Currency Exchange";
+            currencyExchangeToolStripMenuItem.Click += currencyExchangeToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
