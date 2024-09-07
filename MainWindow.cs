@@ -167,6 +167,15 @@ namespace FinancialManager
 
         #endregion
 
+        #region Settings Menu
+
+        private void setCurrencyAPIKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetCurrencyApiKey();
+        }
+
+        #endregion
+
         #region Other Menu Items (TODO)
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
@@ -204,23 +213,20 @@ namespace FinancialManager
             EditTransactions();
         }
 
-
+        private void analyzeItemsButton_Click(object sender, EventArgs e)
+        {
+            AnalyzeItems();
+        }
 
         private void currencyApiButton_Click(object sender, EventArgs e)
         {
-            var setupCurrencyApiForm = new SetupCurrencyApiForm();
-            setupCurrencyApiForm.Show();
+            SetCurrencyApiKey();
         }
 
         private void currencyExchangeButton_Click(object sender, EventArgs e)
         {
             var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
             testCurrencyExchangeForm.Show();
-        }
-
-        private void analyzeItemsButton_Click(object sender, EventArgs e)
-        {
-            AnalyzeItems();
         }
 
         #endregion
@@ -275,6 +281,12 @@ namespace FinancialManager
         {
             var analyzeItemsForm = new ViewItemsAnalyticsForm();
             analyzeItemsForm.Show();
+        }
+
+        private void SetCurrencyApiKey()
+        {
+            var setupCurrencyApiForm = new SetupCurrencyApiForm();
+            setupCurrencyApiForm.Show();
         }
 
         #endregion

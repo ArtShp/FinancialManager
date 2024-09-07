@@ -379,6 +379,7 @@
             setCurrencyAPIKeyToolStripMenuItem.Name = "setCurrencyAPIKeyToolStripMenuItem";
             setCurrencyAPIKeyToolStripMenuItem.Size = new Size(363, 44);
             setCurrencyAPIKeyToolStripMenuItem.Text = "Set CurrencyAPI Key";
+            setCurrencyAPIKeyToolStripMenuItem.Click += setCurrencyAPIKeyToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
