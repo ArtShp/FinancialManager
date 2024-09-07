@@ -11,6 +11,8 @@ namespace FinancialManager
     internal static class SqliteDataAccess
     {
         public const long MainCurrencyId = 1;
+        public const long IncomeTransactionTypeId = 1;
+        public const long ExpenseTransactionTypeId = 2;
 
         static SqliteDataAccess()
         {
@@ -37,6 +39,7 @@ namespace FinancialManager
         {
             SQLiteConnection.CreateFile(Properties.Settings.Default.PathToDb);
             CreateTables();
+            FillTables();
         }
 
         private static void CreateTables()
@@ -126,6 +129,23 @@ namespace FinancialManager
                         command.ExecuteNonQuery();
                     }
                     transaction.Commit();
+                }
+                connection.Close();
+            }
+        }
+
+        private static void FillTables()
+        {
+            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = $@"
+                        INSERT INTO transaction_types (id, name) VALUES ({IncomeTransactionTypeId}, 'Income');
+                        INSERT INTO transaction_types (id, name) VALUES ({ExpenseTransactionTypeId}, 'Expense');
+                    ";
+                    command.ExecuteNonQuery();
                 }
                 connection.Close();
             }
