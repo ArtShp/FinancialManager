@@ -20,6 +20,9 @@ namespace FinancialManager
         {
             InitializeComponent();
 
+            addButton.Enabled = false;
+            deleteButton.Enabled = false;
+
             LoadList();
         }
 
