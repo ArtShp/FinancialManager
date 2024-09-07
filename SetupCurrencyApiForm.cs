@@ -9,9 +9,21 @@
             keyTextBox.Text = Properties.Settings.Default.CurrencyApiKey;
         }
 
+        #region Tests
+
+        private bool TestConnection()
+        {
+            var res = CurrencyAPI.TestConnection(keyTextBox.Text);
+            return res;
+        }
+
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (testConnection())
+            if (TestConnection())
             {
                 Properties.Settings.Default.CurrencyApiKey = keyTextBox.Text;
                 Properties.Settings.Default.Save();
@@ -31,10 +43,6 @@
             Close();
         }
 
-        private bool testConnection()
-        {
-            var res = CurrencyAPI.testConnection(keyTextBox.Text);
-            return res;
-        }
+        #endregion
     }
 }

@@ -29,7 +29,7 @@ namespace FinancialManager
             }
         }
 
-        public static bool testConnection(string key)
+        public static bool TestConnection(string key)
         {
             try
             {
@@ -46,6 +46,8 @@ namespace FinancialManager
                 return false;
             }
         }
+
+        #region JSON Classes
 
         private class CurrencyData
         {
@@ -70,5 +72,7 @@ namespace FinancialManager
             [JsonPropertyName("value")]
             public Decimal Value { get; set; }
         }
+
+        #endregion
     }
 }

@@ -12,10 +12,46 @@ namespace FinancialManager
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
         }
 
+        #region Tests
+
+        private void TestDbConnection()
+        {
+            try
+            {
+                SqliteDataAccess.TestConnection();
+            }
+            catch
+            {
+                MessageBox.Show("Connection to DB failed!\nPlease choose DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TestMainCurrencyExistance()
+        {
+            try
+            {
+                SqliteDataAccess.TestMainCurrencyExistance();
+            }
+            catch
+            {
+                MessageBox.Show("Main currency does not exist!\nPlease create it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Main Window Event Handlers
+
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             TestDbConnection();
         }
+
+        #endregion
+
+        #region Main Window Menu Event Handlers
+
+        #region File Menu
 
         private void createDbToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -81,29 +117,9 @@ namespace FinancialManager
             MessageBox.Show("DB closed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void TestDbConnection()
-        {
-            try
-            {
-                SqliteDataAccess.TestConnection();
-            }
-            catch
-            {
-                MessageBox.Show("Connection to DB failed!\nPlease choose DB file or create a new one", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        #endregion
 
-        private void TestMainCurrencyExistance()
-        {
-            try
-            {
-                SqliteDataAccess.TestMainCurrencyExistance();
-            }
-            catch
-            {
-                MessageBox.Show("Main currency does not exist!\nPlease create it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        #region Other Menu Items (TODO)
 
         private void editCurrenciesButton_Click(object sender, EventArgs e)
         {
@@ -164,5 +180,9 @@ namespace FinancialManager
             var analyzePurchasesForm = new ViewPurchasesAnalyticsForm();
             analyzePurchasesForm.Show();
         }
+
+        #endregion
+
+        #endregion
     }
 }

@@ -2,20 +2,32 @@
 {
     public partial class ChooseCategoryForm : Form
     {
-        private List<CategoryModel> data = new List<CategoryModel>();
         private long selectedId = -1;
+        public long SelectedId => selectedId;
 
         public ChooseCategoryForm()
         {
             InitializeComponent();
 
+            LoadAll();
+        }
+
+        #region Loaders
+
+        private void LoadAll()
+        {
+            LoadList();
+        }
+
+        private void LoadList()
+        {
             LoadMainCategories();
             LoadMainSubCategories();
         }
 
         private void LoadMainCategories()
         {
-            data = SqliteDataAccess.LoadCategoriesByParentId();
+            var data = SqliteDataAccess.LoadCategoriesByParentId();
 
             treeView.BeginUpdate();
             treeView.Nodes.Clear();
@@ -53,6 +65,25 @@
             treeView.EndUpdate();
         }
 
+        #endregion
+
+        #region Buttons Click Handlers
+
+        private void chooseButton_Click(object sender, EventArgs e)
+        {
+            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+        #region Other Controls Handlers
+
         private void treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             treeView.BeginUpdate();
@@ -89,20 +120,6 @@
             treeView.EndUpdate();
         }
 
-        public long GetSelectedId()
-        {
-            return selectedId;
-        }
-
-        private void chooseButton_Click(object sender, EventArgs e)
-        {
-            selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
-            Close();
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        #endregion
     }
 }

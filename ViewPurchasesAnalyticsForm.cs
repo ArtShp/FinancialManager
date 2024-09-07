@@ -10,15 +10,16 @@
         {
             InitializeComponent();
 
-            LoadAll();
-            ClearFromDate();
-            ClearToDate();
-
             fromDateTimePicker.Value = DateTime.Today;
             toDateTimePicker.Value = DateTime.Today;
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            LoadAll();
+            ClearDates();
         }
+
+        #region Loaders
 
         private void LoadAll()
         {
@@ -46,6 +47,17 @@
             placeComboBox.ValueMember = "Id";
         }
 
+        #endregion
+
+        #region Clear Dates
+
+        // Used to "forget" dates
+        private void ClearDates()
+        {
+            ClearFromDate();
+            ClearToDate();
+        }
+
         private void ClearFromDate()
         {
             fromDateTimePicker.CustomFormat = "---NONE---";
@@ -58,17 +70,9 @@
             isToDateSet = false;
         }
 
-        private void fromDateTimePicker_DropDown(object sender, EventArgs e)
-        {
-            fromDateTimePicker.CustomFormat = "dd.MM.yyyy";
-            isFromDateSet = true;
-        }
+        #endregion
 
-        private void toDateTimePicker_DropDown(object sender, EventArgs e)
-        {
-            toDateTimePicker.CustomFormat = "dd.MM.yyyy";
-            isToDateSet = true;
-        }
+        #region Buttons Click Handlers
 
         private void clearFromDateButton_Click(object sender, EventArgs e)
         {
@@ -85,7 +89,7 @@
             var chooseCategoryForm = new ChooseCategoryForm();
             chooseCategoryForm.ShowDialog();
 
-            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+            var selectedCategoryId = chooseCategoryForm.SelectedId;
 
             if (selectedCategoryId == -1)
                 return;
@@ -195,5 +199,24 @@
             listView.EndUpdate();
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+
+        #endregion
+
+        #region Other Controls Handlers
+
+        // Used to "choose" dates
+        private void fromDateTimePicker_DropDown(object sender, EventArgs e)
+        {
+            fromDateTimePicker.CustomFormat = "dd.MM.yyyy";
+            isFromDateSet = true;
+        }
+
+        private void toDateTimePicker_DropDown(object sender, EventArgs e)
+        {
+            toDateTimePicker.CustomFormat = "dd.MM.yyyy";
+            isToDateSet = true;
+        }
+
+        #endregion
     }
 }

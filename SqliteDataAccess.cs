@@ -10,14 +10,18 @@ namespace FinancialManager
         public const int IncomeTransactionTypeId = 1;
         public const int ExpenseTransactionTypeId = 2;
 
+        private static string ConnectionString => "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
+
         static SqliteDataAccess()
         {
             SqlMapper.AddTypeHandler(new MoneyTypeHandler());
         }
 
+        #region Tests
+
         public static void TestConnection()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 try
                 {
@@ -31,6 +35,22 @@ namespace FinancialManager
             }
         }
 
+        public static void TestMainCurrencyExistance()
+        {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = MainCurrencyId }).FirstOrDefault();
+                if (output == null)
+                {
+                    throw new Exception("Main currency not found");
+                }
+            }
+        }
+
+        #endregion
+
+        #region Create DB
+
         public static void CreateDB()
         {
             SQLiteConnection.CreateFile(Properties.Settings.Default.PathToDb);
@@ -40,7 +60,7 @@ namespace FinancialManager
 
         private static void CreateTables()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -132,7 +152,7 @@ namespace FinancialManager
 
         private static void FillTables()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var command = new SQLiteCommand(connection))
@@ -147,9 +167,13 @@ namespace FinancialManager
             }
         }
 
+        #endregion
+
+        #region Load
+
         public static List<CurrencyModel> LoadCurrencies()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CurrencyModel>("SELECT * FROM currencies", new DynamicParameters());
                 return output.ToList();
@@ -158,7 +182,7 @@ namespace FinancialManager
 
         public static List<TransactionTypeModel> LoadTransactionTypes()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TransactionTypeModel>("SELECT * FROM transaction_types", new DynamicParameters());
                 return output.ToList();
@@ -167,7 +191,7 @@ namespace FinancialManager
 
         public static List<PlaceOfPurchaseModel> LoadPlacesOfPurchases()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<PlaceOfPurchaseModel>("SELECT * FROM places_of_purchases", new DynamicParameters());
                 return output.ToList();
@@ -176,7 +200,7 @@ namespace FinancialManager
 
         public static List<TagModel> LoadTags(long transactionTypeId = -1)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 IEnumerable<TagModel>? output;
                 if (transactionTypeId == -1)
@@ -193,7 +217,7 @@ namespace FinancialManager
 
         public static List<CashFacilityModel> LoadCashFacilities()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CashFacilityModel>("SELECT * FROM cash_facilities", new DynamicParameters());
                 return output.ToList();
@@ -202,7 +226,7 @@ namespace FinancialManager
 
         public static List<CategoryModel> LoadCategoriesByParentId(long parentId = 0)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 IEnumerable<CategoryModel>? output;
                 if (parentId == 0)
@@ -219,7 +243,7 @@ namespace FinancialManager
 
         public static List<TransactionModel> LoadTransactions()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TransactionModel>("SELECT * FROM transactions", new DynamicParameters());
                 return output.ToList();
@@ -228,16 +252,20 @@ namespace FinancialManager
 
         public static List<PurchaseModel> LoadPurchases(long transactionId)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<PurchaseModel>($"SELECT * FROM purchases WHERE id_transaction = {transactionId}", new DynamicParameters());
                 return output.ToList();
             }
         }
 
+        #endregion
+
+        #region Add
+
         public static void AddCurrency(CurrencyModel currency)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("INSERT INTO currencies (name, code, symbol, units_rate) VALUES (@Name, @Code, @Symbol, @Units_Rate)", currency);
             }
@@ -245,7 +273,7 @@ namespace FinancialManager
 
         public static void AddTransactionType(TransactionTypeModel transactionType)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("INSERT INTO transaction_types (name) VALUES (@Name)", transactionType);
             }
@@ -253,7 +281,7 @@ namespace FinancialManager
 
         public static void AddPlaceOfPurchase(PlaceOfPurchaseModel placeOfPurchase)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("INSERT INTO places_of_purchases (name) VALUES (@Name)", placeOfPurchase);
             }
@@ -261,7 +289,7 @@ namespace FinancialManager
 
         public static void AddTag(TagModel tag)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("INSERT INTO tags (name, id_transaction_type) VALUES (@Name, @Id_Transaction_Type)", tag);
             }
@@ -269,7 +297,7 @@ namespace FinancialManager
 
         public static void AddCashFacility(CashFacilityModel cashFacility)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("INSERT INTO cash_facilities (name, id_currency) VALUES (@Name, @Id_Currency)", cashFacility);
             }
@@ -277,7 +305,7 @@ namespace FinancialManager
 
         public static void AddCategory(CategoryModel category)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (category.Id_Parent == 0)
                 {
@@ -292,7 +320,7 @@ namespace FinancialManager
 
         public static void AddTransaction(TransactionModel transaction)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (transaction.Id_Place_Of_Purchase == 0)
                 {
@@ -305,11 +333,11 @@ namespace FinancialManager
             }
         }
 
-        public static void AddPurchase(PurchaseModel purchase, List<long> tagsId = null)
+        public static void AddPurchase(PurchaseModel purchase, List<long>? tagsId)
         {
             tagsId ??= new List<long>();
 
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -329,9 +357,13 @@ namespace FinancialManager
             }
         }
 
+        #endregion
+
+        #region Update
+
         public static void UpdateCurrency(CurrencyModel currency)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("UPDATE currencies SET name = @Name, code = @Code, symbol = @Symbol, units_rate = @Units_Rate WHERE id = @Id", currency);
             }
@@ -339,7 +371,7 @@ namespace FinancialManager
 
         public static void UpdateTransactionType(TransactionTypeModel transactionType)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("UPDATE transaction_types SET name = @Name WHERE id = @Id", transactionType);
             }
@@ -347,7 +379,7 @@ namespace FinancialManager
 
         public static void UpdatePlaceOfPurchase(PlaceOfPurchaseModel placeOfPurchase)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("UPDATE places_of_purchases SET name = @Name WHERE id = @Id", placeOfPurchase);
             }
@@ -355,7 +387,7 @@ namespace FinancialManager
 
         public static void UpdateTag(TagModel tag)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("UPDATE tags SET name = @Name, id_transaction_type = @Id_Transaction_Type WHERE id = @Id", tag);
             }
@@ -363,7 +395,7 @@ namespace FinancialManager
 
         public static void UpdateCashFacility(CashFacilityModel cashFacility)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("UPDATE cash_facilities SET name = @Name, id_currency = @Id_Currency WHERE id = @Id", cashFacility);
             }
@@ -371,7 +403,7 @@ namespace FinancialManager
 
         public static void UpdateCategory(CategoryModel category)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (category.Id_Parent == 0)
                 {
@@ -386,7 +418,7 @@ namespace FinancialManager
 
         public static void UpdateTransaction(TransactionModel transaction)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (transaction.Id_Place_Of_Purchase == 0)
                 {
@@ -399,11 +431,11 @@ namespace FinancialManager
             }
         }
 
-        public static void UpdatePurchase(PurchaseModel purchase, List<long> tagsId = null)
+        public static void UpdatePurchase(PurchaseModel purchase, List<long>? tagsId)
         {
             tagsId ??= new List<long>();
 
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -423,9 +455,13 @@ namespace FinancialManager
             }
         }
 
+        #endregion
+
+        #region Get By Id
+
         public static CurrencyModel GetCurrencyById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -434,7 +470,7 @@ namespace FinancialManager
 
         public static TransactionTypeModel GetTransactionTypeById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TransactionTypeModel>("SELECT * FROM transaction_types WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -443,7 +479,7 @@ namespace FinancialManager
 
         public static PlaceOfPurchaseModel GetPlaceOfPurchaseById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<PlaceOfPurchaseModel>("SELECT * FROM places_of_purchases WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -452,7 +488,7 @@ namespace FinancialManager
 
         public static TagModel GetTagById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TagModel>("SELECT * FROM tags WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -461,7 +497,7 @@ namespace FinancialManager
 
         public static List<TagModel> GetTagsByPurchaseId(long purchaseId)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TagModel>("SELECT tags.* FROM tags JOIN purchases_tags ON tags.id = purchases_tags.id_tag WHERE purchases_tags.id_purchase = @Id", new { Id = purchaseId });
                 return output.ToList();
@@ -470,7 +506,7 @@ namespace FinancialManager
 
         public static CashFacilityModel GetCashFacilityById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CashFacilityModel>("SELECT * FROM cash_facilities WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -479,7 +515,7 @@ namespace FinancialManager
 
         public static CategoryModel GetCategoryById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CategoryModel>("SELECT * FROM categories WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -488,7 +524,7 @@ namespace FinancialManager
 
         public static TransactionModel GetTransactionById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<TransactionModel>("SELECT * FROM transactions WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
@@ -497,16 +533,20 @@ namespace FinancialManager
 
         public static PurchaseModel GetPurchaseById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<PurchaseModel>("SELECT * FROM purchases WHERE id = @Id", new { Id = id }).FirstOrDefault();
                 return output;
             }
         }
 
+        #endregion
+
+        #region Delete
+
         public static void DeleteCurrencyById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM currencies WHERE id = @Id", new { Id = id });
             }
@@ -514,7 +554,7 @@ namespace FinancialManager
 
         public static void DeleteTransactionTypeById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM transaction_types WHERE id = @Id", new { Id = id });
             }
@@ -522,7 +562,7 @@ namespace FinancialManager
 
         public static void DeletePlaceOfPurchaseById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM places_of_purchases WHERE id = @Id", new { Id = id });
             }
@@ -530,7 +570,7 @@ namespace FinancialManager
 
         public static void DeleteTagById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM tags WHERE id = @Id", new { Id = id });
             }
@@ -538,7 +578,7 @@ namespace FinancialManager
 
         public static void DeleteCashFacilityById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM cash_facilities WHERE id = @Id", new { Id = id });
             }
@@ -546,7 +586,7 @@ namespace FinancialManager
 
         public static void DeleteCategoryById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = id });
             }
@@ -554,7 +594,7 @@ namespace FinancialManager
 
         public static void DeleteTransactionById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Execute("DELETE FROM transactions WHERE id = @Id", new { Id = id });
             }
@@ -562,7 +602,7 @@ namespace FinancialManager
 
         public static void DeletePurchaseById(long id)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
@@ -576,21 +616,25 @@ namespace FinancialManager
             }
         }
 
+        #endregion
+
+        #region Get (Other)
+
         public static int GetUnitsRate(long idCashFacility)
         {
-            var cashFacility = SqliteDataAccess.GetCashFacilityById(idCashFacility);
+            var cashFacility = GetCashFacilityById(idCashFacility);
             return GetUnitsRate(cashFacility);
         }
 
         public static int GetUnitsRate(CashFacilityModel cashFacility)
         {
-            var cashFacilityCurrency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
+            var cashFacilityCurrency = GetCurrencyById(cashFacility.Id_Currency);
             return cashFacilityCurrency.Units_Rate;
         }
 
         public static long GetLastAddedTransactionId()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.ExecuteScalar<long>("SELECT seq FROM sqlite_sequence WHERE name = 'transactions'");
                 return output;
@@ -599,7 +643,7 @@ namespace FinancialManager
 
         public static long GetLastAddedPurchaseId()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.ExecuteScalar<long>("SELECT seq FROM sqlite_sequence WHERE name = 'purchases'");
                 return output;
@@ -608,7 +652,7 @@ namespace FinancialManager
 
         public static CurrencyModel GetMainCurrency()
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = MainCurrencyId }).First();
                 return output;
@@ -683,7 +727,7 @@ namespace FinancialManager
                 queryBuilder.Append(parametersBuilder);
             }
 
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 var purchasesAnalysis = connection.Query<PurchaseAnalysisModel>(queryBuilder.ToString(), new { TransactionTypeId = transactionTypeId, FromDate = fromDate, ToDate = toDate, PlaceOfPurchaseId = placeOfPurchaseId }).ToList();
 
@@ -717,7 +761,7 @@ namespace FinancialManager
 
         public static long GetPurchasesCount(long transactionTypeId)
         {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
                 if (transactionTypeId == -1)
                 {
@@ -732,21 +776,6 @@ namespace FinancialManager
             }
         }
 
-        public static void TestMainCurrencyExistance()
-        {
-            using (var connection = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = connection.Query<CurrencyModel>("SELECT * FROM currencies WHERE id = @Id", new { Id = MainCurrencyId }).FirstOrDefault();
-                if (output == null)
-                {
-                    throw new Exception("Main currency not found");
-                }
-            }
-        }
-
-        private static string LoadConnectionString()
-        {
-            return "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
-        }
+        #endregion
     }
 }

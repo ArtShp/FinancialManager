@@ -165,7 +165,7 @@ namespace FinancialManager
             var chooseCategoryForm = new ChooseCategoryForm();
             chooseCategoryForm.ShowDialog();
 
-            var selectedCategoryId = chooseCategoryForm.GetSelectedId();
+            var selectedCategoryId = chooseCategoryForm.SelectedId;
 
             if (selectedCategoryId == -1)
                 return;

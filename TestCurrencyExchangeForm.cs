@@ -9,6 +9,13 @@
             moneyTextBox.Text = "0";
             dateTimePicker.Value = DateTime.Today;
 
+            LoadAll();
+        }
+
+        #region Loaders
+
+        private void LoadAll()
+        {
             LoadCurrencies();
         }
 
@@ -32,6 +39,10 @@
             toCurrencyComboBox.ValueMember = "Id";
         }
 
+        #endregion
+
+        #region Buttons Click Handlers
+
         private void convertButton_Click(object sender, EventArgs e)
         {
             try
@@ -51,5 +62,7 @@
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
     }
 }
