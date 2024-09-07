@@ -61,6 +61,8 @@
             editCashFacilitiesToolStripMenuItem = new ToolStripMenuItem();
             editCategoriesToolStripMenuItem = new ToolStripMenuItem();
             editTransactionsToolStripMenuItem = new ToolStripMenuItem();
+            analyticsToolStripMenuItem = new ToolStripMenuItem();
+            analyzeItemsToolStripMenuItem = new ToolStripMenuItem();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             analyticsTabPage.SuspendLayout();
@@ -87,10 +89,10 @@
             mainWindowTabControl.Controls.Add(settingsTabPage);
             mainWindowTabControl.Controls.Add(testsTabPage);
             mainWindowTabControl.Dock = DockStyle.Fill;
-            mainWindowTabControl.Location = new Point(0, 42);
+            mainWindowTabControl.Location = new Point(0, 40);
             mainWindowTabControl.Name = "mainWindowTabControl";
             mainWindowTabControl.SelectedIndex = 0;
-            mainWindowTabControl.Size = new Size(1504, 816);
+            mainWindowTabControl.Size = new Size(1504, 818);
             mainWindowTabControl.TabIndex = 5;
             // 
             // startTabPage
@@ -98,7 +100,7 @@
             startTabPage.Location = new Point(8, 46);
             startTabPage.Name = "startTabPage";
             startTabPage.Padding = new Padding(3);
-            startTabPage.Size = new Size(1488, 762);
+            startTabPage.Size = new Size(1488, 764);
             startTabPage.TabIndex = 0;
             startTabPage.Text = "Start";
             startTabPage.UseVisualStyleBackColor = true;
@@ -196,7 +198,7 @@
             analyticsTabPage.Location = new Point(8, 46);
             analyticsTabPage.Name = "analyticsTabPage";
             analyticsTabPage.Padding = new Padding(3);
-            analyticsTabPage.Size = new Size(1488, 762);
+            analyticsTabPage.Size = new Size(1488, 764);
             analyticsTabPage.TabIndex = 2;
             analyticsTabPage.Text = "Analytics";
             analyticsTabPage.UseVisualStyleBackColor = true;
@@ -257,10 +259,10 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(32, 32);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 42);
+            menuStrip.Size = new Size(1504, 40);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
@@ -349,6 +351,19 @@
             editTransactionsToolStripMenuItem.Text = "Edit Transactions";
             editTransactionsToolStripMenuItem.Click += editTransactionsToolStripMenuItem_Click;
             // 
+            // analyticsToolStripMenuItem
+            // 
+            analyticsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { analyzeItemsToolStripMenuItem });
+            analyticsToolStripMenuItem.Name = "analyticsToolStripMenuItem";
+            analyticsToolStripMenuItem.Size = new Size(128, 36);
+            analyticsToolStripMenuItem.Text = "Analytics";
+            // 
+            // analyzeItemsToolStripMenuItem
+            // 
+            analyzeItemsToolStripMenuItem.Name = "analyzeItemsToolStripMenuItem";
+            analyzeItemsToolStripMenuItem.Size = new Size(359, 44);
+            analyzeItemsToolStripMenuItem.Text = "Analyze Items";
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -403,5 +418,7 @@
         private ToolStripMenuItem editCashFacilitiesToolStripMenuItem;
         private ToolStripMenuItem editCategoriesToolStripMenuItem;
         private ToolStripMenuItem editTransactionsToolStripMenuItem;
+        private ToolStripMenuItem analyticsToolStripMenuItem;
+        private ToolStripMenuItem analyzeItemsToolStripMenuItem;
     }
 }
