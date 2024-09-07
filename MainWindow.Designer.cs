@@ -42,6 +42,7 @@
             editTransactionTypesButton = new Button();
             editCurrenciesButton = new Button();
             analyticsTabPage = new TabPage();
+            analyzeItemsButton = new Button();
             settingsTabPage = new TabPage();
             currencyApiButton = new Button();
             testsTabPage = new TabPage();
@@ -52,7 +53,14 @@
             createDbToolStripMenuItem = new ToolStripMenuItem();
             openDbToolStripMenuItem = new ToolStripMenuItem();
             closeDbToolStripMenuItem = new ToolStripMenuItem();
-            analyzeItemsButton = new Button();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            editCurrenciesToolStripMenuItem = new ToolStripMenuItem();
+            editTransactionTypesToolStripMenuItem = new ToolStripMenuItem();
+            editPlacesOfPurchasesToolStripMenuItem = new ToolStripMenuItem();
+            editTagsToolStripMenuItem = new ToolStripMenuItem();
+            editCashFacilitiesToolStripMenuItem = new ToolStripMenuItem();
+            editCategoriesToolStripMenuItem = new ToolStripMenuItem();
+            editTransactionsToolStripMenuItem = new ToolStripMenuItem();
             mainWindowTabControl.SuspendLayout();
             fillDBTabPage.SuspendLayout();
             analyticsTabPage.SuspendLayout();
@@ -193,6 +201,16 @@
             analyticsTabPage.Text = "Analytics";
             analyticsTabPage.UseVisualStyleBackColor = true;
             // 
+            // analyzeItemsButton
+            // 
+            analyzeItemsButton.Location = new Point(1020, 6);
+            analyzeItemsButton.Name = "analyzeItemsButton";
+            analyzeItemsButton.Size = new Size(462, 46);
+            analyzeItemsButton.TabIndex = 0;
+            analyzeItemsButton.Text = "Analyze Items";
+            analyzeItemsButton.UseVisualStyleBackColor = true;
+            analyzeItemsButton.Click += analyzeItemsButton_Click;
+            // 
             // settingsTabPage
             // 
             settingsTabPage.Controls.Add(currencyApiButton);
@@ -239,7 +257,7 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(32, 32);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(1504, 40);
@@ -249,7 +267,7 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 36);
+            fileToolStripMenuItem.Size = new Size(71, 38);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
@@ -275,15 +293,54 @@
             closeDbToolStripMenuItem.Text = "Close DB";
             closeDbToolStripMenuItem.Click += closeDbToolStripMenuItem_Click;
             // 
-            // analyzeItemsButton
+            // editToolStripMenuItem
             // 
-            analyzeItemsButton.Location = new Point(1020, 6);
-            analyzeItemsButton.Name = "analyzeItemsButton";
-            analyzeItemsButton.Size = new Size(462, 46);
-            analyzeItemsButton.TabIndex = 0;
-            analyzeItemsButton.Text = "Analyze Items";
-            analyzeItemsButton.UseVisualStyleBackColor = true;
-            analyzeItemsButton.Click += analyzeItemsButton_Click;
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editCurrenciesToolStripMenuItem, editTransactionTypesToolStripMenuItem, editPlacesOfPurchasesToolStripMenuItem, editTagsToolStripMenuItem, editCashFacilitiesToolStripMenuItem, editCategoriesToolStripMenuItem, editTransactionsToolStripMenuItem });
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(74, 36);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // editCurrenciesToolStripMenuItem
+            // 
+            editCurrenciesToolStripMenuItem.Name = "editCurrenciesToolStripMenuItem";
+            editCurrenciesToolStripMenuItem.Size = new Size(404, 44);
+            editCurrenciesToolStripMenuItem.Text = "Edit Currencies";
+            // 
+            // editTransactionTypesToolStripMenuItem
+            // 
+            editTransactionTypesToolStripMenuItem.Name = "editTransactionTypesToolStripMenuItem";
+            editTransactionTypesToolStripMenuItem.Size = new Size(404, 44);
+            editTransactionTypesToolStripMenuItem.Text = "Edit Transaction Types";
+            // 
+            // editPlacesOfPurchasesToolStripMenuItem
+            // 
+            editPlacesOfPurchasesToolStripMenuItem.Name = "editPlacesOfPurchasesToolStripMenuItem";
+            editPlacesOfPurchasesToolStripMenuItem.Size = new Size(404, 44);
+            editPlacesOfPurchasesToolStripMenuItem.Text = "Edit Places Of Purchases";
+            // 
+            // editTagsToolStripMenuItem
+            // 
+            editTagsToolStripMenuItem.Name = "editTagsToolStripMenuItem";
+            editTagsToolStripMenuItem.Size = new Size(404, 44);
+            editTagsToolStripMenuItem.Text = "Edit Tags";
+            // 
+            // editCashFacilitiesToolStripMenuItem
+            // 
+            editCashFacilitiesToolStripMenuItem.Name = "editCashFacilitiesToolStripMenuItem";
+            editCashFacilitiesToolStripMenuItem.Size = new Size(404, 44);
+            editCashFacilitiesToolStripMenuItem.Text = "Edit Cash Facilities";
+            // 
+            // editCategoriesToolStripMenuItem
+            // 
+            editCategoriesToolStripMenuItem.Name = "editCategoriesToolStripMenuItem";
+            editCategoriesToolStripMenuItem.Size = new Size(404, 44);
+            editCategoriesToolStripMenuItem.Text = "Edit Categories";
+            // 
+            // editTransactionsToolStripMenuItem
+            // 
+            editTransactionsToolStripMenuItem.Name = "editTransactionsToolStripMenuItem";
+            editTransactionsToolStripMenuItem.Size = new Size(404, 44);
+            editTransactionsToolStripMenuItem.Text = "Edit Transactions";
             // 
             // MainWindow
             // 
@@ -331,5 +388,13 @@
         private ToolStripMenuItem openDbToolStripMenuItem;
         private ToolStripMenuItem closeDbToolStripMenuItem;
         private Button analyzeItemsButton;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem editCurrenciesToolStripMenuItem;
+        private ToolStripMenuItem editTransactionTypesToolStripMenuItem;
+        private ToolStripMenuItem editPlacesOfPurchasesToolStripMenuItem;
+        private ToolStripMenuItem editTagsToolStripMenuItem;
+        private ToolStripMenuItem editCashFacilitiesToolStripMenuItem;
+        private ToolStripMenuItem editCategoriesToolStripMenuItem;
+        private ToolStripMenuItem editTransactionsToolStripMenuItem;
     }
 }
