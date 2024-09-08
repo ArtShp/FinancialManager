@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Data.SQLite;
+
+namespace FinancialManager
 {
     public partial class EditCashFacilitiesForm : Form
     {
@@ -111,7 +113,23 @@
                 Id_Currency = Convert.ToInt64(currencyComboBox.SelectedValue)
             };
 
-            SqliteDataAccess.UpdateCashFacility(cashFacility);
+            try
+            {
+                SqliteDataAccess.UpdateCashFacility(cashFacility);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have cash facilities with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while updating cash facility!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
@@ -142,7 +160,23 @@
                 Id_Currency = Convert.ToInt64(currencyComboBox.SelectedValue)
             };
 
-            SqliteDataAccess.AddCashFacility(cashFacility);
+            try
+            {
+                SqliteDataAccess.AddCashFacility(cashFacility);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have cash facilities with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while adding cash facility!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             ClearDataView();
 
