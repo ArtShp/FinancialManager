@@ -32,13 +32,17 @@
             treeView = new TreeView();
             chooseButton = new Button();
             cancelButton = new Button();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // titleLabel
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(27, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(235, 130);
             titleLabel.TabIndex = 0;
@@ -47,16 +51,17 @@
             // treeView
             // 
             treeView.FullRowSelect = true;
-            treeView.Location = new Point(426, 12);
+            treeView.Location = new Point(333, 12);
+            treeView.MinimumSize = new Size(350, 210);
             treeView.Name = "treeView";
-            treeView.Size = new Size(578, 711);
+            treeView.Size = new Size(550, 410);
             treeView.TabIndex = 1;
             treeView.AfterCollapse += treeView_AfterCollapse;
             treeView.BeforeExpand += treeView_BeforeExpand;
             // 
             // chooseButton
             // 
-            chooseButton.Location = new Point(27, 677);
+            chooseButton.Location = new Point(3, 3);
             chooseButton.Name = "chooseButton";
             chooseButton.Size = new Size(150, 46);
             chooseButton.TabIndex = 2;
@@ -66,7 +71,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(218, 677);
+            cancelButton.Location = new Point(159, 3);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(150, 46);
             cancelButton.TabIndex = 3;
@@ -74,19 +79,40 @@
             cancelButton.UseVisualStyleBackColor = true;
             cancelButton.Click += cancelButton_Click;
             // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(315, 155);
+            controlsPanel.TabIndex = 4;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(chooseButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Location = new Point(12, 373);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(315, 56);
+            buttonsPanel.TabIndex = 5;
+            // 
             // ChooseCategoryForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1016, 755);
-            Controls.Add(cancelButton);
-            Controls.Add(chooseButton);
+            ClientSize = new Size(894, 439);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(treeView);
-            Controls.Add(titleLabel);
+            MinimumSize = new Size(720, 310);
             Name = "ChooseCategoryForm";
-            Text = "ChooseCategoryForm";
+            Text = "Choose Category";
+            Resize += ChooseCategoryForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -95,5 +121,7 @@
         private TreeView treeView;
         private Button chooseButton;
         private Button cancelButton;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }

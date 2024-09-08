@@ -3,6 +3,8 @@
     public partial class ChooseCategoryForm : Form
     {
         private long selectedId = -1;
+        private Size originalFormSize;
+        private Size originalTreeViewSize;
         public long SelectedId => selectedId;
 
         public ChooseCategoryForm()
@@ -10,6 +12,9 @@
             InitializeComponent();
 
             LoadAll();
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalTreeViewSize = new Size(treeView.Width, treeView.Height);
         }
 
         #region Loaders
@@ -78,6 +83,22 @@
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void ChooseCategoryForm_Resize(object sender, EventArgs e)
+        {
+            ResizeTreeView();
+        }
+
+        private void ResizeTreeView()
+        {
+            // Resize treeView to fit the form
+            treeView.Size = new Size(originalTreeViewSize.Width + (Width - originalFormSize.Width),
+                                     originalTreeViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion
