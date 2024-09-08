@@ -588,7 +588,27 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = id });
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = id });
+
+                    var queue = new Queue<CategoryModel>(LoadCategoriesByParentId(id));
+                    while (queue.Count > 0)
+                    {
+                        var category = queue.Dequeue();
+                        connection.Execute("DELETE FROM categories WHERE id = @Id", new { Id = category.Id });
+
+                        var subCategories = LoadCategoriesByParentId(category.Id);
+                        foreach (var subCategory in subCategories)
+                        {
+                            queue.Enqueue(subCategory);
+                        }
+                    }
+
+                    transaction.Commit();
+                }
+                connection.Close();
             }
         }
 

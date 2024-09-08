@@ -191,7 +191,7 @@ namespace FinancialManager
 
             selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
 
-            var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\" with all subcategories (if exist)?", "Delete Category", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 try
