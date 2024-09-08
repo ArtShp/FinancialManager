@@ -35,7 +35,7 @@
         private void LoadTransactionTypes()
         {
             var data = SqliteDataAccess.LoadTransactionTypes();
-            data.Insert(0, new TransactionTypeModel { Id = -1, Name = "" });
+            data.Insert(0, new TransactionTypeModel { Id = -1, Name = "---NONE---" });
 
             transactionTypeComboBox.DataSource = data;
             transactionTypeComboBox.DisplayMember = "Name";
@@ -45,7 +45,7 @@
         private void LoadPlacesOfPurchases()
         {
             var data = SqliteDataAccess.LoadPlacesOfPurchases();
-            data.Insert(0, new PlaceOfPurchaseModel { Id = -1, Name = "" });
+            data.Insert(0, new PlaceOfPurchaseModel { Id = -1, Name = "---NONE---" });
 
             placeComboBox.DataSource = data;
             placeComboBox.DisplayMember = "Name";
