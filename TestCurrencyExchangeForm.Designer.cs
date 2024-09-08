@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             titleLabel = new Label();
             fromCurrencyLabel = new Label();
             toCurrencyLabel = new Label();
@@ -40,8 +41,10 @@
             toCurrencyComboBox = new ComboBox();
             controlsPanel = new Panel();
             panel1 = new Panel();
+            sumErrorProvider = new ErrorProvider(components);
             controlsPanel.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // titleLabel
@@ -115,6 +118,7 @@
             moneyTextBox.Name = "moneyTextBox";
             moneyTextBox.Size = new Size(257, 39);
             moneyTextBox.TabIndex = 9;
+            moneyTextBox.Validating += moneyTextBox_Validating;
             // 
             // fromCurrencyComboBox
             // 
@@ -157,6 +161,10 @@
             panel1.Size = new Size(610, 55);
             panel1.TabIndex = 13;
             // 
+            // sumErrorProvider
+            // 
+            sumErrorProvider.ContainerControl = this;
+            // 
             // TestCurrencyExchangeForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -170,6 +178,7 @@
             controlsPanel.ResumeLayout(false);
             controlsPanel.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -187,5 +196,6 @@
         private ComboBox toCurrencyComboBox;
         private Panel controlsPanel;
         private Panel panel1;
+        private ErrorProvider sumErrorProvider;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Text.RegularExpressions;
+
+namespace FinancialManager
 {
     public partial class TestCurrencyExchangeForm : Form
     {
@@ -6,10 +8,12 @@
         {
             InitializeComponent();
 
+            LoadAll();
+
             moneyTextBox.Text = "0";
             dateTimePicker.Value = DateTime.Today;
 
-            LoadAll();
+            sumErrorProvider.ContainerControl = this;
         }
 
         #region Loaders
@@ -45,6 +49,9 @@
 
         private void convertButton_Click(object sender, EventArgs e)
         {
+            if (!ValidateSum())
+                return;
+
             try
             {
                 var fromCurrency = SqliteDataAccess.GetCurrencyById(Convert.ToInt64(fromCurrencyComboBox.SelectedValue));
@@ -64,5 +71,27 @@
         }
 
         #endregion
+
+        private void moneyTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateSum();
+        }
+
+        private bool ValidateSum()
+        {
+            var status = true;
+
+            if (Regex.IsMatch(moneyTextBox.Text, @"^(\d+\.\d+|\d+)$"))
+            {
+                sumErrorProvider.SetError(moneyTextBox, "");
+            }
+            else
+            {
+                sumErrorProvider.SetError(moneyTextBox, "Please enter a valid number!");
+                status = false;
+            }
+
+            return status;
+        }
     }
 }
