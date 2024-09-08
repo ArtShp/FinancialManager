@@ -776,6 +776,15 @@ namespace FinancialManager
             }
         }
 
+        public static long GetCurrenciesCount()
+        {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM currencies");
+                return output;
+            }
+        }
+
         #endregion
     }
 }
