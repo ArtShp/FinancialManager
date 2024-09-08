@@ -159,7 +159,25 @@ namespace FinancialManager
 
             var result = MessageBox.Show("Are you sure you want to delete this transaction type?", "Delete transaction type", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteTransactionTypeById(selectedId);
+            {
+                try
+                {
+                    SqliteDataAccess.DeleteTransactionTypeById(selectedId);
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                    {
+                        MessageBox.Show("You can't delete transaction type that is used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while deleting transaction type!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
