@@ -10,7 +10,7 @@ namespace FinancialManager
         public const int IncomeTransactionTypeId = 1;
         public const int ExpenseTransactionTypeId = 2;
 
-        private static string ConnectionString => "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True";
+        private static string ConnectionString => "Data Source=" + Properties.Settings.Default.PathToDb + "; Version=3; FailIfMissing=True; ForeignKeys=True;";
 
         static SqliteDataAccess()
         {
@@ -88,10 +88,10 @@ namespace FinancialManager
                             id_cash_facility INTEGER NOT NULL,
                             id_place_of_purchase INTEGER,
                             description TEXT NOT NULL,
-                            FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id),
-                            FOREIGN KEY(id_currency_of_transaction) REFERENCES currencies(id),
-                            FOREIGN KEY(id_cash_facility) REFERENCES cash_facilities(id),
-                            FOREIGN KEY(id_place_of_purchase) REFERENCES places_of_purchases(id));
+                            FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id) ON DELETE RESTRICT,
+                            FOREIGN KEY(id_currency_of_transaction) REFERENCES currencies(id) ON DELETE RESTRICT,
+                            FOREIGN KEY(id_cash_facility) REFERENCES cash_facilities(id) ON DELETE RESTRICT,
+                            FOREIGN KEY(id_place_of_purchase) REFERENCES places_of_purchases(id) ON DELETE RESTRICT);
 
                             CREATE TABLE currencies (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -104,7 +104,7 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL UNIQUE,
                             id_currency INTEGER NOT NULL,
-                            FOREIGN KEY(id_currency) REFERENCES currencies(id));
+                            FOREIGN KEY(id_currency) REFERENCES currencies(id) ON DELETE RESTRICT);
 
                             CREATE TABLE places_of_purchases (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -114,7 +114,7 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name TEXT NOT NULL UNIQUE,
                             id_transaction_type INTEGER,
-                            FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id));
+                            FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id) ON DELETE RESTRICT);
 
                             CREATE TABLE transaction_types (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -127,8 +127,8 @@ namespace FinancialManager
                             sum_by_main_currency INTEGER NOT NULL,
                             id_category INTEGER NOT NULL,
                             description TEXT NOT NULL,
-                            FOREIGN KEY(id_transaction) REFERENCES transactions(id),
-                            FOREIGN KEY(id_category) REFERENCES categories(id));
+                            FOREIGN KEY(id_transaction) REFERENCES transactions(id) ON DELETE CASCADE,
+                            FOREIGN KEY(id_category) REFERENCES categories(id) ON DELETE RESTRICT);
 
                             CREATE TABLE categories (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -139,8 +139,8 @@ namespace FinancialManager
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_item INTEGER NOT NULL,
                             id_tag INTEGER NOT NULL,
-                            FOREIGN KEY(id_item) REFERENCES items(id),
-                            FOREIGN KEY(id_tag) REFERENCES tags(id));
+                            FOREIGN KEY(id_item) REFERENCES items(id) ON DELETE CASCADE,
+                            FOREIGN KEY(id_tag) REFERENCES tags(id) ON DELETE CASCADE);
                         ";
                         command.ExecuteNonQuery();
                     }
