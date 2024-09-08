@@ -15,7 +15,7 @@
 
                 return new MoneyModel(sum.ToString(), toCurrency.Units_Rate);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Failed to convert money", e);
             }
@@ -27,7 +27,7 @@
             {
                 return CurrencyAPI.GetCurrencyRate(fromCurrency, toCurrency, date);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Failed to get currency rate", e);
             }
