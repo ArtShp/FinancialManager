@@ -167,6 +167,12 @@ namespace FinancialManager
 
         private void chooseCategoryButton_Click(object sender, EventArgs e)
         {
+            if (SqliteDataAccess.GetCategoriesCount() == 0)
+            {
+                MessageBox.Show("There are no categories to choose from! Please add some categories first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var chooseCategoryForm = new ChooseCategoryForm();
             chooseCategoryForm.ShowDialog();
 
