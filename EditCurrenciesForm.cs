@@ -205,7 +205,25 @@ namespace FinancialManager
 
             var result = MessageBox.Show("Are you sure you want to delete this currency?", "Delete currency", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteCurrencyById(selectedId);
+            {
+                try
+                {
+                    SqliteDataAccess.DeleteCurrencyById(selectedId);
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                    {
+                        MessageBox.Show("You can't delete currency that is used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while deleting currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
