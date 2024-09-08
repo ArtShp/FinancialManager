@@ -301,8 +301,22 @@ namespace FinancialManager
 
         private void EditTransactions()
         {
-            var editTransactionsForm = new EditTransactionsForm();
-            editTransactionsForm.Show();
+            if (SqliteDataAccess.GetCurrenciesCount() > 0)
+            {
+                if (SqliteDataAccess.GetCashFacilitiesCount() > 0)
+                {
+                    var editTransactionsForm = new EditTransactionsForm();
+                    editTransactionsForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No cash facilities found!\nPlease add some cash facilities first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No currencies found!\nPlease add some currencies first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void AnalyzeItems()
