@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Data.SQLite;
+
+namespace FinancialManager
 {
     public partial class EditTagsForm : Form
     {
@@ -95,7 +97,23 @@
                 Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
             };
 
-            SqliteDataAccess.UpdateTag(tag);
+            try
+            {
+                SqliteDataAccess.UpdateTag(tag);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have tags with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while updating tag!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
@@ -126,7 +144,23 @@
                 Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
             };
 
-            SqliteDataAccess.AddTag(tag);
+            try
+            {
+                SqliteDataAccess.AddTag(tag);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have tags with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while adding tag!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             ClearDataView();
 
