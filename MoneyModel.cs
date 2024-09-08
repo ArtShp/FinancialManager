@@ -65,6 +65,10 @@
                 if (parts[1].Length > Rate)
                 {
                     parts[1] = parts[1].Substring(0, Rate);
+                    if (parts[1].Length == 0)
+                    {
+                        parts[1] = "0";
+                    }
                 }
                 else if (parts[1].Length < Rate)
                 {
