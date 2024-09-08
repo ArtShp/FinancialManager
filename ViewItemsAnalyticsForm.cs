@@ -5,6 +5,8 @@
         private long categoryId = -1;
         private bool isFromDateSet = false;
         private bool isToDateSet = false;
+        private Size originalFormSize;
+        private Size originalListViewSize;
 
         public ViewItemsAnalyticsForm()
         {
@@ -12,6 +14,9 @@
 
             fromDateTimePicker.Value = DateTime.Today;
             toDateTimePicker.Value = DateTime.Today;
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalListViewSize = new Size(listView.Width, listView.Height);
 
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
@@ -115,7 +120,7 @@
                 return;
             }
 
-            var data = SqliteDataAccess.GetItems(categoryId, 
+            var data = SqliteDataAccess.GetItems(categoryId,
                                                      Convert.ToInt64(transactionTypeComboBox.SelectedValue),
                                                      isFromDateSet ? fromDate : null,
                                                      isToDateSet ? toDate : null,
@@ -198,6 +203,27 @@
 
             listView.EndUpdate();
             listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void ViewItemsAnalyticsForm_Resize(object sender, EventArgs e)
+        {
+            ResizeListView();
+        }
+
+        private void ViewItemsAnalyticsForm_ResizeEnd(object sender, EventArgs e)
+        {
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void ResizeListView()
+        {
+            // Resize listView to fit the form
+            listView.Size = new Size(originalListViewSize.Width + (Width - originalFormSize.Width),
+                                     originalListViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion

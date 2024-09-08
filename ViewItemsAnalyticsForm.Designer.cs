@@ -51,6 +51,10 @@
             getButton = new Button();
             clearFromDateButton = new Button();
             clearToDateButton = new Button();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // listView
@@ -58,10 +62,11 @@
             listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, dateColumnHeader, sumColumnHeader, mainSumColumnHeader, placeColumnHeader, tagsColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(543, 12);
+            listView.Location = new Point(427, 12);
+            listView.MinimumSize = new Size(400, 780);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(1162, 881);
+            listView.Size = new Size(1100, 880);
             listView.TabIndex = 0;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
@@ -94,16 +99,16 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(24, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
-            titleLabel.Size = new Size(442, 65);
+            titleLabel.Size = new Size(344, 65);
             titleLabel.TabIndex = 1;
             titleLabel.Text = "Analyze Items";
             // 
             // categoryLabel
             // 
             categoryLabel.AutoSize = true;
-            categoryLabel.Location = new Point(24, 94);
+            categoryLabel.Location = new Point(3, 85);
             categoryLabel.Name = "categoryLabel";
             categoryLabel.Size = new Size(110, 32);
             categoryLabel.TabIndex = 2;
@@ -111,7 +116,7 @@
             // 
             // chooseCategoryButton
             // 
-            chooseCategoryButton.Location = new Point(24, 174);
+            chooseCategoryButton.Location = new Point(3, 165);
             chooseCategoryButton.Name = "chooseCategoryButton";
             chooseCategoryButton.Size = new Size(115, 46);
             chooseCategoryButton.TabIndex = 3;
@@ -121,7 +126,7 @@
             // 
             // clearCategoryButton
             // 
-            clearCategoryButton.Location = new Point(145, 174);
+            clearCategoryButton.Location = new Point(124, 165);
             clearCategoryButton.Name = "clearCategoryButton";
             clearCategoryButton.Size = new Size(115, 46);
             clearCategoryButton.TabIndex = 4;
@@ -131,7 +136,7 @@
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(24, 129);
+            categoryTextBox.Location = new Point(3, 120);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
             categoryTextBox.Size = new Size(400, 39);
@@ -140,7 +145,7 @@
             // transactionTypeLabel
             // 
             transactionTypeLabel.AutoSize = true;
-            transactionTypeLabel.Location = new Point(24, 245);
+            transactionTypeLabel.Location = new Point(3, 236);
             transactionTypeLabel.Name = "transactionTypeLabel";
             transactionTypeLabel.Size = new Size(192, 32);
             transactionTypeLabel.TabIndex = 6;
@@ -149,7 +154,7 @@
             // transactionTypeComboBox
             // 
             transactionTypeComboBox.FormattingEnabled = true;
-            transactionTypeComboBox.Location = new Point(24, 280);
+            transactionTypeComboBox.Location = new Point(3, 271);
             transactionTypeComboBox.Name = "transactionTypeComboBox";
             transactionTypeComboBox.Size = new Size(400, 40);
             transactionTypeComboBox.TabIndex = 7;
@@ -157,7 +162,7 @@
             // fromDateLabel
             // 
             fromDateLabel.AutoSize = true;
-            fromDateLabel.Location = new Point(24, 374);
+            fromDateLabel.Location = new Point(3, 338);
             fromDateLabel.Name = "fromDateLabel";
             fromDateLabel.Size = new Size(131, 32);
             fromDateLabel.TabIndex = 8;
@@ -167,7 +172,7 @@
             // 
             fromDateTimePicker.CustomFormat = "dd.MM.yyyy";
             fromDateTimePicker.Format = DateTimePickerFormat.Custom;
-            fromDateTimePicker.Location = new Point(24, 409);
+            fromDateTimePicker.Location = new Point(3, 373);
             fromDateTimePicker.Name = "fromDateTimePicker";
             fromDateTimePicker.Size = new Size(400, 39);
             fromDateTimePicker.TabIndex = 9;
@@ -176,7 +181,7 @@
             // toDateLabel
             // 
             toDateLabel.AutoSize = true;
-            toDateLabel.Location = new Point(24, 523);
+            toDateLabel.Location = new Point(3, 497);
             toDateLabel.Name = "toDateLabel";
             toDateLabel.Size = new Size(101, 32);
             toDateLabel.TabIndex = 10;
@@ -186,7 +191,7 @@
             // 
             toDateTimePicker.CustomFormat = "dd.MM.yyyy";
             toDateTimePicker.Format = DateTimePickerFormat.Custom;
-            toDateTimePicker.Location = new Point(24, 558);
+            toDateTimePicker.Location = new Point(3, 532);
             toDateTimePicker.Name = "toDateTimePicker";
             toDateTimePicker.Size = new Size(400, 39);
             toDateTimePicker.TabIndex = 11;
@@ -195,7 +200,7 @@
             // placeLabel
             // 
             placeLabel.AutoSize = true;
-            placeLabel.Location = new Point(24, 697);
+            placeLabel.Location = new Point(3, 642);
             placeLabel.Name = "placeLabel";
             placeLabel.Size = new Size(69, 32);
             placeLabel.TabIndex = 12;
@@ -204,14 +209,14 @@
             // placeComboBox
             // 
             placeComboBox.FormattingEnabled = true;
-            placeComboBox.Location = new Point(24, 732);
+            placeComboBox.Location = new Point(3, 677);
             placeComboBox.Name = "placeComboBox";
             placeComboBox.Size = new Size(400, 40);
             placeComboBox.TabIndex = 13;
             // 
             // getButton
             // 
-            getButton.Location = new Point(24, 847);
+            getButton.Location = new Point(3, 3);
             getButton.Name = "getButton";
             getButton.Size = new Size(150, 46);
             getButton.TabIndex = 14;
@@ -221,7 +226,7 @@
             // 
             // clearFromDateButton
             // 
-            clearFromDateButton.Location = new Point(24, 454);
+            clearFromDateButton.Location = new Point(3, 418);
             clearFromDateButton.Name = "clearFromDateButton";
             clearFromDateButton.Size = new Size(115, 46);
             clearFromDateButton.TabIndex = 15;
@@ -231,7 +236,7 @@
             // 
             // clearToDateButton
             // 
-            clearToDateButton.Location = new Point(24, 603);
+            clearToDateButton.Location = new Point(3, 577);
             clearToDateButton.Name = "clearToDateButton";
             clearToDateButton.Size = new Size(115, 46);
             clearToDateButton.TabIndex = 16;
@@ -239,32 +244,54 @@
             clearToDateButton.UseVisualStyleBackColor = true;
             clearToDateButton.Click += clearToDateButton_Click;
             // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(clearToDateButton);
+            controlsPanel.Controls.Add(categoryLabel);
+            controlsPanel.Controls.Add(clearFromDateButton);
+            controlsPanel.Controls.Add(chooseCategoryButton);
+            controlsPanel.Controls.Add(clearCategoryButton);
+            controlsPanel.Controls.Add(placeComboBox);
+            controlsPanel.Controls.Add(categoryTextBox);
+            controlsPanel.Controls.Add(placeLabel);
+            controlsPanel.Controls.Add(transactionTypeLabel);
+            controlsPanel.Controls.Add(toDateTimePicker);
+            controlsPanel.Controls.Add(transactionTypeComboBox);
+            controlsPanel.Controls.Add(toDateLabel);
+            controlsPanel.Controls.Add(fromDateLabel);
+            controlsPanel.Controls.Add(fromDateTimePicker);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(409, 725);
+            controlsPanel.TabIndex = 17;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(getButton);
+            buttonsPanel.Location = new Point(12, 843);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(409, 55);
+            buttonsPanel.TabIndex = 18;
+            // 
             // ViewItemsAnalyticsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1717, 933);
-            Controls.Add(clearToDateButton);
-            Controls.Add(clearFromDateButton);
-            Controls.Add(getButton);
-            Controls.Add(placeComboBox);
-            Controls.Add(placeLabel);
-            Controls.Add(toDateTimePicker);
-            Controls.Add(toDateLabel);
-            Controls.Add(fromDateTimePicker);
-            Controls.Add(fromDateLabel);
-            Controls.Add(transactionTypeComboBox);
-            Controls.Add(transactionTypeLabel);
-            Controls.Add(categoryTextBox);
-            Controls.Add(clearCategoryButton);
-            Controls.Add(chooseCategoryButton);
-            Controls.Add(categoryLabel);
-            Controls.Add(titleLabel);
+            ClientSize = new Size(1544, 909);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(listView);
+            MinimumSize = new Size(870, 880);
             Name = "ViewItemsAnalyticsForm";
-            Text = "ViewItemsAnalyticsForm";
+            Text = "Items Analytics";
+            ResizeEnd += ViewItemsAnalyticsForm_ResizeEnd;
+            Resize += ViewItemsAnalyticsForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -292,5 +319,7 @@
         private Button getButton;
         private Button clearFromDateButton;
         private Button clearToDateButton;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
