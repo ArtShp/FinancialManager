@@ -10,6 +10,8 @@ namespace FinancialManager
 
             // Set the culture to en-GB for correct decimal separator (period instead of comma)
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
+
+            UpdateWindowTitle();
         }
 
         #region Tests
@@ -66,6 +68,7 @@ namespace FinancialManager
                 SqliteDataAccess.TestConnection();
 
                 Properties.Settings.Default.Save();
+                UpdateWindowTitle();
 
                 MessageBox.Show("DB created!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -91,6 +94,7 @@ namespace FinancialManager
                 SqliteDataAccess.TestConnection();
 
                 Properties.Settings.Default.Save();
+                UpdateWindowTitle();
 
                 MessageBox.Show("Connection to DB successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -113,6 +117,7 @@ namespace FinancialManager
 
             Properties.Settings.Default.PathToDb = "";
             Properties.Settings.Default.Save();
+            UpdateWindowTitle();
 
             MessageBox.Show("DB closed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -242,6 +247,14 @@ namespace FinancialManager
         #endregion
 
         #region Handlers
+
+        private void UpdateWindowTitle()
+        {
+            if (Properties.Settings.Default.PathToDb == "")
+                Text = "Financial Manager - No DB chosen";
+            else
+                Text = "Financial Manager - " + Properties.Settings.Default.PathToDb;
+        }
 
         private void EditCurrencies()
         {
