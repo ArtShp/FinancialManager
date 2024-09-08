@@ -31,6 +31,7 @@
             nameLabel = new Label();
             titleLabel = new Label();
             listView = new ListView();
+            nameColumnHeader = new ColumnHeader();
             addButton = new Button();
             saveButton = new Button();
             deleteButton = new Button();
@@ -38,13 +39,16 @@
             cancelButton = new Button();
             refreshButton = new Button();
             nameTextBox = new TextBox();
-            nameColumnHeader = new ColumnHeader();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(26, 130);
+            nameLabel.Location = new Point(3, 85);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(192, 32);
             nameLabel.TabIndex = 1;
@@ -54,7 +58,7 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(26, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(429, 65);
             titleLabel.TabIndex = 2;
@@ -65,19 +69,25 @@
             listView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(664, 12);
+            listView.Location = new Point(461, 12);
+            listView.MinimumSize = new Size(350, 290);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(449, 854);
+            listView.Size = new Size(550, 390);
             listView.TabIndex = 3;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
             // 
+            // nameColumnHeader
+            // 
+            nameColumnHeader.Text = "Name";
+            nameColumnHeader.Width = 120;
+            // 
             // addButton
             // 
-            addButton.Location = new Point(26, 820);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
-            addButton.Size = new Size(150, 46);
+            addButton.Size = new Size(140, 46);
             addButton.TabIndex = 4;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -85,9 +95,9 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(250, 768);
+            saveButton.Location = new Point(149, 3);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(150, 46);
+            saveButton.Size = new Size(140, 46);
             saveButton.TabIndex = 5;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -95,9 +105,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(250, 820);
+            deleteButton.Location = new Point(149, 55);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(150, 46);
+            deleteButton.Size = new Size(140, 46);
             deleteButton.TabIndex = 6;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
@@ -105,9 +115,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(26, 768);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(150, 46);
+            editButton.Size = new Size(140, 46);
             editButton.TabIndex = 7;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -115,9 +125,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(480, 768);
+            cancelButton.Location = new Point(295, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(150, 46);
+            cancelButton.Size = new Size(140, 46);
             cancelButton.TabIndex = 8;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -125,9 +135,9 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(480, 820);
+            refreshButton.Location = new Point(295, 55);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(150, 46);
+            refreshButton.Size = new Size(140, 46);
             refreshButton.TabIndex = 9;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -135,35 +145,52 @@
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(26, 180);
+            nameTextBox.Location = new Point(3, 135);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(380, 39);
+            nameTextBox.Size = new Size(429, 39);
             nameTextBox.TabIndex = 10;
             // 
-            // nameColumnHeader
+            // controlsPanel
             // 
-            nameColumnHeader.Text = "Name";
-            nameColumnHeader.Width = 120;
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(nameTextBox);
+            controlsPanel.Controls.Add(nameLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(443, 183);
+            controlsPanel.TabIndex = 11;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Location = new Point(12, 301);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(443, 109);
+            buttonsPanel.TabIndex = 12;
             // 
             // EditTransactionTypesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1125, 899);
-            Controls.Add(nameTextBox);
-            Controls.Add(refreshButton);
-            Controls.Add(cancelButton);
-            Controls.Add(editButton);
-            Controls.Add(deleteButton);
-            Controls.Add(saveButton);
-            Controls.Add(addButton);
+            ClientSize = new Size(1024, 419);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(listView);
-            Controls.Add(titleLabel);
-            Controls.Add(nameLabel);
+            MinimumSize = new Size(850, 390);
             Name = "EditTransactionTypesForm";
-            Text = "EditTransactionTypesForm";
+            Text = "Edit Transaction Types";
+            ResizeEnd += EditTransactionTypesForm_ResizeEnd;
+            Resize += EditTransactionTypesForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -178,5 +205,7 @@
         private Button refreshButton;
         private TextBox nameTextBox;
         private ColumnHeader nameColumnHeader;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
