@@ -604,15 +604,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    connection.Execute("DELETE FROM items_tags WHERE id_item = @Id", new { Id = id });
-                    connection.Execute("DELETE FROM items WHERE id = @Id", new { Id = id });
-
-                    transaction.Commit();
-                }
-                connection.Close();
+                connection.Execute("DELETE FROM items WHERE id = @Id", new { Id = id });
             }
         }
 
