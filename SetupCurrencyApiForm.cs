@@ -34,7 +34,15 @@
             }
             else
             {
-                MessageBox.Show("Connection failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var result = MessageBox.Show("Connection failed.\nDo you still want to keep changes?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                
+                if (result == DialogResult.Yes)
+                {
+                    Properties.Settings.Default.CurrencyApiKey = keyTextBox.Text;
+                    Properties.Settings.Default.Save();
+
+                    Close();
+                }
             }
         }
 
