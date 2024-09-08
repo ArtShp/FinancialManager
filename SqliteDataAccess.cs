@@ -785,6 +785,15 @@ namespace FinancialManager
             }
         }
 
+        public static long GetCashFacilitiesCount()
+        {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM cash_facilities");
+                return output;
+            }
+        }
+
         #endregion
     }
 }
