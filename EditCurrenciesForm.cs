@@ -112,7 +112,23 @@ namespace FinancialManager
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
-            SqliteDataAccess.UpdateCurrency(currency);
+            try
+            {
+                SqliteDataAccess.UpdateCurrency(currency);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have currecnies with the same Names or Codes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while updating currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
