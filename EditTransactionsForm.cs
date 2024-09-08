@@ -69,7 +69,7 @@
         private void LoadPlacesOfPurchases()
         {
             var placesOfPurchases = new List<PlaceOfPurchaseModel> {
-                new PlaceOfPurchaseModel { Id = 0, Name = "" }
+                new PlaceOfPurchaseModel { Id = 0, Name = "---NONE---" }
             };
             placesOfPurchases.AddRange(SqliteDataAccess.LoadPlacesOfPurchases());
 
