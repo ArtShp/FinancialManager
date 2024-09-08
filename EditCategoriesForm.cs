@@ -101,6 +101,9 @@ namespace FinancialManager
 
         private void loadButton_Click(object sender, EventArgs e)
         {
+            if (treeView.SelectedNode == null)
+                return;
+
             parentCategoryId = Convert.ToInt64(treeView.SelectedNode.Tag);
             var category = SqliteDataAccess.GetCategoryById(parentCategoryId);
             categoryTextBox.Text = category.Name;
