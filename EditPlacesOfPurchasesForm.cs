@@ -3,12 +3,17 @@
     public partial class EditPlacesOfPurchasesForm : Form
     {
         private long selectedId = -1;
+        private Size originalFormSize;
+        private Size originalListViewSize;
 
         public EditPlacesOfPurchasesForm()
         {
             InitializeComponent();
 
             LoadAll();
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalListViewSize = new Size(listView.Width, listView.Height);
         }
 
         #region Loaders
@@ -128,6 +133,27 @@
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadAll();
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void EditPlacesOfPurchasesForm_Resize(object sender, EventArgs e)
+        {
+            ResizeListView();
+        }
+
+        private void EditPlacesOfPurchasesForm_ResizeEnd(object sender, EventArgs e)
+        {
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void ResizeListView()
+        {
+            // Resize listView to fit the form
+            listView.Size = new Size(originalListViewSize.Width + (Width - originalFormSize.Width),
+                                     originalListViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion

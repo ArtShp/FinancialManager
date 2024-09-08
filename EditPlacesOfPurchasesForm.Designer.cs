@@ -35,15 +35,19 @@
             saveButton = new Button();
             addButton = new Button();
             listView = new ListView();
+            nameColumnHeader = new ColumnHeader();
             titleLabel = new Label();
             nameLabel = new Label();
             nameTextBox = new TextBox();
-            nameColumnHeader = new ColumnHeader();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(460, 831);
+            refreshButton.Location = new Point(345, 55);
             refreshButton.Name = "refreshButton";
             refreshButton.Size = new Size(150, 46);
             refreshButton.TabIndex = 0;
@@ -53,7 +57,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(249, 831);
+            deleteButton.Location = new Point(175, 55);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(150, 46);
             deleteButton.TabIndex = 1;
@@ -63,7 +67,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(460, 779);
+            cancelButton.Location = new Point(345, 3);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(150, 46);
             cancelButton.TabIndex = 2;
@@ -73,7 +77,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(32, 779);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
             editButton.Size = new Size(150, 46);
             editButton.TabIndex = 3;
@@ -83,7 +87,7 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(249, 779);
+            saveButton.Location = new Point(175, 3);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(150, 46);
             saveButton.TabIndex = 4;
@@ -93,7 +97,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(32, 831);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
             addButton.Size = new Size(150, 46);
             addButton.TabIndex = 5;
@@ -106,19 +110,25 @@
             listView.Columns.AddRange(new ColumnHeader[] { nameColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(667, 12);
+            listView.Location = new Point(516, 12);
+            listView.MinimumSize = new Size(400, 290);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(469, 865);
+            listView.Size = new Size(600, 490);
             listView.TabIndex = 6;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
+            // 
+            // nameColumnHeader
+            // 
+            nameColumnHeader.Text = "Name";
+            nameColumnHeader.Width = 120;
             // 
             // titleLabel
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(32, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(470, 65);
             titleLabel.TabIndex = 7;
@@ -127,43 +137,60 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(32, 177);
+            nameLabel.Location = new Point(3, 76);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(204, 32);
+            nameLabel.Size = new Size(78, 32);
             nameLabel.TabIndex = 8;
-            nameLabel.Text = "Place Of Purchase";
+            nameLabel.Text = "Name";
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(32, 226);
+            nameTextBox.Location = new Point(3, 125);
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(488, 39);
             nameTextBox.TabIndex = 9;
             // 
-            // nameColumnHeader
+            // controlsPanel
             // 
-            nameColumnHeader.Text = "Name";
-            nameColumnHeader.Width = 120;
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(nameTextBox);
+            controlsPanel.Controls.Add(nameLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(498, 173);
+            controlsPanel.TabIndex = 10;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Location = new Point(12, 401);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(498, 109);
+            buttonsPanel.TabIndex = 11;
             // 
             // EditPlacesOfPurchasesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1148, 906);
-            Controls.Add(nameTextBox);
-            Controls.Add(nameLabel);
-            Controls.Add(titleLabel);
+            ClientSize = new Size(1134, 519);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(listView);
-            Controls.Add(addButton);
-            Controls.Add(saveButton);
-            Controls.Add(editButton);
-            Controls.Add(cancelButton);
-            Controls.Add(deleteButton);
-            Controls.Add(refreshButton);
+            MinimumSize = new Size(960, 390);
             Name = "EditPlacesOfPurchasesForm";
-            Text = "EditPlacesOfPurchasesForm";
+            Text = "Edit Places Of Purchases";
+            ResizeEnd += EditPlacesOfPurchasesForm_ResizeEnd;
+            Resize += EditPlacesOfPurchasesForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -179,5 +206,7 @@
         private Label nameLabel;
         private TextBox nameTextBox;
         private ColumnHeader nameColumnHeader;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
