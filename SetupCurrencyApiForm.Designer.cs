@@ -31,15 +31,19 @@
             okButton = new Button();
             cancelButton = new Button();
             titleLabel = new Label();
-            keyTextBox = new TextBox();
             keyLabel = new Label();
+            controlsPanel = new Panel();
+            keyTextBox = new RichTextBox();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // okButton
             // 
-            okButton.Location = new Point(27, 240);
+            okButton.Location = new Point(3, 3);
             okButton.Name = "okButton";
-            okButton.Size = new Size(150, 46);
+            okButton.Size = new Size(170, 46);
             okButton.TabIndex = 0;
             okButton.Text = "Ok";
             okButton.UseVisualStyleBackColor = true;
@@ -47,9 +51,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(227, 240);
+            cancelButton.Location = new Point(233, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(150, 46);
+            cancelButton.Size = new Size(170, 46);
             cancelButton.TabIndex = 1;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -59,42 +63,63 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            titleLabel.Location = new Point(27, 20);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(374, 45);
             titleLabel.TabIndex = 2;
             titleLabel.Text = "Setup Currency API Key";
             // 
-            // keyTextBox
-            // 
-            keyTextBox.Location = new Point(27, 134);
-            keyTextBox.Name = "keyTextBox";
-            keyTextBox.Size = new Size(486, 39);
-            keyTextBox.TabIndex = 3;
-            // 
             // keyLabel
             // 
             keyLabel.AutoSize = true;
-            keyLabel.Location = new Point(27, 99);
+            keyLabel.Location = new Point(3, 82);
             keyLabel.Name = "keyLabel";
             keyLabel.Size = new Size(94, 32);
             keyLabel.TabIndex = 4;
             keyLabel.Text = "API Key";
             // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(keyTextBox);
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(keyLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(412, 283);
+            controlsPanel.TabIndex = 5;
+            // 
+            // keyTextBox
+            // 
+            keyTextBox.Location = new Point(3, 117);
+            keyTextBox.Name = "keyTextBox";
+            keyTextBox.Size = new Size(400, 163);
+            keyTextBox.TabIndex = 5;
+            keyTextBox.Text = "";
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(okButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Location = new Point(12, 301);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(412, 56);
+            buttonsPanel.TabIndex = 6;
+            // 
             // SetupCurrencyApiForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(537, 298);
-            Controls.Add(keyLabel);
-            Controls.Add(keyTextBox);
-            Controls.Add(titleLabel);
-            Controls.Add(cancelButton);
-            Controls.Add(okButton);
+            ClientSize = new Size(434, 369);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
+            MinimumSize = new Size(460, 440);
             Name = "SetupCurrencyApiForm";
-            Text = "SetupCurrencyApiForm";
+            Text = "Setup Currency API";
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -102,7 +127,9 @@
         private Button okButton;
         private Button cancelButton;
         private Label titleLabel;
-        private TextBox keyTextBox;
         private Label keyLabel;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
+        private RichTextBox keyTextBox;
     }
 }
