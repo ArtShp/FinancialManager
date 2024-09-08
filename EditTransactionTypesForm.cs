@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Data.SQLite;
+
+namespace FinancialManager
 {
     public partial class EditTransactionTypesForm : Form
     {
@@ -82,7 +84,23 @@
                 Name = nameTextBox.Text
             };
 
-            SqliteDataAccess.UpdateTransactionType(transactionType);
+            try
+            {
+                SqliteDataAccess.UpdateTransactionType(transactionType);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have transaction types with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while updating transaction type!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
@@ -112,7 +130,23 @@
                 Name = nameTextBox.Text
             };
 
-            SqliteDataAccess.AddTransactionType(transactionType);
+            try
+            {
+                SqliteDataAccess.AddTransactionType(transactionType);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have transaction types with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while adding transaction type!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             ClearDataView();
 
