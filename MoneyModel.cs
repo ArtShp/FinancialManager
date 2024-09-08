@@ -32,6 +32,15 @@
             {
                 strFraction = new string('0', Rate - strFraction.Length) + strFraction;
             }
+            else if (strFraction.Length > Rate)
+            {
+                strFraction = strFraction.Substring(0, Rate);
+            }
+
+            if (Rate == 0)
+            {
+                return strInteger;
+            }
 
             return strInteger + "." + strFraction;
         }
