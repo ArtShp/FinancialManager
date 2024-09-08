@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Data.SQLite;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FinancialManager
 {
@@ -178,7 +179,25 @@ namespace FinancialManager
 
             var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteCategoryById(selectedId);
+            {
+                try
+                {
+                    SqliteDataAccess.DeleteCategoryById(selectedId);
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                    {
+                        MessageBox.Show("You can't delete a category that is used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while deleting category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
