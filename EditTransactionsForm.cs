@@ -150,6 +150,9 @@
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             TransactionModel transaction = SqliteDataAccess.GetTransactionById(selectedId);
             SetDataView(transaction);
@@ -224,6 +227,9 @@
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             var result = MessageBox.Show("Are you sure you want to delete this transaction?", "Delete Transaction", MessageBoxButtons.YesNo);

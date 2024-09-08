@@ -118,6 +118,9 @@ namespace FinancialManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            if (treeView.SelectedNode == null)
+                return;
+
             selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
             var category = SqliteDataAccess.GetCategoryById(selectedId);
             SetDataView(category);
@@ -175,6 +178,9 @@ namespace FinancialManager
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (treeView.SelectedNode == null)
+                return;
+
             selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
 
             var result = MessageBox.Show($"Are you sure you want to delete category \"{treeView.SelectedNode.Text}\"?", "Delete Category", MessageBoxButtons.YesNo);

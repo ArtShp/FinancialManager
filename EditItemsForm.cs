@@ -193,6 +193,9 @@ namespace FinancialManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             if (selectedId == -1)
@@ -303,6 +306,9 @@ namespace FinancialManager
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             if (selectedId == -1)

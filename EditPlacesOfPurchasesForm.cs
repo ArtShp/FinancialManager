@@ -65,6 +65,9 @@ namespace FinancialManager
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
             PlaceOfPurchaseModel placeOfPurchase = SqliteDataAccess.GetPlaceOfPurchaseById(selectedId);
             SetDataView(placeOfPurchase);
@@ -152,6 +155,9 @@ namespace FinancialManager
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
             selectedId = Convert.ToInt64(listView.SelectedItems[0].Tag);
 
             var result = MessageBox.Show("Are you sure you want to delete this place of purchase?", "Delete place of purchase", MessageBoxButtons.YesNo);
