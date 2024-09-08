@@ -86,6 +86,9 @@
 
         private void chooseButton_Click(object sender, EventArgs e)
         {
+            if (treeView.SelectedNode == null)
+                return;
+
             selectedId = Convert.ToInt64(treeView.SelectedNode.Tag);
             Close();
         }
