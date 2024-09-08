@@ -189,7 +189,25 @@ namespace FinancialManager
 
             var result = MessageBox.Show("Are you sure you want to delete this cash facility?", "Delete Cash Facility", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeleteCashFacilityById(selectedId);
+            {
+                try
+                {
+                    SqliteDataAccess.DeleteCashFacilityById(selectedId);
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                    {
+                        MessageBox.Show("You can't delete cash facility that is used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while deleting cash facility!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
