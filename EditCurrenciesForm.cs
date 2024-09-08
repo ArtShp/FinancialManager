@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Data.SQLite;
+
+namespace FinancialManager
 {
     public partial class EditCurrenciesForm : Form
     {
@@ -150,7 +152,23 @@
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
-            SqliteDataAccess.AddCurrency(currency);
+            try
+            {
+                SqliteDataAccess.AddCurrency(currency);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have currecnies with the same Names or Codes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while adding currency!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             ClearDataView();
 
