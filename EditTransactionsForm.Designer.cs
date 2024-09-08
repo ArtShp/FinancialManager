@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             titleLabel = new Label();
             transactionTypeLabel = new Label();
             transactionComboBox = new ComboBox();
@@ -59,8 +60,10 @@
             sumTextBox = new TextBox();
             controlsPanel = new Panel();
             buttonsPanel = new Panel();
+            sumErrorProvider = new ErrorProvider(components);
             controlsPanel.SuspendLayout();
             buttonsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // titleLabel
@@ -85,9 +88,9 @@
             // transactionComboBox
             // 
             transactionComboBox.FormattingEnabled = true;
-            transactionComboBox.Location = new Point(3, 121);
+            transactionComboBox.Location = new Point(3, 112);
             transactionComboBox.Name = "transactionComboBox";
-            transactionComboBox.Size = new Size(379, 40);
+            transactionComboBox.Size = new Size(344, 40);
             transactionComboBox.TabIndex = 2;
             // 
             // dateTimePicker
@@ -96,7 +99,7 @@
             dateTimePicker.Format = DateTimePickerFormat.Custom;
             dateTimePicker.Location = new Point(3, 209);
             dateTimePicker.Name = "dateTimePicker";
-            dateTimePicker.Size = new Size(379, 39);
+            dateTimePicker.Size = new Size(344, 39);
             dateTimePicker.TabIndex = 3;
             dateTimePicker.Value = new DateTime(2024, 8, 21, 17, 1, 55, 0);
             // 
@@ -300,9 +303,10 @@
             // 
             sumTextBox.Location = new Point(3, 300);
             sumTextBox.Name = "sumTextBox";
-            sumTextBox.Size = new Size(379, 39);
+            sumTextBox.Size = new Size(344, 39);
             sumTextBox.TabIndex = 6;
             sumTextBox.Text = "0";
+            sumTextBox.Validating += sumTextBox_Validating;
             // 
             // controlsPanel
             // 
@@ -340,6 +344,10 @@
             buttonsPanel.Size = new Size(785, 106);
             buttonsPanel.TabIndex = 23;
             // 
+            // sumErrorProvider
+            // 
+            sumErrorProvider.ContainerControl = this;
+            // 
             // EditTransactionsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -356,6 +364,7 @@
             controlsPanel.ResumeLayout(false);
             controlsPanel.PerformLayout();
             buttonsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -392,5 +401,6 @@
         private ColumnHeader descriptionColumnHeader;
         private Panel controlsPanel;
         private Panel buttonsPanel;
+        private ErrorProvider sumErrorProvider;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Text.RegularExpressions;
+
+namespace FinancialManager
 {
     public partial class EditTransactionsForm : Form
     {
@@ -14,6 +16,8 @@
 
             originalFormSize = new Size(Size.Width, Size.Height);
             originalListViewSize = new Size(listView.Width, listView.Height);
+
+            sumErrorProvider.ContainerControl = this;
         }
 
         #region Loaders
@@ -163,6 +167,9 @@
             if (selectedId == -1)
                 return;
 
+            if (!ValidateSum())
+                return;
+
             var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
 
             TransactionModel transaction = new TransactionModel
@@ -201,6 +208,9 @@
                 MessageBox.Show("Please cancel edit before adding a new transaction", "Add transaction", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (!ValidateSum())
+                return;
 
             var idCashFacility = Convert.ToInt64(cashComboBox.SelectedValue);
 
@@ -284,5 +294,27 @@
         }
 
         #endregion
+
+        private void sumTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateSum();
+        }
+
+        private bool ValidateSum()
+        {
+            var status = true;
+
+            if (Regex.IsMatch(sumTextBox.Text, @"^(\d+\.\d+|\d+)$"))
+            {
+                sumErrorProvider.SetError(sumTextBox, "");
+            }
+            else
+            {
+                sumErrorProvider.SetError(sumTextBox, "Please enter a valid number!");
+                status = false;
+            }
+
+            return status;
+        }
     }
 }
