@@ -361,6 +361,8 @@ namespace FinancialManager
 
         #endregion
 
+        #region Other Controls Handlers
+
         private void sumTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             ValidateSum();
@@ -382,5 +384,7 @@ namespace FinancialManager
 
             return status;
         }
+
+        #endregion
     }
 }
