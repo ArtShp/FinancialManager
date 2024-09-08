@@ -6,12 +6,17 @@ namespace FinancialManager
     {
         private long selectedId = -1;
         private long parentCategoryId = 0;
+        private Size originalFormSize;
+        private Size originalTreeViewSize;
 
         public EditCategoriesForm()
         {
             InitializeComponent();
 
             LoadAll();
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalTreeViewSize = new Size(treeView.Width, treeView.Height);
         }
 
         #region Loaders
@@ -181,6 +186,22 @@ namespace FinancialManager
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadAll();
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void EditCategoriesForm_Resize(object sender, EventArgs e)
+        {
+            ResizeTreeView();
+        }
+
+        private void ResizeTreeView()
+        {
+            // Resize treeView to fit the form
+            treeView.Size = new Size(originalTreeViewSize.Width + (Width - originalFormSize.Width),
+                                     originalTreeViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion

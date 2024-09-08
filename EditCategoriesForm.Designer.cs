@@ -42,14 +42,19 @@
             categoryTextBox = new TextBox();
             loadButton = new Button();
             clearButton = new Button();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // treeView
             // 
             treeView.FullRowSelect = true;
-            treeView.Location = new Point(708, 12);
+            treeView.Location = new Point(459, 12);
+            treeView.MinimumSize = new Size(360, 430);
             treeView.Name = "treeView";
-            treeView.Size = new Size(609, 916);
+            treeView.Size = new Size(560, 630);
             treeView.TabIndex = 0;
             treeView.AfterCollapse += treeView_AfterCollapse;
             treeView.BeforeExpand += treeView_BeforeExpand;
@@ -58,7 +63,7 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(41, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(268, 65);
             titleLabel.TabIndex = 1;
@@ -67,7 +72,7 @@
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(41, 155);
+            nameLabel.Location = new Point(3, 84);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(181, 32);
             nameLabel.TabIndex = 2;
@@ -75,9 +80,9 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(41, 882);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
-            addButton.Size = new Size(150, 46);
+            addButton.Size = new Size(140, 46);
             addButton.TabIndex = 3;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -85,9 +90,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(41, 830);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(150, 46);
+            editButton.Size = new Size(140, 46);
             editButton.TabIndex = 4;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -95,9 +100,9 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(253, 830);
+            saveButton.Location = new Point(149, 3);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(150, 46);
+            saveButton.Size = new Size(140, 46);
             saveButton.TabIndex = 6;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -105,9 +110,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(253, 882);
+            deleteButton.Location = new Point(149, 55);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(150, 46);
+            deleteButton.Size = new Size(140, 46);
             deleteButton.TabIndex = 5;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
@@ -115,9 +120,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(470, 830);
+            cancelButton.Location = new Point(295, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(150, 46);
+            cancelButton.Size = new Size(140, 46);
             cancelButton.TabIndex = 8;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -125,9 +130,9 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(470, 882);
+            refreshButton.Location = new Point(295, 55);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(150, 46);
+            refreshButton.Size = new Size(140, 46);
             refreshButton.TabIndex = 7;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -135,15 +140,15 @@
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(41, 190);
+            nameTextBox.Location = new Point(3, 119);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(457, 39);
+            nameTextBox.Size = new Size(432, 39);
             nameTextBox.TabIndex = 9;
             // 
             // categoryLabel
             // 
             categoryLabel.AutoSize = true;
-            categoryLabel.Location = new Point(41, 323);
+            categoryLabel.Location = new Point(3, 189);
             categoryLabel.Name = "categoryLabel";
             categoryLabel.Size = new Size(184, 32);
             categoryLabel.TabIndex = 10;
@@ -151,15 +156,15 @@
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(41, 358);
+            categoryTextBox.Location = new Point(3, 224);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
-            categoryTextBox.Size = new Size(457, 39);
+            categoryTextBox.Size = new Size(432, 39);
             categoryTextBox.TabIndex = 11;
             // 
             // loadButton
             // 
-            loadButton.Location = new Point(41, 403);
+            loadButton.Location = new Point(3, 269);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(101, 46);
             loadButton.TabIndex = 12;
@@ -169,7 +174,7 @@
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(148, 403);
+            clearButton.Location = new Point(110, 269);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(101, 46);
             clearButton.TabIndex = 13;
@@ -177,29 +182,50 @@
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(clearButton);
+            controlsPanel.Controls.Add(nameLabel);
+            controlsPanel.Controls.Add(loadButton);
+            controlsPanel.Controls.Add(nameTextBox);
+            controlsPanel.Controls.Add(categoryTextBox);
+            controlsPanel.Controls.Add(categoryLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(441, 323);
+            controlsPanel.TabIndex = 14;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Location = new Point(12, 541);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(441, 107);
+            buttonsPanel.TabIndex = 15;
+            // 
             // EditCategoriesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1329, 967);
-            Controls.Add(clearButton);
-            Controls.Add(loadButton);
-            Controls.Add(categoryTextBox);
-            Controls.Add(categoryLabel);
-            Controls.Add(nameTextBox);
-            Controls.Add(cancelButton);
-            Controls.Add(refreshButton);
-            Controls.Add(saveButton);
-            Controls.Add(deleteButton);
-            Controls.Add(editButton);
-            Controls.Add(addButton);
-            Controls.Add(nameLabel);
-            Controls.Add(titleLabel);
+            ClientSize = new Size(1034, 659);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(treeView);
+            MinimumSize = new Size(860, 530);
             Name = "EditCategoriesForm";
-            Text = "EditCategoriesForm";
+            Text = "Edit Categories";
+            Resize += EditCategoriesForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -218,5 +244,7 @@
         private TextBox categoryTextBox;
         private Button loadButton;
         private Button clearButton;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
