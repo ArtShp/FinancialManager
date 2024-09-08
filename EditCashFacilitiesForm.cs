@@ -20,8 +20,16 @@
 
         private void LoadAll()
         {
-            LoadCurrencies();
-            LoadList();
+            try
+            {
+                LoadCurrencies();
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadCurrencies()
@@ -37,23 +45,31 @@
 
         private void LoadList()
         {
-            var data = SqliteDataAccess.LoadCashFacilities();
-
-            listView.BeginUpdate();
-            listView.Items.Clear();
-
-            foreach (var cashFacility in data)
+            try
             {
-                var currency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
-                listView.Items.Add(
-                    new ListViewItem(new[] { cashFacility.Name, currency.Name })
-                    {
-                        Tag = cashFacility.Id
-                    });
-            }
+                var data = SqliteDataAccess.LoadCashFacilities();
 
-            listView.EndUpdate();
-            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                listView.BeginUpdate();
+                listView.Items.Clear();
+
+                foreach (var cashFacility in data)
+                {
+                    var currency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
+                    listView.Items.Add(
+                        new ListViewItem(new[] { cashFacility.Name, currency.Name })
+                        {
+                            Tag = cashFacility.Id
+                        });
+                }
+
+                listView.EndUpdate();
+                listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         #endregion
