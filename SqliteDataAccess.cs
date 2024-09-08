@@ -794,6 +794,15 @@ namespace FinancialManager
             }
         }
 
+        public static long GetCategoriesCount()
+        {
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                var output = connection.ExecuteScalar<long>("SELECT COUNT(*) FROM categories");
+                return output;
+            }
+        }
+
         #endregion
     }
 }
