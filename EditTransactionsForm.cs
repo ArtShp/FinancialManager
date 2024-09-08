@@ -3,12 +3,17 @@
     public partial class EditTransactionsForm : Form
     {
         private long selectedId = -1;
+        private Size originalFormSize;
+        private Size originalListViewSize;
 
         public EditTransactionsForm()
         {
             InitializeComponent();
 
             LoadAll();
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalListViewSize = new Size(listView.Width, listView.Height);
         }
 
         #region Loaders
@@ -234,6 +239,27 @@
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadAll();
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void EditTransactionsForm_Resize(object sender, EventArgs e)
+        {
+            ResizeListView();
+        }
+
+        private void EditTransactionsForm_ResizeEnd(object sender, EventArgs e)
+        {
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void ResizeListView()
+        {
+            // Resize listView to fit the form
+            listView.Size = new Size(originalListViewSize.Width + (Width - originalFormSize.Width),
+                                     originalListViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion

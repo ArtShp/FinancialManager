@@ -57,13 +57,17 @@
             cancelButton = new Button();
             refreshButton = new Button();
             sumTextBox = new TextBox();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // titleLabel
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(41, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new Size(308, 65);
             titleLabel.TabIndex = 0;
@@ -72,7 +76,7 @@
             // transactionTypeLabel
             // 
             transactionTypeLabel.AutoSize = true;
-            transactionTypeLabel.Location = new Point(41, 112);
+            transactionTypeLabel.Location = new Point(3, 77);
             transactionTypeLabel.Name = "transactionTypeLabel";
             transactionTypeLabel.Size = new Size(192, 32);
             transactionTypeLabel.TabIndex = 1;
@@ -81,7 +85,7 @@
             // transactionComboBox
             // 
             transactionComboBox.FormattingEnabled = true;
-            transactionComboBox.Location = new Point(41, 156);
+            transactionComboBox.Location = new Point(3, 121);
             transactionComboBox.Name = "transactionComboBox";
             transactionComboBox.Size = new Size(379, 40);
             transactionComboBox.TabIndex = 2;
@@ -90,7 +94,7 @@
             // 
             dateTimePicker.CustomFormat = "dd.MM.yyyy";
             dateTimePicker.Format = DateTimePickerFormat.Custom;
-            dateTimePicker.Location = new Point(41, 270);
+            dateTimePicker.Location = new Point(3, 209);
             dateTimePicker.Name = "dateTimePicker";
             dateTimePicker.Size = new Size(379, 39);
             dateTimePicker.TabIndex = 3;
@@ -99,7 +103,7 @@
             // dateLabel
             // 
             dateLabel.AutoSize = true;
-            dateLabel.Location = new Point(41, 235);
+            dateLabel.Location = new Point(3, 174);
             dateLabel.Name = "dateLabel";
             dateLabel.Size = new Size(64, 32);
             dateLabel.TabIndex = 4;
@@ -108,7 +112,7 @@
             // sumLabel
             // 
             sumLabel.AutoSize = true;
-            sumLabel.Location = new Point(41, 369);
+            sumLabel.Location = new Point(3, 265);
             sumLabel.Name = "sumLabel";
             sumLabel.Size = new Size(62, 32);
             sumLabel.TabIndex = 5;
@@ -117,7 +121,7 @@
             // cashComboBox
             // 
             cashComboBox.FormattingEnabled = true;
-            cashComboBox.Location = new Point(483, 147);
+            cashComboBox.Location = new Point(400, 300);
             cashComboBox.Name = "cashComboBox";
             cashComboBox.Size = new Size(377, 40);
             cashComboBox.TabIndex = 8;
@@ -125,7 +129,7 @@
             // cashFacilityLabel
             // 
             cashFacilityLabel.AutoSize = true;
-            cashFacilityLabel.Location = new Point(483, 112);
+            cashFacilityLabel.Location = new Point(400, 265);
             cashFacilityLabel.Name = "cashFacilityLabel";
             cashFacilityLabel.Size = new Size(144, 32);
             cashFacilityLabel.TabIndex = 7;
@@ -134,7 +138,7 @@
             // placeComboBox
             // 
             placeComboBox.FormattingEnabled = true;
-            placeComboBox.Location = new Point(483, 269);
+            placeComboBox.Location = new Point(400, 208);
             placeComboBox.Name = "placeComboBox";
             placeComboBox.Size = new Size(377, 40);
             placeComboBox.TabIndex = 10;
@@ -142,7 +146,7 @@
             // placeLabel
             // 
             placeLabel.AutoSize = true;
-            placeLabel.Location = new Point(483, 235);
+            placeLabel.Location = new Point(400, 174);
             placeLabel.Name = "placeLabel";
             placeLabel.Size = new Size(69, 32);
             placeLabel.TabIndex = 9;
@@ -151,7 +155,7 @@
             // currencyComboBox
             // 
             currencyComboBox.FormattingEnabled = true;
-            currencyComboBox.Location = new Point(483, 404);
+            currencyComboBox.Location = new Point(400, 112);
             currencyComboBox.Name = "currencyComboBox";
             currencyComboBox.Size = new Size(377, 40);
             currencyComboBox.TabIndex = 12;
@@ -159,7 +163,7 @@
             // currencyLabel
             // 
             currencyLabel.AutoSize = true;
-            currencyLabel.Location = new Point(483, 369);
+            currencyLabel.Location = new Point(400, 77);
             currencyLabel.Name = "currencyLabel";
             currencyLabel.Size = new Size(109, 32);
             currencyLabel.TabIndex = 11;
@@ -168,7 +172,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(41, 486);
+            descriptionLabel.Location = new Point(3, 356);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(135, 32);
             descriptionLabel.TabIndex = 13;
@@ -176,9 +180,9 @@
             // 
             // descriptionRichTextBox
             // 
-            descriptionRichTextBox.Location = new Point(41, 521);
+            descriptionRichTextBox.Location = new Point(3, 391);
             descriptionRichTextBox.Name = "descriptionRichTextBox";
-            descriptionRichTextBox.Size = new Size(819, 255);
+            descriptionRichTextBox.Size = new Size(774, 98);
             descriptionRichTextBox.TabIndex = 14;
             descriptionRichTextBox.Text = "";
             // 
@@ -187,10 +191,11 @@
             listView.Columns.AddRange(new ColumnHeader[] { transactionColumnHeader, dateColumnHeader, sumColumnHeader, currencyColumnHeader, cashColumnHeader, placeColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(901, 12);
+            listView.Location = new Point(803, 12);
+            listView.MinimumSize = new Size(500, 600);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(1211, 959);
+            listView.Size = new Size(1000, 800);
             listView.TabIndex = 15;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
@@ -233,9 +238,9 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(41, 925);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
-            addButton.Size = new Size(150, 46);
+            addButton.Size = new Size(200, 46);
             addButton.TabIndex = 16;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -243,9 +248,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(41, 873);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(150, 46);
+            editButton.Size = new Size(200, 46);
             editButton.TabIndex = 17;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -253,9 +258,9 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(234, 873);
+            saveButton.Location = new Point(279, 3);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(150, 46);
+            saveButton.Size = new Size(200, 46);
             saveButton.TabIndex = 19;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -263,9 +268,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(234, 925);
+            deleteButton.Location = new Point(279, 55);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(150, 46);
+            deleteButton.Size = new Size(200, 46);
             deleteButton.TabIndex = 18;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
@@ -273,9 +278,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(426, 873);
+            cancelButton.Location = new Point(577, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(150, 46);
+            cancelButton.Size = new Size(200, 46);
             cancelButton.TabIndex = 21;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -283,9 +288,9 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(426, 925);
+            refreshButton.Location = new Point(577, 55);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(150, 46);
+            refreshButton.Size = new Size(200, 46);
             refreshButton.TabIndex = 20;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -293,43 +298,65 @@
             // 
             // sumTextBox
             // 
-            sumTextBox.Location = new Point(41, 404);
+            sumTextBox.Location = new Point(3, 300);
             sumTextBox.Name = "sumTextBox";
             sumTextBox.Size = new Size(379, 39);
             sumTextBox.TabIndex = 6;
             sumTextBox.Text = "0";
             // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(transactionTypeLabel);
+            controlsPanel.Controls.Add(transactionComboBox);
+            controlsPanel.Controls.Add(dateTimePicker);
+            controlsPanel.Controls.Add(dateLabel);
+            controlsPanel.Controls.Add(sumLabel);
+            controlsPanel.Controls.Add(sumTextBox);
+            controlsPanel.Controls.Add(currencyLabel);
+            controlsPanel.Controls.Add(descriptionRichTextBox);
+            controlsPanel.Controls.Add(cashFacilityLabel);
+            controlsPanel.Controls.Add(descriptionLabel);
+            controlsPanel.Controls.Add(cashComboBox);
+            controlsPanel.Controls.Add(currencyComboBox);
+            controlsPanel.Controls.Add(placeLabel);
+            controlsPanel.Controls.Add(placeComboBox);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(785, 496);
+            controlsPanel.TabIndex = 22;
+            // 
+            // buttonsPanel
+            // 
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Location = new Point(12, 714);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(785, 106);
+            buttonsPanel.TabIndex = 23;
+            // 
             // EditTransactionsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2124, 992);
-            Controls.Add(cancelButton);
-            Controls.Add(refreshButton);
-            Controls.Add(saveButton);
-            Controls.Add(deleteButton);
-            Controls.Add(editButton);
-            Controls.Add(addButton);
+            ClientSize = new Size(1814, 829);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(listView);
-            Controls.Add(descriptionRichTextBox);
-            Controls.Add(descriptionLabel);
-            Controls.Add(currencyComboBox);
-            Controls.Add(currencyLabel);
-            Controls.Add(placeComboBox);
-            Controls.Add(placeLabel);
-            Controls.Add(cashComboBox);
-            Controls.Add(cashFacilityLabel);
-            Controls.Add(sumTextBox);
-            Controls.Add(sumLabel);
-            Controls.Add(dateLabel);
-            Controls.Add(dateTimePicker);
-            Controls.Add(transactionComboBox);
-            Controls.Add(transactionTypeLabel);
-            Controls.Add(titleLabel);
+            MinimumSize = new Size(1340, 700);
             Name = "EditTransactionsForm";
-            Text = "EditTransactionsForm";
+            Text = "Edit Transactions";
+            ResizeEnd += EditTransactionsForm_ResizeEnd;
+            Resize += EditTransactionsForm_Resize;
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -363,5 +390,7 @@
         private ColumnHeader cashColumnHeader;
         private ColumnHeader placeColumnHeader;
         private ColumnHeader descriptionColumnHeader;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
