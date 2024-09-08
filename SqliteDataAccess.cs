@@ -692,6 +692,7 @@ namespace FinancialManager
 
             if (categoryId != -1)
             {
+                // Get all subcategories
                 var categories = new Queue<CategoryModel>();
                 categories.Enqueue(GetCategoryById(categoryId));
                 categoriesIds.Add(categoryId);
