@@ -53,7 +53,7 @@
                 var money = new MoneyModel(moneyTextBox.Text, fromCurrency.Units_Rate);
                 var convertedMoney = CurrencyConverter.ConvertMoney(money, fromCurrency, toCurrency, dateTimePicker.Value);
 
-                string message = $"Convertation:\n{money.GetString()} {fromCurrency.Code} = {convertedMoney.GetString()} {toCurrency.Code}\n{dateTimePicker.Value.ToString("yyyy-MM-dd")}";
+                string message = $"Convertation:\n{money.GetString()} {fromCurrency.Code} = {convertedMoney.GetString()} {toCurrency.Code}\n{dateTimePicker.Value.ToString("dd.MM.yyyy")}";
 
                 MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
