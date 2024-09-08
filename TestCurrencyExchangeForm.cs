@@ -20,7 +20,15 @@ namespace FinancialManager
 
         private void LoadAll()
         {
-            LoadCurrencies();
+            try
+            {
+                LoadCurrencies();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadCurrencies()

@@ -33,9 +33,17 @@ namespace FinancialManager
 
         private void LoadAll()
         {
-            LoadData();
-            LoadTags();
-            LoadList();
+            try
+            {
+                LoadData();
+                LoadTags();
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadData()

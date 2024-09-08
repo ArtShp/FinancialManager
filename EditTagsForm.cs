@@ -22,8 +22,16 @@ namespace FinancialManager
 
         private void LoadAll()
         {
-            LoadTransactionTypes();
-            LoadList();
+            try
+            {
+                LoadTransactionTypes();
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadTransactionTypes()

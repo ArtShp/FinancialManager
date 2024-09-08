@@ -22,7 +22,15 @@ namespace FinancialManager
 
         private void LoadAll()
         {
-            LoadList();
+            try
+            {
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadList()

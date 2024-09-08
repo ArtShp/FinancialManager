@@ -28,8 +28,16 @@
 
         private void LoadAll()
         {
-            LoadTransactionTypes();
-            LoadPlacesOfPurchases();
+            try
+            {
+                LoadTransactionTypes();
+                LoadPlacesOfPurchases();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadTransactionTypes()
