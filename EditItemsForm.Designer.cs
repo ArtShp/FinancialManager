@@ -32,6 +32,7 @@
             listView = new ListView();
             categoryColumnHeader = new ColumnHeader();
             sumColumnHeader = new ColumnHeader();
+            mainSumColumnHeader = new ColumnHeader();
             tagsColumnHeader = new ColumnHeader();
             descriptionColumnHeader = new ColumnHeader();
             sumLabel = new Label();
@@ -52,16 +53,19 @@
             currencyTextBox = new TextBox();
             tagsLabel = new Label();
             tagsListView = new ListView();
-            mainSumColumnHeader = new ColumnHeader();
+            buttonsPanel = new Panel();
+            controlsPanel = new Panel();
+            buttonsPanel.SuspendLayout();
+            controlsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // titleLabel
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            titleLabel.Location = new Point(31, 12);
+            titleLabel.Location = new Point(3, 3);
             titleLabel.Name = "titleLabel";
-            titleLabel.Size = new Size(251, 65);
+            titleLabel.Size = new Size(153, 65);
             titleLabel.TabIndex = 0;
             titleLabel.Text = "Items";
             // 
@@ -70,10 +74,11 @@
             listView.Columns.AddRange(new ColumnHeader[] { categoryColumnHeader, sumColumnHeader, mainSumColumnHeader, tagsColumnHeader, descriptionColumnHeader });
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Location = new Point(643, 12);
+            listView.Location = new Point(458, 12);
+            listView.MinimumSize = new Size(450, 880);
             listView.MultiSelect = false;
             listView.Name = "listView";
-            listView.Size = new Size(615, 908);
+            listView.Size = new Size(850, 880);
             listView.TabIndex = 1;
             listView.UseCompatibleStateImageBehavior = false;
             listView.View = View.Details;
@@ -88,6 +93,11 @@
             sumColumnHeader.Text = "Sum";
             sumColumnHeader.Width = 100;
             // 
+            // mainSumColumnHeader
+            // 
+            mainSumColumnHeader.Text = "Sum (Main)";
+            mainSumColumnHeader.Width = 100;
+            // 
             // tagsColumnHeader
             // 
             tagsColumnHeader.Text = "Tags";
@@ -101,7 +111,7 @@
             // sumLabel
             // 
             sumLabel.AutoSize = true;
-            sumLabel.Location = new Point(31, 101);
+            sumLabel.Location = new Point(3, 68);
             sumLabel.Name = "sumLabel";
             sumLabel.Size = new Size(62, 32);
             sumLabel.TabIndex = 2;
@@ -110,7 +120,7 @@
             // categoryLabel
             // 
             categoryLabel.AutoSize = true;
-            categoryLabel.Location = new Point(30, 290);
+            categoryLabel.Location = new Point(2, 257);
             categoryLabel.Name = "categoryLabel";
             categoryLabel.Size = new Size(110, 32);
             categoryLabel.TabIndex = 4;
@@ -119,7 +129,7 @@
             // descriptionLabel
             // 
             descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new Point(30, 653);
+            descriptionLabel.Location = new Point(2, 620);
             descriptionLabel.Name = "descriptionLabel";
             descriptionLabel.Size = new Size(135, 32);
             descriptionLabel.TabIndex = 6;
@@ -127,17 +137,17 @@
             // 
             // descriptionRichTextBox
             // 
-            descriptionRichTextBox.Location = new Point(31, 688);
+            descriptionRichTextBox.Location = new Point(3, 655);
             descriptionRichTextBox.Name = "descriptionRichTextBox";
-            descriptionRichTextBox.Size = new Size(446, 102);
+            descriptionRichTextBox.Size = new Size(432, 115);
             descriptionRichTextBox.TabIndex = 7;
             descriptionRichTextBox.Text = "";
             // 
             // addButton
             // 
-            addButton.Location = new Point(31, 874);
+            addButton.Location = new Point(3, 55);
             addButton.Name = "addButton";
-            addButton.Size = new Size(150, 46);
+            addButton.Size = new Size(140, 46);
             addButton.TabIndex = 8;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -145,9 +155,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(31, 822);
+            editButton.Location = new Point(3, 3);
             editButton.Name = "editButton";
-            editButton.Size = new Size(150, 46);
+            editButton.Size = new Size(140, 46);
             editButton.TabIndex = 9;
             editButton.Text = "Edit";
             editButton.UseVisualStyleBackColor = true;
@@ -155,9 +165,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(245, 874);
+            deleteButton.Location = new Point(149, 55);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(150, 46);
+            deleteButton.Size = new Size(140, 46);
             deleteButton.TabIndex = 10;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
@@ -165,9 +175,9 @@
             // 
             // saveButton
             // 
-            saveButton.Location = new Point(245, 822);
+            saveButton.Location = new Point(149, 3);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(150, 46);
+            saveButton.Size = new Size(140, 46);
             saveButton.TabIndex = 11;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
@@ -175,9 +185,9 @@
             // 
             // refreshButton
             // 
-            refreshButton.Location = new Point(461, 874);
+            refreshButton.Location = new Point(295, 55);
             refreshButton.Name = "refreshButton";
-            refreshButton.Size = new Size(150, 46);
+            refreshButton.Size = new Size(140, 46);
             refreshButton.TabIndex = 12;
             refreshButton.Text = "Refresh";
             refreshButton.UseVisualStyleBackColor = true;
@@ -185,9 +195,9 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(461, 822);
+            cancelButton.Location = new Point(295, 3);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(150, 46);
+            cancelButton.Size = new Size(140, 46);
             cancelButton.TabIndex = 13;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -195,23 +205,23 @@
             // 
             // sumTextBox
             // 
-            sumTextBox.Location = new Point(31, 136);
+            sumTextBox.Location = new Point(3, 103);
             sumTextBox.Name = "sumTextBox";
-            sumTextBox.Size = new Size(446, 39);
+            sumTextBox.Size = new Size(432, 39);
             sumTextBox.TabIndex = 14;
             sumTextBox.Text = "0";
             // 
             // categoryTextBox
             // 
-            categoryTextBox.Location = new Point(30, 325);
+            categoryTextBox.Location = new Point(2, 292);
             categoryTextBox.Name = "categoryTextBox";
             categoryTextBox.ReadOnly = true;
-            categoryTextBox.Size = new Size(446, 39);
+            categoryTextBox.Size = new Size(433, 39);
             categoryTextBox.TabIndex = 15;
             // 
             // chooseCategoryButton
             // 
-            chooseCategoryButton.Location = new Point(30, 370);
+            chooseCategoryButton.Location = new Point(2, 337);
             chooseCategoryButton.Name = "chooseCategoryButton";
             chooseCategoryButton.Size = new Size(110, 46);
             chooseCategoryButton.TabIndex = 16;
@@ -221,7 +231,7 @@
             // 
             // clearCategoryButton
             // 
-            clearCategoryButton.Location = new Point(146, 370);
+            clearCategoryButton.Location = new Point(118, 337);
             clearCategoryButton.Name = "clearCategoryButton";
             clearCategoryButton.Size = new Size(110, 46);
             clearCategoryButton.TabIndex = 17;
@@ -232,7 +242,7 @@
             // currencyLabel
             // 
             currencyLabel.AutoSize = true;
-            currencyLabel.Location = new Point(31, 178);
+            currencyLabel.Location = new Point(3, 145);
             currencyLabel.Name = "currencyLabel";
             currencyLabel.Size = new Size(109, 32);
             currencyLabel.TabIndex = 18;
@@ -240,16 +250,16 @@
             // 
             // currencyTextBox
             // 
-            currencyTextBox.Location = new Point(31, 213);
+            currencyTextBox.Location = new Point(3, 180);
             currencyTextBox.Name = "currencyTextBox";
             currencyTextBox.ReadOnly = true;
-            currencyTextBox.Size = new Size(446, 39);
+            currencyTextBox.Size = new Size(432, 39);
             currencyTextBox.TabIndex = 19;
             // 
             // tagsLabel
             // 
             tagsLabel.AutoSize = true;
-            tagsLabel.Location = new Point(30, 443);
+            tagsLabel.Location = new Point(2, 410);
             tagsLabel.Name = "tagsLabel";
             tagsLabel.Size = new Size(60, 32);
             tagsLabel.TabIndex = 20;
@@ -260,48 +270,65 @@
             tagsListView.CheckBoxes = true;
             tagsListView.FullRowSelect = true;
             tagsListView.HideSelection = true;
-            tagsListView.Location = new Point(31, 478);
+            tagsListView.Location = new Point(3, 445);
             tagsListView.MultiSelect = false;
             tagsListView.Name = "tagsListView";
-            tagsListView.Size = new Size(446, 157);
+            tagsListView.Size = new Size(432, 157);
             tagsListView.TabIndex = 21;
             tagsListView.UseCompatibleStateImageBehavior = false;
             tagsListView.View = View.List;
             // 
-            // mainSumColumnHeader
+            // buttonsPanel
             // 
-            mainSumColumnHeader.Text = "Sum (Main)";
-            mainSumColumnHeader.Width = 100;
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Location = new Point(12, 791);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(440, 107);
+            buttonsPanel.TabIndex = 22;
+            // 
+            // controlsPanel
+            // 
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(sumLabel);
+            controlsPanel.Controls.Add(tagsListView);
+            controlsPanel.Controls.Add(categoryLabel);
+            controlsPanel.Controls.Add(tagsLabel);
+            controlsPanel.Controls.Add(descriptionLabel);
+            controlsPanel.Controls.Add(currencyTextBox);
+            controlsPanel.Controls.Add(descriptionRichTextBox);
+            controlsPanel.Controls.Add(currencyLabel);
+            controlsPanel.Controls.Add(sumTextBox);
+            controlsPanel.Controls.Add(clearCategoryButton);
+            controlsPanel.Controls.Add(categoryTextBox);
+            controlsPanel.Controls.Add(chooseCategoryButton);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(440, 773);
+            controlsPanel.TabIndex = 23;
             // 
             // EditItemsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 950);
-            Controls.Add(tagsListView);
-            Controls.Add(tagsLabel);
-            Controls.Add(currencyTextBox);
-            Controls.Add(currencyLabel);
-            Controls.Add(clearCategoryButton);
-            Controls.Add(chooseCategoryButton);
-            Controls.Add(categoryTextBox);
-            Controls.Add(sumTextBox);
-            Controls.Add(cancelButton);
-            Controls.Add(refreshButton);
-            Controls.Add(saveButton);
-            Controls.Add(deleteButton);
-            Controls.Add(editButton);
-            Controls.Add(addButton);
-            Controls.Add(descriptionRichTextBox);
-            Controls.Add(descriptionLabel);
-            Controls.Add(categoryLabel);
-            Controls.Add(sumLabel);
+            ClientSize = new Size(1324, 909);
+            Controls.Add(controlsPanel);
+            Controls.Add(buttonsPanel);
             Controls.Add(listView);
-            Controls.Add(titleLabel);
+            MinimumSize = new Size(950, 980);
             Name = "EditItemsForm";
-            Text = "EditItemsForm";
+            Text = "Edit Items";
+            ResizeEnd += EditItemsForm_ResizeEnd;
+            Resize += EditItemsForm_Resize;
+            buttonsPanel.ResumeLayout(false);
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -331,5 +358,7 @@
         private ListView tagsListView;
         private ColumnHeader tagsColumnHeader;
         private ColumnHeader mainSumColumnHeader;
+        private Panel buttonsPanel;
+        private Panel controlsPanel;
     }
 }

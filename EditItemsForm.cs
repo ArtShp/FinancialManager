@@ -11,6 +11,8 @@ namespace FinancialManager
         private long transactionTypeId;
         private CurrencyModel transactionCurrency;
         private DateTime transactionDate;
+        private Size originalFormSize;
+        private Size originalListViewSize;
 
         public EditItemsForm(long transactionId)
         {
@@ -19,6 +21,9 @@ namespace FinancialManager
             InitializeComponent();
 
             LoadAll();
+
+            originalFormSize = new Size(Size.Width, Size.Height);
+            originalListViewSize = new Size(listView.Width, listView.Height);
         }
 
         #region Loaders
@@ -310,6 +315,27 @@ namespace FinancialManager
         private void refreshButton_Click(object sender, EventArgs e)
         {
             LoadAll();
+        }
+
+        #endregion
+
+        #region Resize Handlers
+
+        private void EditItemsForm_Resize(object sender, EventArgs e)
+        {
+            ResizeListView();
+        }
+
+        private void EditItemsForm_ResizeEnd(object sender, EventArgs e)
+        {
+            listView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void ResizeListView()
+        {
+            // Resize listView to fit the form
+            listView.Size = new Size(originalListViewSize.Width + (Width - originalFormSize.Width),
+                                     originalListViewSize.Height + (Height - originalFormSize.Height));
         }
 
         #endregion
