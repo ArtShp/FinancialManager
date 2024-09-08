@@ -82,11 +82,11 @@ namespace FinancialManager
                             CREATE TABLE transactions (
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             id_transaction_type INTEGER NOT NULL,
-                            date DATE,
+                            date DATE NOT NULL,
                             sum_by_cash_facility INTEGER NOT NULL,
                             id_currency_of_transaction INTEGER NOT NULL,
                             id_cash_facility INTEGER NOT NULL,
-                            id_place_of_purchase INTEGER NOT NULL,
+                            id_place_of_purchase INTEGER,
                             description TEXT NOT NULL,
                             FOREIGN KEY(id_transaction_type) REFERENCES transaction_types(id),
                             FOREIGN KEY(id_currency_of_transaction) REFERENCES currencies(id),
