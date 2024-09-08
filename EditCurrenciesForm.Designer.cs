@@ -48,11 +48,11 @@
             deleteButton = new Button();
             unitsRateLabel = new Label();
             unitsRateNumericUpDown = new NumericUpDown();
-            panel1 = new Panel();
-            panel2 = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            buttonsPanel.SuspendLayout();
+            controlsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // nameTextBox
@@ -224,43 +224,43 @@
             unitsRateNumericUpDown.Size = new Size(360, 39);
             unitsRateNumericUpDown.TabIndex = 17;
             // 
-            // panel1
+            // buttonsPanel
             // 
-            panel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel1.Controls.Add(refreshButton);
-            panel1.Controls.Add(cancelButton);
-            panel1.Controls.Add(deleteButton);
-            panel1.Controls.Add(saveButton);
-            panel1.Controls.Add(addButton);
-            panel1.Controls.Add(editButton);
-            panel1.Location = new Point(12, 591);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(368, 107);
-            panel1.TabIndex = 19;
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Location = new Point(12, 591);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(368, 107);
+            buttonsPanel.TabIndex = 19;
             // 
-            // panel2
+            // controlsPanel
             // 
-            panel2.Controls.Add(titleLabel);
-            panel2.Controls.Add(nameTextBox);
-            panel2.Controls.Add(unitsRateNumericUpDown);
-            panel2.Controls.Add(nameLabel);
-            panel2.Controls.Add(unitsRateLabel);
-            panel2.Controls.Add(codeTextBox);
-            panel2.Controls.Add(codeLabel);
-            panel2.Controls.Add(symbolTextBox);
-            panel2.Controls.Add(symbolLabel);
-            panel2.Location = new Point(12, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(368, 473);
-            panel2.TabIndex = 20;
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(nameTextBox);
+            controlsPanel.Controls.Add(unitsRateNumericUpDown);
+            controlsPanel.Controls.Add(nameLabel);
+            controlsPanel.Controls.Add(unitsRateLabel);
+            controlsPanel.Controls.Add(codeTextBox);
+            controlsPanel.Controls.Add(codeLabel);
+            controlsPanel.Controls.Add(symbolTextBox);
+            controlsPanel.Controls.Add(symbolLabel);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(368, 473);
+            controlsPanel.TabIndex = 20;
             // 
             // EditCurrenciesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1034, 709);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(controlsPanel);
+            Controls.Add(buttonsPanel);
             Controls.Add(listView);
             MinimumSize = new Size(860, 680);
             Name = "EditCurrenciesForm";
@@ -268,9 +268,9 @@
             ResizeEnd += EditCurrenciesForm_ResizeEnd;
             Resize += EditCurrenciesForm_Resize;
             ((System.ComponentModel.ISupportInitialize)unitsRateNumericUpDown).EndInit();
-            panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -295,7 +295,7 @@
         private ColumnHeader rateColumnHeader;
         private Label unitsRateLabel;
         private NumericUpDown unitsRateNumericUpDown;
-        private Panel panel1;
-        private Panel panel2;
+        private Panel buttonsPanel;
+        private Panel controlsPanel;
     }
 }

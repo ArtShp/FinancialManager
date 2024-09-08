@@ -42,10 +42,10 @@
             listView = new ListView();
             nameColumnHeader = new ColumnHeader();
             currencyColumnHeader = new ColumnHeader();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            controlsPanel = new Panel();
+            buttonsPanel = new Panel();
+            controlsPanel.SuspendLayout();
+            buttonsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // cancelButton
@@ -175,48 +175,48 @@
             currencyColumnHeader.Text = "Currency";
             currencyColumnHeader.Width = 200;
             // 
-            // panel1
+            // controlsPanel
             // 
-            panel1.Controls.Add(titleLabel);
-            panel1.Controls.Add(nameLabel);
-            panel1.Controls.Add(nameTextBox);
-            panel1.Controls.Add(currencyLabel);
-            panel1.Controls.Add(currencyComboBox);
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(414, 269);
-            panel1.TabIndex = 24;
+            controlsPanel.Controls.Add(titleLabel);
+            controlsPanel.Controls.Add(nameLabel);
+            controlsPanel.Controls.Add(nameTextBox);
+            controlsPanel.Controls.Add(currencyLabel);
+            controlsPanel.Controls.Add(currencyComboBox);
+            controlsPanel.Location = new Point(12, 12);
+            controlsPanel.Name = "controlsPanel";
+            controlsPanel.Size = new Size(414, 269);
+            controlsPanel.TabIndex = 24;
             // 
-            // panel2
+            // buttonsPanel
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.Controls.Add(editButton);
-            panel2.Controls.Add(addButton);
-            panel2.Controls.Add(refreshButton);
-            panel2.Controls.Add(cancelButton);
-            panel2.Controls.Add(saveButton);
-            panel2.Controls.Add(deleteButton);
-            panel2.Location = new Point(12, 491);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(414, 110);
-            panel2.TabIndex = 25;
+            buttonsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonsPanel.Controls.Add(editButton);
+            buttonsPanel.Controls.Add(addButton);
+            buttonsPanel.Controls.Add(refreshButton);
+            buttonsPanel.Controls.Add(cancelButton);
+            buttonsPanel.Controls.Add(saveButton);
+            buttonsPanel.Controls.Add(deleteButton);
+            buttonsPanel.Location = new Point(12, 491);
+            buttonsPanel.Name = "buttonsPanel";
+            buttonsPanel.Size = new Size(414, 110);
+            buttonsPanel.TabIndex = 25;
             // 
             // EditCashFacilitiesForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1074, 609);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(buttonsPanel);
+            Controls.Add(controlsPanel);
             Controls.Add(listView);
             MinimumSize = new Size(900, 480);
             Name = "EditCashFacilitiesForm";
             Text = "EditCashFacilitiesForm";
             ResizeEnd += EditCashFacilitiesForm_ResizeEnd;
             Resize += EditCashFacilitiesForm_Resize;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
+            controlsPanel.ResumeLayout(false);
+            controlsPanel.PerformLayout();
+            buttonsPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -236,7 +236,7 @@
         private ListView listView;
         private ColumnHeader nameColumnHeader;
         private ColumnHeader currencyColumnHeader;
-        private Panel panel1;
-        private Panel panel2;
+        private Panel controlsPanel;
+        private Panel buttonsPanel;
     }
 }
