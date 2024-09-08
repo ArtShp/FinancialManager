@@ -189,7 +189,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1504, 40);
+            menuStrip.Size = new Size(1124, 40);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
@@ -349,7 +349,7 @@
             // settingsGroupBox
             // 
             settingsGroupBox.Controls.Add(currencyApiButton);
-            settingsGroupBox.Location = new Point(740, 43);
+            settingsGroupBox.Location = new Point(376, 189);
             settingsGroupBox.Name = "settingsGroupBox";
             settingsGroupBox.Size = new Size(358, 94);
             settingsGroupBox.TabIndex = 1;
@@ -359,7 +359,7 @@
             // testsGroupBox
             // 
             testsGroupBox.Controls.Add(currencyExchangeButton);
-            testsGroupBox.Location = new Point(1104, 43);
+            testsGroupBox.Location = new Point(376, 353);
             testsGroupBox.Name = "testsGroupBox";
             testsGroupBox.Size = new Size(358, 94);
             testsGroupBox.TabIndex = 9;
@@ -370,12 +370,13 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1504, 858);
+            ClientSize = new Size(1124, 479);
             Controls.Add(testsGroupBox);
             Controls.Add(settingsGroupBox);
             Controls.Add(analyticsGroupBox);
             Controls.Add(editGroupBox);
             Controls.Add(menuStrip);
+            MinimumSize = new Size(770, 530);
             Name = "MainWindow";
             Text = "Financial Manager";
             Shown += MainWindow_Shown;
