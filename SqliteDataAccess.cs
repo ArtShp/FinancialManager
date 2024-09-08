@@ -254,7 +254,7 @@ namespace FinancialManager
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                var output = connection.Query<ItemModel>($"SELECT * FROM items WHERE id_transaction = {transactionId}", new DynamicParameters());
+                var output = connection.Query<ItemModel>("SELECT * FROM items WHERE id_transaction = @Id_Transaction", new { Id_Transaction = transactionId });
                 return output.ToList();
             }
         }
