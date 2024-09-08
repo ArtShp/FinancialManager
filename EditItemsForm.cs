@@ -169,7 +169,7 @@ namespace FinancialManager
         {
             if (SqliteDataAccess.GetCategoriesCount() == 0)
             {
-                MessageBox.Show("There are no categories to choose from! Please add some categories first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("There are no categories to choose from!\nPlease add some categories first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
