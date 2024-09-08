@@ -156,7 +156,25 @@ namespace FinancialManager
 
             var result = MessageBox.Show("Are you sure you want to delete this place of purchase?", "Delete place of purchase", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                SqliteDataAccess.DeletePlaceOfPurchaseById(selectedId);
+            {
+                try
+                {
+                    SqliteDataAccess.DeletePlaceOfPurchaseById(selectedId);
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("FOREIGN KEY constraint failed"))
+                    {
+                        MessageBox.Show("You can't delete place of purchase that is used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred while deleting place of purchase!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
