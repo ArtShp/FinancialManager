@@ -135,6 +135,13 @@
                 return;
             }
 
+            if (SqliteDataAccess.GetCurrenciesCount() == 0)
+            {
+                var result = MessageBox.Show("You are adding the main currency. In future it can't be changed!\nDo you want to continue?", "Add main currency", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
             CurrencyModel currency = new CurrencyModel
             {
                 Name = nameTextBox.Text,
