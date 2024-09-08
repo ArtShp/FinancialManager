@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             titleLabel = new Label();
             listView = new ListView();
             categoryColumnHeader = new ColumnHeader();
@@ -55,8 +56,10 @@
             tagsListView = new ListView();
             buttonsPanel = new Panel();
             controlsPanel = new Panel();
+            sumErrorProvider = new ErrorProvider(components);
             buttonsPanel.SuspendLayout();
             controlsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // titleLabel
@@ -207,9 +210,10 @@
             // 
             sumTextBox.Location = new Point(3, 103);
             sumTextBox.Name = "sumTextBox";
-            sumTextBox.Size = new Size(432, 39);
+            sumTextBox.Size = new Size(386, 39);
             sumTextBox.TabIndex = 14;
             sumTextBox.Text = "0";
+            sumTextBox.Validating += sumTextBox_Validating;
             // 
             // categoryTextBox
             // 
@@ -312,6 +316,10 @@
             controlsPanel.Size = new Size(440, 773);
             controlsPanel.TabIndex = 23;
             // 
+            // sumErrorProvider
+            // 
+            sumErrorProvider.ContainerControl = this;
+            // 
             // EditItemsForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
@@ -328,6 +336,7 @@
             buttonsPanel.ResumeLayout(false);
             controlsPanel.ResumeLayout(false);
             controlsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sumErrorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -360,5 +369,6 @@
         private ColumnHeader mainSumColumnHeader;
         private Panel buttonsPanel;
         private Panel controlsPanel;
+        private ErrorProvider sumErrorProvider;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FinancialManager
 {
@@ -24,6 +25,8 @@ namespace FinancialManager
 
             originalFormSize = new Size(Size.Width, Size.Height);
             originalListViewSize = new Size(listView.Width, listView.Height);
+
+            sumErrorProvider.ContainerControl = this;
         }
 
         #region Loaders
@@ -217,6 +220,9 @@ namespace FinancialManager
                 return;
             }
 
+            if (!ValidateSum())
+                return;
+
             var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
 
             try
@@ -272,6 +278,9 @@ namespace FinancialManager
                 MessageBox.Show("You haven't chosen category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (!ValidateSum())
+                return;
 
             var sum = new MoneyModel(sumTextBox.Text, transactionCurrency.Units_Rate);
 
@@ -351,5 +360,27 @@ namespace FinancialManager
         }
 
         #endregion
+
+        private void sumTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ValidateSum();
+        }
+
+        private bool ValidateSum()
+        {
+            var status = true;
+
+            if (Regex.IsMatch(sumTextBox.Text, @"^(\d+\.\d+|\d+)$"))
+            {
+                sumErrorProvider.SetError(sumTextBox, "");
+            }
+            else
+            {
+                sumErrorProvider.SetError(sumTextBox, "Please enter a valid number!");
+                status = false;
+            }
+
+            return status;
+        }
     }
 }
