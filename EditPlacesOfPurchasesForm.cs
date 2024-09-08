@@ -1,4 +1,6 @@
-﻿namespace FinancialManager
+﻿using System.Data.SQLite;
+
+namespace FinancialManager
 {
     public partial class EditPlacesOfPurchasesForm : Form
     {
@@ -79,7 +81,23 @@
                 Name = nameTextBox.Text
             };
 
-            SqliteDataAccess.UpdatePlaceOfPurchase(placeOfPurchase);
+            try
+            {
+                SqliteDataAccess.UpdatePlaceOfPurchase(placeOfPurchase);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have places of purchase with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while updating place of purchase!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             selectedId = -1;
             ClearDataView();
@@ -109,7 +127,23 @@
                 Name = nameTextBox.Text
             };
 
-            SqliteDataAccess.AddPlaceOfPurchase(placeOfPurchase);
+            try
+            {
+                SqliteDataAccess.AddPlaceOfPurchase(placeOfPurchase);
+            }
+            catch (SQLiteException ex)
+            {
+                if (ex.Message.Contains("UNIQUE constraint failed"))
+                {
+                    MessageBox.Show("You can't have places of purchase with the same Names", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred while adding place of purchase!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             ClearDataView();
 
