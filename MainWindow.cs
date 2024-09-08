@@ -12,8 +12,6 @@ namespace FinancialManager
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
 
             UpdateWindowTitle();
-
-            TestMainCurrencyExistance();
         }
 
         #region Tests
@@ -49,6 +47,8 @@ namespace FinancialManager
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             TestDbConnection();
+
+            TestMainCurrencyExistance();
         }
 
         #endregion
