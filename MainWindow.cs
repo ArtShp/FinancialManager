@@ -335,6 +335,12 @@ namespace FinancialManager
 
         private void CurrencyExchange()
         {
+            if (SqliteDataAccess.GetCurrenciesCount() == 0)
+            {
+                MessageBox.Show("No currencies found!\nPlease add some currencies first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var testCurrencyExchangeForm = new TestCurrencyExchangeForm();
             testCurrencyExchangeForm.Show();
         }
