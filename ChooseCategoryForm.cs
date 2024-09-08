@@ -21,7 +21,15 @@
 
         private void LoadAll()
         {
-            LoadList();
+            try
+            {
+                LoadList();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void LoadList()
@@ -30,6 +38,7 @@
             LoadMainSubCategories();
         }
 
+        // Load top-level categories
         private void LoadMainCategories()
         {
             var data = SqliteDataAccess.LoadCategoriesByParentId();
@@ -48,6 +57,7 @@
             treeView.EndUpdate();
         }
 
+        // Load subcategories of top-level categories
         private void LoadMainSubCategories()
         {
             treeView.BeginUpdate();
@@ -107,38 +117,54 @@
 
         private void treeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            treeView.BeginUpdate();
-
-            foreach (var parent in e.Node.Nodes)
+            try
             {
-                var parentNode = (TreeNode)parent;
-                var categories = SqliteDataAccess.LoadCategoriesByParentId(Convert.ToInt64(parentNode.Tag));
+                treeView.BeginUpdate();
 
-                foreach (var category in categories)
+                foreach (var parent in e.Node.Nodes)
                 {
-                    parentNode.Nodes.Add(
-                        new TreeNode(category.Name)
-                        {
-                            Tag = category.Id
-                        });
-                }
-            }
+                    var parentNode = (TreeNode)parent;
+                    var categories = SqliteDataAccess.LoadCategoriesByParentId(Convert.ToInt64(parentNode.Tag));
 
-            treeView.EndUpdate();
+                    foreach (var category in categories)
+                    {
+                        parentNode.Nodes.Add(
+                            new TreeNode(category.Name)
+                            {
+                                Tag = category.Id
+                            });
+                    }
+                }
+
+                treeView.EndUpdate();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         private void treeView_AfterCollapse(object sender, TreeViewEventArgs e)
         {
-            treeView.BeginUpdate();
-
-            foreach (var node in e.Node.Nodes)
+            try
             {
-                var treeNode = (TreeNode)node;
-                treeNode.Collapse();
-                treeNode.Nodes.Clear();
-            }
+                treeView.BeginUpdate();
 
-            treeView.EndUpdate();
+                foreach (var node in e.Node.Nodes)
+                {
+                    var treeNode = (TreeNode)node;
+                    treeNode.Collapse();
+                    treeNode.Nodes.Clear();
+                }
+
+                treeView.EndUpdate();
+            }
+            catch
+            {
+                MessageBox.Show("Error while loading data from DB. Try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
 
         #endregion
