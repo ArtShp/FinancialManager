@@ -55,7 +55,7 @@ namespace FinancialManager
             bindingSource.DataSource = currencies;
 
             currencyComboBox.DataSource = bindingSource.DataSource;
-            currencyComboBox.DisplayMember = "Code";
+            currencyComboBox.DisplayMember = "FullName";
             currencyComboBox.ValueMember = "Id";
         }
 
@@ -110,7 +110,7 @@ namespace FinancialManager
                 }
 
                 listView.Items.Add(
-                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Cash_Facility.GetString() + " " + currencyText, currency.Code, cashFacility.Name, place, transaction.Description })
+                    new ListViewItem(new[] { transactionType.Name, transaction.Date.ToString("dd.MM.yyyy"), transaction.Sum_By_Cash_Facility.GetString() + " " + currencyText, currency.FullName, cashFacility.Name, place, transaction.Description })
                     {
                         Tag = transaction.Id
                     });
