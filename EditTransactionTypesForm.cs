@@ -89,10 +89,16 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the transaction type", "Edit transaction type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TransactionTypeModel transactionType = new TransactionTypeModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text
+                Name = nameTextBox.Text.Trim()
             };
 
             try
@@ -136,9 +142,15 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the transaction type", "Add transaction type", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TransactionTypeModel transactionType = new TransactionTypeModel
             {
-                Name = nameTextBox.Text
+                Name = nameTextBox.Text.Trim()
             };
 
             try
