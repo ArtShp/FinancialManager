@@ -139,10 +139,16 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the category!", "Edit category", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CategoryModel category = new CategoryModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Parent = parentCategoryId
             };
 
@@ -171,9 +177,15 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the category!", "Add category", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CategoryModel category = new CategoryModel
             {
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Parent = Convert.ToInt64(parentCategoryId)
             };
 
