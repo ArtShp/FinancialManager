@@ -137,9 +137,9 @@
             nameLabel.AutoSize = true;
             nameLabel.Location = new Point(3, 82);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(215, 32);
+            nameLabel.Size = new Size(78, 32);
             nameLabel.TabIndex = 14;
-            nameLabel.Text = "Cash Facility Name";
+            nameLabel.Text = "Name";
             // 
             // titleLabel
             // 
