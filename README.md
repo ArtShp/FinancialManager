@@ -30,3 +30,12 @@ If you want to create a new DB, open file menu (in the menu strip), find the but
 
 #### Open an existing DB
 If you want to open an existing DB, open file menu (in the menu strip), find the button "Open DB" and press on it (or use a shortcut *Ctrl+O*). Then choose a DB file and press "Open". If everything is ok, you'll see a successful message. It's possible, that you'll immediately see a "Main Currency" error: about it later.
+
+### Setup the Main Currency
+When you have a new DB, first you need to do is to setup the Main Currency. Main Currency — currency that is used for storing all money operations. This is necessary, because there is a need of common currency for analytics. All money operations are stored both in currency you've chosen and the Main Currency.
+
+**Warning**: The Main Currency is set for a specific DB **only once**. In future it **can't** be changed!
+
+**Warning**: If the Main Currency is not set, the application **can't** work properly!
+
+To setup it up, press "Edit Currencies" button and the form for editing currencies will be shown. You need to add a new currency and it will be the main one. About editing currencies read further.
