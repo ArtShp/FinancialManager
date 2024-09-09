@@ -71,3 +71,6 @@ If you're editing an item, but you don't want to dave changes, you can press the
 
 ##### Delete
 If you want to delete some item in the table, you need to select an item in the table and then press the "Delete" button. After confirming the item will be deleted.
+
+##### Refresh
+If you want to refresh all data in the form (including table and other foreign data), press the "Refresh" button.
