@@ -56,3 +56,6 @@ This is the last step before you can start using the application fully. You will
 
 #### Edit forms interface
 All of the edit forms (forms specified for editing data, in edit section) have a common interface.
+
+##### Add
+If you want to add some new item to the table, you need to fill all obligatory field and then press the "Add" button. If fields are filled correctly and in the table there are no similar records, new item will be added.
