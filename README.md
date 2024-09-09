@@ -65,3 +65,6 @@ If you want to edit some item in the table, you need to select an item in the ta
 
 ##### Save
 If you're editing an item, you can change its data in the form fields. If you want to save changes, press the "Save" button. After it data in table will be changed (if the fields were filled correctly).
+
+##### Cancel
+If you're editing an item, but you don't want to dave changes, you can press the "Cancel" button and no changes will be applied.
