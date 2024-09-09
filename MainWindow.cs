@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 
 namespace FinancialManager
@@ -188,6 +189,22 @@ namespace FinancialManager
         private void currencyExchangeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CurrencyExchange();
+        }
+
+        #endregion
+
+        #region About Menu
+
+        private void gitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer", "https://github.com/ArtShp/FinancialManager");
+            }
+            catch
+            {
+                MessageBox.Show("Failed to open GitHub page", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion

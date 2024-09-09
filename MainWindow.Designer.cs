@@ -65,6 +65,8 @@
             analyticsGroupBox = new GroupBox();
             settingsGroupBox = new GroupBox();
             testsGroupBox = new GroupBox();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
+            gitHubToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             editGroupBox.SuspendLayout();
             analyticsGroupBox.SuspendLayout();
@@ -186,17 +188,17 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(32, 32);
-            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, analyticsToolStripMenuItem, settingsToolStripMenuItem, testsToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(1124, 40);
+            menuStrip.Size = new Size(1124, 42);
             menuStrip.TabIndex = 6;
             // 
             // fileToolStripMenuItem
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createDbToolStripMenuItem, openDbToolStripMenuItem, closeDbToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(71, 36);
+            fileToolStripMenuItem.Size = new Size(71, 38);
             fileToolStripMenuItem.Text = "File";
             // 
             // createDbToolStripMenuItem
@@ -226,7 +228,7 @@
             // 
             editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editCurrenciesToolStripMenuItem, editTransactionTypesToolStripMenuItem, editPlacesOfPurchasesToolStripMenuItem, editTagsToolStripMenuItem, editCashFacilitiesToolStripMenuItem, editCategoriesToolStripMenuItem, editTransactionsToolStripMenuItem });
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(74, 36);
+            editToolStripMenuItem.Size = new Size(74, 38);
             editToolStripMenuItem.Text = "Edit";
             // 
             // editCurrenciesToolStripMenuItem
@@ -282,7 +284,7 @@
             // 
             analyticsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { analyzeItemsToolStripMenuItem });
             analyticsToolStripMenuItem.Name = "analyticsToolStripMenuItem";
-            analyticsToolStripMenuItem.Size = new Size(128, 36);
+            analyticsToolStripMenuItem.Size = new Size(128, 38);
             analyticsToolStripMenuItem.Text = "Analytics";
             // 
             // analyzeItemsToolStripMenuItem
@@ -296,7 +298,7 @@
             // 
             settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { setCurrencyAPIKeyToolStripMenuItem });
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            settingsToolStripMenuItem.Size = new Size(120, 36);
+            settingsToolStripMenuItem.Size = new Size(120, 38);
             settingsToolStripMenuItem.Text = "Settings";
             // 
             // setCurrencyAPIKeyToolStripMenuItem
@@ -310,7 +312,7 @@
             // 
             testsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { currencyExchangeToolStripMenuItem });
             testsToolStripMenuItem.Name = "testsToolStripMenuItem";
-            testsToolStripMenuItem.Size = new Size(86, 36);
+            testsToolStripMenuItem.Size = new Size(86, 38);
             testsToolStripMenuItem.Text = "Tests";
             // 
             // currencyExchangeToolStripMenuItem
@@ -365,6 +367,20 @@
             testsGroupBox.TabIndex = 9;
             testsGroupBox.TabStop = false;
             testsGroupBox.Text = "Tests";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { gitHubToolStripMenuItem });
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(99, 38);
+            aboutToolStripMenuItem.Text = "About";
+            // 
+            // gitHubToolStripMenuItem
+            // 
+            gitHubToolStripMenuItem.Name = "gitHubToolStripMenuItem";
+            gitHubToolStripMenuItem.Size = new Size(359, 44);
+            gitHubToolStripMenuItem.Text = "GitHub";
+            gitHubToolStripMenuItem.Click += gitHubToolStripMenuItem_Click;
             // 
             // MainWindow
             // 
@@ -427,5 +443,7 @@
         private GroupBox analyticsGroupBox;
         private GroupBox settingsGroupBox;
         private GroupBox testsGroupBox;
+        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem gitHubToolStripMenuItem;
     }
 }
