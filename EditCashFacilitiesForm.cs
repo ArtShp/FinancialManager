@@ -41,7 +41,7 @@ namespace FinancialManager
             bindingSource.DataSource = currencies;
 
             currencyComboBox.DataSource = bindingSource.DataSource;
-            currencyComboBox.DisplayMember = "Name";
+            currencyComboBox.DisplayMember = "FullName";
             currencyComboBox.ValueMember = "Id";
         }
 
@@ -58,7 +58,7 @@ namespace FinancialManager
                 {
                     var currency = SqliteDataAccess.GetCurrencyById(cashFacility.Id_Currency);
                     listView.Items.Add(
-                        new ListViewItem(new[] { cashFacility.Name, currency.Name })
+                        new ListViewItem(new[] { cashFacility.Name, currency.FullName })
                         {
                             Tag = cashFacility.Id
                         });
