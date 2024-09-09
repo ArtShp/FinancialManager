@@ -101,10 +101,16 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the tag", "Edit tag", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TagModel tag = new TagModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
             };
 
@@ -149,9 +155,15 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the tag", "Add tag", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             TagModel tag = new TagModel
             {
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Transaction_Type = Convert.ToInt64(transactionTypeComboBox.SelectedValue)
             };
 
