@@ -74,9 +74,9 @@
             nameLabel.AutoSize = true;
             nameLabel.Location = new Point(3, 84);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(181, 32);
+            nameLabel.Size = new Size(78, 32);
             nameLabel.TabIndex = 2;
-            nameLabel.Text = "Category Name";
+            nameLabel.Text = "Name";
             // 
             // addButton
             // 
