@@ -211,7 +211,7 @@
             Controls.Add(listView);
             MinimumSize = new Size(900, 480);
             Name = "EditCashFacilitiesForm";
-            Text = "EditCashFacilitiesForm";
+            Text = "Edit Cash Facilities";
             ResizeEnd += EditCashFacilitiesForm_ResizeEnd;
             Resize += EditCashFacilitiesForm_Resize;
             controlsPanel.ResumeLayout(false);
