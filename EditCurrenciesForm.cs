@@ -114,12 +114,18 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "" || codeTextBox.Text.Trim() == "" || symbolTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please fill all fields!", "Edit currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CurrencyModel currency = new CurrencyModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text,
-                Code = codeTextBox.Text,
-                Symbol = symbolTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
+                Code = codeTextBox.Text.Trim(),
+                Symbol = symbolTextBox.Text.Trim(),
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
@@ -164,6 +170,12 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "" || codeTextBox.Text.Trim() == "" || symbolTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please fill all fields!", "Add currency", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (SqliteDataAccess.GetCurrenciesCount() == 0)
             {
                 var result = MessageBox.Show("You are adding the main currency. In future it can't be changed!\nDo you want to continue?", "Add main currency", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -173,9 +185,9 @@ namespace FinancialManager
 
             CurrencyModel currency = new CurrencyModel
             {
-                Name = nameTextBox.Text,
-                Code = codeTextBox.Text,
-                Symbol = symbolTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
+                Code = codeTextBox.Text.Trim(),
+                Symbol = symbolTextBox.Text.Trim(),
                 Units_Rate = Convert.ToInt32(unitsRateNumericUpDown.Value)
             };
 
