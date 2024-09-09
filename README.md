@@ -62,3 +62,6 @@ If you want to add some new item to the table, you need to fill all obligatory f
 
 ##### Edit
 If you want to edit some item in the table, you need to select an item in the table and then press the "Edit" button. After it the data of this item will be loaded to the form fields. Then you should use either "Save" or "Cancel" button.
+
+##### Save
+If you're editing an item, you can change its data in the form fields. If you want to save changes, press the "Save" button. After it data in table will be changed (if the fields were filled correctly).
