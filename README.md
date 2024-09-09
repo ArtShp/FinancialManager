@@ -68,3 +68,6 @@ If you're editing an item, you can change its data in the form fields. If you wa
 
 ##### Cancel
 If you're editing an item, but you don't want to dave changes, you can press the "Cancel" button and no changes will be applied.
+
+##### Delete
+If you want to delete some item in the table, you need to select an item in the table and then press the "Delete" button. After confirming the item will be deleted.
