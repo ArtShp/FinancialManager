@@ -109,10 +109,16 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the cash facility!", "Edit cash facility", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CashFacilityModel cashFacility = new CashFacilityModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Currency = Convert.ToInt64(currencyComboBox.SelectedValue)
             };
 
@@ -157,9 +163,15 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the cash facility!", "Add cash facility", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             CashFacilityModel cashFacility = new CashFacilityModel
             {
-                Name = nameTextBox.Text,
+                Name = nameTextBox.Text.Trim(),
                 Id_Currency = Convert.ToInt64(currencyComboBox.SelectedValue)
             };
 
