@@ -87,9 +87,9 @@
             nameLabel.AutoSize = true;
             nameLabel.Location = new Point(3, 78);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(121, 32);
+            nameLabel.Size = new Size(78, 32);
             nameLabel.TabIndex = 2;
-            nameLabel.Text = "Tag Name";
+            nameLabel.Text = "Name";
             // 
             // nameTextBox
             // 
