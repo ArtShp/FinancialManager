@@ -86,10 +86,16 @@ namespace FinancialManager
             if (selectedId == -1)
                 return;
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the place of purchase", "Edit place of purchase", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             PlaceOfPurchaseModel placeOfPurchase = new PlaceOfPurchaseModel
             {
                 Id = selectedId,
-                Name = nameTextBox.Text
+                Name = nameTextBox.Text.Trim()
             };
 
             try
@@ -133,9 +139,15 @@ namespace FinancialManager
                 return;
             }
 
+            if (nameTextBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name for the place of purchase", "Add place of purchase", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             PlaceOfPurchaseModel placeOfPurchase = new PlaceOfPurchaseModel
             {
-                Name = nameTextBox.Text
+                Name = nameTextBox.Text.Trim()
             };
 
             try
