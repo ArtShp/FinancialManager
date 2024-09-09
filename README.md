@@ -50,3 +50,6 @@ Now you need to add it to the app settings. Find the button "CurrencyAPI key" in
 **Notice**: This API key is **common** for all DBs, but **unique** for all users.
 
 **Warning**: Without set up key the application **can't** work properly. You'll be able to do everything **except of** adding/editing Items and exchanging currencies. Also you'll have the same problems if the service is down or you don't have an internet connection.
+
+### Fill other data
+This is the last step before you can start using the application fully. You will need to fill other tables. Most of them have a common interface.
