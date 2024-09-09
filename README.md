@@ -18,3 +18,6 @@ It can help you to manage your money.
 - Split transactions into categories
 - Analyze income and expenses
 - Convert money
+
+## Usage
+Launch .exe file.
