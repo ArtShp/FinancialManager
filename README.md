@@ -53,3 +53,6 @@ Now you need to add it to the app settings. Find the button "CurrencyAPI key" in
 
 ### Fill other data
 This is the last step before you can start using the application fully. You will need to fill other tables. Most of them have a common interface.
+
+#### Edit forms interface
+All of the edit forms (forms specified for editing data, in edit section) have a common interface.
