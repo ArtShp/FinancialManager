@@ -124,3 +124,35 @@ Each transaction has:
 - Description (optional)
 
 Examples in next part.
+
+#### Edit Items
+Item — things or services grouped into categories. Items don't exist by themselves, but only as part of some transaction.
+
+Each item has:
+- Sum (in currency of transaction)
+- Category (e.g. *Dairy products* or *Subscriptions*). Use "Choose" and "Clear" buttons to choose category or clear the choice respectively
+- Tags
+- Description
+- (Hidden) Sum in Main Currency — sum of item converted to the Main Currency
+
+In the table you can see all items assigned to some transaction and in the end highlighted in blue total spent sum.
+
+When you're adding a new item/changing an existing one, the CurrencyAPI will be used to convert your sum into sum in the Main Currency.
+
+**Warning**: In case of any problems the item won't be added/changed.
+
+Example: You went to the supermarket. You're in Czech Republic (prices are in Czech Koruns), you have card in US Dollars and your Main Currency is Euro. You've bought next groups of things (items):
+
+| Category       | Sum    | Sum (Main) |
+| -------------- | ------ | ---------- |
+| Meat           | 200 Kč | 8 €        |
+| Drinks         | 100 Kč | 4 €        |
+| Vegetables     | 100 Kč | 4 €        |
+| Dairy products | 100 Kč | 4 €        |
+
+Finally we have the following transaction:
+- Transaction Type — Expense
+- Place — TESCO
+- Cash Facility — Card (in US Dollars)
+- Sum — 22 $
+- Currency — Czech Koruna (CZK)
