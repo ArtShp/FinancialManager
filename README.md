@@ -87,3 +87,6 @@ Every currency has Name, Code, Symbol and Units rate.
 **Notice**: [Here](https://currencyapi.com/docs/currency-list) you can find the list of all supported currencies with their codes.
 
 **Notice**: The Main Currency is highlighted in blue color. It **can't** be changed or deleted.
+
+#### Edit Transaction Types
+Transaction type can be Income or Expense. It's not possible to add a new or delete an existing transaction type. You have ability only to rename them.
