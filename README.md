@@ -123,6 +123,10 @@ Each transaction has:
 - Currency (on the price tag, actual money spent/received)
 - Description (optional)
 
+When you are adding a new transaction, after pressing the "Add" button the form for editing Items for this transaction will be shown. About editing Items read next section.
+
+If you want to edit transaction's items, double click on that transaction in the table.
+
 Examples in next part.
 
 #### Edit Items
