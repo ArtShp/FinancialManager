@@ -160,3 +160,10 @@ Finally we have the following transaction:
 - Cash Facility — Card (in US Dollars)
 - Sum — 22 $
 - Currency — Czech Koruna (CZK)
+
+### Everyday use
+Congratulations! Now you can fully use the application.
+
+When you have some new money operations, add new transaction and items for it.
+
+Then you have ability to analyze your income/expenses.
