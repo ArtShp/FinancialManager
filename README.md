@@ -90,3 +90,7 @@ Every currency has Name, Code, Symbol and Units rate.
 
 #### Edit Transaction Types
 Transaction type can be Income or Expense. It's not possible to add a new or delete an existing transaction type. You have ability only to rename them.
+
+#### Edit Places Of Purchases
+This is a list of places where you buy goods (e.g. TESCO, McDonalds, FlixBus and etc.).
+There is a need for place of purchase mostly for expenses. For income you can choose nothing as place of purchase.
