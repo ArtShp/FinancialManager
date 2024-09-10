@@ -110,3 +110,17 @@ To choose parent category use buttons "Load" and "Clear". First one sets as a pa
 In the table categories with subcategories has a "plus" that loads and expands the list of subcategories for a specific category. "Minus" collapses that list.
 
 **Notice**: Categories **can** have the same names. For example, Coffee in the shop and Coffee in the cafe.
+
+#### Edit Transactions
+Transaction — one money operation (e.g. one trip to the supermarket, one paycheck, etc.). Each transaction consists of at least one Item (about it later).
+
+Each transaction has:
+- Transaction Type (e.g. Income for salary, Expense for shopping)
+- Date (you can choose not only today, but also previous days)
+- Place (optional) — where you've bought something
+- Cash Facility (e.g. what card you've used to pay for shopping / what card your paycheck went to)
+- Sum (in currency of the cash facility) — money received/spent
+- Currency (on the price tag, actual money spent/received)
+- Description (optional)
+
+Examples in next part.
