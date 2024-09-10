@@ -94,3 +94,6 @@ Transaction type can be Income or Expense. It's not possible to add a new or del
 #### Edit Places Of Purchases
 This is a list of places where you buy goods (e.g. TESCO, McDonalds, FlixBus and etc.).
 There is a need for place of purchase mostly for expenses. For income you can choose nothing as place of purchase.
+
+#### Edit Tags
+Each tag has Name and Transaction Type. Tags can be used as universal signs for Items. For example, you can mark all spendings while travelling as *#Travelling* and then you'll have ability to easily find them or somehow analyze you spending while travelling. Tags have a limitless scope of use.
