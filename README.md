@@ -1,4 +1,4 @@
-# Financial Manager
+﻿# Financial Manager
 
 ## Name
 Financial Manager
@@ -32,7 +32,7 @@ If you want to create a new DB, open file menu (in the menu strip), find the but
 If you want to open an existing DB, open file menu (in the menu strip), find the button "Open DB" and press on it (or use a shortcut *Ctrl+O*). Then choose a DB file and press "Open". If everything is ok, you'll see a successful message. It's possible, that you'll immediately see a "Main Currency" error: about it later.
 
 ### Setup the Main Currency
-When you have a new DB, first you need to do is to setup the Main Currency. Main Currency � currency that is used for storing all money operations. This is necessary, because there is a need of common currency for analytics. All money operations are stored both in currency you've chosen and the Main Currency.
+When you have a new DB, first you need to do is to setup the Main Currency. Main Currency — currency that is used for storing all money operations. This is necessary, because there is a need of common currency for analytics. All money operations are stored both in currency you've chosen and the Main Currency.
 
 **Warning**: The Main Currency is set for a specific DB **only once**. In future it **can't** be changed!
 
@@ -74,3 +74,16 @@ If you want to delete some item in the table, you need to select an item in the 
 
 ##### Refresh
 If you want to refresh all data in the form (including table and other foreign data), press the "Refresh" button.
+
+#### Edit Currencies
+Every currency has Name, Code, Symbol and Units rate.
+- Name — name of currency (e.g. *US Dollar* or *Czech Republic Koruna*)
+- Code — code of currency according to ISO 4217 (and not only), (e.g. *USD* or *CZK*)
+- Symbol — currency symbol (e.g. *$* or *Kč*)
+- Units rate — by how much order the currency is broken down into. (e.g. *1$ = 100 cents*, so units rate = 2. But *1Ft (Hungarian Forint)* is not divided into subunits, so units rate = 0)
+
+**Warning**: Currency code field is **very important**! If it's incorrect, the application **can't** work properly. Other field are not checked.
+
+**Notice**: [Here](https://currencyapi.com/docs/currency-list) you can find the list of all supported currencies with their codes.
+
+**Notice**: The Main Currency is highlighted in blue color. It **can't** be changed or deleted.
