@@ -96,3 +96,8 @@ This is a list of places where you buy goods (e.g. TESCO, McDonalds, FlixBus and
 
 #### Edit Tags
 Each tag has Name and Transaction Type. Tags can be used as universal signs for Items. For example, you can mark all spendings while travelling as *#Travelling* and then you'll have ability to easily find them or somehow analyze you spending while travelling. Tags have a limitless scope of use.
+
+#### Edit Cash Facilities
+Each cash facility has Name and Currency. Cash facility can be cash, bank card, bank account or whatever you want.
+
+**Notice**: Each cash facility has **exactly** one assigned currency. If you have multi-currency cash facility, you'll need to add for each currency a separate cash facility.
