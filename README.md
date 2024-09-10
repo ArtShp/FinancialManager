@@ -101,3 +101,12 @@ Each tag has Name and Transaction Type. Tags can be used as universal signs for 
 Each cash facility has Name and Currency. Cash facility can be cash, bank card, bank account or whatever you want.
 
 **Notice**: Each cash facility has **exactly** one assigned currency. If you have multi-currency cash facility, you'll need to add for each currency a separate cash facility.
+
+#### Edit Categories
+Categories are a hierarchical structure. Each one has Name and at most one parent. Top-level categories don't have parents.
+
+To choose parent category use buttons "Load" and "Clear". First one sets as a parent category chosen one in the table. The second button clears you choice and sets no parent category.
+
+In the table categories with subcategories has a "plus" that loads and expands the list of subcategories for a specific category. "Minus" collapses that list.
+
+**Notice**: Categories **can** have the same names. For example, Coffee in the shop and Coffee in the cafe.
