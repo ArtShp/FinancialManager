@@ -207,3 +207,9 @@ Program structure:
 - Money Type Handler (ORM handler for Money Type)
 
 The application starts with Program file that starts Main Window, where all other windows are called from.
+
+## Roadmap
+- User don't need to enter currency info by themself, but they can choose from the list of supported currencies.
+- More transaction types (e.g. Return of goods)
+- More filters for items analyzer
+- Ability to see statistics (e.g. Compare expenses over several months)
