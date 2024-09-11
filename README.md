@@ -213,3 +213,6 @@ The application starts with Program file that starts Main Window, where all othe
 - More transaction types (e.g. Return of goods)
 - More filters for items analyzer
 - Ability to see statistics (e.g. Compare expenses over several months)
+
+## Project for
+This project was created as a semester project for the Programming 2 - NPRG031, UK MFF 2024.
