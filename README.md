@@ -182,3 +182,28 @@ When filters are set up, press "Get" button and in the table you'll see filtered
 
 #### Currency Exchange
 This is a mini built-in application that allows you to exchange money. Just choose 2 currencies, date and enter amount you want to convert and press the "Convert" button.
+
+## Programmer's description
+Main framework:
+- [Windows Forms](https://github.com/dotnet/winforms) — Framework for developing GUI Windows application
+
+Used packages:
+- [Currencyapi](https://www.nuget.org/packages/Currencyapi/1.0.2?_src=template) — Official CurrencyAPI package
+- [Dapper](https://www.nuget.org/packages/Dapper/2.1.35?_src=template) — Micro-ORM to easy work with ADO.NET
+- [System.Data.SQLite.Core](https://www.nuget.org/packages/System.Data.SQLite.Core/1.0.118?_src=template) — Official SQLite DB engine with ADO.NET provider
+
+Program structure:
+- Forms (for editing, viewing and analyzing DB data)
+- Models for DB data (ORM)
+- Settings file (persistent between sessions)
+	- User settings
+		- CurrencyAPI key
+		- Path to DB
+- SQLite Data Accessor (interface to work with DB data)
+- Currency Converter (interface to exchange money)
+- CurrencyAPI (interface to get exchange rates from CurrencyAPI)
+- Money Type (special type to store and view money with fixed point)
+	- Money are stored in DB as long number (in subunits) and shown as strings with period (e.g. 54.9$ are stored as 5490 and shown as 54.90$)
+- Money Type Handler (ORM handler for Money Type)
+
+The application starts with Program file that starts Main Window, where all other windows are called from.
