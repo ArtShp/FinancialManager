@@ -167,3 +167,15 @@ Congratulations! Now you can fully use the application.
 When you have some new money operations, add new transaction and items for it.
 
 Then you have ability to analyze your income/expenses.
+
+#### Analyze Items
+In terms of the application it means filtering items and summarizing the results.
+
+You can filter by next parameters:
+- Specific category (with all subcategories) or All
+- Specific transaction type or All
+- Specific place or All
+- Start date or None
+- End date or None
+
+When filters are set up, press "Get" button and in the table you'll see filtered results. They'll be grouped by transaction types and summarized.
