@@ -17,6 +17,9 @@ This is a simple financial manager. It can help you to manage your money.
 - Analyze income and expenses
 - Convert money
 
+## Installation
+Install Visual Studio, [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), needed packages (read below) and compile the project.
+
 ## Usage
 Launch .exe file.
 
