@@ -216,3 +216,6 @@ The application starts with Program file that starts Main Window, where all othe
 
 ## Project for
 This project was created as a semester project for the Programming 2 - NPRG031, UK MFF 2024.
+
+## License
+This project is licensed under the terms of the MIT license.
