@@ -183,6 +183,9 @@ When filters are set up, press "Get" button and in the table you'll see filtered
 #### Currency Exchange
 This is a mini built-in application that allows you to exchange money. Just choose 2 currencies, date and enter amount you want to convert and press the "Convert" button.
 
+## Example
+Project has an example DB that you can play with.
+
 ## Programmer's description
 Main framework:
 - [Windows Forms](https://github.com/dotnet/winforms) — Framework for developing GUI Windows application
