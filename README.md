@@ -179,3 +179,6 @@ You can filter by next parameters:
 - End date or None
 
 When filters are set up, press "Get" button and in the table you'll see filtered results. They'll be grouped by transaction types and summarized.
+
+#### Currency Exchange
+This is a mini built-in application that allows you to exchange money. Just choose 2 currencies, date and enter amount you want to convert and press the "Convert" button.
