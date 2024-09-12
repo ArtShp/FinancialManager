@@ -201,10 +201,6 @@ When filters are set up, press "Get" button and in the table you'll see filtered
 This is a mini built-in application that allows you to exchange money. Just choose 2 currencies, date and enter amount you want to convert and press the "Convert" button.
 ![Currency Exchange](docs/Currency_Exchange.png)
 
-## DB structure
-In this project is used SQLite database because it's easy and works without a server.
-![DB structure](docs/DB_structure.png)
-
 ## Example
 Project has an example DB that you can play with.
 
@@ -232,6 +228,10 @@ Program structure:
 - Money Type Handler (ORM handler for Money Type)
 
 The application starts with Program file that starts Main Window, where all other windows are called from.
+
+### DB structure
+In this project is used SQLite database because it's easy and works without a server.
+![DB structure](docs/DB_structure.png)
 
 ## Roadmap
 - User don't need to enter currency info by themself, but they can choose from the list of supported currencies.
