@@ -52,7 +52,7 @@ Next step is to setup the key for currency exchange service. Here we use [this](
 Firstly you need to create an account (choose variant with a free subscription). After completing the registration you'll see the API key in dashboard. Save it, you will need it further.
 
 Now you need to add it to the app settings. Find the button "CurrencyAPI key" in settings section, press it and the form for editing will be shown. Here is the field where you need to enter the key. When you press "Ok", the key will be checked and saved if it's correct.
-![CurrencyAPI key](docs/Setup_CurrencyAPI_key.png)
+![CurrencyAPI key](docs/Setup_CurrencyAPI_Key.png)
 
 **Notice**: This API key is **common** for all DBs, but **unique** for all users.
 
