@@ -30,9 +30,11 @@ First you need to open or create a database (further: DB).
 
 #### Create a new DB
 If you want to create a new DB, open file menu (in the menu strip), find the button "Create DB" and press on it (or use a shortcut *Ctrl+N*). Then choose a folder where to store your DB, choose a name for it and finally press "Save". If everything is ok, you'll see a successful message. But then you'll immediately see a "Main Currency" error: about it later.
+![Create DB](docs/Create_DB.png)
 
 #### Open an existing DB
 If you want to open an existing DB, open file menu (in the menu strip), find the button "Open DB" and press on it (or use a shortcut *Ctrl+O*). Then choose a DB file and press "Open". If everything is ok, you'll see a successful message. It's possible, that you'll immediately see a "Main Currency" error: about it later.
+![Open DB](docs/Open_DB.png)
 
 ### Setup the Main Currency
 When you have a new DB, first you need to do is to setup the Main Currency. Main Currency — currency that is used for storing all money operations. This is necessary, because there is a need of common currency for analytics. All money operations are stored both in currency you've chosen and the Main Currency.
@@ -42,6 +44,7 @@ When you have a new DB, first you need to do is to setup the Main Currency. Main
 **Warning**: If the Main Currency is not set, the application **can't** work properly!
 
 To setup it up, press "Edit Currencies" button and the form for editing currencies will be shown. You need to add a new currency and it will be the main one. About editing currencies read further.
+![Edit Currencies](docs/Currencies.png)
 
 ### Setup CurrencyAPI key
 Next step is to setup the key for currency exchange service. Here we use [this](https://currencyapi.com) free service. You will need to setup your own API key. Here is an absolutely free variant of account and it's enough for our needs. It provides 300 requests/month and 10 request/minute, a big variety of more than 170 world currencies and ability to get currencies exchange rate not only for today, but also for previous days.
@@ -49,6 +52,7 @@ Next step is to setup the key for currency exchange service. Here we use [this](
 Firstly you need to create an account (choose variant with a free subscription). After completing the registration you'll see the API key in dashboard. Save it, you will need it further.
 
 Now you need to add it to the app settings. Find the button "CurrencyAPI key" in settings section, press it and the form for editing will be shown. Here is the field where you need to enter the key. When you press "Ok", the key will be checked and saved if it's correct.
+![CurrencyAPI key](docs/Setup_CurrencyAPI_key.png)
 
 **Notice**: This API key is **common** for all DBs, but **unique** for all users.
 
@@ -85,6 +89,8 @@ Every currency has Name, Code, Symbol and Units rate.
 - Symbol — currency symbol (e.g. *$* or *Kč*)
 - Units rate — by how much order the currency is broken down into. (e.g. *1$ = 100 cents*, so units rate = 2. But *1Ft (Hungarian Forint)* is not divided into subunits, so units rate = 0)
 
+![Edit Currencies](docs/Currencies.png)
+
 **Warning**: Currency code field is **very important**! If it's incorrect, the application **can't** work properly. Other field are not checked.
 
 **Notice**: [Here](https://currencyapi.com/docs/currency-list) you can find the list of all supported currencies with their codes.
@@ -93,15 +99,19 @@ Every currency has Name, Code, Symbol and Units rate.
 
 #### Edit Transaction Types
 Transaction type can be Income or Expense. It's not possible to add a new or delete an existing transaction type. You have ability only to rename them.
+![Edit Transaction Types](docs/Transaction_Types.png)
 
 #### Edit Places Of Purchases
 This is a list of places where you buy goods (e.g. TESCO, McDonalds, FlixBus and etc.). There is a need for place of purchase mostly for expenses. For income you can choose nothing as place of purchase.
+![Edit Places Of Purchases](docs/Places_Of_Purchases.png)
 
 #### Edit Tags
 Each tag has Name and Transaction Type. Tags can be used as universal signs for Items. For example, you can mark all spendings while travelling as *#Travelling* and then you'll have ability to easily find them or somehow analyze you spending while travelling. Tags have a limitless scope of use.
+![Edit Tags](docs/Tags.png)
 
 #### Edit Cash Facilities
 Each cash facility has Name and Currency. Cash facility can be cash, bank card, bank account or whatever you want.
+![Edit Cash Facilities](docs/Cash_Facilities.png)
 
 **Notice**: Each cash facility has **exactly** one assigned currency. If you have multi-currency cash facility, you'll need to add for each currency a separate cash facility.
 
@@ -111,6 +121,7 @@ Categories are a hierarchical structure. Each one has Name and at most one paren
 To choose parent category use buttons "Load" and "Clear". First one sets as a parent category chosen one in the table. The second button clears you choice and sets no parent category.
 
 In the table categories with subcategories has a "plus" that loads and expands the list of subcategories for a specific category. "Minus" collapses that list.
+![Edit Categories](docs/Categories.png)
 
 **Notice**: Categories **can** have the same names. For example, Coffee in the shop and Coffee in the cafe.
 
@@ -129,6 +140,7 @@ Each transaction has:
 When you are adding a new transaction, after pressing the "Add" button the form for editing Items for this transaction will be shown. About editing Items read next section.
 
 If you want to edit transaction's items, double click on that transaction in the table.
+![Edit Transactions](docs/Transactions.png)
 
 Examples in next part.
 
@@ -145,6 +157,7 @@ Each item has:
 In the table you can see all items assigned to some transaction and in the end highlighted in blue total spent sum.
 
 When you're adding a new item/changing an existing one, the CurrencyAPI will be used to convert your sum into sum in the Main Currency.
+![Edit Items](docs/Items.png)
 
 **Warning**: In case of any problems the item won't be added/changed.
 
@@ -182,9 +195,11 @@ You can filter by next parameters:
 - End date or None
 
 When filters are set up, press "Get" button and in the table you'll see filtered results. They'll be grouped by transaction types and summarized.
+![Analyze Items](docs/Analyze_Items.png)
 
 #### Currency Exchange
 This is a mini built-in application that allows you to exchange money. Just choose 2 currencies, date and enter amount you want to convert and press the "Convert" button.
+![Currency Exchange](docs/Currency_Exchange.png)
 
 ## DB structure
 In this project is used SQLite database because it's easy and works without a server.
