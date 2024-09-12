@@ -245,5 +245,20 @@ In this project is used SQLite database because it's easy and works without a se
 ## Project for
 This project was created as a semester project for the Programming 2 - NPRG031, UK MFF 2024.
 
+## Conclusion
+This project was a great experience for me. I've learned a lot of new things and I've improved my programming skills. For example, I've trained my SQL skills with SQLite database, developing Windows Forms applications in C# and working with APIs. Also I've trained my skills in Git: used multiple branches and nice comments.
+
+This is my first such a big project. I've been developing it for a bit longer than a month.
+
+I had problems with:
+- SQLite database (I've never worked with it before)
+- Adding Unit Tests to Windows Forms Application (finally it didn't work :) ). This is because Windows Forms App has target "net8.0-windows" and Unit Tests have target "net8.0". I've tried to change it, but it didn't work properly.
+- Using API (I've never worked with APIs before)
+- Developing a big project (I've never developed such a big project before)
+- Advanced Git (I've never used branches before, just the main one)
+- SQL queries
+
+This project was for me a nice experience and I'm happy that I've done it.
+
 ## License
 This project is licensed under the terms of the MIT license.
